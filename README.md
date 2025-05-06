@@ -1,7 +1,7 @@
-# MrYugenWeb
+# Mr. Yugen Website
 
-**mr-yugen-web** es la página web y portafolio profesional de **Mr. Yugen** (Miguel Estévez):  
-un diseñador gráfico, ilustrador profesional y programador en ciernes que adora la creatividad y trabajar en nuevas experiencias interactivas.  
+**Mr Yugen Web** es la página web y portafolio profesional de **Mr. Yugen** (Miguel Estévez):  
+Diseñador gráfico, ilustrador profesional y programador en ciernes que adora la creatividad y trabajar en nuevas experiencias interactivas.  
 Aquí encontrarás mi CV digital, todo sobre mi nuevo juego de mesa Couple Clash, portfolio de proyectos realizados, blog de tutoriales y experiencias personales y mis servicios de automatización.
 
 Este es mi primer proyecto personal usando tecnologías como Angular y TypeScript, intentare hacerlo lo mejor posible, aunque es probable que cometa fallos por el camino. A programar se aprende programando. Espero que lo que encuentres aquí te pueda ayudar y toda sugerencia desde el respeto es bienvenida.
@@ -14,7 +14,7 @@ Un saludo
 
 ## 📋 Tabla de Contenidos
 
-- [MrYugenWeb](#mryugenweb)
+- [Mr. Yugen Website](#mr-yugen-website)
   - [📋 Tabla de Contenidos](#-tabla-de-contenidos)
   - [🎥 Demo](#-demo)
   - [✨ Características](#-características)
@@ -30,11 +30,10 @@ Un saludo
 
 ## 🎥 Demo
 
-> Capturas de pantalla (añade tus imágenes en `docs/screenshots/`)
-![Mr. Yugen Logo](docs/screenshots/home-light.png) 
-![Couple Clash Logo](docs/screenshots/home-light.png) 
-![Home – Modo Claro - Próximamente](docs/screenshots/home-light.png)  
-![Home – Modo Oscuro - Próximamente](docs/screenshots/home-dark.png)  
+![Mr. Yugen Logo](../mryugenweb/src/docs/screenshots/mryugen-logo.png) 
+![Couple Clash Logo](../mryugenweb/src/docs/screenshots/couple-clash-logo.png) 
+![Home – Modo Claro - Próximamente]()  
+![Home – Modo Oscuro - Próximamente]()  
 
 ---
 
@@ -60,35 +59,37 @@ Un saludo
 ## 📂 Estructura del Proyecto
 
 mryugenweb/
-├── README.md
-├── package.json
-├── angular.json
-├── tailwind.config.js
-├── tsconfig.json
-├── src/
-│ ├── index.html
-│ ├── styles.css
-│ ├── assets/
-│ │ ├── images/
-│ │ │ ├── logo.svg
-│ │ │ ├── profile.png
-│ │ │ └── contact-illustration.svg
-│ │ └── media/
-│ └── app/
-│ ├── app.component.html ← <router-outlet>
-│ ├── app.component.ts
-│ ├── app.routes.ts
-│ ├── app.config.ts
-│ ├── home/
-│ │ ├── home.component.ts
-│ │ ├── home.component.html
-│ │ └── home.component.css
-│ └── services/
-│ └── theme.service.ts
-└── docs/
-└── screenshots/
-├── home-light.png
-└── home-dark.png
+ README.md
+ package.json
+ angular.json
+ tailwind.config.js
+ tsconfig.json
+ src/
+  index.html
+  styles.css
+  assets/
+   images/
+    logo.svg
+    profile.png
+    contact-illustration.svg
+   media/
+  app/
+   app.component.html ← <router-outlet>
+   app.component.ts
+   app.routes.ts
+   app.config.ts
+  home/
+   home.component.ts
+   home.component.html
+   home.component.css
+  services/
+   theme.service.ts
+  docs/
+  screenshots/
+   mryugen-logo.png
+   couple-clash-logo.png
+   home-light.png
+   home-dark.png
 
 ---
 
@@ -100,9 +101,11 @@ mryugenweb/
    cd mryugenweb
 
 2. **Instalar** dependencias
+   ```bash
    npm install
 
 3. **Iniciar** servidor de desarrollo
+   ```bash
    npm start
 
 4. **Abrir** en el navegador: http://localhost:4200
