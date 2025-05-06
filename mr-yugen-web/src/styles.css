@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables personalizadas para modo claro y oscuro */
+:root {
+  --color-bg: #FDEEDC;
+  --color-bg-alt: #457B9D21; /* versión translúcida del azul grisáceo */
+  --color-text: #1D3557;
+  --color-cta: #FF6F3C;
+}
+
+.dark {
+  --color-bg: #1D3557;
+  --color-bg-alt: #23395B;
+  --color-text: #FDEEDC;
+  --color-cta: #FF6F3C;
+}

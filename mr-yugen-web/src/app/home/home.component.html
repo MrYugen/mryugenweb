@@ -1,0 +1,156 @@
+<!-- Contenedor raíz con clase para modo oscuro -->
+<div [class.dark]="isDarkMode"
+    class="min-h-screen bg-[color:var(--bg)] text-[color:var(--text)] transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <header class="w-full fixed top-0 z-50 bg-[color:var(--bg)]/70 backdrop-blur-md">
+        <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
+            <a routerLink="/" class="text-2xl font-bold">Mr.Yugen</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a routerLink="/">Home</a></li>
+                <li><a routerLink="/skills">Skills</a></li>
+                <li><a routerLink="/portfolio">Portfolio</a></li>
+                <li><a routerLink="/blog">Blog</a></li>
+                <li><a routerLink="/automation">Automatización</a></li>
+                <li><a routerLink="/contact">Contacto</a></li>
+            </ul>
+            <!-- Toggle / Mobile hamburger -->
+            <div class="flex items-center space-x-4">
+                <button (click)="toggleTheme()" aria-label="Toggle Dark Mode">
+                    <span *ngIf="!isDarkMode">🌙</span>
+                    <span *ngIf="isDarkMode">☀️</span>
+                </button>
+                <button class="md:hidden" (click)="mobileOpen = !mobileOpen">
+                    <!-- ícono hamburguesa -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor">
+                        <path *ngIf="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path *ngIf="mobileOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile menu fullscreen -->
+        <div *ngIf="mobileOpen"
+            class="fixed inset-0 bg-[color:var(--bg)] flex flex-col items-center justify-center space-y-8 text-xl">
+            <a routerLink="/" (click)="mobileOpen=false">Home</a>
+            <a routerLink="/skills" (click)="mobileOpen=false">Skills</a>
+            <a routerLink="/portfolio" (click)="mobileOpen=false">Portfolio</a>
+            <a routerLink="/blog" (click)="mobileOpen=false">Blog</a>
+            <a routerLink="/automation" (click)="mobileOpen=false">Automatización</a>
+            <a routerLink="/contact" (click)="mobileOpen=false">Contacto</a>
+        </div>
+    </header>
+
+    <!-- HERO VISUAL -->
+    <section id="hero" class="pt-24 flex flex-col items-center justify-center text-center h-[80vh]">
+        <!-- Logo animado: aplica aquí tu animación con GSAP -->
+        <img src="assets/logo.svg" alt="Logo Mr. Yugen" class="w-32 h-32 mb-6 animate-pulse" />
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Creatividad. Diseño. Código.</h1>
+        <button routerLink="/portfolio/couple-clash"
+            class="px-8 py-3 border-2 border-[color:var(--cta)] rounded-full font-semibold hover:bg-[color:var(--cta)] hover:text-white transition">
+            Descubre Couple Clash
+        </button>
+    </section>
+
+    <!-- ABOUT / STORYTELLING -->
+    <section id="about" class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4">
+        <img src="assets/profile.png" alt="Mr. Yugen" class="w-48 h-48 rounded-full shadow-lg" />
+        <div>
+            <h2 class="text-2xl font-bold mb-2">¿Quién es Mr. Yugen?</h2>
+            <p class="mb-4 leading-relaxed">
+                Soy un ingeniero creativo full-stack con pasión por el diseño y la automatización.
+                Aquí encontrarás mi portafolio, historias de proyectos y mucho más.
+            </p>
+            <button routerLink="/blog" class="underline font-medium hover:text-[color:var(--cta)]">
+                Leer mis historias en el Blog →
+            </button>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="bg-[color:var(--bg-alt)] py-16 px-4">
+        <h3 class="text-3xl font-bold text-center mb-8">Skills</h3>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Repite por cada skill -->
+            <div class="flex flex-col items-center p-4 bg-white/20 rounded-xl hover:scale-105 transition-transform">
+                <i class="text-5xl mb-2">🎨</i>
+                <h4 class="font-semibold mb-1">Diseño e Ilustración</h4>
+                <p class="text-sm text-center">Photoshop, Illustrator, Procreate, UX/UI</p>
+            </div>
+            <!-- ... otras 2 bloques -->
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="py-16 px-4">
+        <h3 class="text-3xl font-bold text-center mb-8">Portfolio</h3>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ng-container *ngFor="let item of portfolioItems">
+                <div class="p-6 border rounded-lg hover:shadow-lg transition-shadow flex flex-col">
+                    <h4 class="font-semibold mb-2">{{ item.title }}</h4>
+                    <p class="flex-grow">{{ item.description }}</p>
+                    <button [routerLink]="item.link"
+                        class="mt-4 px-4 py-2 bg-[color:var(--cta)] text-white rounded hover:opacity-90 self-start">
+                        Ver más
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+
+    <!-- BLOG PREVIEW -->
+    <section id="blog" class="bg-[color:var(--bg-alt)] py-16 px-4">
+        <h3 class="text-3xl font-bold text-center mb-8">Blog: Últimas entradas</h3>
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            <ng-container *ngFor="let post of latestPosts">
+                <div class="p-4 bg-white/20 rounded-lg hover:bg-white/30 transition">
+                    <h5 class="font-semibold">{{ post.title }}</h5>
+                    <span class="text-sm">{{ post.date | date:'mediumDate' }}</span>
+                </div>
+            </ng-container>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DESTACADOS -->
+    <section id="services" class="py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto space-y-4">
+            <p>Automatización de Procesos para Empresas y Autónomos.</p>
+            <button routerLink="/services/automation"
+                class="px-6 py-3 border-2 border-[color:var(--cta)] rounded-full hover:bg-[color:var(--cta)] hover:text-white transition">
+                Ver Servicios de Automatización
+            </button>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contact" class="bg-[color:var(--bg-alt)] py-16 px-4">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col items-center">
+                <img src="assets/contact-illustration.svg" alt="Contacto" class="w-full max-w-sm mb-4" />
+                <div class="text-sm">
+                    <p>Correo electronico 1</p>
+                    <p>Correo electronico 2</p>
+                </div>
+            </div>
+            <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-4">
+                <input name="name" ngModel placeholder="Nombre" required
+                    class="w-full p-3 rounded border focus:outline-none" />
+                <input name="email" ngModel type="email" placeholder="Email" required
+                    class="w-full p-3 rounded border focus:outline-none" />
+                <textarea name="message" ngModel rows="5" placeholder="Mensaje" required
+                    class="w-full p-3 rounded border focus:outline-none"></textarea>
+                <button type="submit"
+                    class="w-full py-3 bg-[color:var(--cta)] text-white rounded hover:opacity-90 transition">
+                    Enviar
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-6 text-center text-sm">
+        © 2025 Mr. Yugen. Todos los derechos reservados.
+    </footer>
+</div>
