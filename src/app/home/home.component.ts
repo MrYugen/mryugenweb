@@ -31,18 +31,18 @@ export class HomeComponent {
 
   // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
   portfolioItems = [
-    { title: 'Branding', description: 'Diseño de logos y marca.', link: '/portfolio/branding' },
-    { title: 'Ilustración Digital', description: 'Concept art e ilustraciones.', link: '/portfolio/illustration' },
-    { title: 'Páginas Web', description: 'Webs a medida.', link: '/portfolio/websites' },
-    { title: 'Couple Clash', description: 'Juego de mesa original.', link: '/portfolio/couple-clash' },
+    { title: 'Branding', description: 'Diseño de logos, identidad visual y creación de marca.', link: '/portfolio/branding' },
+    { title: 'Ilustración Digital', description: 'Desde concept art hasta ilustraciones por encargo.', link: '/portfolio/illustration' },
+    { title: 'Páginas Web', description: 'Diseño web a medida con la mejor experiencia de usuario.', link: '/portfolio/websites' },
+    { title: 'Couple Clash', description: '5 años de trabajo plasmados en este original juego de mesa', link: '/portfolio/couple-clash' },
   ];
 
 // <-- aquí le dices a TS que latestPosts es un array de BlogPost
   latestPosts: BlogPost[] = [
     // Opcionalmente ya puedes meter datos de ejemplo para verlos en pantalla
-    { title: 'Lanzamiento de la web',    date: '2025-05-01' },
-    { title: 'Nuevas animaciones GSAP', date: '2025-04-25' },
-    { title: 'Integración con CMS',     date: '2025-04-10' }
+    { title: '#1 El inicio de todo: Mi Odisea Creativa',    date: '2024-08-06' },
+    { title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)', date: '2024-09-25' },
+    { title: '#3 Errores comunes al diseñar un juego de mesa (Parte 2)',     date: '2024-10-10' }
   ];
 
   constructor(private theme: ThemeService) {

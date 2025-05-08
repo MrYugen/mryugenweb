@@ -16,3 +16,5 @@
   --color-text: #FDEEDC;
   --color-cta: #FF6F3C;
 }
+
+html { scroll-behavior: smooth; }

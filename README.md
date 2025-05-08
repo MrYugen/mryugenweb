@@ -58,39 +58,6 @@ Un saludo
 
 ## 📂 Estructura del Proyecto
 
-mryugenweb/
- README.md
- package.json
- angular.json
- tailwind.config.js
- tsconfig.json
- src/
-  index.html
-  styles.css
-  assets/
-   images/
-    logo.svg
-    profile.png
-    contact-illustration.svg
-   media/
-  app/
-   app.component.html ← <router-outlet>
-   app.component.ts
-   app.routes.ts
-   app.config.ts
-  home/
-   home.component.ts
-   home.component.html
-   home.component.css
-  services/
-   theme.service.ts
-  docs/
-  screenshots/
-   mryugen-logo.png
-   couple-clash-logo.png
-   home-light.png
-   home-dark.png
-
 ---
 
 ## 🚀 Instalación y Desarrollo
