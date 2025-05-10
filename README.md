@@ -30,10 +30,10 @@ Un saludo
 
 ## 🎥 Demo
 
-![Mr. Yugen Logo](../mryugenweb/src/docs/screenshots/mryugen-logo.png) 
-![Couple Clash Logo](../mryugenweb/src/docs/screenshots/couple-clash-logo.png) 
-![Home – Modo Claro - Próximamente]()  
-![Home – Modo Oscuro - Próximamente]()  
+![Mr. Yugen Logo](/src/docs/screenshots/mryugen-logo.png) 
+![Couple Clash Logo](/src/docs/screenshots/couple-clash-logo.png) 
+![Home - Hero – Modo Claro - Próximamente](/mryugenweb/src/docs/screenshots/Home%20-%20Hero%20-%20claro.png)  
+![Home - Hero – Modo Oscuro - Próximamente](/mryugenweb/src/docs/screenshots/Home%20-%20Hero%20-%20oscuro.png)  
 
 ---
 

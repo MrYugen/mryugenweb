@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 // Trae CommonModule para ngIf, pipes (date…), *ngFor…
 import { CommonModule } from '@angular/common';
 // Trae RouterModule para routerLink, router-outlet…
 import { RouterModule } from '@angular/router';
 // Trae FormsModule para ngModel, ngSubmit, ngForm…
 import { FormsModule } from '@angular/forms';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap';
 
 import { ThemeService } from '../services/theme.service';
 
@@ -25,7 +27,10 @@ export interface BlogPost {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']  // Fichero de estilos locales
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
+  @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
+  @ViewChild('heroButton')  heroButton!: ElementRef<HTMLButtonElement>;
+  
   mobileOpen = false;  // Control del menú hamburguesa
   isDarkMode = false;  // Estado del tema
 
@@ -60,4 +65,27 @@ export class HomeComponent {
     // TODO: implementar envío de formulario de contacto (llamar a tu backend o servicio)
     console.log('Enviar formulario de contacto');
   }
+  ngAfterViewInit() {
+    // Animación suave de entrada
+  gsap.registerPlugin(ScrollTrigger);
+  
+  gsap.to('.hero', {
+    backgroundPosition: '50% 80%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+    }
+  });
+    gsap.from(this.heroHeading.nativeElement, {
+      opacity: 0,
+      y: -30,
+      duration: 2,
+      ease: 'power3.out'
+    });
+  }
 }
+
+  

@@ -2,16 +2,19 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
 
     <!-- NAVBAR -->
-    <header class="w-full fixed top-0 z-50 bg-bg/70 backdrop-blur-md">
+    <header class="fixed top-0 w-full z-50 bg-bg/70 backdrop-blur-md transition-colors duration-300 h-16">
         <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
-            <a routerLink="/" class="text-2xl font-bold">Mr.Yugen</a>
-            <ul class="hidden md:flex space-x-6">
-                <li><a routerLink="/">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a routerLink="/blog">Blog</a></li>
-                <li><a routerLink="/automation">Automatización</a></li>
-                <li><a href="#contact">Contacto</a></li>
+            <!-- Logo clickable, cambia según tema -->
+            <a routerLink="/">
+                <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
+            </a>
+            <ul class="hidden md:flex space-x-6 text-text">
+                <li><a href="#hero" class="hover:text-cta transition">Home</a></li>
+                <li><a href="#skills" class="hover:text-cta transition">Skills</a></li>
+                <li><a href="#portfolio" class="hover:text-cta transition">Portfolio</a></li>
+                <li><a href="#blog" class="hover:text-cta transition">Blog</a></li>
+                <li><a href="#services" class="hover:text-cta transition">Automatización</a></li>
+                <li><a href="#contact" class="hover:text-cta transition">Contacto</a></li>
             </ul>
             <!-- Toggle / Mobile hamburger -->
             <div class="flex items-center space-x-4">
@@ -32,24 +35,34 @@
         </nav>
         <!-- Mobile menu fullscreen -->
         <div *ngIf="mobileOpen" class="fixed inset-0 bg-bg flex flex-col items-center justify-center space-y-8 text-xl">
-            <a routerLink="/" (click)="mobileOpen=false">Home</a>
+            <a href="#hero" (click)="mobileOpen=false">Home</a>
             <a href="#skills" (click)="mobileOpen=false">Skills</a>
             <a href="#portfolio" (click)="mobileOpen=false">Portfolio</a>
-            <a routerLink="/blog" (click)="mobileOpen=false">Blog</a>
-            <a routerLink="/automation" (click)="mobileOpen=false">Automatización</a>
+            <a href="#blog" (click)="mobileOpen=false">Blog</a>
+            <a href="#services" (click)="mobileOpen=false">Automatización</a>
             <a href="#contact" (click)="mobileOpen=false">Contacto</a>
         </div>
     </header>
 
     <!-- HERO VISUAL -->
-    <section id="hero" class="pt-24 flex flex-col items-center justify-center text-center h-[80vh]">
-        <!-- Logo animado: aplica aquí tu animación con GSAP -->
-        <img src="assets/images/logo_mryugen.svg" alt="Logo simple Mr. Yugen" class="w-32 h-32 mb-6 animate-pulse" />
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Creatividad. Diseño. Código.</h1>
-        <button routerLink="/portfolio/couple-clash"
-            class="px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta hover:text-white transition">
-            Descubre Couple Clash
-        </button>
+    <section id="hero" class="hero h-[80vh] pt-24 transition-colors duration-300">
+        <div class="hero-content flex flex-col items-center justify-center h-full">
+            <!-- Logo del Hero que cambia según el tema -->
+            <img [src]="isDarkMode
+              ? 'assets/images/logo-hero-dark.svg'
+              : 'assets/images/logo-hero-light.svg'" alt="Logo Mr. Yugen" class="w-96" />
+
+            <h1 #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+                class="text-4xl md:text-6xl font-extrabold mb-8">
+                Creatividad. Diseño. Código
+            </h1>
+
+            <button #heroButton routerLink="#portfolio"
+                [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+                class="px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
+                Descubre Couple Clash
+            </button>
+        </div>
     </section>
 
     <!-- ABOUT / STORYTELLING -->
