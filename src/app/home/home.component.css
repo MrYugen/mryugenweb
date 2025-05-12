@@ -32,3 +32,11 @@
   .hero-content {
     @apply relative z-10 px-4;
   }
+
+  #about img {
+    @apply shadow-xl shadow-black/50;
+  }
+
+  #about img:hover { 
+    @apply scale-105 transition-transform; 
+  }

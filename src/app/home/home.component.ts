@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap } from 'gsap';
 
 import { ThemeService } from '../services/theme.service';
+gsap.registerPlugin(ScrollTrigger);
 
 // 1) Define un tipo / interfaz para tus posts
 export interface BlogPost {
@@ -30,7 +31,9 @@ export interface BlogPost {
 export class HomeComponent implements AfterViewInit {
   @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
   @ViewChild('heroButton')  heroButton!: ElementRef<HTMLButtonElement>;
-  
+  @ViewChild('aboutImage') aboutImage!: ElementRef<HTMLImageElement>;
+  @ViewChild('aboutText')  aboutText!: ElementRef<HTMLDivElement>;
+
   mobileOpen = false;  // Control del menú hamburguesa
   isDarkMode = false;  // Estado del tema
 
@@ -68,7 +71,25 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     // Animación suave de entrada
   gsap.registerPlugin(ScrollTrigger);
-  
+  // Revelado de sección "About"
+    gsap.from(this.aboutImage.nativeElement, {
+      scrollTrigger: {
+        trigger: this.aboutImage.nativeElement,
+        start: 'top 80%',
+      },
+      x: -50,
+      opacity: 0,
+      duration: 1
+    });
+    gsap.from(this.aboutText.nativeElement, {
+      scrollTrigger: {
+        trigger: this.aboutText.nativeElement,
+        start: 'top 80%',
+      },
+      x: 50,
+      opacity: 0,
+      duration: 1
+    });
   gsap.to('.hero', {
     backgroundPosition: '50% 80%',
     ease: 'none',
@@ -81,8 +102,8 @@ export class HomeComponent implements AfterViewInit {
   });
     gsap.from(this.heroHeading.nativeElement, {
       opacity: 0,
-      y: -30,
-      duration: 2,
+      y: -40,
+      duration: 3,
       ease: 'power3.out'
     });
   }
