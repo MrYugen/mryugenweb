@@ -8,6 +8,9 @@
   --color-bg-alt: #457B9D21; /* versión translúcida del azul grisáceo */
   --color-text: #1D3557;
   --color-cta: #FF6F3C;
+  --skill-design-bg:   #D8EECF;
+  --skill-coding-bg:   #D3E9F7;
+  --skill-other-bg:    #F7D1E1;
 }
 
 .dark {
@@ -15,6 +18,9 @@
   --color-bg-alt: #23395B;
   --color-text: #FDEEDC;
   --color-cta: #FF6F3C;
+  --skill-design-bg:   #335B8B;
+  --skill-coding-bg:   #6a2b7b;
+  --skill-other-bg:    #9A3D60;
 }
 
 html { scroll-behavior: smooth; }

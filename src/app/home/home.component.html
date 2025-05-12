@@ -75,7 +75,8 @@
             <p class="mb-4 leading-relaxed">
                 ¡Hola! Soy <strong>Miguel Estévez</strong>, tambien conocido como <em>Mr. Yugen</em>, un
                 <strong>creativo multidisciplinar</strong> apasionado por
-                el <strong>diseño gráfico</strong> y las nuevas tecnologías.</p>
+                el <strong>diseño gráfico</strong> y las nuevas tecnologías.
+            </p>
             <p class="mb-4 leading-relaxed">
                 Combino <strong>storytelling</strong>, <strong>UX/UI</strong>, <strong>inteligencia artificial</strong>
                 y <strong>tecnologías web</strong> para transformar ideas en
@@ -98,29 +99,186 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="bg-bg-alt py-16 px-4">
-        <h3 class="text-3xl font-bold text-center mb-8">Skills</h3>
-        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Repite por cada skill -->
-            <div class="flex flex-col items-center p-4 bg-white/20 rounded-xl hover:scale-105 transition-transform">
-                <i class="text-5xl mb-2">🎨</i>
-                <h4 class="font-semibold mb-1">Diseño Gráfico e Ilustración</h4>
-                <p class="text-sm text-center">Photoshop, Illustrator, InDesign, Procreate, UX/UI, Maquetación</p>
-            </div>
-            <div class="flex flex-col items-center p-4 bg-white/20 rounded-xl hover:scale-105 transition-transform">
-                <i class="text-5xl mb-2">👨🏻‍💻</i>
-                <h4 class="font-semibold mb-1">Programación con Código</h4>
-                <p class="text-sm text-center">HTML5, CSS3, JavaScript, TypeScript, Tailwind CSS, Angular, Python, SQL
-                </p>
-            </div>
-            <div class="flex flex-col items-center p-4 bg-white/20 rounded-xl hover:scale-105 transition-transform">
-                <i class="text-5xl mb-2">🧠</i>
-                <h4 class="font-semibold mb-1">Otras skills</h4>
-                <p class="text-sm text-center">Ingles avanzado escrito y hablado, AI (tools, prompts, AI Agents,
-                    Automatización de procesos), Copywriting, No-Code, Arduino, Blockchain y Crypto</p>
+    <section id="skills" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
+        aria-labelledby="skills-heading">
+        <div class="max-w-5xl mx-auto">
+            <!-- Titular -->
+            <h2 id="skills-heading" class="text-4xl font-bold text-center mb-2">
+                Experiencia y Skills
+            </h2>
+            <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-4">
+                15 años transformando conceptos en realidades
+            </p>
+            <p class="max-w-2xl mx-auto text-center mb-12">
+                A lo largo de mi trayectoria, he combinado creatividad y técnica para ofrecer soluciones
+                visuales y digitales innovadoras, optimizadas en rendimiento y UX.
+            </p>
+
+            <!-- Tarjetas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Diseño Gráfico e Ilustración -->
+                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
+               bg-[color:var(--skill-design-bg)] dark:bg-[color:var(--skill-design-bg)] skills-card">
+                    <img src="assets/images/MrYugenDiseñador.png" alt="Icono Mr Yugen Diseñador Gráfico"
+                        class="mx-auto mb-4 w-32 h-32" />
+                    <h3 class="text-xl font-semibold text-center mb-3">Diseño Gráfico & Ilustración</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Photoshop -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Adobe_Photoshop_CC_icon.svg" alt="Photoshop"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Photoshop</figcaption>
+                        </figure>
+                        <!-- Illustrator -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Adobe_Illustrator_CC_icon.svg" alt="Illustrator"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Illustrator</figcaption>
+                        </figure>
+                        <!-- InDesign -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="InDesign"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">InDesign</figcaption>
+                        </figure>
+                        <!-- Procreate -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Procreate icon.jpeg" alt="Procreate" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Procreate</figcaption>
+                        </figure>
+                        <!-- UX/UI -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/UX-UI icon.png" alt="UX UI" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">UX/UI</figcaption>
+                        </figure>
+                        <!-- Maquetación -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Maquetacion icon.png" alt="Maquetación"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Maquetación</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Programación con Código -->
+                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
+               bg-[color:var(--skill-coding-bg)] dark:bg-[color:var(--skill-coding-bg)] skills-card">
+                    <img src="assets/images/MrYugenProgramador.png" alt="Icono Mr Yugen Programador"
+                        class="mx-auto mb-4 w-32 h-32" />
+                    <h3 class="text-xl font-semibold text-center mb-3">Programación con Código</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- HTML5 -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/HTML5_logo.svg" alt="HTML5" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">HTML5</figcaption>
+                        </figure>
+                        <!-- CSS3 -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/CSS3_logo.svg" alt="CSS3" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">CSS3</figcaption>
+                        </figure>
+                        <!-- JavaScript -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/JS.svg" alt="JavaScript" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">JavaScript</figcaption>
+                        </figure>
+                        <!-- Angular -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Angular_logo.svg" alt="Angular" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Angular</figcaption>
+                        </figure>
+                        <!-- Python -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Python-logo.svg" alt="Python" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Python</figcaption>
+                        </figure>
+                        <!-- SQL -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Sql_logo.svg" alt="SQL" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">SQL</figcaption>
+                        </figure>
+                        <!-- TypeScript -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Typescript_logo.svg" alt="TypeScript"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">TypeScript</figcaption>
+                        </figure>
+                        <!-- TailWind CSS -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="TailWind CSS"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">TailWind CSS</figcaption>
+                        </figure>
+                        <!-- Node.JS -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Node.js_logo.svg" alt="Node.js" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Node.js</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Otras Skills -->
+                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
+               bg-[color:var(--skill-other-bg)] dark:bg-[color:var(--skill-other-bg)] skills-card">
+                    <img src="assets/images/MrYugenIA+Ingles.png" alt="Icono Otras skills"
+                        class="mx-auto mb-4 w-32 h-32" />
+                    <h3 class="text-xl font-semibold text-center mb-3">Otras Skills</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Inglés escrito -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Ingles escrito.png" alt="Inglés Escrito"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Inglés Escrito</figcaption>
+                        </figure>
+                        <!-- Inglés hablado -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Ingles hablado.png" alt="Inglés Hablado"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Inglés Hablado</figcaption>
+                        </figure>
+                        <!-- AI & Prompts -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/AI Prompts.png" alt="AI Agents" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">AI & Prompts</figcaption>
+                        </figure>
+                        <!-- Automatización -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/AI Agents.png" alt="Automatización" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Automatización</figcaption>
+                        </figure>
+                        <!-- Copywriting -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/copywriter_logo.png" alt="Copywriting"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Copywriting</figcaption>
+                        </figure>
+                        <!-- No-Code -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/No code.png" alt="No-Code" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">No-Code</figcaption>
+                        </figure>
+                        <!-- Arduino -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Arduino_Logo.svg" alt="Arduino" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Arduino</figcaption>
+                        </figure>
+                        <!-- Blockchain -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/blockchain-icon.svg" alt="Blockchain"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Blockchain</figcaption>
+                        </figure>
+                        <!-- Crypto -->
+                        <figure class="flex flex-col items-center">
+                            <img src="assets/images/icons/Bitcoin.svg" alt="Crypto" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Crypto</figcaption>
+                        </figure>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- PORTFOLIO -->
     <section id="portfolio" class="py-16 px-4">

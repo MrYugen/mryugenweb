@@ -32,8 +32,8 @@ Un saludo
 
 ![Mr. Yugen Logo](/src/docs/screenshots/mryugen-logo.png) 
 ![Couple Clash Logo](/src/docs/screenshots/couple-clash-logo.png) 
-![Home - Hero – Modo Claro - Próximamente](/mryugenweb/src/docs/screenshots/Home%20-%20Hero%20-%20claro.png)  
-![Home - Hero – Modo Oscuro - Próximamente](/mryugenweb/src/docs/screenshots/Home%20-%20Hero%20-%20oscuro.png)  
+![Home - Hero/Sobre mi/Skills – Modo Claro](/src/docs/screenshots/Hero-Sobre_mi-Skills-Claro.png)  
+![Home - Hero/Sobre mi/Skills – Modo Oscuro](/src/docs/screenshots/Hero-Sobre_mi-Skills-Oscuro.png)
 
 ---
 
@@ -41,7 +41,7 @@ Un saludo
 
 - **Página Home** con hero, sección “¿Quién es Mr. Yugen?”, skills, portfolio, blog, servicios y contacto.  
 - **Modo claro/oscuro** persistente (ThemeService + CSS variables).  
-- **Animaciones suaves** con GSAP y Framer Motion (próximamente).  
+- **Animaciones suaves** con GSAP y Framer Motion.  
 - **Responsive** 100% (menú desktop / menú mobile fullscreen).  
 - **SEO & accesibilidad**: semántica HTML, meta tags, formularios accesibles.  
 
@@ -58,7 +58,7 @@ Un saludo
 
 ## 📂 Estructura del Proyecto
 
----
+--- Home Hero - Sobre mi - Skills - Portfolio (Branding, Programación, Ilustración, Couple Clash) - Automatización (Servicios) - Contacto - Footer y RRSS
 
 ## 🚀 Instalación y Desarrollo
 

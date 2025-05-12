@@ -40,3 +40,5 @@
   #about img:hover { 
     @apply scale-105 transition-transform; 
   }
+
+  figure:hover img { @apply scale-110 transition-transform; }
