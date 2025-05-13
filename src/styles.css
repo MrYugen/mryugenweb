@@ -11,6 +11,10 @@
   --skill-design-bg:   #D8EECF;
   --skill-coding-bg:   #D3E9F7;
   --skill-other-bg:    #F7D1E1;
+  --portfolio-bg-branding:    #F7D1E1;
+  --portfolio-bg-illustration:#D8EECF;
+  --portfolio-bg-web:         #FCF0C2;
+  --portfolio-bg-couple:      #C5C3FF;
 }
 
 .dark {
@@ -21,6 +25,10 @@
   --skill-design-bg:   #335B8B;
   --skill-coding-bg:   #6a2b7b;
   --skill-other-bg:    #9A3D60;
+  --portfolio-bg-branding:    #7F3E53;
+  --portfolio-bg-illustration:#397b28;
+  --portfolio-bg-web:         #906f2d;
+  --portfolio-bg-couple:      #364cb0;
 }
 
 html { scroll-behavior: smooth; }

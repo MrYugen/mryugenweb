@@ -32,8 +32,8 @@ Un saludo
 
 ![Mr. Yugen Logo](/src/docs/screenshots/mryugen-logo.png) 
 ![Couple Clash Logo](/src/docs/screenshots/couple-clash-logo.png) 
-![Home - Hero/Sobre mi/Skills – Modo Claro](/src/docs/screenshots/Hero-Sobre_mi-Skills-Claro.png)  
-![Home - Hero/Sobre mi/Skills – Modo Oscuro](/src/docs/screenshots/Hero-Sobre_mi-Skills-Oscuro.png)
+![Home - Hero/Sobre mi/Skills/Portfolio – Modo Claro](/src/docs/screenshots/Home_mryugenweb_claro.png)  
+![Home - Hero/Sobre mi/Skills/Portfolio – Modo Oscuro](/src/docs/screenshots/Home_mryugenweb_oscuro.png)
 
 ---
 
@@ -58,7 +58,7 @@ Un saludo
 
 ## 📂 Estructura del Proyecto
 
---- Home Hero - Sobre mi - Skills - Portfolio (Branding, Programación, Ilustración, Couple Clash) - Automatización (Servicios) - Contacto - Footer y RRSS
+--- Home Hero - Sobre mi - Skills - Portfolio (Branding, Programación, Ilustración, Couple Clash) - Blog - Automatización (Servicios) - Contacto - Footer y RRSS
 
 ## 🚀 Instalación y Desarrollo
 

@@ -92,7 +92,7 @@
                 narrativa, diseño, estrategia y branding para ofrecer una experiencia única.</p>
             <p><strong>¿Buscas un profesional que aporte visión, creatividad y resultados?</strong></p><br>
             <a href="#contact"
-                class="inline-block px-6 py-3 bg-cta text-white rounded-full font-semibold hover:opacity-90 transition">
+                class="inline-block px-6 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
                 Hablemos →
             </a>
         </div>
@@ -110,8 +110,8 @@
                 15 años transformando conceptos en realidades
             </p>
             <p class="max-w-2xl mx-auto text-center mb-12">
-                A lo largo de mi trayectoria, he combinado creatividad y técnica para ofrecer soluciones
-                visuales y digitales innovadoras, optimizadas en rendimiento y UX.
+                A lo largo de mi trayectoria, he combinado <strong>creatividad</strong> y <strong>técnica</strong> para ofrecer <strong>soluciones
+                visuales y digitales</strong> innovadoras, optimizadas en rendimiento y <em>UX</em>.
             </p>
 
             <!-- Tarjetas -->
@@ -281,21 +281,56 @@
 
 
     <!-- PORTFOLIO -->
-    <section id="portfolio" class="py-16 px-4">
-        <h3 class="text-3xl font-bold text-center mb-8">Portfolio</h3>
-        <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <ng-container *ngFor="let item of portfolioItems">
-                <div class="p-6 border rounded-lg hover:shadow-lg transition-shadow flex flex-col">
-                    <h4 class="font-semibold mb-2">{{ item.title }}</h4>
-                    <p class="flex-grow">{{ item.description }}</p>
-                    <button [routerLink]="item.link"
-                        class="mt-4 px-4 py-2 bg-cta text-white rounded hover:opacity-90 self-start">
-                        Ver más
-                    </button>
+    <section id="portfolio" class="py-16 px-4 bg-bg text-text transition-colors duration-300"
+        aria-labelledby="portfolio-heading">
+        <div class="max-w-5xl mx-auto">
+            <!-- Texto introductorio -->
+            <h2 id="portfolio-heading" class="text-4xl font-bold text-center mb-2">
+                Portfolio
+            </h2>
+            <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-4">
+                Explora mis proyectos destacados
+            </p>
+            <p class="max-w-2xl mx-auto text-center mb-12">
+                Cada proyecto une <strong>creatividad</strong>, <strong>estrategia</strong> y
+                <strong>atención al detalle</strong>. Desde <em>branding</em> hasta
+                <em>juegos de mesa</em>, cada pieza está diseñada para ofrecer una
+                experiencia única y eficaz.
+            </p>
+
+            <!-- Tarjetas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div *ngFor="let item of portfolioItems" #portfolioCard
+                    class="portfolio-card relative rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
+                    [ngStyle]="{ 'background-color': 'var(--portfolio-bg-' + item.id + ')' }">
+                    <!-- Imagen con carousel al click -->
+                    <div class="relative">
+                        <img [src]="item.images[item.currentIndex]" [alt]="item.title"
+                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110 rounded-lg"
+                            (click)="nextImage(item)" />
+                        <!-- Flechas -->
+                        <button
+                            class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+                            (click)="prevImage(item); $event.stopPropagation()" aria-label="Anterior">‹</button>
+                        <button
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
+                            (click)="nextImage(item); $event.stopPropagation()" aria-label="Siguiente">›</button>
+                    </div>
+
+                    <!-- Contenido -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-center mb-2">{{ item.title }}</h3>
+                        <p class="text-sm text-center mb-4">{{ item.description }}</p>
+                        <a [routerLink]="item.link" class="inline-block px-4 py-1.5 text-sm rounded-full font-semibold
+                        border-2 border-cta hover:bg-cta transition">
+                            Ver más
+                        </a>
+                    </div>
                 </div>
-            </ng-container>
+            </div>
         </div>
     </section>
+
 
     <!-- BLOG PREVIEW -->
     <section id="blog" class="bg-bg-alt py-16 px-4">
