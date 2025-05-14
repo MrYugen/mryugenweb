@@ -110,8 +110,9 @@
                 15 años transformando conceptos en realidades
             </p>
             <p class="max-w-2xl mx-auto text-center mb-12">
-                A lo largo de mi trayectoria, he combinado <strong>creatividad</strong> y <strong>técnica</strong> para ofrecer <strong>soluciones
-                visuales y digitales</strong> innovadoras, optimizadas en rendimiento y <em>UX</em>.
+                A lo largo de mi trayectoria, he combinado <strong>creatividad</strong> y <strong>técnica</strong> para
+                ofrecer <strong>soluciones
+                    visuales y digitales</strong> innovadoras, optimizadas en rendimiento y <em>UX</em>.
             </p>
 
             <!-- Tarjetas -->
@@ -304,7 +305,7 @@
                     class="portfolio-card relative rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
                     [ngStyle]="{ 'background-color': 'var(--portfolio-bg-' + item.id + ')' }">
                     <!-- Imagen con carousel al click -->
-                    <div class="relative">
+                    <div class="relative" (pointerdown)="onPointerDown($event)" (pointerup)="onPointerUp($event, item)">
                         <img [src]="item.images[item.currentIndex]" [alt]="item.title"
                             class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110 rounded-lg"
                             (click)="nextImage(item)" />
@@ -331,17 +332,49 @@
         </div>
     </section>
 
-
     <!-- BLOG PREVIEW -->
-    <section id="blog" class="bg-bg-alt py-16 px-4">
-        <h3 class="text-3xl font-bold text-center mb-8">Blog: Últimas entradas</h3>
-        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ng-container *ngFor="let post of latestPosts">
-                <div class="p-4 bg-white/20 rounded-lg hover:bg-white/30 transition">
-                    <h5 class="font-semibold">{{ post.title }}</h5>
-                    <span class="text-sm">{{ post.date | date:'mediumDate' }}</span>
+    <section id="blog" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
+        aria-labelledby="blog-heading">
+        <div class="max-w-5xl mx-auto text-center">
+            <!-- Título -->
+            <h2 id="blog-heading" class="text-4xl font-bold mb-2">Blog</h2>
+            <!-- Subtítulo -->
+            <p class="uppercase tracking-wide text-sm text-text/70 mb-4">
+                COUPLE CLASH: DEL CONCEPTO A LA REALIDAD
+            </p>
+            <!-- Párrafo de invitación -->
+            <p class="max-w-3xl mx-auto mb-12 leading-relaxed">
+                <strong>Diseñar</strong> un <strong>juego de mesa</strong> implica mucho trabajo, en mi caso, 5 años de
+                aprendizajes, errores épicos y
+                momentos inolvidables. Aquí comparto mis <strong>reflexiones, trucos y desastres</strong> con el
+                objetivo de crear una guía que te ayude a meter la pata menos que yo.<br>
+                <strong><em>¡Pincha</em> en cada imagen para descubrir la historia detrás de Couple Clash!</strong>
+            </p>
+        </div>
+        <!-- Grid de entradas -->
+        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a *ngFor="let post of latestPosts" [routerLink]="['/blog', post.slug]"
+                class="blog-card relative block rounded-2xl overflow-hidden shadow-lg">
+                <!-- Imagen redondeada -->
+                <img [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
+                <!-- Overlay oscurito al 60% + hover -->
+                <div class="absolute inset-0 bg-black/60 flex flex-col justify-center items-center
+                opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <h3 class="text-center text-yellow-300 text-lg font-bold px-2">
+                        {{ post.title }}
+                    </h3>
+                    <p class="text-center text-yellow-300 text-sm px-4 mt-2">
+                        {{ post.summary }}
+                    </p>
                 </div>
-            </ng-container>
+            </a>
+        </div>
+        <!-- CTA Ver más entradas -->
+        <div class="text-center mt-10">
+            <a routerLink="/blog" class="px-8 py-3 border-2 border-cta rounded-full font-semibold
+                hover:bg-cta hover:text-white transition">
+                Ver más entradas
+            </a>
         </div>
     </section>
 

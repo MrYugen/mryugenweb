@@ -44,11 +44,23 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('aboutText')  aboutText!: ElementRef<HTMLDivElement>;
   @ViewChildren('portfolioCard') portfolioCards!: QueryList<ElementRef>;
 
+  private startX = 0;
   private intervals: any[] = [];
 
   mobileOpen = false;  // Control del menú hamburguesa
   isDarkMode = false;  // Estado del tema
 
+  onPointerDown(e: PointerEvent) {
+    this.startX = e.clientX;
+  }
+
+  onPointerUp(e: PointerEvent, item: PortfolioItem) {
+    const delta = e.clientX - this.startX;
+    if (Math.abs(delta) > 50) {
+      delta < 0 ? this.nextImage(item) : this.prevImage(item);
+    }
+  }
+  
   // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
     portfolioItems: PortfolioItem[] = [
     {
@@ -102,6 +114,30 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     },
   ];
 
+  latestPosts = [
+    {
+      slug: 'mi-odisea-creativa',
+      title: '#1 El inicio de todo: Mi Odisea Creativa',
+      summary: 'Cómo empezó todo en un país remoto y cómo una idea evolucionó hasta convertirse en Couple Clash.',
+      image: 'assets/images/blog_post1.webp',
+      date: new Date('2024-08-06')
+    },
+    {
+      slug: 'errores-juego-parte-1',
+      title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)',
+      summary: 'Desde mi desgracia personal, te cuento los errores más comunes al diseñar un juego de mesa y cómo evitarlos.',
+      image: 'assets/images/blog_post2.png',
+      date: new Date('2024-09-25')
+    },
+    {
+      slug: 'errores-juego-parte-2',
+      title: '#3 Errores comunes al diseñar un juego de mesa (Parte 2)',
+      summary: 'El gran final de las “desgracias”, los últimos errores más habituales en la creación de un juego de mesa. ¡Que no te pase lo mismo!',
+      image: 'assets/images/blog_post3.png',
+      date: new Date('2024-10-10')
+    }
+  ];
+
   nextImage(item: PortfolioItem) {
     item.currentIndex = (item.currentIndex + 1) % item.images.length;
   }
@@ -110,15 +146,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     item.currentIndex =
       (item.currentIndex - 1 + item.images.length) % item.images.length;
   }
-
-
-// <-- aquí le dices a TS que latestPosts es un array de BlogPost
-  latestPosts: BlogPost[] = [
-    // Opcionalmente ya puedes meter datos de ejemplo para verlos en pantalla
-    { title: '#1 El inicio de todo: Mi Odisea Creativa',    date: '2024-08-06' },
-    { title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)', date: '2024-09-25' },
-    { title: '#3 Errores comunes al diseñar un juego de mesa (Parte 2)',     date: '2024-10-10' }
-  ];
 
   constructor(private theme: ThemeService) {
     // Inicializa el tema según lo guardado en localStorage
@@ -135,6 +162,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     // TODO: implementar envío de formulario de contacto (llamar a tu backend o servicio)
     console.log('Enviar formulario de contacto');
   }
+
   ngAfterViewInit() {
     // Animación suave de entrada
     gsap.registerPlugin(ScrollTrigger);
@@ -182,6 +210,18 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       duration: 3,
       ease: 'power3.out'
     });
+    gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
     // Revelado de cada tarjeta portfolio
     gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach(card => {
       gsap.from(card, {
@@ -204,7 +244,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     // Borra todos los timers al destruir el componente
     this.intervals.forEach(id => clearInterval(id));
-  }
+  }  
 }
 
 
