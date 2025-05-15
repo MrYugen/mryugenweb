@@ -43,6 +43,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('aboutImage') aboutImage!: ElementRef<HTMLImageElement>;
   @ViewChild('aboutText')  aboutText!: ElementRef<HTMLDivElement>;
   @ViewChildren('portfolioCard') portfolioCards!: QueryList<ElementRef>;
+  @ViewChild('parallaxBg', { static: true }) parallaxBg!: ElementRef<HTMLDivElement>;
+  @ViewChild('contactLeft', { static: true }) contactLeft!: ElementRef;
+  @ViewChild('contactRight', { static: true }) contactRight!: ElementRef;
 
   private startX = 0;
   private intervals: any[] = [];
@@ -59,6 +62,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (Math.abs(delta) > 50) {
       delta < 0 ? this.nextImage(item) : this.prevImage(item);
     }
+  }
+  
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
   // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
@@ -240,11 +247,42 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       const id = setInterval(() => this.nextImage(item), 5000);
       this.intervals.push(id);
     });
+    // Parallax background Automatización
+    gsap.to(this.parallaxBg.nativeElement, {
+      y: () => window.innerHeight * 0.2,  // mueve un 20% del viewport
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#automation',
+        start: 'top bottom',    // cuando la sección entra en la pantalla
+        end: 'bottom top',      // hasta que la sección sale de la pantalla
+        scrub: 0.6              // más suave que true (1): rapidez de seguimiento
+      }
+    });
+    // Footer Reveal izquierda
+    gsap.from(this.contactLeft.nativeElement, {
+      scrollTrigger: {
+        trigger: this.contactLeft.nativeElement,
+        start: 'top 90%',
+      },
+      x: -50,
+      opacity: 0,
+      duration: 1
+    });
+    // Footer Reveal derecha
+    gsap.from(this.contactRight.nativeElement, {
+      scrollTrigger: {
+        trigger: this.contactRight.nativeElement,
+        start: 'top 90%',
+      },
+      x: 50,
+      opacity: 0,
+      duration: 1
+    });
   }
   ngOnDestroy() {
     // Borra todos los timers al destruir el componente
     this.intervals.forEach(id => clearInterval(id));
-  }  
+  }
 }
 
 
