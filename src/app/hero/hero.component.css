@@ -1,0 +1,33 @@
+.hero {
+    @apply relative flex flex-col items-center justify-center text-text bg-bg;
+    background-attachment: fixed bottom;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease;
+}
+
+  /* Imagen de fondo modo claro */
+:host ::ng-deep .hero {
+    background-image: url('/assets/images/hero-bg-light.jpg');
+}
+
+  /* Imagen de fondo modo oscuro */
+:host-context(.dark) ::ng-deep .hero {
+    background-image: url('/assets/images/hero-bg-dark.jpg');
+}
+
+  /* Overlay para mejorar legibilidad */
+.hero::before {
+    content: '';
+    @apply absolute inset-0 bg-black/20 transition-opacity duration-300;
+}
+
+.dark .hero::before {
+    @apply bg-black/40;
+}
+
+  /* Contenido encima del overlay */
+.hero-content {
+    @apply relative z-10 px-4;
+}

@@ -1,0 +1,18 @@
+<section id="hero" class="hero h-[80vh] pt-24 transition-colors duration-300">
+    <div class="hero-content flex flex-col items-center justify-center h-full">
+        <!-- Logo del Hero que cambia según el tema -->
+        <img [src]="isDarkMode
+            ? 'assets/images/logo-hero-dark.svg'
+            : 'assets/images/logo-hero-light.svg'" alt="Logo Mr. Yugen" class="w-96" />
+
+        <h1 #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+            class="text-4xl md:text-6xl font-extrabold mb-8">
+            Creatividad. Diseño. Código
+        </h1>
+
+        <button #heroButton routerLink="#portfolio" [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+            class="px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
+            Descubre Couple Clash
+        </button>
+    </div>
+</section>

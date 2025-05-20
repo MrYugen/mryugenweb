@@ -3,6 +3,11 @@ import { Component, AfterViewInit, ViewChild, QueryList, ElementRef, ViewChildre
 import { CommonModule } from '@angular/common';
 // Trae RouterModule para routerLink, router-outlet…
 import { RouterModule } from '@angular/router';
+
+import { NavbarComponent } from '../navbar/navbar.component';
+import { HeroComponent } from '../hero/hero.component';
+import { FooterComponent } from '../footer/footer.component';
+import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 // Trae FormsModule para ngModel, ngSubmit, ngForm…
 import { FormsModule } from '@angular/forms';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -32,6 +37,10 @@ interface PortfolioItem {
   imports: [                       // <-- aquí le dices qué módulos usar
     CommonModule,
     RouterModule,
+    NavbarComponent,
+    HeroComponent,
+    FooterComponent,
+    ScrollToTopComponent,
     FormsModule
   ],
   templateUrl: './home.component.html',
@@ -40,12 +49,12 @@ interface PortfolioItem {
 export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
   @ViewChild('heroButton')  heroButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild('aboutImage') aboutImage!: ElementRef<HTMLImageElement>;
-  @ViewChild('aboutText')  aboutText!: ElementRef<HTMLDivElement>;
+  @ViewChild('aboutImage', { static: false }) aboutImage!: ElementRef<HTMLImageElement>;
+  @ViewChild('aboutText', { static: false }) aboutText!: ElementRef<HTMLDivElement>;
   @ViewChildren('portfolioCard') portfolioCards!: QueryList<ElementRef>;
-  @ViewChild('parallaxBg', { static: true }) parallaxBg!: ElementRef<HTMLDivElement>;
-  @ViewChild('contactLeft', { static: true }) contactLeft!: ElementRef;
-  @ViewChild('contactRight', { static: true }) contactRight!: ElementRef;
+  @ViewChild('parallaxBg', { static: false }) parallaxBg!: ElementRef<HTMLDivElement>;
+  @ViewChild('contactLeft', { static: false }) contactLeft!: ElementRef;
+  @ViewChild('contactRight', { static: false }) contactRight!: ElementRef;
 
   private startX = 0;
   private intervals: any[] = [];
@@ -170,58 +179,46 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     console.log('Enviar formulario de contacto');
   }
 
-  ngAfterViewInit() {
-    // Animación suave de entrada
-    gsap.registerPlugin(ScrollTrigger);
-  // Revelado de sección "About"
-    gsap.from(this.aboutImage.nativeElement, {
-      scrollTrigger: {
-        trigger: this.aboutImage.nativeElement,
-        start: 'top 80%',
-      },
-      x: -50,
-      opacity: 0,
-      duration: 1
-    });
-    gsap.utils.toArray<HTMLElement>('.skills-card').forEach(card => {
-      gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',
-    },
-    opacity: 0, y: 30, duration: 0.8, ease: 'power2.out'
-  });
-});
-    gsap.from(this.aboutText.nativeElement, {
-      scrollTrigger: {
-        trigger: this.aboutText.nativeElement,
-        start: 'top 80%',
-      },
-      x: 50,
-      opacity: 0,
-      duration: 1
-    });
-    gsap.to('.hero', {
-    backgroundPosition: '50% 80%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1,
+ngAfterViewInit() {
+  // Limpia cualquier intervalo anterior por si acaso
+  this.intervals.forEach(id => clearInterval(id));
+  this.intervals = [];
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  setTimeout(() => {
+    // About Image Animation
+    if (this.aboutImage) {
+      gsap.from(this.aboutImage.nativeElement, {
+        scrollTrigger: {
+          trigger: this.aboutImage.nativeElement,
+          start: 'top 80%',
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1
+      });
     }
-    });
-    gsap.from(this.heroHeading.nativeElement, {
-      opacity: 0,
-      y: -40,
-      duration: 3,
-      ease: 'power3.out'
-    });
-    gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
+
+    // About Text Animation
+    if (this.aboutText) {
+      gsap.from(this.aboutText.nativeElement, {
+        scrollTrigger: {
+          trigger: this.aboutText.nativeElement,
+          start: 'top 80%',
+        },
+        x: 50,
+        opacity: 0,
+        duration: 1
+      });
+    }
+
+    // Skills Animation
+    gsap.utils.toArray<HTMLElement>('.skills-card').forEach(card => {
       gsap.from(card, {
         scrollTrigger: {
           trigger: card,
-          start: 'top 85%'
+          start: 'top 85%',
         },
         opacity: 0,
         y: 30,
@@ -229,7 +226,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         ease: 'power2.out'
       });
     });
-    // Revelado de cada tarjeta portfolio
+
+    // Portfolio Animation
     gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach(card => {
       gsap.from(card, {
         scrollTrigger: {
@@ -242,50 +240,75 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         ease: 'power2.out'
       });
     });
-    // Auto-rotación cada 5s:
+
+    // Blog Animation
+    gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // Carrusel automático de imágenes del Portfolio
     this.portfolioItems.forEach(item => {
       const id = setInterval(() => this.nextImage(item), 5000);
       this.intervals.push(id);
     });
-    // Parallax background Automatización
-    gsap.to(this.parallaxBg.nativeElement, {
-      y: () => window.innerHeight * 0.2,  // mueve un 20% del viewport
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#automation',
-        start: 'top bottom',    // cuando la sección entra en la pantalla
-        end: 'bottom top',      // hasta que la sección sale de la pantalla
-        scrub: 0.6              // más suave que true (1): rapidez de seguimiento
-      }
-    });
-    // Footer Reveal izquierda
-    gsap.from(this.contactLeft.nativeElement, {
-      scrollTrigger: {
-        trigger: this.contactLeft.nativeElement,
-        start: 'top 90%',
-      },
-      x: -50,
-      opacity: 0,
-      duration: 1
-    });
-    // Footer Reveal derecha
-    gsap.from(this.contactRight.nativeElement, {
-      scrollTrigger: {
-        trigger: this.contactRight.nativeElement,
-        start: 'top 90%',
-      },
-      x: 50,
-      opacity: 0,
-      duration: 1
-    });
-  }
+
+    // Automatización Parallax
+    if (this.parallaxBg) {
+      gsap.to(this.parallaxBg.nativeElement, {
+        y: () => window.innerHeight * 0.3, // Ajusta el valor si lo quieres más/menos pronunciado
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#automation',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.6
+        }
+      });
+    }
+
+    // Contact Left Animation
+    if (this.contactLeft) {
+      gsap.from(this.contactLeft.nativeElement, {
+        scrollTrigger: {
+          trigger: this.contactLeft.nativeElement,
+          start: 'top 90%',
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1
+      });
+    }
+
+    // Contact Right Animation
+    if (this.contactRight) {
+      gsap.from(this.contactRight.nativeElement, {
+        scrollTrigger: {
+          trigger: this.contactRight.nativeElement,
+          start: 'top 90%',
+        },
+        x: 50,
+        opacity: 0,
+        duration: 1
+      });
+    }
+
+    // Siempre refresca los triggers al final para asegurar
+    ScrollTrigger.refresh();
+  }, 0);
+}
+
+
   ngOnDestroy() {
     // Borra todos los timers al destruir el componente
     this.intervals.forEach(id => clearInterval(id));
   }
 }
-
-
-
-
-  
