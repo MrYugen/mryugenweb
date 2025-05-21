@@ -1,13 +1,57 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
     <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
 
-    <app-hero [isDarkMode]="isDarkMode" title="Branding" [ctaText]="'¿Listo para crear tu propia marca?'" [showCTA]="true"
-        [ctaTextColor]="'#1D3557'" [ctaLink]="'/#contact'" bgImageLight="/assets/images/branding-hero-light.png" bgImageDark="/assets/images/branding-hero-dark.png"
+    <app-hero [isDarkMode]="isDarkMode" title="Branding" [ctaText]="'¿Listo para crear tu propia marca?'"
+        [showCTA]="true" [ctaTextColor]="'#1D3557'" [ctaLink]="'/#contact'"
+        bgImageLight="/assets/images/branding-hero-light.png" bgImageDark="/assets/images/branding-hero-dark.png"
         logoLight="assets/images/logo-hero-light.svg" logoDark="assets/images/logo-hero-light.svg"></app-hero>
 
-    <main class="py-16 px-4">
-        <h1 class="text-4xl font-bold mb-8 text-center">Sección Branding</h1>
-        <p class="text-center">¡Aquí irá tu nuevo portfolio de Branding, imágenes, textos y toda la magia visual!</p>
+    <main class="py-5 px-4" style="background: var(--main-gradient); min-height: 60vh;">
+        <section class="max-w-5xl mx-auto px-4 mt-5 mb-12">
+            <!-- Título y texto introductorio -->
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                ¿Cómo nace una marca memorable?
+            </h2>
+            <p class="text-center max-w-2xl mx-auto mb-10 text-lg">
+                Detrás de cada identidad visual hay una historia, una estrategia y mucha creatividad. Mi proceso de
+                branding transforma ideas en símbolos que conectan con personas y transmiten valores.
+                Cada fase está pensada para aportar sentido, personalidad y
+                coherencia a tu proyecto. <br>
+                ¡Descubre cómo es el proceso paso a paso y muchos ejemplos!
+            </p>
+
+            <!-- SLIDER / CARROUSEL -->
+            <div class="relative overflow-hidden" style="max-height: 80vh;">
+                <!-- Botón Izquierda -->
+                <button
+                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    (click)="prevSlide()">
+                    ←
+                </button>
+
+                <!-- Slides -->
+                <div class="flex transition-transform duration-700 ease-in-out" (touchstart)="onTouchStart($event)"
+                    (touchend)="onTouchEnd($event)" [style.transform]="'translateX(-' + currentStep * 100 + '%)'"
+                    style="min-height: 40vh; width: 100%;">
+                    <div *ngFor="let step of brandingSteps; let i = index"
+                        class="min-w-full flex flex-col items-center justify-between px-4">
+                        <img [src]="step.image" [alt]="step.title"
+                            class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-2xl shadow-lg mb-1"
+                            style="max-width:340px; max-height:340px;" />
+                        <div class="flex flex-col items-center">                            
+                            <h3 class="text-2xl font-semibold mb-2 text-center">{{ step.title }}</h3>
+                            <p class="text-base text-center text-text/90 dark:text-white/80">{{ step.text }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botón Derecha -->
+                <button
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    (click)="nextSlide()">
+                    →
+                </button>              
+            </div>
+        </section>
     </main>
 
     <app-footer></app-footer>

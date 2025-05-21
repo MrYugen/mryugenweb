@@ -33,10 +33,24 @@
 
 html { scroll-behavior: smooth; }
 
+main {
+  transition: background 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+
 .blog-card img {
   transition: transform 0.3s ease;
 }
 
 .blog-card:hover img {
   transform: scale(1.05);
+}
+
+/* Gradientes dinámicos para el fondo principal */
+:root {
+  --main-gradient: linear-gradient(180deg, #FDEEDC 0%, #457b9d35 100%);
+}
+
+.dark {
+  --main-gradient: linear-gradient(180deg, #457b9d35 0%, #152d39 100%);
 }
