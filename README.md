@@ -6,7 +6,9 @@ Aquí encontrarás mi CV digital, todo sobre mi nuevo juego de mesa Couple Clash
 
 Este es mi primer proyecto personal usando tecnologías como Angular y TypeScript, intentare hacerlo lo mejor posible, aunque es probable que cometa fallos por el camino. A programar se aprende programando. Espero que lo que encuentres aquí te pueda ayudar y toda sugerencia desde el respeto es bienvenida.
 
-Espero que te guste el contenido de mi web e incluso podamos trabajar juntos en el futuro. 
+Este repositorio será el paso a paso en la construcción de mi web personal.
+
+Espero que te guste el contenido de mi web y su proceso de creación e incluso podamos trabajar juntos en el futuro. 
 
 Un saludo
 
@@ -17,6 +19,7 @@ Un saludo
 - [Mr. Yugen Website](#mr-yugen-website)
   - [📋 Tabla de Contenidos](#-tabla-de-contenidos)
   - [🎥 Demo](#-demo)
+  - [](#)
   - [✨ Características](#-características)
   - [🛠 Tecnologías](#-tecnologías)
   - [📂 Estructura del Proyecto](#-estructura-del-proyecto)
@@ -26,15 +29,12 @@ Un saludo
   - [📄 Licencia](#-licencia)
   - [✍️ Autor y Contacto](#️-autor-y-contacto)
 
----
-
 ## 🎥 Demo
 
 ![Mr. Yugen Logo](/src/docs/screenshots/mryugen-logo.png) 
 ![Couple Clash Logo](/src/docs/screenshots/couple-clash-logo.png) 
-![Home - Hero/Sobre mi/Skills/Portfolio – Modo Claro](/src/docs/screenshots/Home_mryugenweb_claro.png)  
-![Home - Hero/Sobre mi/Skills/Portfolio – Modo Oscuro](/src/docs/screenshots/Home_mryugenweb_oscuro.png)
-
+![Home - Final – Modo Claro](/src/docs/screenshots/Home_mryugenweb_claro.png)  
+![Home - Final – Modo Oscuro](/src/docs/screenshots/Home_mryugenweb_oscuro.png)
 ---
 
 ## ✨ Características
@@ -58,7 +58,18 @@ Un saludo
 
 ## 📂 Estructura del Proyecto
 
---- Home Hero - Sobre mi - Skills - Portfolio (Branding, Programación, Ilustración, Couple Clash) - Blog - Automatización (Servicios) - Contacto - Footer y RRSS
+**PARTES FINALIZADAS HASTA EL MOMENTO**
+
+- **Home/Hero**
+- **Home/Sobre mí** 
+- **Home/Skills** 
+- **Home/Portfolio**: (Branding, Programación, Ilustración, Couple Clash) 
+- **Home/Últimos 3 post blog**: (Blog)
+- **Home/Automatización**: (Servicios) 
+- **Home/Contacto** 
+- **Home/Footer y RRSS**
+
+- **Branding/Hero**
 
 ## 🚀 Instalación y Desarrollo
 
@@ -112,7 +123,7 @@ Este proyecto y todo su contenido están protegidos por derechos de autor © 202
 
 Esto significa que puedes compartir, adaptar o copiar este proyecto **siempre que**:
 
-- Me atribuyas como autor original (Mr. Yugen).
+- Me atribuyas como autor original (Miguel Estévez - Mr. Yugen).
 - No lo uses con fines comerciales.
 - Si modificas o creas a partir de este contenido, debes compartir bajo esta misma licencia.
 

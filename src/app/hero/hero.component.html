@@ -1,18 +1,26 @@
-<section id="hero" class="hero h-[80vh] pt-24 transition-colors duration-300">
+<section #heroSection id="hero" class="hero h-[80vh] pt-24 transition-colors duration-300" [ngStyle]="{
+    'background-image': isDarkMode
+        ? 'url(' + bgImageDark + ')'
+        : 'url(' + bgImageLight + ')'
+    }">
     <div class="hero-content flex flex-col items-center justify-center h-full">
         <!-- Logo del Hero que cambia según el tema -->
-        <img [src]="isDarkMode
-            ? 'assets/images/logo-hero-dark.svg'
-            : 'assets/images/logo-hero-light.svg'" alt="Logo Mr. Yugen" class="w-96" />
+        <img [src]="isDarkMode ? logoDark : logoLight" alt="Logo Mr. Yugen" class="w-96" />
 
         <h1 #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
-            class="text-4xl md:text-6xl font-extrabold mb-8">
-            Creatividad. Diseño. Código
+            class="text-4xl md:text-6xl font-extrabold mb-4">
+            {{ title }}
         </h1>
-
-        <button #heroButton routerLink="#portfolio" [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+        <!-- Subtítulo opcional -->
+        <p *ngIf="subtitle" class="text-lg md:text-2xl font-medium mb-8 text-center text-text/80 dark:text-white/80">
+            {{ subtitle }}
+        </p>
+        <!-- CTA solo si se quiere mostrar -->
+        <button *ngIf="showCTA" (click)="goToCTA()" [ngClass]="{
+    'text-white': !isDarkMode && !ctaTextColor,
+    'text-text': isDarkMode && !ctaTextColor}" [ngStyle]="ctaTextColor ? {'color': ctaTextColor} : null"
             class="px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
-            Descubre Couple Clash
+            {{ ctaText }}
         </button>
     </div>
 </section>

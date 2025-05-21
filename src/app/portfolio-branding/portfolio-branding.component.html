@@ -1,0 +1,15 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+
+    <app-hero [isDarkMode]="isDarkMode" title="Branding" [ctaText]="'¿Listo para crear tu propia marca?'" [showCTA]="true"
+        [ctaTextColor]="'#1D3557'" [ctaLink]="'/#contact'" bgImageLight="/assets/images/branding-hero-light.png" bgImageDark="/assets/images/branding-hero-dark.png"
+        logoLight="assets/images/logo-hero-light.svg" logoDark="assets/images/logo-hero-light.svg"></app-hero>
+
+    <main class="py-16 px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center">Sección Branding</h1>
+        <p class="text-center">¡Aquí irá tu nuevo portfolio de Branding, imágenes, textos y toda la magia visual!</p>
+    </main>
+
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>
