@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { ThemeService } from '../services/theme.service';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-portfolio-branding',
@@ -22,11 +25,9 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./portfolio-branding.component.css']
 })
 
-
-export class PortfolioBrandingComponent {
+export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewInit {
   isDarkMode = false;
 
-  // ¡AQUÍ empieza lo importante!
   brandingSteps = [
     {
       title: '1. Investigación',
@@ -55,52 +56,233 @@ export class PortfolioBrandingComponent {
     }
   ];
 
-  currentStep = 0;
+  // Datos de los proyectos y carousel interno
+  brandingProjects = [
+  {
+    title: 'Selu Rizo Fotografía',
+    summary: 'Diseño de identidad visual, logotipo y tarjeta de visita para un fotógrafo profesional',
+    images: [
+      'assets/images/proyecto1_img1.jpg',
+      'assets/images/proyecto1_img2.jpg',
+      'assets/images/proyecto1_img3.jpg'
+    ],
+  },
+  {
+    title: 'Coral Cakes',
+    summary: 'Creación de logotipo para una pastelería británica con un estilo elegante y apetitoso',
+    images: [
+      'assets/images/proyecto2_img1.jpg',
+      'assets/images/proyecto2_img2.jpg',
+      'assets/images/proyecto2_img3.jpg'
+    ],
+  },
+  {
+    title: 'F.C. Beltatrez',
+    summary: 'Rediseño de identidad deportiva: logo, bandera y equipación para un club de fútbol',
+    images: [
+      'assets/images/proyecto3_img1.jpg',
+      'assets/images/proyecto3_img2.jpg',
+      'assets/images/proyecto3_img3.jpg'
+    ],
+  },
+  {
+    title: 'Amor y Arte',
+    summary: 'Branding y packaging para una artista especializada en muñecos reborn',
+    images: [
+      'assets/images/proyecto4_img1.jpg',
+      'assets/images/proyecto4_img2.jpg',
+      'assets/images/proyecto4_img3.jpg'
+    ],
+  },
+  {
+    title: 'Swamp Labs',
+    summary: 'Diseño de Concept Art, logotipo y recursos gráficos para una colección NFT británica',
+    images: [
+      'assets/images/proyecto5_img1.jpg',
+      'assets/images/proyecto5_img2.jpg',
+      'assets/images/proyecto5_img3.jpg'
+    ],
+  },
+  {
+    title: 'Ikigai Games',
+    summary: 'Diseño de identidad visual para un sello editorial de juegos de mesa',
+    images: [
+      'assets/images/proyecto6_img1.jpg',
+      'assets/images/proyecto6_img2.jpg',
+      'assets/images/proyecto6_img3.jpg'
+    ],
+  },
+  {
+    title: 'Mr. Yugen',
+    summary: 'Branding de mi marca personal, reflejando creatividad artística y estilo único',
+    images: [
+      'assets/images/proyecto7_img1.jpg',
+      'assets/images/proyecto7_img2.jpg',
+      'assets/images/proyecto7_img3.jpg'
+    ],
+  },
+  {
+    title: 'Royal Hounds',
+    summary: 'Creación de logo, mock-ups, merchandising y diseño de campaña de crowdfunding',
+    images: [
+      'assets/images/proyecto8_img1.jpg',
+      'assets/images/proyecto8_img2.jpg',
+      'assets/images/proyecto8_img3.jpg'
+    ],
+  },
+  {
+    title: 'Estévez Asesores',
+    summary: 'Modernización de identidad visual y desarrollo web para una Asesoría',
+    images: [
+      'assets/images/proyecto9_img1.jpg',
+      'assets/images/proyecto9_img2.jpg',
+      'assets/images/proyecto9_img3.jpg'
+    ],
+  },
+  {
+    title: 'Caffeine Studios',
+    summary: 'Rediseño de identidad visual, ilustraciones y tarjeta de visita para una empresa creativa',
+    images: [
+      'assets/images/proyecto10_img1.jpg',
+      'assets/images/proyecto10_img2.jpg',
+      'assets/images/proyecto10_img3.jpg'
+    ],
+  },
+  {
+    title: 'Couple Clash',
+    summary: 'Todo el proceso creativo de mi proyecto más ambicioso: diseño, branding y estrategia',
+    images: [
+      'assets/images/proyecto11_img1.jpg',
+      'assets/images/proyecto11_img2.jpg',
+      'assets/images/proyecto11_img3.jpg'
+    ],
+  },
+  {
+    title: 'Invitación de Boda',
+    summary: 'Diseño de una invitación de boda premium personalizada, elegante y exclusiva',
+    images: [
+      'assets/images/proyecto12_img1.jpg',
+      'assets/images/proyecto12_img2.jpg',
+      'assets/images/proyecto12_img3.jpg'
+    ],
+  },
+  {
+    title: 'The Folly Inn UK',
+    summary: 'Diseño de identidad visual y cartel para una taberna típica inglesa con esencia tradicional',
+    images: [
+      'assets/images/proyecto13_img1.jpg',
+      'assets/images/proyecto13_img2.jpg',
+      'assets/images/proyecto13_img3.jpg'
+    ],
+  },
+];
+  
+  currentImageIndexes: number[] = [];
+  imageFadeState: boolean[] = [];
+  private carouselIntervals: any[] = [];
 
+  // Control del slide superior
+  currentStep = 0;
   private startX = 0;
 
   constructor(
-  private theme: ThemeService,
-  private router: Router
-) {
-  this.isDarkMode = this.theme.isDark();
+    private theme: ThemeService,
+  ) {
+    this.isDarkMode = this.theme.isDark();
+  }
 
-  // Scroll al top al cargar esta ruta
-  this.router.events
-    .pipe(filter(e => e instanceof NavigationEnd))
-    .subscribe(() => {
-      window.scrollTo({ top: 0, behavior: 'auto' });
+  ngOnInit() {
+    // Inicializa carruseles en cada tarjeta
+    this.currentImageIndexes = this.brandingProjects.map(() => 0);
+    this.imageFadeState = this.brandingProjects.map(() => true);
+    this.brandingProjects.forEach((_, i) => {
+      const interval = setInterval(() => this.fadeImage(i), 20000 + i * 500);
+      this.carouselIntervals.push(interval);
+    });    
+  }
+
+  ngAfterViewInit() {
+  // Reveal de secciones (se inician 100px después de salir del viewport)
+  gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
+    gsap.from(section, {
+      opacity: 0,
+      y: 60,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom-=100px',     // <-- 100px bajo el fondo
+        toggleActions: 'play none none none',
+        once: true
+      }
     });
-}
+  });
 
-  toggleTheme() {
-    this.isDarkMode = this.theme.toggle();
+  // Reveal de cada tarjeta en cascada
+  gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      delay: i * 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top bottom-=100px',     // <-- igual aquí
+        toggleActions: 'play none none none',
+        once: true
+      }
+    });
+  });
+
+  // Asegúrate de refrescar tras definirlos
+  ScrollTrigger.refresh();
   }
 
-  // Flechas desktop
-  prevSlide() {
-    if (this.currentStep > 0) this.currentStep--;
-    else this.currentStep = this.brandingSteps.length - 1;
+  ngOnDestroy() {
+    // Limpia intervalos y subscripción
+    this.carouselIntervals.forEach(id => clearInterval(id));
   }
 
-  nextSlide() {
-    if (this.currentStep < this.brandingSteps.length - 1) this.currentStep++;
-    else this.currentStep = 0;
+  // Carousel interno
+  fadeImage(i: number) {
+    this.imageFadeState[i] = false;
+    setTimeout(() => {
+      this.currentImageIndexes[i] =
+        (this.currentImageIndexes[i] + 1) % this.brandingProjects[i].images.length;
+      this.imageFadeState[i] = true;
+    }, 250);
   }
-
-  goToSlide(i: number) {
-    this.currentStep = i;
-  }
+  prevImage(i: number) { this.imageFadeState[i] = false; setTimeout(() => {
+    this.currentImageIndexes[i] = (this.currentImageIndexes[i] - 1 + this.brandingProjects[i].images.length) %
+      this.brandingProjects[i].images.length;
+    this.imageFadeState[i] = true;
+  }, 250); }
+  nextImage(i: number) { this.imageFadeState[i] = false; setTimeout(() => {
+    this.currentImageIndexes[i] = (this.currentImageIndexes[i] + 1) % this.brandingProjects[i].images.length;
+    this.imageFadeState[i] = true;
+  }, 250); }
 
   // Swipe táctil
-  onTouchStart(event: TouchEvent) {
-    this.startX = event.touches[0].clientX;
+  onCardTouchStart(event: TouchEvent, i: number) { this.startX = event.touches[0].clientX; }
+  onCardTouchEnd(event: TouchEvent, i: number) {
+    const delta = event.changedTouches[0].clientX - this.startX;
+    if (delta > 50) this.prevImage(i);
+    if (delta < -50) this.nextImage(i);
   }
 
+  // Hero slider
+  prevSlide() { this.currentStep = this.currentStep > 0 ? this.currentStep - 1 : this.brandingSteps.length - 1; }
+  nextSlide() { this.currentStep = this.currentStep < this.brandingSteps.length - 1 ? this.currentStep + 1 : 0; }
+  goToSlide(i: number) { this.currentStep = i; }
+  onTouchStart(event: TouchEvent) { this.startX = event.touches[0].clientX; }
   onTouchEnd(event: TouchEvent) {
-    const endX = event.changedTouches[0].clientX;
-    const delta = endX - this.startX;
+    const delta = event.changedTouches[0].clientX - this.startX;
     if (delta > 50) this.prevSlide();
     if (delta < -50) this.nextSlide();
   }
+
+  // Tema
+  toggleTheme() { this.isDarkMode = this.theme.toggle(); }
 }
+

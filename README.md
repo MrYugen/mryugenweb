@@ -1,140 +1,147 @@
-# Mr. Yugen Website
+# 🧩 Mr. Yugen Web
 
-**Mr Yugen Web** es la página web y portafolio profesional de **Mr. Yugen** (Miguel Estévez):  
-Diseñador gráfico, ilustrador profesional y programador en ciernes que adora la creatividad y trabajar en nuevas experiencias interactivas.  
-Aquí encontrarás mi CV digital, todo sobre mi nuevo juego de mesa Couple Clash, portfolio de proyectos realizados, blog de tutoriales y experiencias personales y mis servicios de automatización.
+**Mr. Yugen Web** es el portafolio y sitio personal de **Miguel Estévez** (_Mr. Yugen_): diseñador gráfico, ilustrador y desarrollador web. Aquí encontrarás:
 
-Este es mi primer proyecto personal usando tecnologías como Angular y TypeScript, intentare hacerlo lo mejor posible, aunque es probable que cometa fallos por el camino. A programar se aprende programando. Espero que lo que encuentres aquí te pueda ayudar y toda sugerencia desde el respeto es bienvenida.
-
-Este repositorio será el paso a paso en la construcción de mi web personal.
-
-Espero que te guste el contenido de mi web y su proceso de creación e incluso podamos trabajar juntos en el futuro. 
-
-Un saludo
+- 🎨 Mi CV digital y sección “Sobre mí”  
+- ⚙️ Servicios de automatización  
+- 🖼️ Portfolio de **Branding**, Ilustración, Proyectos Web y **Couple Clash**  
+- 📝 Blog con tutoriales y reflexiones  
+- 📬 Formulario de contacto
 
 ---
 
 ## 📋 Tabla de Contenidos
 
-- [Mr. Yugen Website](#mr-yugen-website)
+- [🧩 Mr. Yugen Web](#-mr-yugen-web)
   - [📋 Tabla de Contenidos](#-tabla-de-contenidos)
   - [🎥 Demo](#-demo)
-  - [](#)
   - [✨ Características](#-características)
   - [🛠 Tecnologías](#-tecnologías)
   - [📂 Estructura del Proyecto](#-estructura-del-proyecto)
   - [🚀 Instalación y Desarrollo](#-instalación-y-desarrollo)
-  - [🖥 Comandos Útiles](#-comandos-útiles)
+  - [🔧 Problemas Conocidos](#-problemas-conocidos)
   - [🤝 Contribución](#-contribución)
   - [📄 Licencia](#-licencia)
   - [✍️ Autor y Contacto](#️-autor-y-contacto)
 
+---
+
 ## 🎥 Demo
 
-![Mr. Yugen Logo](/src/docs/screenshots/mryugen-logo.png) 
-![Couple Clash Logo](/src/docs/screenshots/couple-clash-logo.png) 
-![Home - Final – Modo Claro](/src/docs/screenshots/Home_mryugenweb_claro.png)  
-![Home - Final – Modo Oscuro](/src/docs/screenshots/Home_mryugenweb_oscuro.png)
+<p align="center">
+  <img src="src/docs/screenshots/Home_mryugenweb_claro.png" alt="Home completo claro" width="300" />  
+  <img src="src/docs/screenshots/Home_mryugenweb_oscuro.png" alt="Home completo oscuro" width="300" />
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_claro.png" alt="Branding completo oscuro" width="300" />
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_dark.png" alt="Branding completo oscuro" width="300" />  
+</p>
+
 ---
 
 ## ✨ Características
 
-- **Página Home** con hero, sección “¿Quién es Mr. Yugen?”, skills, portfolio, blog, servicios y contacto.  
-- **Modo claro/oscuro** persistente (ThemeService + CSS variables).  
-- **Animaciones suaves** con GSAP y Framer Motion.  
-- **Responsive** 100% (menú desktop / menú mobile fullscreen).  
-- **SEO & accesibilidad**: semántica HTML, meta tags, formularios accesibles.  
+- **Routing SPA** con Angular 17 y `provideRouter` + scroll restoration.  
+- **Modo Claro/Oscuro** persistente (ThemeService + CSS variables).  
+- **Animaciones** suaves con GSAP y Framer Motion.  
+- **Responsive** 100%: menú desktop/tablet/mobile.  
+- **Accesibilidad**: semántica HTML, atributos ARIA, tamaños adecuados.  
+- **Lazy loading** de imágenes y optimización de rendimiento.
 
 ---
 
 ## 🛠 Tecnologías
 
-- **Frontend**: Angular 17 + TypeScript  
+- **Framework**: Angular 17 + TypeScript  
 - **Estilos**: Tailwind CSS (darkMode por clase)  
 - **Animaciones**: GSAP, Framer Motion  
+- **Test**: Jasmine + Karma  
 - **Herramientas**: VS Code, Git, GitHub  
 
 ---
 
 ## 📂 Estructura del Proyecto
 
-**PARTES FINALIZADAS HASTA EL MOMENTO**
+```text``
+src/
+├─ app/
+│  ├─ home/                ← Landing page
+│  ├─ portfolio-branding/  ← Branding (hero, proceso, masonry)
+│  ├─ navbar/, hero/, footer/, scroll-to-top/
+│  ├─ services/theme.service.ts
+│  ├─ app.routes.ts
+│  └─ app.config.ts        ← scrollPositionRestoration
+├─ assets/
+│  └─ images/…
+├─ docs/
+│  └─ screenshots/
+└─ styles.css
+Secciones implementadas
 
-- **Home/Hero**
-- **Home/Sobre mí** 
-- **Home/Skills** 
-- **Home/Portfolio**: (Branding, Programación, Ilustración, Couple Clash) 
-- **Home/Últimos 3 post blog**: (Blog)
-- **Home/Automatización**: (Servicios) 
-- **Home/Contacto** 
-- **Home/Footer y RRSS**
+Home → Hero, Sobre mí, Skills, Portfolio preview, Blog, Automatización, Contacto
 
-- **Branding/Hero**
+Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados
 
 ## 🚀 Instalación y Desarrollo
 
-1. **Clonar** el repositorio  
-   ```bash
-   git clone https://github.com/MrYugen/mryugenweb.git
-   cd mryugenweb
+- **Clona este repositorio**
 
-2. **Instalar** dependencias
-   ```bash
-   npm install
+`git clone https://github.com/MrYugen/mryugenweb.git`
+`cd mryugenweb`
 
-3. **Iniciar** servidor de desarrollo
-   ```bash
-   npm start
+- **Instala dependencias**
 
-4. **Abrir** en el navegador: http://localhost:4200
+`npm install`
 
----
+- **Lanza el servidor de desarrollo**
 
-## 🖥 Comandos Útiles
+`npm start`
 
-npm start → servidor dev
+- **Abre:**  `http://localhost:4200`
 
-npm run build → compilación producción
+## 🔧 Problemas Conocidos
 
-npm test → ejecutar tests (cuando los añadas)
+- **ScrollTrigger se dispara al cargar**
+Las animaciones GSAP a veces se ejecutan en el AfterViewInit antes de hacer scroll. Se ha mitigado usando `once: true` y `start: top bottom-=100px` en cada trigger, pero sigue requiriendo refresh manual en rutas internas.
 
----
+- **Restauración de scroll en ruta interna**
+Aunque `scrollPositionRestoration: 'enabled'` funciona, existe un breve “flash” si se navega desde otra sección con fragmento.
+
+- **Timeouts en carousels**
+Cada tarjeta de branding usa `setInterval;` si el usuario abandona rápido la página, podría acumularse memoria hasta `ngOnDestroy`.
+
+Si sabes cómo afinar mejor estos comportamientos o corregirlos, ¡tu ayuda será bienvenida!
 
 ## 🤝 Contribución
 
-1. Haz un fork del proyecto.
+- **Haz un fork del repositorio.**
 
-2. Crea una rama (git checkout -b feature/mi-nueva-funcionalidad).
+- **Crea una rama de feature:**
 
-3. Haz tus cambios y commit (git commit -m "feat: descripción breve").
+`git checkout -b feature/mi-nueva-funcionalidad`
 
-4. git push origin feature/mi-nueva-funcionalidad.
+- **Realiza tus cambios y commitea:**
 
-5. Abre un Pull Request describiendo tu aportación.
+`git commit -m "feat: Descripción breve"`
 
----
+- **Push y abre un Pull Request.**
 
 ## 📄 Licencia
 
-Este proyecto y todo su contenido están protegidos por derechos de autor © 2025 Mr. Yugen.
+Este proyecto está bajo Creative Commons BY-NC-SA 4.0.
 
-**Licencia**: Creative Commons BY-NC-SA 4.0  
-[Consulta los términos aquí](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
+Puedes compartir y adaptar bajo:
 
-Esto significa que puedes compartir, adaptar o copiar este proyecto **siempre que**:
+Atribución a **Miguel Estévez - Mr. Yugen**
 
-- Me atribuyas como autor original (Miguel Estévez - Mr. Yugen).
-- No lo uses con fines comerciales.
-- Si modificas o creas a partir de este contenido, debes compartir bajo esta misma licencia.
+Sin uso comercial
 
-Para usos diferentes, contáctame directamente: `mryugenmystery@gmail.com`
-
----
+Compartir bajo la misma licencia
 
 ## ✍️ Autor y Contacto
 
-Mr. Yugen (Miguel Estévez)
+**Miguel Estévez (Mr. Yugen)**
 
-GitHub: @MrYugen
+**GitHub:** @MrYugen
 
-Email: mryugenmystery@gmail.com
+**Email:** mryugenmystery@gmail.com
+
+¡Gracias por pasar por aquí! Espero que este README sirva de punto de partida claro y ayude a cualquiera que quiera colaborar.
