@@ -54,3 +54,5 @@ main {
 .dark {
   --main-gradient: linear-gradient(180deg, #457b9d35 0%, #152d39 100%);
 }
+
+.active-link { text-decoration: underline; }

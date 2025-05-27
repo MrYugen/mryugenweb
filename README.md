@@ -61,6 +61,7 @@
 ## 📂 Estructura del Proyecto
 
 ```text``
+
 src/
 ├─ app/
 │  ├─ home/                ← Landing page
@@ -99,16 +100,7 @@ Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados
 
 ## 🔧 Problemas Conocidos
 
-- **ScrollTrigger se dispara al cargar**
-Las animaciones GSAP a veces se ejecutan en el AfterViewInit antes de hacer scroll. Se ha mitigado usando `once: true` y `start: top bottom-=100px` en cada trigger, pero sigue requiriendo refresh manual en rutas internas.
 
-- **Restauración de scroll en ruta interna**
-Aunque `scrollPositionRestoration: 'enabled'` funciona, existe un breve “flash” si se navega desde otra sección con fragmento.
-
-- **Timeouts en carousels**
-Cada tarjeta de branding usa `setInterval;` si el usuario abandona rápido la página, podría acumularse memoria hasta `ngOnDestroy`.
-
-Si sabes cómo afinar mejor estos comportamientos o corregirlos, ¡tu ayuda será bienvenida!
 
 ## 🤝 Contribución
 

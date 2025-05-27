@@ -5,20 +5,26 @@
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
         </a>
         <ul class="hidden md:flex space-x-6 text-text">
-            <li><a href="#hero" class="hover:text-cta transition">Home</a></li>
-            <li><a href="#skills" class="hover:text-cta transition">Skills</a></li>
-            <li><a href="#portfolio" class="hover:text-cta transition">Portfolio</a></li>
-            <li><a href="#blog" class="hover:text-cta transition">Blog</a></li>
-            <li><a href="#services" class="hover:text-cta transition">Automatización</a></li>
-            <li><a href="#contact" class="hover:text-cta transition">Contacto</a></li>
+            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
+            <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta"
+                    (click)="mobileOpen=false">Habilidades</a></li>
+            <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta"
+                    (click)="mobileOpen=false">Portfolio</a></li>
+            <li><a [routerLink]="['/']" fragment="blog" class="hover:text-cta" (click)="mobileOpen=false">Blog</a></li>
+            <li><a [routerLink]="['/']" fragment="automation" class="hover:text-cta"
+                    (click)="mobileOpen=false">Automatización</a></li>
+            <li><a [routerLink]="['/']" fragment="contact" class="hover:text-cta"
+                    (click)="mobileOpen=false">Contacto</a></li>
         </ul>
         <!-- Toggle / Mobile hamburger -->
         <div class="flex items-center space-x-4">
-            <button (click)="toggleTheme.emit()" aria-label="Toggle Dark Mode">
+            <button (click)="toggleTheme.emit()"
+                [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
                 <span *ngIf="!isDarkMode">🌙</span>
                 <span *ngIf="isDarkMode">☀️</span>
             </button>
-            <button class="md:hidden" (click)="menuToggle.emit()">
+            <button class="md:hidden" (click)="menuToggle.emit()"
+                [attr.aria-label]="mobileOpen ? 'Cerrar menú' : 'Abrir menú'">
                 <!-- ícono hamburguesa -->
                 <svg class="w-6 h-6" fill="none" stroke="currentColor">
                     <path *ngIf="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

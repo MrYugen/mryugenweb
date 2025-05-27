@@ -186,13 +186,13 @@ ngAfterViewInit() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  setTimeout(() => {
     // About Image Animation
     if (this.aboutImage) {
       gsap.from(this.aboutImage.nativeElement, {
         scrollTrigger: {
           trigger: this.aboutImage.nativeElement,
           start: 'top 80%',
+          once: true, // Solo una vez al hacer scroll
         },
         x: -50,
         opacity: 0,
@@ -206,6 +206,7 @@ ngAfterViewInit() {
         scrollTrigger: {
           trigger: this.aboutText.nativeElement,
           start: 'top 80%',
+          once: true, // Solo una vez al hacer scroll
         },
         x: 50,
         opacity: 0,
@@ -219,6 +220,7 @@ ngAfterViewInit() {
         scrollTrigger: {
           trigger: card,
           start: 'top 85%',
+          once: true,
         },
         opacity: 0,
         y: 30,
@@ -228,18 +230,21 @@ ngAfterViewInit() {
     });
 
     // Portfolio Animation
-    gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach(card => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
+    gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card, i) => {
+    gsap.from(card, {
+      opacity: 0,
+      y: 40,
+      duration: 0.9,
+      delay: i * 0.3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',   
+        toggleActions: 'play none none none',
+        once: true
+      }
     });
+  });
 
     // Blog Animation
     gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
@@ -247,6 +252,7 @@ ngAfterViewInit() {
         scrollTrigger: {
           trigger: card,
           start: 'top 85%',
+          once: true,
         },
         opacity: 0,
         y: 30,
@@ -281,6 +287,7 @@ ngAfterViewInit() {
         scrollTrigger: {
           trigger: this.contactLeft.nativeElement,
           start: 'top 90%',
+          once: true,
         },
         x: -50,
         opacity: 0,
@@ -294,6 +301,7 @@ ngAfterViewInit() {
         scrollTrigger: {
           trigger: this.contactRight.nativeElement,
           start: 'top 90%',
+          once: true,
         },
         x: 50,
         opacity: 0,
@@ -303,12 +311,12 @@ ngAfterViewInit() {
 
     // Siempre refresca los triggers al final para asegurar
     ScrollTrigger.refresh();
-  }, 0);
 }
 
-
   ngOnDestroy() {
-    // Borra todos los timers al destruir el componente
-    this.intervals.forEach(id => clearInterval(id));
-  }
+  // Borra todos los timers al destruir el componente
+  this.intervals.forEach(id => clearInterval(id));
+  // ✔ NUEVO: limpiar animaciones GSAP/ScrollTrigger
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+}
 }

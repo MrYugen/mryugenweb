@@ -240,8 +240,10 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   ngOnDestroy() {
-    // Limpia intervalos y subscripción
-    this.carouselIntervals.forEach(id => clearInterval(id));
+  // Limpia todos los intervals de los carruseles al destruir el componente
+  this.carouselIntervals.forEach(id => clearInterval(id));
+  // ✔ NUEVO: matar triggers de GSAP
+  ScrollTrigger.getAll().forEach(t => t.kill());
   }
 
   // Carousel interno
