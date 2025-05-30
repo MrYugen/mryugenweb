@@ -17,7 +17,11 @@ import { gsap } from 'gsap';
 export class HeroComponent implements AfterViewInit {
   @Input() isDarkMode: boolean = false;
   @Input() title: string = 'Creatividad. Diseño. Código';
+  @Input() showTitle: boolean = true;    // Mostrar/ocultar título
   @Input() subtitle?: string; // Nuevo input opcional para el subtitulo
+  @Input() logoSize: string = 'w-96'; // Tailwind class por defecto
+  @Input() overlayOpacity: number = 0.15; // Por defecto 15%
+  @Input() logoEffect: string = ''; // Efecto del logo, por defecto vacío
   @Input() showCTA: boolean = true; // Por defecto muestra el botón
   @Input() ctaText: string = 'Descubre Couple Clash'; // Texto del botón
   @Input() bgImageLight: string = '/assets/images/hero-bg-light.jpg';

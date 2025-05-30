@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     NavbarComponent,
     HeroComponent,
     FooterComponent,
@@ -61,6 +63,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Selu Rizo Fotografía',
     summary: 'Diseño de identidad visual, logotipo y tarjeta de visita para un fotógrafo profesional',
+    slug: 'selu-rizo-fotografia',
     images: [
       'assets/images/proyecto1_img1.jpg',
       'assets/images/proyecto1_img2.jpg',
@@ -70,6 +73,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Coral Cakes',
     summary: 'Creación de logotipo para una pastelería británica con un estilo elegante y apetitoso',
+    slug: 'coral-cakes',
     images: [
       'assets/images/proyecto2_img1.jpg',
       'assets/images/proyecto2_img2.jpg',
@@ -79,6 +83,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'F.C. Beltatrez',
     summary: 'Rediseño de identidad deportiva: logo, bandera y equipación para un club de fútbol',
+    slug: 'fc-beltatrez',
     images: [
       'assets/images/proyecto3_img1.jpg',
       'assets/images/proyecto3_img2.jpg',
@@ -88,6 +93,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Amor y Arte',
     summary: 'Branding y packaging para una artista especializada en muñecos reborn',
+    slug: 'amor-y-arte',
     images: [
       'assets/images/proyecto4_img1.jpg',
       'assets/images/proyecto4_img2.jpg',
@@ -97,6 +103,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Swamp Labs',
     summary: 'Diseño de Concept Art, logotipo y recursos gráficos para una colección NFT británica',
+    slug: 'swamp-labs',
     images: [
       'assets/images/proyecto5_img1.jpg',
       'assets/images/proyecto5_img2.jpg',
@@ -106,6 +113,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Ikigai Games',
     summary: 'Diseño de identidad visual para un sello editorial de juegos de mesa',
+    slug: 'ikigai-games',
     images: [
       'assets/images/proyecto6_img1.jpg',
       'assets/images/proyecto6_img2.jpg',
@@ -115,6 +123,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Mr. Yugen',
     summary: 'Branding de mi marca personal, reflejando creatividad artística y estilo único',
+    slug: 'mr-yugen',
     images: [
       'assets/images/proyecto7_img1.jpg',
       'assets/images/proyecto7_img2.jpg',
@@ -124,6 +133,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Royal Hounds',
     summary: 'Creación de logo, mock-ups, merchandising y diseño de campaña de crowdfunding',
+    slug: 'royal-hounds',
     images: [
       'assets/images/proyecto8_img1.jpg',
       'assets/images/proyecto8_img2.jpg',
@@ -133,6 +143,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Estévez Asesores',
     summary: 'Modernización de identidad visual y desarrollo web para una Asesoría',
+    slug: 'estevez-asesores',
     images: [
       'assets/images/proyecto9_img1.jpg',
       'assets/images/proyecto9_img2.jpg',
@@ -142,6 +153,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Caffeine Studios',
     summary: 'Rediseño de identidad visual, ilustraciones y tarjeta de visita para una empresa creativa',
+    slug: 'caffeine-studios',
     images: [
       'assets/images/proyecto10_img1.jpg',
       'assets/images/proyecto10_img2.jpg',
@@ -151,6 +163,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'Couple Clash',
     summary: 'Todo el proceso creativo de mi proyecto más ambicioso: diseño, branding y estrategia',
+    slug: 'couple-clash',
     images: [
       'assets/images/proyecto11_img1.jpg',
       'assets/images/proyecto11_img2.jpg',
@@ -158,8 +171,9 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
     ],
   },
   {
-    title: 'Invitación de Boda',
+    title: 'Invitación de Boda Premium',
     summary: 'Diseño de una invitación de boda premium personalizada, elegante y exclusiva',
+    slug: 'invitacion-boda',
     images: [
       'assets/images/proyecto12_img1.jpg',
       'assets/images/proyecto12_img2.jpg',
@@ -169,6 +183,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   {
     title: 'The Folly Inn UK',
     summary: 'Diseño de identidad visual y cartel para una taberna típica inglesa con esencia tradicional',
+    slug: 'the-folly-inn-uk',
     images: [
       'assets/images/proyecto13_img1.jpg',
       'assets/images/proyecto13_img2.jpg',

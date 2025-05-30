@@ -1,0 +1,18 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+
+    <!-- Hero reutilizable -->
+    <app-hero *ngIf="project" [isDarkMode]="isDarkMode" [overlayOpacity]="project.overlayOpacity"
+        [logoEffect]="project.logoEffect" [title]="project.title" [showTitle]="project.showTitle"
+        [showCTA]="project.showCTA" [bgImageLight]="project.heroBgLight" [bgImageDark]="project.heroBgDark"
+        [logoLight]="project.logoLight" [logoDark]="project.logoDark" [logoSize]="project.logoSize"
+        [ctaText]="project.ctaText" [ctaLink]="'/#contact'"></app-hero>
+
+    <main class="max-w-5xl mx-auto py-10 px-4">
+        <!-- Aquí irá el contenido dinámico del proyecto -->
+        <h1 class="text-4xl font-bold mb-4">Detalles del Proyecto</h1>
+        <p class="text-lg">Mostrando información para: <strong>{{ slug }}</strong></p>
+    </main>
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

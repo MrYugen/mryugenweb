@@ -3,11 +3,20 @@
         ? 'url(' + bgImageDark + ')'
         : 'url(' + bgImageLight + ')'
     }">
+
+    <!-- Overlay dinámico -->
+    <div class="absolute inset-0 pointer-events-none z-0" [ngStyle]="{
+        'background': 'rgba(0,0,0,' + (isDarkMode ? overlayOpacity*2 : overlayOpacity) + ')'
+    }" style="transition: background 0.3s;">
+    </div>
+
     <div class="hero-content flex flex-col items-center justify-center h-full">
         <!-- Logo del Hero que cambia según el tema -->
-        <img [src]="isDarkMode ? logoDark : logoLight" alt="Logo Mr. Yugen" class="w-96" />
+        <img [src]="isDarkMode ? logoDark : logoLight" alt="Logo de Mr. Yugen"
+            [class]="logoSize + ' ' + (logoEffect || '')" *ngIf="logoLight || logoDark" />
 
-        <h1 #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+        <!-- Título -->
+        <h1 *ngIf="showTitle" #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
             class="text-4xl md:text-6xl font-extrabold mb-4">
             {{ title }}
         </h1>
@@ -17,8 +26,9 @@
         </p>
         <!-- CTA solo si se quiere mostrar -->
         <button *ngIf="showCTA" (click)="goToCTA()" [ngClass]="{
-    'text-white': !isDarkMode && !ctaTextColor,
-    'text-text': isDarkMode && !ctaTextColor}" [ngStyle]="ctaTextColor ? {'color': ctaTextColor} : null"
+            'text-white': !isDarkMode && !ctaTextColor,
+            'text-text': isDarkMode && !ctaTextColor
+        }" [ngStyle]="ctaTextColor ? {'color': ctaTextColor} : null"
             class="px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
             {{ ctaText }}
         </button>
