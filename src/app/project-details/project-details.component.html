@@ -8,11 +8,133 @@
         [logoLight]="project.logoLight" [logoDark]="project.logoDark" [logoSize]="project.logoSize"
         [ctaText]="project.ctaText" [ctaLink]="'/#contact'"></app-hero>
 
-    <main class="max-w-5xl mx-auto py-10 px-4">
-        <!-- Aquí irá el contenido dinámico del proyecto -->
-        <h1 class="text-4xl font-bold mb-4">Detalles del Proyecto</h1>
-        <p class="text-lg">Mostrando información para: <strong>{{ slug }}</strong></p>
+    <main class="max-w-5xl mx-auto py-10 px-4" style="background: var(--main-gradient);">
+        <!-- Título del proyecto -->
+        <h1 class="text-4xl font-bold mb-8">{{ project.title }}</h1>
+
+        <!-- 1. Resumen y Detalles del encargo -->
+        <section id="resumen" class="flex flex-col md:flex-row items-start md:items-center gap-8 mb-16 reveal-section">
+            <!-- Izquierda: datos del proyecto -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <h2 class="text-2xl font-bold mb-4">Resumen del encargo</h2>
+                <ul class="text-lg leading-relaxed">
+                    <li><span class="font-semibold">Cliente:</span> <!-- Nombre del cliente --> </li>
+                    <li><span class="font-semibold">Fecha:</span> <!-- Fecha de realización --> </li>
+                    <li><span class="font-semibold">Herramientas:</span> <!-- Herramientas/tecnologías (iconos) -->
+                    </li>
+                    <li><span class="font-semibold">Duración:</span> <!-- Duración del proyecto --> </li>
+                </ul>
+            </div>
+            <!-- Derecha: descripción breve del proyecto -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <p class="text-lg leading-relaxed">
+                    <!-- Breve descripción del encargo, explicando el alcance y objetivo del proyecto. -->
+                    <!-- Ejemplo: -->
+                    Este proyecto consistió en el desarrollo de la identidad visual completa de la marca,
+                    incluyendo logotipo, paleta de color y aplicaciones corporativas.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Investigación y Moodboard -->
+        <section id="moodboard" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
+            <!-- Izquierda: Moodboard con imágenes de referencia -->
+            <div class="relative w-full md:w-1/2 px-2 md:px-4 md:mb-0 mb-8">
+                <!-- Imágenes del moodboard posicionadas libremente -->
+                <div class="relative h-80 md:h-[500px]">
+                    <img src="assets/images/moodboard1.jpg" alt="Moodboard - referencia 1"
+                        class="absolute top-4 left-4 w-3/4 md:w-[60%] object-cover rounded-xl shadow-xl -rotate-2 reveal-img"
+                        loading="lazy">
+                    <img src="assets/images/moodboard2.jpg" alt="Moodboard - referencia 2"
+                        class="absolute bottom-4 right-4 w-3/4 md:w-[60%] object-cover rounded-xl shadow-xl rotate-3 reveal-img"
+                        loading="lazy">
+                </div>
+            </div>
+            <!-- Derecha: texto explicativo de la investigación -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <h2 class="text-2xl font-bold mb-4">Investigación & Moodboard</h2>
+                <p class="text-lg leading-relaxed">
+                    <!-- Explicación de la fase de investigación y recopilación de referencias visuales. -->
+                    Antes de diseñar, se analizó la competencia y el público objetivo,
+                    extrayendo insights clave. Paralelamente, se elaboró un moodboard
+                    con imágenes de inspiración, paletas de color y estilos visuales
+                    que marcarían la dirección creativa del proyecto.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. Bocetos y Diseño Final -->
+        <section id="bocetos" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
+            <!-- Izquierda: título/explicación breve -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <h2 class="text-2xl font-bold mb-4">Bocetos & Diseño Final</h2>
+                <p class="text-base text-text/80 mb-4">
+                    <!-- Breve instrucción o descripción para el slider (opcional) -->
+                    Desliza la barra interactiva para comparar el boceto inicial a lápiz con el logotipo final
+                    digitalizado.
+                </p>
+            </div>
+            <!-- Derecha: componente de slider before/after -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <!-- Componente personalizado para comparar dos imágenes (boceto vs final) -->
+                <app-before-after-slider [beforeImage]="'assets/images/boceto.jpg'"
+                    [afterImage]="'assets/images/final.jpg'" altBefore="Bocetos originales" altAfter="Diseño final">
+                </app-before-after-slider>
+            </div>
+        </section>
+
+        <!-- 4. Entrega y Conclusiones -->
+        <section id="conclusiones" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
+            <!-- Izquierda: texto de conclusiones -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <h2 class="text-2xl font-bold mb-4">Entrega & Conclusiones</h2>
+                <p class="text-lg leading-relaxed mb-4">
+                    <!-- Texto final con conclusiones del proyecto y resultados obtenidos. -->
+                    El resultado es una identidad visual coherente y memorable que refleja los valores de la marca.
+                    Se entregaron todas las aplicaciones finales (logotipo en formatos editables, manual de marca,
+                    tarjetas, papelería y mockups variados) junto con recomendaciones para su uso correcto.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    <!-- Posible reflexión final o cierre. -->
+                    Gracias a una estrecha colaboración con el cliente, el proyecto alcanzó sus objetivos,
+                    creando una marca con personalidad única y preparada para conectar con su audiencia.
+                </p>
+            </div>
+            <!-- Derecha: mockups finales del proyecto -->
+            <div class="w-full md:w-1/2 px-2 md:px-4">
+                <div class="relative">
+                    <img src="assets/images/mockup1.jpg" alt="Mockup presentación 1"
+                        class="w-full mb-4 object-cover rounded-xl shadow-xl reveal-img" loading="lazy">
+                    <img src="assets/images/mockup2.jpg" alt="Mockup presentación 2"
+                        class="w-full object-cover rounded-xl shadow-xl reveal-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- Botón CTA final: contacto -->
+        <div class="text-center pt-2">
+            <a [routerLink]="['/']" fragment="contact"
+                class="inline-block mt-4 px-6 py-3 rounded-full border border-cta text-cta font-semibold text-base bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white transition-colors duration-300">
+                ¡Contáctame!
+            </a>
+        </div>
     </main>
+
+    <!-- Indicador de progreso de sección -->
+    <nav class="hidden md:flex flex-col items-center gap-3 fixed right-5 top-1/2 -translate-y-1/2 z-50"
+        aria-label="Progreso de la lectura">
+        <a href="#resumen" class="w-3 h-3 rounded-full bg-gray-400 transition-colors duration-300"
+            [class.bg-cta]="currentSection === 1" aria-label="Ir a Resumen"></a>
+        <a href="#moodboard" class="w-3 h-3 rounded-full bg-gray-400 transition-colors duration-300"
+            [class.bg-cta]="currentSection === 2" aria-label="Ir a Moodboard"></a>
+        <a href="#bocetos" class="w-3 h-3 rounded-full bg-gray-400 transition-colors duration-300"
+            [class.bg-cta]="currentSection === 3" aria-label="Ir a Bocetos"></a>
+        <a href="#conclusiones" class="w-3 h-3 rounded-full bg-gray-400 transition-colors duration-300"
+            [class.bg-cta]="currentSection === 4" aria-label="Ir a Conclusiones"></a>
+    </nav>
+
     <app-footer></app-footer>
+
     <app-scroll-to-top></app-scroll-to-top>
+
 </div>

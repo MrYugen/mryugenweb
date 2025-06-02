@@ -1,0 +1,18 @@
+<div class="ba-slider relative w-full overflow-hidden select-none touch-none">
+    <!-- Imagen base (before) -->
+    <img [src]="beforeImage" [alt]="altBefore" class="w-full block" loading="lazy" />
+
+    <!-- Imagen overlay (after) recortada según ratio -->
+    <div class="absolute top-0 left-0 h-full overflow-hidden" [style.width.%]="ratio">
+        <img [src]="afterImage" [alt]="altAfter" class="w-full block" loading="lazy" />
+    </div>
+
+    <!-- Handle deslizable -->
+    <div class="handle absolute top-0 h-full cursor-ew-resize" [style.left.%]="ratio" (mousedown)="startDrag($event)"
+        (touchstart)="startDrag($event)">
+        <!-- Línea central -->
+        <div class="absolute top-0 left-1/2 h-full w-px bg-cta"></div>
+        <!-- Círculo de control -->
+        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-cta rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+</div>

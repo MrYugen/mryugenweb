@@ -1,0 +1,13 @@
+/* Componente BA slider */
+.ba-slider {
+  /* puedes ajustar estas variables si gustas */
+  --handle-width: 16px;
+}
+
+.handle {
+  width: var(--handle-width);
+  /* Para que el centro del handle quede donde toques */
+  transform: translateX(-50%);
+  /* elevación sobre las imágenes */
+  z-index: 10;
+}

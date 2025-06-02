@@ -8,4 +8,7 @@ export const routes: Routes = [
   { path: 'portfolio/branding', component: PortfolioBrandingComponent },
   // Ruta dinámica para cada proyecto de branding
   { path: 'portfolio/branding/:slug', component: ProjectDetailsComponent },
+    // ... (otras rutas de tu sitio) ...
+  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '**', redirectTo: '/' }
 ];
