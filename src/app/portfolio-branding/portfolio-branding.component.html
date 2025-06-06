@@ -2,7 +2,7 @@
     <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
 
     <app-hero [isDarkMode]="isDarkMode" title="Branding" [ctaText]="'Ver proyectos de branding'" [showCTA]="true"
-        [ctaTextColor]="'#1D3557'" [ctaLink]="'/portfolio/branding#projects'"
+        [ctaTextColor]="'white'" [ctaLink]="'/portfolio/branding#projects'"
         bgImageLight="/assets/images/branding-hero-light.png" bgImageDark="/assets/images/branding-hero-dark.png"
         logoLight="assets/images/logo-hero-light.svg" logoDark="assets/images/logo-hero-light.svg"></app-hero>
 
@@ -92,7 +92,6 @@
                             [routerLink]="['/portfolio/branding', project.slug]">
                             Ver más
                         </a>
-
                     </div>
                 </div>
             </div>

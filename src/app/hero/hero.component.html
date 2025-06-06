@@ -13,10 +13,10 @@
     <div class="hero-content flex flex-col items-center justify-center h-full">
         <!-- Logo del Hero que cambia según el tema -->
         <img [src]="isDarkMode ? logoDark : logoLight" alt="Logo de Mr. Yugen"
-            [class]="logoSize + ' ' + (logoEffect || '')" *ngIf="logoLight || logoDark" />
+            [class]="logoSize + ' ' + (logoEffect || '')" *ngIf="logoLight || logoDark" #heroHeading />
 
         <!-- Título -->
-        <h1 *ngIf="showTitle" #heroHeading [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
+        <h1 *ngIf="showTitle" [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
             class="text-4xl md:text-6xl font-extrabold mb-4">
             {{ title }}
         </h1>
