@@ -1,0 +1,2 @@
+img.blur-sm { filter: blur(20px); transition: filter 0.5s; }
+img.loaded { filter: blur(0); }
