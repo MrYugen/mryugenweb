@@ -30,6 +30,7 @@ export class HeroComponent implements AfterViewInit {
   @Input() logoDark: string = 'assets/images/logo-hero-dark.svg';
   @Input() ctaTextColor?: string;
   @Input() ctaLink: string = '';
+  @Input() logoAlt: string = '';
 
 
   @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
