@@ -60,8 +60,6 @@
 
 ## 📂 Estructura del Proyecto
 
-```text``
-
 src/
 ├─ app/
 │  ├─ home/                ← Landing page
@@ -77,9 +75,11 @@ src/
 └─ styles.css
 Secciones implementadas
 
-Home → Hero, Sobre mí, Skills, Portfolio preview, Blog, Automatización, Contacto
+Home → Hero, Sobre mí, Skills, Portfolio preview, Blog, Automatización, Contacto, Footer
 
-Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados
+Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados, Footer
+
+Project Details → Hero, Resumen y Detalles del encargo, Investigación y Moodboard, Boceto y Diseño final, Conclusión, Footer
 
 ## 🚀 Instalación y Desarrollo
 
@@ -98,9 +98,20 @@ Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados
 
 - **Abre:**  `http://localhost:4200`
 
+- **Para ejecutar los test normales**
+
+`npm test`
+
+- **Para ejecutar los test en modo headless**
+
+`npm run test:ia`
+
+> ⚠️ **Nota:** La IA/automatización necesita tener Google Chrome instalado en su entorno.  
+> Estos comandos solo funcionan si existe Chrome disponible (en GitHub Actions ya viene por defecto).
+
 ## 🔧 Problemas Conocidos
 
-
+Actualmente no hay problemas conocidos. Si encuentras algún bug, abre un issue en GitHub.
 
 ## 🤝 Contribución
 
@@ -134,6 +145,6 @@ Compartir bajo la misma licencia
 
 **GitHub:** @MrYugen
 
-**Email:** mryugenmystery@gmail.com
+**Email:** [mryugenmystery@gmail.com](mailto:mryugenmystery@gmail.com)
 
 ¡Gracias por pasar por aquí! Espero que este README sirva de punto de partida claro y ayude a cualquiera que quiera colaborar.
