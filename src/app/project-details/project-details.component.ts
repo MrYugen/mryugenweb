@@ -1,5 +1,5 @@
 import { ThemeService } from '../services/theme.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -26,7 +26,8 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   isDarkMode: boolean = false;
   project: any = null;
 
-  currentSection: number = 0;
+  lightboxOpen = false;
+  activeImage = '';
 
   PROJECTS_DATA: Project[] = PROJECTS_DATA_CONST;
 
@@ -78,16 +79,6 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
         }
       });
     });
-
-    // Indicador de progreso: actualizar currentSection al entrar en cada bloque
-    gsap.utils.toArray<HTMLElement>('section[id]').forEach((sec, index) => {
-      ScrollTrigger.create({
-        trigger: sec,
-        start: 'top center',
-        onEnter: () => { this.currentSection = index + 1; },
-        onEnterBack: () => { this.currentSection = index + 1; }
-      });
-    });
   }
 
   ngOnDestroy(): void {
@@ -98,5 +89,19 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   // Método para el toggle desde el Navbar
   toggleTheme() {
   this.isDarkMode = this.theme.toggle();
+  }
+
+  openLightbox(url: string) {
+    this.activeImage = url;
+    this.lightboxOpen = true;
+  }
+
+  closeLightbox() {
+    this.lightboxOpen = false;
+  }
+
+  @HostListener('window:keyup.escape')
+  onEscape() {
+    if (this.lightboxOpen) this.closeLightbox();
   }
 }

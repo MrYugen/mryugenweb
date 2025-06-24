@@ -15,6 +15,8 @@
   --portfolio-bg-illustration:#D8EECF;
   --portfolio-bg-web:         #FCF0C2;
   --portfolio-bg-couple:      #C5C3FF;
+  --color-section-a: var(--portfolio-bg-branding);
+  --color-section-b: var(--portfolio-bg-web);
 }
 
 .dark {
@@ -29,6 +31,8 @@
   --portfolio-bg-illustration:#397b28;
   --portfolio-bg-web:         #906f2d;
   --portfolio-bg-couple:      #364cb0;
+  --color-section-a: var(--portfolio-bg-branding);
+  --color-section-b: var(--portfolio-bg-web);
 }
 
 html { scroll-behavior: smooth; }

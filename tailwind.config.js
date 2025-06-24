@@ -11,6 +11,8 @@ module.exports = {
         'bg-alt': 'var(--color-bg-alt)',
         text: 'var(--color-text)',
         cta: 'var(--color-cta)',
+        'section-a': 'var(--color-section-a)',
+        'section-b': 'var(--color-section-b)',
       }
     },
   },

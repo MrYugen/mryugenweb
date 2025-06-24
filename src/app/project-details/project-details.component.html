@@ -1,4 +1,4 @@
-<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+<section [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
     <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
 
     <!-- Hero reutilizable -->
@@ -6,158 +6,76 @@
         [logoEffect]="project.logoEffect" [title]="project.title" [showTitle]="project.showTitle"
         [showCTA]="project.showCTA" [bgImageLight]="project.heroBgLight" [bgImageDark]="project.heroBgDark"
         [logoLight]="project.logoLight" [logoDark]="project.logoDark" [logoSize]="project.logoSize"
-        [ctaText]="project.ctaText" [ctaLink]="'/#contact'" [logoAlt]="project.title"></app-hero>
-
-    <!-- Indicador de progreso de sección (mejorado) -->
-    <nav class="hidden md:flex flex-col items-center gap-6 fixed right-5 top-1/2 -translate-y-1/2 z-50"
-        aria-label="Progreso de lectura">
-        <!-- Punto 1: Resumen -->
-        <div class="relative group">
-            <a href="#resumen"
-                class="block w-4 h-4 rounded-full bg-gray-400 transition-colors duration-300 hover:bg-cta"
-                [class.bg-cta]="currentSection === 1" aria-label="Ir a Resumen">
-            </a>
-            <!-- Etiqueta que aparece al hacer hover -->
-            <span class="absolute -left-24 top-1/2 -translate-y-1/2 w-20 text-sm text-white bg-cta rounded-md px-2 py-1 opacity-0 pointer-events-none transition-opacity duration-200
-            dark:bg-cta dark:text-white group-hover:opacity-100">
-                Detalles del encargo
-            </span>
-        </div>
-
-        <!-- Punto 2: Moodboard -->
-        <div class="relative group">
-            <a href="#moodboard"
-                class="block w-4 h-4 rounded-full bg-gray-400 transition-colors duration-300 hover:bg-cta"
-                [class.bg-cta]="currentSection === 2" aria-label="Ir a Moodboard">
-            </a>
-            <span class="absolute -left-24 top-1/2 -translate-y-1/2 w-24 text-sm text-white bg-cta rounded-md px-2 py-1 opacity-0 pointer-events-none transition-opacity duration-200
-            dark:bg-cta dark:text-white group-hover:opacity-100">
-                Investigación y Moodboard
-            </span>
-        </div>
-
-        <!-- Punto 3: Bocetos -->
-        <div class="relative group">
-            <a href="#bocetos"
-                class="block w-4 h-4 rounded-full bg-gray-400 transition-colors duration-300 hover:bg-cta"
-                [class.bg-cta]="currentSection === 3" aria-label="Ir a Bocetos">
-            </a>
-            <span class="absolute -left-24 top-1/2 -translate-y-1/2 w-20 text-sm text-white bg-cta rounded-md px-2 py-1 opacity-0 pointer-events-none transition-opacity duration-200
-            dark:bg-cta dark:text-white group-hover:opacity-100">
-                Bocetos y Diseño Final
-            </span>
-        </div>
-
-        <!-- Punto 4: Conclusiones -->
-        <div class="relative group">
-            <a href="#conclusiones"
-                class="block w-4 h-4 rounded-full bg-gray-400 transition-colors duration-300 hover:bg-cta"
-                [class.bg-cta]="currentSection === 4" aria-label="Ir a Conclusiones">
-            </a>
-            <span class="absolute -left-32 top-1/2 -translate-y-1/2 w-24 text-sm text-white bg-cta rounded-md px-2 py-1 opacity-0 pointer-events-none transition-opacity duration-200
-            dark:bg-cta dark:text-white group-hover:opacity-100">
-                Conclusiones
-            </span>
-        </div>
-    </nav>
+        [logoAlt]="project.title"></app-hero>
 
     <main class="max-w-5xl mx-auto py-10 px-4" style="background: var(--main-gradient);">
-        <!-- Título del proyecto -->
-        <h1 class="text-4xl font-bold mb-8">{{ project.title }}</h1>
 
         <!-- 1. Resumen y Detalles del encargo -->
-        <section id="resumen" class="flex flex-col md:flex-row items-start md:items-center gap-8 mb-16 reveal-section">
-            <!-- Izquierda: datos del proyecto -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <h2 class="text-2xl font-bold mb-4">Resumen del encargo</h2>
-                <ul class="text-lg leading-relaxed">
-                    <li><span class="font-semibold">Cliente:</span> {{ project.clientName }}</li>
-                    <li><span class="font-semibold">Fecha:</span> {{ project.date }}</li>
-                    <li class="flex flex-wrap items-center space-x-4">
-                        <span class="font-semibold mr-2">Herramientas:</span>
-                        <!-- Iteramos sobre project.tools -->
-                        <ng-container *ngFor="let tool of project.tools">
-                            <figure class="flex flex-col items-center mb-2 reveal-img">
-                                <img [src]="tool.icon" [alt]="tool.name" class="w-8 h-8 mb-1" loading="lazy" />
-                                <figcaption class="text-xs">{{ tool.name }}</figcaption>
-                            </figure>
-                        </ng-container>
-                    </li>
-
-                    <li><span class="font-semibold">Duración:</span> {{ project.duration }}</li>
-                </ul>
-            </div>
-            <!-- Derecha -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <p class="text-lg leading-relaxed">{{ project.briefDescription }}</p>
-            </div>
+        <section id="resumen" class="reveal-section bg-section-a py-12 px-4 mb-16 text-center space-y-8 rounded-xl">
+            <h1 class="text-4xl font-bold">{{ project.title }}</h1>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.briefDescription }}</p>
+            <ul class="text-lg leading-relaxed max-w-3xl mx-auto space-y-2">
+                <li><span class="font-semibold">Cliente:</span> {{ project.clientName }}</li>
+                <li><span class="font-semibold">Fecha:</span> {{ project.date }}</li>
+                <li class="flex flex-wrap justify-center gap-4">
+                    <span class="font-semibold w-full">Herramientas:</span>
+                    <ng-container *ngFor="let tool of project.tools">
+                        <figure class="flex flex-col items-center reveal-img">
+                            <img [src]="tool.icon" [alt]="tool.name" class="w-8 h-8 mb-1" loading="lazy" />
+                            <figcaption class="text-xs">{{ tool.name }}</figcaption>
+                        </figure>
+                    </ng-container>
+                </li>
+                <li><span class="font-semibold">Duración:</span> {{ project.duration }}</li>
+            </ul>
         </section>
 
         <!-- 2. Investigación y Moodboard -->
-        <section id="moodboard" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
-            <!-- Izquierda: Moodboard con imágenes de referencia -->
-            <div class="relative w-full md:w-1/2 px-2 md:px-4 md:mb-0 mb-8">
-                <!-- Imágenes del moodboard posicionadas libremente -->
-                <div class="relative h-80 md:h-[500px]">
-                    <!-- Iteramos sobre project.moodboardImgs -->
-                    <img *ngFor="let imgUrl of project.moodboardImgs; let i = index" [src]="imgUrl"
-                        [alt]="'Moodboard referencia ' + (i + 1)"
-                        class="absolute object-cover rounded-xl shadow-xl reveal-img" [ngClass]="{
-                        'top-4 left-4 w-3/4 md:w-[60%] -rotate-2': i === 0,
-                        'bottom-4 right-4 w-3/4 md:w-[60%] rotate-3': i === 1
-                        }" loading="lazy" />
-                </div>
+        <section id="moodboard" class="reveal-section bg-section-b py-12 px-4 mb-16 space-y-8 text-center rounded-xl">
+            <h2 class="text-2xl font-bold">Investigación & Moodboard</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
+                <img *ngFor="let imgUrl of project.moodboardImgs" [src]="imgUrl" [alt]="'Moodboard referencia'"
+                    class="w-full object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                    (click)="openLightbox(imgUrl)" loading="lazy" />
             </div>
-            <!-- Derecha: texto explicativo de la investigación -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <h2 class="text-2xl font-bold mb-4">Investigación & Moodboard</h2>
-                <p class="text-lg leading-relaxed">{{ project.moodboardText }}</p>
-            </div>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.moodboardText }}</p>
         </section>
 
         <!-- 3. Bocetos y Diseño Final -->
-        <section id="bocetos" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
-            <!-- Izquierda: título/explicación breve -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <h2 class="text-2xl font-bold mb-4">Bocetos & Diseño Final</h2>
-                <p class="text-lg leading-relaxed mb-4">
-                    {{ project.bocetoDescription }}
-                </p>
-            </div>
-            <!-- Derecha: componente de slider before/after -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <!-- Componente personalizado para comparar dos imágenes (boceto vs final) -->
+        <section id="bocetos" class="reveal-section bg-section-a py-12 px-4 mb-16 space-y-6 text-center rounded-xl">
+            <h2 class="text-2xl font-bold">Boceto & Diseño Final</h2>
+            <div class="max-w-xl mx-auto">
                 <app-before-after-slider [beforeImage]="project.bocetoImg" [afterImage]="project.finalImg"
-                    altBefore="Boceto a lápiz" altAfter="Diseño final digital">
-                </app-before-after-slider>
+                    altBefore="Boceto a lápiz" altAfter="Diseño final digital"></app-before-after-slider>
+                <p class="text-xs text-gray-500 text-center mt-2">Desliza para ver el cambio</p>
             </div>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.bocetoDescription }}</p>
         </section>
 
         <!-- 4. Entrega y Conclusiones (invertido) -->
-        <section id="conclusiones" class="flex flex-col md:flex-row items-start gap-8 mb-16 reveal-section">
-            <!-- Izquierda: mockups finales del proyecto -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <div class="relative space-y-4">
-                    <img *ngFor="let mockUrl of project.mockups" [src]="mockUrl" [alt]="'Mockup final ' + project.title"
-                        class="w-full object-cover rounded-xl shadow-xl reveal-img" loading="lazy" />
-                </div>
+        <section id="conclusiones"
+            class="reveal-section bg-section-b py-12 px-4 mb-16 space-y-8 text-center rounded-xl">
+            <h2 class="text-2xl font-bold">Entrega & Conclusiones</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
+                <img *ngFor="let mockUrl of project.mockups" [src]="mockUrl" [alt]="'Mockup final ' + project.title"
+                    class="w-full object-cover rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                    (click)="openLightbox(mockUrl)" loading="lazy" />
             </div>
-            <!-- Derecha: texto de conclusiones -->
-            <div class="w-full md:w-1/2 px-2 md:px-4">
-                <h2 class="text-2xl font-bold mb-4">Entrega & Conclusiones</h2>
-                <p class="text-lg leading-relaxed mb-4">{{ project.conclusionText }}</p>
-            </div>
-        </section>
-
-
-        <!-- Botón CTA final: contacto -->
-        <div class="text-center pt-2">
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.conclusionText }}</p>
             <a [routerLink]="['/']" fragment="contact"
                 class="inline-block mt-4 px-6 py-3 rounded-full border border-cta text-cta font-semibold text-base bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white transition-colors duration-300">
-                ¡Contáctame!
+                {{ project.ctaText }}
             </a>
-        </div>
+        </section>
     </main>
+
+    <div *ngIf="lightboxOpen" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div class="relative">
+            <button class="absolute top-2 right-2 text-3xl text-orange-600" (click)="closeLightbox()"
+                aria-label="Cerrar">×</button>
+            <img [src]="activeImage" alt="Imagen ampliada" class="max-h-[90vh] rounded-xl shadow-xl" />
+        </div>
+    </div>
 
 
 
@@ -165,4 +83,4 @@
 
     <app-scroll-to-top></app-scroll-to-top>
 
-</div>
+</section>
