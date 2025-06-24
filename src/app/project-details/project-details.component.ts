@@ -28,6 +28,11 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
 
   lightboxOpen = false;
   activeImage = '';
+  activeIndex = 0;
+  activeList: string[] = [];
+
+  prevProject: Project | null = null;
+  nextProject: Project | null = null;
 
   PROJECTS_DATA: Project[] = PROJECTS_DATA_CONST;
 
@@ -38,13 +43,16 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     this.slug = this.route.snapshot.paramMap.get('slug') || '';
 
     // 2. Buscamos en PROJECTS_DATA la entrada cuyo slug coincida
-    this.project = this.PROJECTS_DATA.find(p => p.slug === this.slug);
+    const index = this.PROJECTS_DATA.findIndex(p => p.slug === this.slug);
+    this.project = this.PROJECTS_DATA[index];
 
-    if (!this.project) {
-      // Si no existe, podrías redirigir al 404, o volver al portfolio:
-      // this.router.navigate(['/portfolio/branding']);
+    if (index === -1) {
       console.warn(`No se encontró el proyecto con slug: ${this.slug}`);
+      return;
     }
+
+    this.prevProject = this.PROJECTS_DATA[index - 1] || null;
+    this.nextProject = this.PROJECTS_DATA[index + 1] || null;
   }
 
   ngAfterViewInit(): void {
@@ -52,12 +60,12 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
       gsap.from(section, {
         opacity: 0,
-        y: 50,
-        duration: 1.2,
-        ease: 'power2.out',
+        y: 80,
+        duration: 1.5,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top bottom-=100',  // inicia cuando la sección entra en viewport
+          start: 'top 85%',
           toggleActions: 'play none none none',
           once: true
         }
@@ -65,15 +73,15 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     });
 
     // Revelado tipo "mask" para imágenes clave
-    gsap.utils.toArray<HTMLElement>('.reveal-img').forEach((img, i) => {
+    gsap.utils.toArray<HTMLElement>('.reveal-img').forEach((img) => {
       gsap.from(img, {
         opacity: 0,
-        scaleX: 0, transformOrigin: 'left center', // efecto barrido horizontal
-        duration: 1.0,
-        ease: 'power2.out',
+        scale: 0.8,
+        duration: 1.2,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: img,
-          start: 'top 80%', 
+          start: 'top 90%', 
           toggleActions: 'play none none none',
           once: true
         }
@@ -91,17 +99,47 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   this.isDarkMode = this.theme.toggle();
   }
 
-  openLightbox(url: string) {
+  openLightbox(url: string, list: string[], index: number) {
     this.activeImage = url;
+    this.activeList = list;
+    this.activeIndex = index;
     this.lightboxOpen = true;
+    setTimeout(() => {
+      const closeBtn = document.getElementById('lightbox-close');
+      closeBtn?.focus();
+    });
   }
 
   closeLightbox() {
     this.lightboxOpen = false;
   }
 
+  prevImage() {
+    if (!this.activeList.length) return;
+    this.activeIndex = (this.activeIndex - 1 + this.activeList.length) % this.activeList.length;
+    this.activeImage = this.activeList[this.activeIndex];
+  }
+
+  nextImage() {
+    if (!this.activeList.length) return;
+    this.activeIndex = (this.activeIndex + 1) % this.activeList.length;
+    this.activeImage = this.activeList[this.activeIndex];
+  }
+
   @HostListener('window:keyup.escape')
   onEscape() {
     if (this.lightboxOpen) this.closeLightbox();
+  }
+
+  @HostListener('window:keydown')
+  onKeyDown(event: KeyboardEvent) {
+    if (!this.lightboxOpen) return;
+    if (event.key === 'ArrowLeft') { this.prevImage(); event.preventDefault(); }
+    if (event.key === 'ArrowRight') { this.nextImage(); event.preventDefault(); }
+    if (event.key === 'Tab') {
+      const closeBtn = document.getElementById('lightbox-close');
+      event.preventDefault();
+      closeBtn?.focus();
+    }
   }
 }

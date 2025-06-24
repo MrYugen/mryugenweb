@@ -39,6 +39,11 @@ export class BeforeAfterSliderComponent implements OnDestroy {
     this.ratio = (x / rect.width) * 100;
   }
 
+  onKey(event: KeyboardEvent) {
+    if (event.key === 'ArrowLeft') { this.ratio = Math.max(0, this.ratio - 5); }
+    if (event.key === 'ArrowRight') { this.ratio = Math.min(100, this.ratio + 5); }
+  }
+
   // Suelta el handle
   @HostListener('document:mouseup')
   @HostListener('document:touchend')

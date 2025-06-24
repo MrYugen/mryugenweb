@@ -3,13 +3,13 @@
     <img [src]="beforeImage" [alt]="altBefore" class="w-full block" loading="lazy" />
 
     <!-- Imagen overlay (after) recortada según ratio -->
-    <div class="absolute top-0 left-0 h-full overflow-hidden" [style.width.%]="ratio">
-        <img [src]="afterImage" [alt]="altAfter" class="w-full block" loading="lazy" />
+    <div class="absolute top-0 right-0 h-full overflow-hidden transition-all" [style.width.%]="100 - ratio">
+        <img [src]="afterImage" [alt]="altAfter" class="w-full h-full object-cover" loading="lazy" />
     </div>
 
     <!-- Handle deslizable -->
-    <div class="handle absolute top-0 h-full cursor-ew-resize" [style.left.%]="ratio" (mousedown)="startDrag($event)"
-        (touchstart)="startDrag($event)">
+    <div class="handle absolute top-0 h-full cursor-ew-resize transition-all" [style.left.%]="ratio"
+        (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" tabindex="0" (keydown)="onKey($event)">
         <!-- Línea central -->
         <div class="absolute top-0 left-1/2 h-full w-px bg-cta"></div>
         <!-- Círculo de control -->
