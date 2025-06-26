@@ -39,20 +39,25 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private route: ActivatedRoute, private theme: ThemeService) {}
 
   ngOnInit(): void {
-    // 1. Recuperamos el slug de la URL. Ej: "selu-rizo-fotografia"
-    this.slug = this.route.snapshot.paramMap.get('slug') || '';
+    // Nos suscribimos a los cambios de slug en la URL para
+    // actualizar el proyecto sin recargar la página
+    this.route.paramMap.subscribe(params => {
+      this.slug = params.get('slug') || '';
 
-    // 2. Buscamos en PROJECTS_DATA la entrada cuyo slug coincida
-    const index = this.PROJECTS_DATA.findIndex(p => p.slug === this.slug);
-    this.project = this.PROJECTS_DATA[index];
+      const index = this.PROJECTS_DATA.findIndex(p => p.slug === this.slug);
+      this.project = this.PROJECTS_DATA[index];
 
-    if (index === -1) {
-      console.warn(`No se encontró el proyecto con slug: ${this.slug}`);
-      return;
-    }
+      if (index === -1) {
+        console.warn(`No se encontró el proyecto con slug: ${this.slug}`);
+        return;
+      }
 
-    this.prevProject = this.PROJECTS_DATA[index - 1] || null;
-    this.nextProject = this.PROJECTS_DATA[index + 1] || null;
+      this.prevProject = this.PROJECTS_DATA[index - 1] || null;
+      this.nextProject = this.PROJECTS_DATA[index + 1] || null;
+
+      // Al navegar, situamos la vista arriba para empezar desde el inicio
+      window.scrollTo({ top: 0 });
+    });
   }
 
   ngAfterViewInit(): void {

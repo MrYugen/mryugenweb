@@ -142,7 +142,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       slug: 'errores-juego-parte-1',
       title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)',
       summary: 'Desde mi desgracia personal, te cuento los errores más comunes al diseñar un juego de mesa y cómo evitarlos.',
-      image: 'assets/images/blog_post2.png',
+      image: 'assets/images/blog_post2.jpg',
       date: new Date('2024-09-25')
     },
     {

@@ -34,27 +34,27 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
     {
       title: '1. Investigación',
       text: 'Analizo tu sector, tus competidores y tu público objetivo para entender el contexto de tu marca y encontrar oportunidades únicas.',
-      image: 'assets/images/branding_investiga.png'
+      image: 'assets/images/branding_investiga.jpg'
     },
     {
       title: '2. Moodboard',
       text: 'Recojo referencias visuales, paletas de color y estilos que inspiran y definen la atmósfera que tendrá tu identidad visual.',
-      image: 'assets/images/branding_moodboard.png'
+      image: 'assets/images/branding_moodboard.jpg'
     },
     {
       title: '3. Boceto',
       text: 'A lápiz y papel, empiezo a plasmar ideas, logotipos y conceptos iniciales, dando forma a las primeras propuestas gráficas.',
-      image: 'assets/images/branding_bocetos.png'
+      image: 'assets/images/branding_bocetos.jpg'
     },
     {
       title: '4. Revisión y diseño final',
       text: 'Juntos analizamos y pulimos las propuestas. Ajusto detalles, colores y tipografía hasta que tu marca te represente al 100%.',
-      image: 'assets/images/branding_revision.png'
+      image: 'assets/images/branding_revision.jpg'
     },
     {
       title: '5. Entrega',
       text: 'Te entrego todos los archivos y aplicaciones de tu nueva identidad: logotipo, manual, mockups y consejos para empezar a usarla.',
-      image: 'assets/images/branding_entrega.png'
+      image: 'assets/images/branding_entrega.jpg'
     }
   ];
 

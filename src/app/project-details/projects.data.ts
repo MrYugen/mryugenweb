@@ -225,7 +225,7 @@ export const PROJECTS_DATA: Project[] = [
     heroBgDark: '/assets/images/hero-ikigai-games-dark.jpg',
     logoLight: '/assets/images/logo-ikigai-games.png',
     logoDark: '/assets/images/logo-ikigai-games.png',
-    ctaText: 'Diseña una identidad única y digital',
+    ctaText: 'Diseña el propósito de mi marca',
     overlayOpacity: 0.05,
     showTitle: false,            
     showCTA: false,              
