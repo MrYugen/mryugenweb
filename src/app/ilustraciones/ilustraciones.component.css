@@ -20,16 +20,23 @@ img.loaded {
 }
 
 .modal-img{
-  max-width:100%;
+  user-select: none;
+  touch-action: none;
+  max-width:90vw;
   max-height:75vh;        /* cabe sin desplazamiento vertical */
   width:auto;             /* 👉 evita estirar la miniatura panorámica */
   object-fit:contain;
   margin-inline:auto;
   transition:transform .35s;
+  display: block;
+  margin: 0 auto;
+  transition: box-shadow 0.2s;
 }
-.modal-img.zoomed{        /* ➊ zoom */
+.modal-img.zoomed{ 
+  cursor: grab; /* visible solo en desktop */
   cursor:zoom-out;
   transform:scale(1.6);   /* o usa scale(2) + overflow-auto en el padre */
+  box-shadow: 0 0 40px 10px rgba(0,0,0,0.3);
 }
 
 .nav-btn,.close-btn{

@@ -32,6 +32,11 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
   illustrations = ILLUSTRATIONS;
   zoomed = false;
   modalOpen = false;
+  isDragging = false;
+  dragStart = { x: 0, y: 0 };
+  imgOffset = { x: 0, y: 0 };
+  imgLastOffset = { x: 0, y: 0 };
+  showZoomHint = false;
   activeIndex = 0;
   currentStep = 3;
 
@@ -43,8 +48,9 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
     this.isDarkMode = this.theme.toggle();
   }
 
-  toggleZoom(){ this.zoomed = !this.zoomed; }
-  
+  // Touch específico
+  touchActive = false;
+
   ngAfterViewInit() {
     gsap.utils.toArray<HTMLElement>('.illu-card').forEach((card, i) => {
       gsap.from(card, {
@@ -97,4 +103,66 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
   onEscape() {
     if (this.modalOpen) this.closeModal();
   }
+  // Cuando se pincha la imagen ampliada
+  startDrag(event: MouseEvent) {
+    if (!this.zoomed) return;
+    this.isDragging = true;
+    this.dragStart = { x: event.clientX, y: event.clientY };
+    event.preventDefault();
+    }
+
+  // Mientras arrastra
+  onDrag(event: MouseEvent) {
+    if (!this.zoomed || !this.isDragging) return;
+    const dx = event.clientX - this.dragStart.x;
+    const dy = event.clientY - this.dragStart.y;
+    this.imgOffset = {
+      x: this.imgLastOffset.x + dx,
+      y: this.imgLastOffset.y + dy
+    };
+  }
+
+  // Cuando suelta
+  endDrag() {
+    if (!this.zoomed) return;
+    this.isDragging = false;
+    this.imgLastOffset = { ...this.imgOffset };
+  }
+
+// Al hacer zoom/deszoom, resetea offset
+  toggleZoom() {
+    this.zoomed = !this.zoomed;
+    if (!this.zoomed) {
+      this.imgOffset = { x: 0, y: 0 };
+      this.imgLastOffset = { x: 0, y: 0 };
+    }
+  }
+  // MÉTODOS PARA TOUCH
+onTouchStartImage(event: TouchEvent) {
+  if (!this.zoomed) return;
+  this.touchActive = true;
+  this.isDragging = true;
+  const touch = event.touches[0];
+  this.dragStart = { x: touch.clientX, y: touch.clientY };
+  event.preventDefault();
 }
+
+onTouchMoveImage(event: TouchEvent) {
+  if (!this.zoomed || !this.touchActive) return;
+  const touch = event.touches[0];
+  const dx = touch.clientX - this.dragStart.x;
+  const dy = touch.clientY - this.dragStart.y;
+  this.imgOffset = {
+    x: this.imgLastOffset.x + dx,
+    y: this.imgLastOffset.y + dy
+  };
+}
+
+onTouchEndImage() {
+  if (!this.zoomed) return;
+  this.isDragging = false;
+  this.touchActive = false;
+  this.imgLastOffset = { ...this.imgOffset };
+}
+}
+
