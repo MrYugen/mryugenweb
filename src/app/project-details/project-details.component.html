@@ -13,7 +13,7 @@
         <!-- 1. Resumen y Detalles del encargo -->
         <section id="resumen" class="reveal-section bg-section-a py-12 px-4 text-center space-y-8 w-full">
             <h1 class="reveal-section text-4xl font-bold">{{ project.title }}</h1>
-            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.briefDescription }}</p>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-center" [innerHTML]="project.briefDescription"></p>
             <ul class="text-lg leading-relaxed max-w-3xl mx-auto space-y-2">
                 <li><span class="font-semibold">Cliente:</span> {{ project.clientName }}</li>
                 <li><span class="font-semibold">Fecha:</span> {{ project.date }}</li>
@@ -34,14 +34,15 @@
         <section id="moodboard" class="reveal-section bg-section-b py-12 px-4 space-y-8 text-center w-full">
             <h2 class="reveal-section text-2xl font-bold">Investigación & Moodboard</h2>
             <div class="reveal-section grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
-                <img *ngFor="let imgUrl of project.moodboardImgs; let i = index" [src]="imgUrl" [alt]="'Moodboard referencia'"
+                <img *ngFor="let imgUrl of project.moodboardImgs; let i = index" [src]="imgUrl"
+                    [alt]="'Moodboard referencia'"
                     class="w-full object-cover rounded-xl shadow-lg cursor-pointer hover:scale-110 transition-transform"
                     (click)="openLightbox(imgUrl, project.moodboardImgs, i)"
                     (keydown.enter)="openLightbox(imgUrl, project.moodboardImgs, i)"
-                    (keydown.space)="openLightbox(imgUrl, project.moodboardImgs, i)"
-                    tabindex="0" role="button" loading="lazy" />
+                    (keydown.space)="openLightbox(imgUrl, project.moodboardImgs, i)" tabindex="0" role="button"
+                    loading="lazy" />
             </div>
-            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.moodboardText }}</p>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify" [innerHTML]="project.moodboardText"></p>
         </section>
 
         <!-- 3. Bocetos y Diseño Final -->
@@ -52,22 +53,23 @@
                     altBefore="Boceto a lápiz" altAfter="Diseño final digital"></app-before-after-slider>
                 <p class="text-xs text-gray-500 text-center mt-2">Desliza para ver el cambio</p>
             </div>
-            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.bocetoDescription }}</p>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify" [innerHTML]="project.bocetoDescription">
+            </p>
         </section>
 
         <!-- 4. Entrega y Conclusiones (invertido) -->
-        <section id="conclusiones"
-            class="reveal-section bg-section-b py-12 px-4 space-y-8 text-center w-full">
+        <section id="conclusiones" class="reveal-section bg-section-b py-12 px-4 space-y-8 text-center w-full">
             <h2 class="reveal-section text-2xl font-bold">Entrega & Conclusiones</h2>
             <div class="reveal-section grid grid-cols-2 md:grid-cols-3 gap-4 px-4">
-                <img *ngFor="let mockUrl of project.mockups; let i = index" [src]="mockUrl" [alt]="'Mockup final ' + project.title"
+                <img *ngFor="let mockUrl of project.mockups; let i = index" [src]="mockUrl"
+                    [alt]="'Mockup final ' + project.title"
                     class="w-full object-cover rounded-xl shadow-lg cursor-pointer hover:scale-110 transition-transform"
                     (click)="openLightbox(mockUrl, project.mockups, i)"
                     (keydown.enter)="openLightbox(mockUrl, project.mockups, i)"
-                    (keydown.space)="openLightbox(mockUrl, project.mockups, i)"
-                    tabindex="0" role="button" loading="lazy" />
+                    (keydown.space)="openLightbox(mockUrl, project.mockups, i)" tabindex="0" role="button"
+                    loading="lazy" />
             </div>
-            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify">{{ project.conclusionText }}</p>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify" [innerHTML]="project.conclusionText"></p>
             <a [routerLink]="['/']" fragment="contact"
                 class="reveal-section inline-block mt-4 px-6 py-3 rounded-full border border-cta text-cta font-semibold text-base bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white transition-colors duration-300">
                 {{ project.ctaText }}
@@ -75,17 +77,22 @@
         </section>
 
         <div class="flex justify-between text-sm mt-6">
-            <a *ngIf="prevProject" [routerLink]="['/portfolio/branding', prevProject.slug]" class="underline">← {{ prevProject.title }}</a>
-            <a *ngIf="nextProject" [routerLink]="['/portfolio/branding', nextProject.slug]" class="underline">{{ nextProject.title }} →</a>
+            <a *ngIf="prevProject" [routerLink]="['/portfolio/branding', prevProject.slug]" class="underline">← {{
+                prevProject.title }}</a>
+            <a *ngIf="nextProject" [routerLink]="['/portfolio/branding', nextProject.slug]" class="underline">{{
+                nextProject.title }} →</a>
         </div>
     </main>
 
-    <div *ngIf="lightboxOpen" id="lightbox" role="dialog" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <button id="lightbox-prev" class="absolute left-4 text-8xl text-white" (click)="prevImage()" aria-label="Anterior">‹</button>
-        <button id="lightbox-next" class="absolute right-4 text-8xl text-white" (click)="nextImage()" aria-label="Siguiente">›</button>
+    <div *ngIf="lightboxOpen" id="lightbox" role="dialog"
+        class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <button id="lightbox-prev" class="absolute left-4 text-8xl text-white" (click)="prevImage()"
+            aria-label="Anterior">‹</button>
+        <button id="lightbox-next" class="absolute right-4 text-8xl text-white" (click)="nextImage()"
+            aria-label="Siguiente">›</button>
         <div class="relative" (click)="$event.stopPropagation()">
-            <button id="lightbox-close" class="absolute -top-12 -right-28 text-8xl text-orange-600" (click)="closeLightbox()"
-                aria-label="Cerrar">×</button>
+            <button id="lightbox-close" class="absolute -top-12 -right-28 text-8xl text-orange-600"
+                (click)="closeLightbox()" aria-label="Cerrar">×</button>
             <img [src]="activeImage" alt="Imagen ampliada" class="max-h-[90vh] rounded-xl shadow-xl" />
         </div>
     </div>

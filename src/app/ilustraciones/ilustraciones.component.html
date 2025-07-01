@@ -11,7 +11,7 @@
         <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
             <div *ngFor="let illu of illustrations; let i = index" class="mb-4 break-inside-avoid">
                 <div class="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer illu-card"
-                    (click)="openModal(i)" tabindex="0">
+                    (click)="openModal(i)" (keydown.enter)="openModal(i)" tabindex="0">
                     <img [src]="illu.image" [alt]="illu.title"
                         class="w-full object-cover transition-transform duration-300 group-hover:scale-105 blur-sm"
                         (load)="onImageLoad($event)" loading="lazy" />
@@ -27,20 +27,38 @@
         </div>
     </main>
 
-    <div *ngIf="modalOpen" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <div class="relative bg-bg p-4 rounded-lg max-w-5xl w-full">
-            <button class="absolute top-2 right-2 text-2xl" (click)="closeModal()" aria-label="Cerrar">×</button>
+    <div *ngIf="modalOpen" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+        (click)="closeModal()">
+        <div class="relative bg-bg p-4 rounded-lg max-w-5xl w-full" role="dialog" aria-modal="true"
+            (click)="$event.stopPropagation()">
+            <button class="close-btn" (click)="closeModal()" aria-label="Cerrar">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 12l6.3-6.3zM5.7 5.7L12 12l-6.3 6.3 1.4 1.4L12 13.4l6.3 6.3 1.4-1.4L13.4 12l6.3-6.3-1.4-1.4L12 10.6z" />
+                </svg>
+            </button>
             <div class="flex items-center justify-between gap-4">
-                <button class="text-3xl" (click)="prevIllustration()" aria-label="Anterior">←</button>
+                <button class="nav-btn left-4" (click)="prevIllustration()" aria-label="Ilustración anterior">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
                 <img [src]="illustrations[activeIndex].process[currentStep]" [alt]="illustrations[activeIndex].title"
-                    class="max-h-[80vh] w-full object-contain" />
-                <button class="text-3xl" (click)="nextIllustration()" aria-label="Siguiente">→</button>
+                    class="modal-img" (click)="toggleZoom()" [class.zoomed]="zoomed" />
+                <button class="nav-btn right-4" (click)="nextIllustration()" aria-label="Ilustración siguiente">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9 6l6 6-6 6" />
+                    </svg>
+                </button>
             </div>
             <div class="flex justify-center gap-2 mt-4">
                 <img *ngFor="let p of illustrations[activeIndex].process; let j=index" [src]="p" (click)="setStep(j)"
-                    [alt]="'Paso '+j" class="w-16 h-16 object-cover rounded cursor-pointer border-2"
+                    [alt]="illustrations[activeIndex].title + ' paso ' + (j+1)"
+                    class="w-16 h-16 object-cover rounded cursor-pointer border-2"
                     [class.border-cta]="j===currentStep" />
             </div>
+            <p class="text-center mt-6 text-sm italic">
+  Proceso de trabajo — pincha cada imagen para ver más
+</p>
         </div>
     </div>
     <app-footer></app-footer>

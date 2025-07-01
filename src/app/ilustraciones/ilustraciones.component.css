@@ -1,2 +1,40 @@
-img.blur-sm { filter: blur(20px); transition: filter 0.5s; }
-img.loaded { filter: blur(0); }
+#hero .hero-content p{ @apply text-white md:text-white; }
+
+img.blur-sm {
+  filter: blur(20px);
+  opacity: 0;
+  transition: filter 0.5s, opacity 0.5s;
+}
+
+img.loaded {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.illu-card:hover img {
+  transform: scale(1.05);
+}
+
+.illu-card img {
+  transition: transform 0.3s ease, opacity 0.5s;
+}
+
+.modal-img{
+  max-width:100%;
+  max-height:75vh;        /* cabe sin desplazamiento vertical */
+  width:auto;             /* 👉 evita estirar la miniatura panorámica */
+  object-fit:contain;
+  margin-inline:auto;
+  transition:transform .35s;
+}
+.modal-img.zoomed{        /* ➊ zoom */
+  cursor:zoom-out;
+  transform:scale(1.6);   /* o usa scale(2) + overflow-auto en el padre */
+}
+
+.nav-btn,.close-btn{
+  @apply absolute top-1/2 -translate-y-1/2 text-text bg-white/70 dark:bg-slate-900/70
+  rounded-full p-2 shadow-lg backdrop-blur-md transition hover:bg-cta dark:hover:bg-cta 
+}
+.nav-btn svg,.close-btn svg{ width:32px;height:32px; stroke-width:2; }
+.left-4{left:1rem}.right-4{right:1rem}.close-btn{top:1rem;right:1rem;transform:none}
