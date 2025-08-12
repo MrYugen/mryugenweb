@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, QueryList, ElementRef, ViewChildren, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, QueryList, ElementRef, ViewChildren, OnDestroy, OnInit } from '@angular/core';
 // Trae CommonModule para ngIf, pipes (date…), *ngFor…
 import { CommonModule } from '@angular/common';
 // Trae RouterModule para routerLink, router-outlet…
@@ -14,13 +14,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap } from 'gsap';
 
 import { ThemeService } from '../services/theme.service';
+import { BlogService, BlogPost } from '../services/blog.service';
 gsap.registerPlugin(ScrollTrigger);
-
-// 1) Define un tipo / interfaz para tus posts
-export interface BlogPost {
-  title: string;
-  date: string;  // Puede ser string ISO (“2025-05-06”) o Date
-}
 
 interface PortfolioItem {
   id: 'branding'|'illustration'|'web'|'couple';
@@ -130,29 +125,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     },
   ];
 
-  latestPosts = [
-    {
-      slug: 'mi-odisea-creativa',
-      title: '#1 El inicio de todo: Mi Odisea Creativa',
-      summary: 'Cómo empezó todo en un país remoto y cómo una idea evolucionó hasta convertirse en Couple Clash.',
-      image: 'assets/images/blog_post1.webp',
-      date: new Date('2024-08-06')
-    },
-    {
-      slug: 'errores-juego-parte-1',
-      title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)',
-      summary: 'Desde mi desgracia personal, te cuento los errores más comunes al diseñar un juego de mesa y cómo evitarlos.',
-      image: 'assets/images/blog_post2.jpg',
-      date: new Date('2024-09-25')
-    },
-    {
-      slug: 'errores-juego-parte-2',
-      title: '#3 Errores comunes al diseñar un juego de mesa (Parte 2)',
-      summary: 'El gran final de las “desgracias”, los últimos errores más habituales en la creación de un juego de mesa. ¡Que no te pase lo mismo!',
-      image: 'assets/images/blog_post3.png',
-      date: new Date('2024-10-10')
-    }
-  ];
+  latestPosts: BlogPost[] = [];
 
   nextImage(item: PortfolioItem) {
     item.currentIndex = (item.currentIndex + 1) % item.images.length;
@@ -163,9 +136,13 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       (item.currentIndex - 1 + item.images.length) % item.images.length;
   }
 
-  constructor(private theme: ThemeService) {
+  constructor(private theme: ThemeService, private blogService: BlogService) {
     // Inicializa el tema según lo guardado en localStorage
     this.isDarkMode = this.theme.isDark();
+  }
+
+  ngOnInit(): void {
+    this.latestPosts = this.blogService.getPosts().slice(0, 3);
   }
 
   toggleTheme() {
