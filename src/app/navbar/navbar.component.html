@@ -4,7 +4,7 @@
         <a routerLink="/">
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
         </a>
-        <ul class="hidden md:flex space-x-6 text-white">
+        <ul class="hidden md:flex space-x-6" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
             <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
             <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta"
                     (click)="mobileOpen=false">Habilidades</a></li>

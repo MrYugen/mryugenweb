@@ -5,6 +5,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { BlogService, BlogPost } from '../services/blog.service';
+import { ThemeService } from '../services/theme.service';
 import { gsap } from 'gsap';
 
 @Component({
@@ -17,8 +18,19 @@ import { gsap } from 'gsap';
 export class BlogDetailComponent implements OnInit, AfterViewInit {
   post?: BlogPost;
   currentUrl = '';
+  isDarkMode = false;
 
-  constructor(private route: ActivatedRoute, private blogService: BlogService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private blogService: BlogService,
+    private theme: ThemeService
+  ) {
+    this.isDarkMode = this.theme.isDark();
+  }
+
+  toggleTheme() {
+    this.isDarkMode = this.theme.toggle();
+  }
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
