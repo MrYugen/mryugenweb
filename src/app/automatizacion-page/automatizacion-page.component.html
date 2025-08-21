@@ -1,0 +1,15 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" [mobileOpen]="mobileOpen" (toggleTheme)="toggleTheme()"
+        (menuToggle)="mobileOpen = !mobileOpen"></app-navbar>
+
+    <app-hero [isDarkMode]="isDarkMode" [title]="'Automatiza procesos tediosos y recupera tu tiempo'"
+        [subtitle]="'Automatiza procesos, libera de tareas y gana más tiempo para ti'" [showCTA]="false"></app-hero>
+
+    <section class="max-w-4xl mx-auto py-16 px-4">
+        <h2 class="text-3xl font-bold mb-4">¿Por qué automatizar?</h2>
+        <p>Contenido pendiente de diseño final.</p>
+    </section>
+
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

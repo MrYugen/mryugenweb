@@ -5,6 +5,7 @@ import { IlustracionesComponent } from './ilustraciones/ilustraciones.component'
 import { ProjectDetailsComponent } from './project-details/project-details.component';
 import { BlogComponent } from './blog/blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
+import { AutomatizacionPageComponent } from './automatizacion-page/automatizacion-page.component';
 
 export const routes: Routes = [
   // 1) La ruta raíz carga HomeComponent
@@ -20,6 +21,9 @@ export const routes: Routes = [
 
   // 2b) Ilustraciones
   { path: 'portfolio/illustration', component: IlustracionesComponent },
+
+  // Automatización de procesos
+  { path: 'automatizacion', component: AutomatizacionPageComponent },
 
   // 3) Cualquier otra URL redirige a '' (Home)
   { path: '**', redirectTo: '', pathMatch: 'full' }
