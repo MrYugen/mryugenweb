@@ -1,15 +1,551 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <!-- Navbar fijo superior -->
     <app-navbar [isDarkMode]="isDarkMode" [mobileOpen]="mobileOpen" (toggleTheme)="toggleTheme()"
         (menuToggle)="mobileOpen = !mobileOpen"></app-navbar>
 
+    <!-- Hero Section -->
     <app-hero [isDarkMode]="isDarkMode" [title]="'Automatiza procesos tediosos y recupera tu tiempo'"
-        [subtitle]="'Automatiza procesos, libera de tareas y gana más tiempo para ti'" [showCTA]="false"></app-hero>
+        [subtitle]="'Automatización inteligente: la forma más sencilla de liberar horas cada semana'"
+        [bgImageLight]="'assets/images/automatizacion/automation-hero-light.jpg'"
+        [bgImageDark]="'assets/images/automatizacion/automation-hero-dark.jpg'" [logoLight]="''" [logoDark]="''"
+        [showCTA]="false">
+    </app-hero>
 
-    <section class="max-w-4xl mx-auto py-16 px-4">
-        <h2 class="text-3xl font-bold mb-4">¿Por qué automatizar?</h2>
-        <p>Contenido pendiente de diseño final.</p>
+    <!-- Presentación -->
+    <section class="reveal-section max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4">
+        <!-- Imagen ilustrativa (placeholder) -->
+        <img src="assets/images/automatizacion/automatizacion_intro.jpg" alt="Ilustración automatización"
+            class="w-full md:w-1/2 rounded-xl shadow-lg">
+        <!-- Columna de texto -->
+        <div class="md:w-1/2">
+            <p class="mb-4 leading-relaxed">
+                Recupera horas valiosas en tu día a día dejando que la inteligencia artificial se encargue de las tareas
+                pesadas.
+                Tanto si lideras un negocio como si solo quieres simplificar tu vida personal, la automatización de
+                procesos te permite
+                "comprar tiempo" para lo que de verdad importa.
+            </p>
+            <h3 class="text-xl font-semibold mb-2">¿Qué es la automatización con IA y por qué ahora?</h3>
+            <p class="mb-4 leading-relaxed">
+                Automatizar con inteligencia artificial consiste en identificar tareas repetitivas (esas que te quitan
+                energía y no aportan valor)
+                y delegarlas en herramientas digitales capaces de realizarlas por ti. Hoy en día existen plataformas
+                no-code como N8N o Zapier
+                que conectan tus aplicaciones entre sí para crear "robots" que trabajan 24/7 sin errores ni descansos.
+                La IA, además,
+                hace posible que estos flujos aprendan y mejoren con el tiempo, adaptándose a tus necesidades.
+            </p>
+            <p class="mb-4 leading-relaxed">
+                En 2025, esta tecnología se ha democratizado: ya no es un lujo futurista, sino una necesidad competitiva
+                y al alcance de cualquiera.
+                De hecho, casi la mitad de las empresas que han adoptado IA la usan para automatizar sus flujos de
+                trabajo o apoyar decisiones,
+                señal de que el momento de aprovecharla es ahora.
+            </p>
+            <!-- CTA a Particulares -->
+            <div class="mt-6">
+                <span class="mr-2"><strong>Gana tiempo automatizando tu día a día</strong></span>
+                <a href="#particulares"
+                    class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition mt-6">
+                    IA para particulares →
+                </a>
+            </div>
+        </div>
     </section>
 
+    <!-- Sección Empresas (Autónomos y negocios) -->
+    <section class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300">
+        <div class="max-w-5xl mx-auto">
+            <!-- Título de sección -->
+            <h2 class="text-3xl font-bold mb-6 text-center">Para empresas y autónomos: eficiencias que se traducen en
+                ahorros reales</h2>
+            <!-- Introducción problemática -->
+            <p class="mb-6 leading-relaxed text-center">
+                <em>¿Te suena familiar?</em> Dedicas horas a copiar y pegar datos entre sistemas, a enviar correos de
+                seguimiento uno por uno,
+                a generar informes manualmente... Son procesos fundamentales pero tediosos, propensos a errores y que te
+                alejan de tareas estratégicas.
+            </p>
+            <p class="mb-8 text-center font-semibold">La automatización inteligente es la solución.</p>
+            <p class="text-center">Te muestro algunos ejemplos de los miles de problemas que se pueden resolver con
+                automatización.</p>
+            <p class="mb-12 text-center">Puedes ver las soluciones <strong>pinchando en cada tarjeta.</strong></p>
+            <!-- Flip Cards: Problema/Solución (interactivas) -->
+            <div class="flex flex-wrap gap-8 justify-center items-stretch">
+                <!-- Tarjeta 1 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(0)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[0]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_1.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">GESTIÓN DE FACTURAS Y CONTABILIDAD</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>Los autónomos y pequeñas empresas pierden horas tecleando facturas, registrando
+                                gastos y
+                                cuadrando cuentas manualmente.
+                                Muchas veces, se les escapa algún gasto deducible o se retrasan en el envío de facturas.
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <!-- ...reverso actual, sin cambios... -->
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Extraer automáticamente datos de facturas y tickets (OCR con IA).</li>
+                                <li>Enviarlos directo al programa contable.</li>
+                                <li>Recordatorios automáticos de facturas impagadas.</li>
+                                <li>Conciliación bancaria semi-automática.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Esto ahorra cientos de horas al año y reduce errores
+                                humanos.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(1)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[1]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_2.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">ATENCIÓN AL CLIENTE 24/7</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>El cliente escribe por WhatsApp, Instagram, email o la web y el autónomo no siempre
+                                puede contestar al momento (porque está trabajando o atendiendo a otros clientes).
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Chatbots conectados a WhatsApp, Messenger o web.</li>
+                                <li>Respuestas inteligentes y filtrado de consultas frecuentes.</li>
+                                <li>Redirección automática de los casos complejos a la persona adecuada.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Resultado: clientes atendidos siempre y más
+                                oportunidades
+                                cerradas.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(2)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[2]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_3.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">GESTIÓN DE CITAS, RESERVAS Y RECORDATORIOS</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>Peluquerías, clínicas, asesorías, talleres... pierden tiempo confirmando citas, y
+                                encima
+                                muchos clientes olvidan su hora.
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Agenda online conectada con Google Calendar.</li>
+                                <li>Recordatorios automáticos por WhatsApp/SMS/email.</li>
+                                <li>Reprogramación automática si alguien cancela.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Menos ausencias y más organización sin llamadas
+                                eternas.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(3)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[3]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_4.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">RECUPERACIÓN DE CARRITOS ABANDONADOS Y VENTAS ONLINE</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>En e-commerce y tiendas online, casi el 70% de los clientes abandona el carrito sin
+                                finalizar la compra.
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Detectar carritos abandonados.</li>
+                                <li>Enviar emails/WhatsApp recordando el pedido.</li>
+                                <li>Ofrecer un descuento automático si no compran en X horas.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Aumenta la facturación sin más esfuerzo humano.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 5 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(4)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[4]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_5.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">GESTIÓN DE LEADS Y PROPUESTAS COMERCIALES</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>Los autónomos reciben contactos por email, LinkedIn, WhatsApp, formularios web... y
+                                terminan perdiendo clientes porque no les hacen seguimiento rápido.
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Captura automática de leads de todas las fuentes.</li>
+                                <li>Creación de ficha en CRM.</li>
+                                <li>Envío automático de una propuesta base en minutos.</li>
+                                <li>Seguimiento automatizado si el cliente no responde.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Se gana velocidad y profesionalidad, clave para cerrar
+                                más ventas.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tarjeta 6 -->
+                <div class="flip-card automatiza-card" (click)="toggleCard(5)">
+                    <div class="flip-inner" [ngClass]="{'rotated': flipped[5]}">
+                        <!-- Anverso (Problema) -->
+                        <div class="flip-front">
+                            <img src="assets/images/automatizacion/flip_card_6.jpg" alt="Gestión de facturas"
+                                class="flip-img" />
+                            <h4 class="flip-title">GESTIÓN DE EMPLEADOS, GASTOS Y PROCESOS INTERNOS</h4>
+                            <div class="flip-problem">
+                                PROBLEMA:
+                                <br>Subir nóminas, dar de alta/baja empleados, pedir vacaciones, justificar gastos… todo
+                                esto quita horas valiosas.
+                            </div>
+                        </div>
+                        <!-- Reverso (Solución) -->
+                        <div class="flip-back">
+                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
+                            <br>
+                            <ul class="text-sm list-disc pl-5 mb-2">
+                                <li>Flujos de onboarding/offboarding de empleados.</li>
+                                <li>Digitalización de tickets de gasto → directo a la contabilidad.</li>
+                                <li>Formularios automáticos para vacaciones y ausencias.</li>
+                            </ul>
+                            <br>
+                            <p class="text-lg text-center italic">Menos papeleo y más foco en lo que realmente importa:
+                                el negocio.</p>
+                            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen" class="w-16 mx-auto mt-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Beneficios de automatizar (Lo que ganas) -->
+            <h3 class="text-2xl font-bold mt-16 mb-8 text-center">Lo que ganas al automatizar</h3>
+            <!-- Bloque 1: Ahorro de tiempo y costes -->
+            <div
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <img src="assets/images/automatizacion/icono-tiempo.png" alt="Icono reloj"
+                        class="w-17 h-17 md:order-none order-2">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-2">Ahorro de tiempo y costes</h4>
+                        <br>
+                        <p>Tu equipo deja de malgastar jornadas en tareas repetitivas y puede centrarse en hacer crecer
+                            el negocio.
+                            Los "robots" trabajan más rápido y sin descanso, multiplicando la productividad.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bloque 2: Menos errores, más calidad -->
+            <div
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
+                    <img src="assets/images/automatizacion/icono-calidad.png" alt="Icono verificación"
+                        class="w-17 h-17 md:order-none order-2">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-2">Menos errores, más calidad</h4>
+                        <br>
+                        <p>Al minimizar la intervención manual, se reducen los errores humanos y aumenta la precisión de
+                            tu operativa.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bloque 3: Atención al cliente 24/7 -->
+            <div
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <img src="assets/images/automatizacion/icono-chat.png" alt="Icono chatbot"
+                        class="w-17 h-17 md:order-none order-2">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-2">Atención al cliente 24/7</h4>
+                        <br>
+                        <p>Un chatbot o flujo automatizado puede responder consultas frecuentes incluso mientras
+                            duermes,
+                            mejorando la experiencia de tus clientes al darles servicio inmediato.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bloque 4: Escalabilidad y eficiencia -->
+            <div
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-8 reveal-section">
+                <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
+                    <img src="assets/images/automatizacion/icono-escalabilidad.png" alt="Icono gráfico ascendente"
+                        class="w-17 h-17 md:order-none order-2">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-2">Escalabilidad y eficiencia</h4>
+                        <br>
+                        <p>Puedes manejar un mayor volumen de trabajo sin contratar más personal, ya que las
+                            automatizaciones asumen la carga extra.
+                            Tu negocio estará preparado para crecer rápido, sin caos ni cuellos de botella.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Frase motivadora + CTA para empresas -->
+            <p class="text-center text-lg font-semibold mb-4">No pierdas ventaja competitiva: empieza ya a delegar lo
+                rutinario en la tecnología y descubre cómo tu empresa puede lograr más en menos tiempo.</p>
+            <div class="text-center">
+                <a href="#contact-form"
+                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
+                    Solicitar consultoría gratuita
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Particulares -->
+    <section id="particulares" class="py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <!-- Título de sección -->
+            <h2 class="text-3xl font-bold mb-6 text-center">Para particulares: Tu asistente personal de IA para el día a
+                día</h2>
+            <!-- Texto introductorio -->
+            <p class="mb-8 leading-relaxed text-center">
+                La inteligencia artificial no es solo cosa de empresas. También puede ser tu aliada en casa, en tus
+                estudios y en tus hobbies.
+                Imagina llegar a tu hogar y que las luces y la temperatura se ajusten solas a tu gusto, o recibir
+                recordatorios inteligentes
+                para tus tareas diarias y eventos importantes. Las mismas herramientas que usan las grandes
+                organizaciones están disponibles
+                para facilitar tu vida cotidiana.
+            </p>
+            <!-- Tarjetas mosaico (íconos + texto) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                <div
+                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    <img src="assets/images/automatizacion/icono_estudios_sencillos.png" alt="Icono gráfico ascendente"
+                        class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <h4 class="text-lg font-semibold mb-2">ESTUDIOS MÁS SENCILLOS</h4>
+                    <p class="text-sm">Genera resúmenes de textos largos al instante, crea fichas de estudio
+                        automáticamente o practica idiomas con la ayuda de un tutor virtual impulsado por IA.</p>
+                </div>
+                <div
+                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    <img src="assets/images/automatizacion/icono_nutricion_bienestar.png"
+                        alt="Icono Nuetricion y Bienestar" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <h4 class="text-lg font-semibold mb-2">NUTRICIÓN, BIENESTAR Y SALUD</h4>
+                    <p class="text-sm">Lleva un registro automatizado de hábitos saludables (pasos diarios, horas de
+                        sueño, recordatorios para hidratarte) y recibe consejos personalizados a partir de tus datos
+                        recopilados. Es como tener un entrenador y asesor digital siempre pendiente de ti.</p>
+                </div>
+                <div
+                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    <img src="assets/images/automatizacion/icono_organizacion_familiar.png"
+                        alt="Icono Organización Familiar" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <h4 class="text-lg font-semibold mb-2">ORGANIZACIÓN FAMILIAR</h4>
+                    <p class="text-sm">Centraliza calendarios y alertas de toda la familia con apps inteligentes que
+                        coordinan las agendas de todos. Te avisarán de fechas importantes (cumpleaños, citas médicas,
+                        pagos) para que nada se pase por alto.</p>
+                </div>
+                <div
+                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    <img src="assets/images/automatizacion/icono_hobbies_creatividad.png"
+                        alt="Icono Hobbies y Creatividad" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <h4 class="text-lg font-semibold mb-2">HOBBIES Y CREATIVIDAD</h4>
+                    <p class="text-sm">Obtén recomendaciones personalizadas de películas, música o libros según tus
+                        gustos. Incluso puedes usar herramientas de IA para inspirarte: desde diseñar un plan de
+                        entrenamiento fitness adaptado a ti hasta recibir ideas frescas para tu próximo proyecto
+                        artístico.</p>
+                </div>
+                <div
+                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    <img src="assets/images/automatizacion/icono_hogar_inteligente.png" alt="Icono Hogar Inteligente"
+                        class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <h4 class="text-lg font-semibold mb-2">HOGAR INTELIGENTE</h4>
+                    <p class="text-sm">Configura asistentes virtuales (Alexa, Google Assistant, etc.) para que gestionen
+                        rutinas. Por ejemplo, que tu cafetera se encienda sola por la mañana, que la lista de la compra
+                        se actualice según las recetas que planeas hacer, o que las luces se apaguen cuando sales de
+                        casa.</p>
+                </div>
+            </div>
+            <!-- Mentoría personal CTA -->
+            <p class="text-center text-lg font-semibold mb-3">Con una mentoría personalizada, Mr. Yugen te enseña a usar
+                estas herramientas paso a paso, sin tecnicismos complejos. En poco tiempo dominarás trucos para
+                automatizar tareas cotidianas y ganar minutos u horas libres cada día.</p>
+            <p class="text-center font-semibold mb-6">Verás cómo pequeños cambios tecnológicos marcan una gran
+                diferencia en tu
+                calidad de vida.</p>
+            <p class="text-center text-lg font-bold mb-9">Reserva una sesión de mentoría 1:1 y descubre cómo la IA
+                puede ser tu asistente personal en el día a día.</p>
+            <div class="text-center mb-2">
+                <a href="#contact-form"
+                    class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
+                    Quiero aprender a usar IA en mi vida
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Call To Action -->
+    <section class="bg-cta text-white py-16 px-4 text-center">
+        <h2 class="text-3xl font-bold mb-4">No te quedes atrás: aprende, automatiza y gana tiempo</h2>
+        <p class="max-w-3xl mx-auto mb-6">
+            El mundo está adoptando rápidamente la inteligencia artificial para simplificar tareas y ser más eficiente.
+            No te quedes atrás: estás a tiempo de sumarte a esta revolución en tu empresa y en tu vida.
+            Aprender a automatizar no es difícil si cuentas con la guía adecuada. Así que atrévete a dar el primer paso:
+            automatiza y gana tiempo para lo que más valoras.
+        </p>
+        <a href="#contact-form"
+            class="inline-block px-8 py-3 bg-white text-cta rounded-full font-semibold hover:opacity-90 transition">
+            Contáctanos
+        </a>
+    </section>
+
+    <!-- Carrusel de logos de herramientas -->
+    <section class="py-10 px-4 bg-bg-alt text-text">
+        <h2 class="text-2xl font-bold text-center mb-6">Trabajamos con las mejores herramientas</h2>
+        <div class="overflow-hidden">
+            <div id="logos-container" class="flex items-center animate-marquee">
+                <!-- 21 logos repetidos para marquee -->
+                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
+                    class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 inline-block mx-4" />
+                <!-- Se duplica la lista para efecto continuo -->
+                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
+                    class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 inline-block mx-4" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección FAQ -->
+    <section class="py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">FAQ</h2>
+            <div *ngFor="let faq of faqs; let i = index" class="border-b border-text/30">
+                <button (click)="toggleFAQ(i)"
+                    class="w-full text-left py-3 font-semibold flex justify-between items-center">
+                    {{ faq.pregunta }}
+                    <span class="ml-2">{{ isFaqOpen(i) ? '–' : '+' }}</span>
+                </button>
+                <div *ngIf="isFaqOpen(i)" class="pl-2 pb-4 text-sm whitespace-pre-line">
+                    {{ faq.respuesta }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section id="contact-form" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300">
+        <div class="max-w-lg mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-2">Hablemos.</h2>
+            <p class="text-center mb-6">Contáctanos y suscríbete</p>
+            <p class="mb-4 text-sm text-center">
+                ¿Listo para transformar tu rutina con automatizaciones inteligentes? Rellena el siguiente formulario y
+                cuéntanos en qué podríamos ayudarte.
+            </p>
+            <p class="mb-8 text-sm text-center">
+                Además, puedes suscribirte a nuestro newsletter para recibir tips y novedades sobre cómo aplicar la IA
+                en tu día a día.
+                Solo déjanos tu nombre, email y marca la casilla, aunque no redactes un mensaje.
+            </p>
+            <form novalidate class="space-y-4">
+                <div>
+                    <label for="name" class="block font-medium mb-1">Nombre</label>
+                    <input id="name" name="name" ngModel required placeholder="¿Cómo debemos llamarte?"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                </div>
+                <div>
+                    <label for="email" class="block font-medium mb-1">Email</label>
+                    <input id="email" name="email" type="email" ngModel required placeholder="Tu mejor email, por favor"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                </div>
+                <div>
+                    <label for="message" class="block font-medium mb-1">Mensaje/Consulta</label>
+                    <textarea id="message" name="message" rows="4" ngModel placeholder="¿En qué podemos ayudarte?"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
+                </div>
+                <div class="flex items-start">
+                    <input id="newsletter" name="newsletter" type="checkbox" ngModel class="mt-1" />
+                    <label for="newsletter" class="ml-2 text-sm">Envíame 1 email/semana con ideas prácticas de
+                        automatización.</label>
+                </div>
+                <button type="submit"
+                    class="w-full py-3 border-2 border-cta hover:bg-cta hover:text-white rounded-full font-semibold transition">
+                    Enviar
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Pie de página y botón scroll-top -->
     <app-footer></app-footer>
     <app-scroll-to-top></app-scroll-to-top>
 </div>

@@ -23,7 +23,7 @@ export const routes: Routes = [
   { path: 'portfolio/illustration', component: IlustracionesComponent },
 
   // Automatización de procesos
-  { path: 'automatizacion', component: AutomatizacionPageComponent },
+  { path: 'automation', component: AutomatizacionPageComponent },
 
   // 3) Cualquier otra URL redirige a '' (Home)
   { path: '**', redirectTo: '', pathMatch: 'full' }
