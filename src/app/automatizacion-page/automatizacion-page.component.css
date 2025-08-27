@@ -1,3 +1,16 @@
+/* Animación horizontal para carrusel de imágenes */
+@keyframes carouselScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-99%); }
+}
+.carousel-inner {
+  animation: carouselScroll 10s linear infinite;
+  animation-play-state: paused;          /* Pausado por defecto */
+}
+.carousel-inner:hover {
+  animation-play-state: running;         /* En hover, animación en marcha */
+}
+
 /* Perspectiva 3D para contenedores flip */
 .perspective-1000 {
   perspective: 1000px;
@@ -26,6 +39,11 @@
 #logos-container {
   animation: marquee 30s linear infinite;
 }
+
+/* Evitar salto visible al reiniciar carrusel de logos */
+#logos-container img:nth-child(21) { margin-right: 0; }
+#logos-container img:nth-child(22) { margin-left: 0; }
+
 /* Flip card layout mejorado */
 .automatiza-card {
   width: 320px;
@@ -92,7 +110,6 @@
 .flip-problem {
   font-size: 0.97rem;
   text-align: center;
-  color: #222;
   margin-bottom: 0.5rem;
   flex: 1;
   display: flex;

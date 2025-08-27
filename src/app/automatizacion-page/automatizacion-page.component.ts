@@ -34,6 +34,11 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
     { pregunta: '¿Cuál es el proceso de trabajo?', respuesta: `Reunión de descubrimiento → mapa de procesos → propuesta con flujos y métricas → prototipo → pruebas con tu equipo → puesta en producción → monitorización y mejoras. Tú ves resultados paso a paso y decides cada hito.` }
   ];
 
+  scrollToSection(id: string, event: Event): void {
+  event.preventDefault();
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {

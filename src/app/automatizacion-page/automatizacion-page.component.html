@@ -13,9 +13,25 @@
 
     <!-- Presentación -->
     <section class="reveal-section max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4">
-        <!-- Imagen ilustrativa (placeholder) -->
-        <img src="assets/images/automatizacion/automatizacion_intro.jpg" alt="Ilustración automatización"
-            class="w-full md:w-1/2 rounded-xl shadow-lg">
+        <!-- Presentación: carrusel de imágenes -->
+        <div class="relative w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden">
+            <div class="flex items-center carousel-inner">
+                <!-- Secuencia de 6 imágenes genéricas -->
+                <img src="assets/images/automatizacion/carousel1.jpg" alt="Imagen 1" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel2.jpg" alt="Imagen 2" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel3.jpg" alt="Imagen 3" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel4.jpg" alt="Imagen 4" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel5.jpg" alt="Imagen 5" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel6.jpg" alt="Imagen 6" class="w-full inline-block">
+                <!-- Duplicar la secuencia para loop continuo -->
+                <img src="assets/images/automatizacion/carousel1.jpg" alt="Imagen 1" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel2.jpg" alt="Imagen 2" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel3.jpg" alt="Imagen 3" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel4.jpg" alt="Imagen 4" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel5.jpg" alt="Imagen 5" class="w-full inline-block">
+                <img src="assets/images/automatizacion/carousel6.jpg" alt="Imagen 6" class="w-full inline-block">
+            </div>
+        </div>
         <!-- Columna de texto -->
         <div class="md:w-1/2">
             <p class="mb-4 leading-relaxed">
@@ -45,7 +61,7 @@
             <!-- CTA a Particulares -->
             <div class="mt-6">
                 <span class="mr-2"><strong>Gana tiempo automatizando tu día a día</strong></span>
-                <a href="#particulares"
+                <a href="#particulares" (click)="scrollToSection('particulares', $event)"
                     class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition mt-6">
                     IA para particulares →
                 </a>
@@ -263,12 +279,12 @@
             <h3 class="text-2xl font-bold mt-16 mb-8 text-center">Lo que ganas al automatizar</h3>
             <!-- Bloque 1: Ahorro de tiempo y costes -->
             <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
                     <img src="assets/images/automatizacion/icono-tiempo.png" alt="Icono reloj"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-2">Ahorro de tiempo y costes</h4>
+                        <h4 class="text-xl font-bold mb-1">Ahorro de tiempo y costes</h4>
                         <br>
                         <p>Tu equipo deja de malgastar jornadas en tareas repetitivas y puede centrarse en hacer crecer
                             el negocio.
@@ -278,12 +294,12 @@
             </div>
             <!-- Bloque 2: Menos errores, más calidad -->
             <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
                 <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
                     <img src="assets/images/automatizacion/icono-calidad.png" alt="Icono verificación"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-2">Menos errores, más calidad</h4>
+                        <h4 class="text-xl font-bold mb-1">Menos errores, más calidad</h4>
                         <br>
                         <p>Al minimizar la intervención manual, se reducen los errores humanos y aumenta la precisión de
                             tu operativa.</p>
@@ -292,12 +308,12 @@
             </div>
             <!-- Bloque 3: Atención al cliente 24/7 -->
             <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-6 reveal-section">
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
                 <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
                     <img src="assets/images/automatizacion/icono-chat.png" alt="Icono chatbot"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-2">Atención al cliente 24/7</h4>
+                        <h4 class="text-xl font-bold mb-1">Atención al cliente 24/7</h4>
                         <br>
                         <p>Un chatbot o flujo automatizado puede responder consultas frecuentes incluso mientras
                             duermes,
@@ -307,12 +323,12 @@
             </div>
             <!-- Bloque 4: Escalabilidad y eficiencia -->
             <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-6 mb-8 reveal-section">
+                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
                 <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
                     <img src="assets/images/automatizacion/icono-escalabilidad.png" alt="Icono gráfico ascendente"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-2">Escalabilidad y eficiencia</h4>
+                        <h4 class="text-xl font-bold mb-1">Escalabilidad y eficiencia</h4>
                         <br>
                         <p>Puedes manejar un mayor volumen de trabajo sin contratar más personal, ya que las
                             automatizaciones asumen la carga extra.
@@ -324,7 +340,7 @@
             <p class="text-center text-lg font-semibold mb-4">No pierdas ventaja competitiva: empieza ya a delegar lo
                 rutinario en la tecnología y descubre cómo tu empresa puede lograr más en menos tiempo.</p>
             <div class="text-center">
-                <a href="#contact-form"
+                <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
                     class="inline-block px-8 py-3 mt-6 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
                     Solicitar consultoría gratuita
                 </a>
@@ -350,53 +366,77 @@
             </p>
             <!-- Tarjetas mosaico (íconos + texto) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+
+                <!-- Tarjeta 1: ESTUDIOS MÁS SENCILLOS -->
                 <div
                     class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img src="assets/images/automatizacion/icono_estudios_sencillos.png" alt="Icono gráfico ascendente"
-                        class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                    <img src="assets/images/automatizacion/icono_estudios_sencillos.png" alt="Icono Estudios"
+                        class="w-17 h-17 mx-auto mb-2">
                     <h4 class="text-lg font-semibold mb-2">ESTUDIOS MÁS SENCILLOS</h4>
-                    <p class="text-sm">Genera resúmenes de textos largos al instante, crea fichas de estudio
-                        automáticamente o practica idiomas con la ayuda de un tutor virtual impulsado por IA.</p>
+                    <ul class="text-sm list-disc text-left pl-5">
+                        <li>Genera resúmenes de textos largos al instante.</li>
+                        <li>Crea fichas de estudio automáticamente.</li>
+                        <li>Practica idiomas con la ayuda de un tutor virtual impulsado por IA.</li>
+                    </ul>
                 </div>
+
+                <!-- Tarjeta 2: NUTRICIÓN, BIENESTAR Y SALUD -->
                 <div
                     class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_nutricion_bienestar.png"
-                        alt="Icono Nuetricion y Bienestar" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                        alt="Icono Nutricion y Bienestar" class="w-17 h-17 mx-auto mb-2">
                     <h4 class="text-lg font-semibold mb-2">NUTRICIÓN, BIENESTAR Y SALUD</h4>
-                    <p class="text-sm">Lleva un registro automatizado de hábitos saludables (pasos diarios, horas de
-                        sueño, recordatorios para hidratarte) y recibe consejos personalizados a partir de tus datos
-                        recopilados. Es como tener un entrenador y asesor digital siempre pendiente de ti.</p>
+                    <ul class="text-sm list-disc text-left pl-5">
+                        <li>Lleva un registro automatizado de hábitos saludables (pasos diarios, horas de sueño,
+                            recordatorios para hidratarte).</li>
+                        <li>Recibe consejos personalizados a partir de tus datos recopilados.</li>
+                        <li>Es como tener un entrenador y asesor digital siempre pendiente de ti.</li>
+                    </ul>
                 </div>
+
+                <!-- Tarjeta 3: ORGANIZACIÓN FAMILIAR -->
                 <div
                     class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_organizacion_familiar.png"
-                        alt="Icono Organización Familiar" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                        alt="Icono Organización Familiar" class="w-17 h-17 mx-auto mb-2">
                     <h4 class="text-lg font-semibold mb-2">ORGANIZACIÓN FAMILIAR</h4>
-                    <p class="text-sm">Centraliza calendarios y alertas de toda la familia con apps inteligentes que
-                        coordinan las agendas de todos. Te avisarán de fechas importantes (cumpleaños, citas médicas,
-                        pagos) para que nada se pase por alto.</p>
+                    <ul class="text-sm list-disc text-left pl-5">
+                        <li>Centraliza calendarios y alertas de toda la familia con apps inteligentes que coordinan las
+                            agendas de todos.</li>
+                        <li>Te avisan de fechas importantes (cumpleaños, citas médicas, pagos) para que nada se pase por
+                            alto.</li>
+                    </ul>
                 </div>
+
+                <!-- Tarjeta 4: HOBBIES Y CREATIVIDAD -->
                 <div
                     class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_hobbies_creatividad.png"
-                        alt="Icono Hobbies y Creatividad" class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                        alt="Icono Hobbies y Creatividad" class="w-17 h-17 mx-auto mb-2">
                     <h4 class="text-lg font-semibold mb-2">HOBBIES Y CREATIVIDAD</h4>
-                    <p class="text-sm">Obtén recomendaciones personalizadas de películas, música o libros según tus
-                        gustos. Incluso puedes usar herramientas de IA para inspirarte: desde diseñar un plan de
-                        entrenamiento fitness adaptado a ti hasta recibir ideas frescas para tu próximo proyecto
-                        artístico.</p>
+                    <ul class="text-sm list-disc text-left pl-5">
+                        <li>Obtén recomendaciones personalizadas de películas, música o libros según tus gustos.</li>
+                        <li>Usa herramientas de IA para inspirarte: desde diseñar un plan de entrenamiento fitness
+                            adaptado a ti, hasta recibir ideas frescas para tu próximo proyecto artístico.</li>
+                    </ul>
                 </div>
+
+                <!-- Tarjeta 5: HOGAR INTELIGENTE -->
                 <div
                     class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_hogar_inteligente.png" alt="Icono Hogar Inteligente"
-                        class="w-17 h-17 md:order-none order-2 mx-auto mb-2">
+                        class="w-17 h-17 mx-auto mb-2">
                     <h4 class="text-lg font-semibold mb-2">HOGAR INTELIGENTE</h4>
-                    <p class="text-sm">Configura asistentes virtuales (Alexa, Google Assistant, etc.) para que gestionen
-                        rutinas. Por ejemplo, que tu cafetera se encienda sola por la mañana, que la lista de la compra
-                        se actualice según las recetas que planeas hacer, o que las luces se apaguen cuando sales de
-                        casa.</p>
+                    <ul class="text-sm list-disc text-left pl-5">
+                        <li>Configura asistentes virtuales (Alexa, Google Assistant, etc.) para que gestionen tus
+                            rutinas domésticas.</li>
+                        <li>La cafetera se enciende sola cada mañana.</li>
+                        <li>La lista de la compra se actualiza automáticamente según las recetas que planificas.</li>
+                        <li>Las luces se apagan solas cuando sales de casa.</li>
+                    </ul>
                 </div>
             </div>
+
             <!-- Mentoría personal CTA -->
             <p class="text-center text-lg font-semibold mb-3">Con una mentoría personalizada, Mr. Yugen te enseña a usar
                 estas herramientas paso a paso, sin tecnicismos complejos. En poco tiempo dominarás trucos para
@@ -407,7 +447,7 @@
             <p class="text-center text-lg font-bold mb-9">Reserva una sesión de mentoría 1:1 y descubre cómo la IA
                 puede ser tu asistente personal en el día a día.</p>
             <div class="text-center mb-2">
-                <a href="#contact-form"
+                <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
                     class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
                     Quiero aprender a usar IA en mi vida
                 </a>
@@ -416,18 +456,25 @@
     </section>
 
     <!-- Banner Call To Action -->
-    <section class="bg-cta text-white py-16 px-4 text-center">
-        <h2 class="text-3xl font-bold mb-4">No te quedes atrás: aprende, automatiza y gana tiempo</h2>
-        <p class="max-w-3xl mx-auto mb-6">
-            El mundo está adoptando rápidamente la inteligencia artificial para simplificar tareas y ser más eficiente.
-            No te quedes atrás: estás a tiempo de sumarte a esta revolución en tu empresa y en tu vida.
-            Aprender a automatizar no es difícil si cuentas con la guía adecuada. Así que atrévete a dar el primer paso:
-            automatiza y gana tiempo para lo que más valoras.
-        </p>
-        <a href="#contact-form"
-            class="inline-block px-8 py-3 bg-white text-cta rounded-full font-semibold hover:opacity-90 transition">
-            Contáctanos
-        </a>
+    <section class="relative bg-cover bg-center bg-no-repeat bg-fixed text-white py-16 px-4 text-center"
+        style="background-image: url('assets/images/automatizacion/cta_banner.jpg');">
+        <!-- Capa oscura superpuesta -->
+        <div class="absolute inset-0 bg-black/50"></div>
+        <!-- Contenido del banner -->
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4">No te quedes atrás: aprende, automatiza y gana tiempo</h2>
+            <p class="max-w-3xl mx-auto mb-6 leading-relaxed text-lg font-medium">
+                El mundo está adoptando rápidamente la inteligencia artificial para simplificar tareas y ser más
+                eficiente.
+                No te quedes atrás: estás a tiempo de sumarte a esta revolución en tu empresa y en tu vida.
+                Aprender a automatizar no es difícil si cuentas con la guía adecuada. Atrévete a dar el primer paso:
+                automatiza y gana tiempo para lo que más valoras.
+            </p>
+            <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
+                class="inline-block px-8 py-3 bg-white text-cta rounded-full font-semibold hover:opacity-90 transition">
+                Contáctanos
+            </a>
+        </div>
     </section>
 
     <!-- Carrusel de logos de herramientas -->
@@ -436,51 +483,57 @@
         <div class="overflow-hidden">
             <div id="logos-container" class="flex items-center animate-marquee">
                 <!-- 21 logos repetidos para marquee -->
-                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 w-auto inline-block mx-4" />
                 <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
-                    class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 inline-block mx-4" />
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 w-auto inline-block mx-4" />
                 <!-- Se duplica la lista para efecto continuo -->
-                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 inline-block mx-4" />
+                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 w-auto inline-block mx-4" />
                 <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
-                    class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo" class="h-12 inline-block mx-4" />
-                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 inline-block mx-4" />
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo"
+                    class="h-12 w-auto inline-block mx-4" />
+                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 w-auto inline-block mx-4" />
             </div>
         </div>
     </section>
@@ -517,6 +570,16 @@
                 Solo déjanos tu nombre, email y marca la casilla, aunque no redactes un mensaje.
             </p>
             <form novalidate class="space-y-4">
+                <div class="flex gap-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="tipo_autonomo" ngModel class="mr-2">
+                        Autónomo/Empresa
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="tipo_particular" ngModel class="mr-2">
+                        Particular
+                    </label>
+                </div>
                 <div>
                     <label for="name" class="block font-medium mb-1">Nombre</label>
                     <input id="name" name="name" ngModel required placeholder="¿Cómo debemos llamarte?"
@@ -525,6 +588,12 @@
                 <div>
                     <label for="email" class="block font-medium mb-1">Email</label>
                     <input id="email" name="email" type="email" ngModel required placeholder="Tu mejor email, por favor"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                </div>
+                <div>
+                    <label for="automationIdea" class="block font-medium mb-1">¿Sabes qué quieres automatizar?</label>
+                    <input id="automationIdea" name="automationIdea" type="text" ngModel
+                        placeholder="(Opcional) Comenta brevemente tu idea"
                         class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
                 </div>
                 <div>

@@ -17,11 +17,11 @@
 
         <!-- Título -->
         <h1 *ngIf="showTitle" [ngClass]="{ 'text-white': !isDarkMode, 'text-text': isDarkMode }"
-            class="text-4xl md:text-6xl font-extrabold mb-4">
+            class="text-4xl md:text-6xl font-extrabold mb-4 text-center">
             {{ title }}
         </h1>
         <!-- Subtítulo opcional -->
-        <p *ngIf="subtitle" class="text-lg md:text-2xl font-medium mb-8 text-center text-text/80 dark:text-white/80">
+        <p *ngIf="subtitle" class="text-lg md:text-2xl font-medium mb-8 text-center text-white dark:text-white/80">
             {{ subtitle }}
         </p>
         <!-- CTA solo si se quiere mostrar -->
