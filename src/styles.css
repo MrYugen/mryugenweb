@@ -2,38 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables personalizadas para modo claro y oscuro */
+/* Paleta Aqua Glow + Mr. Yugen */
 :root {
-  --color-bg: #FDEEDC;
-  --color-bg-alt: #457b9d35; /* versión translúcida del azul grisáceo */
-  --color-text: #1D3557;
-  --color-cta: #FF6F3C;
-  --skill-design-bg:   #D8EECF;
-  --skill-coding-bg:   #D3E9F7;
-  --skill-other-bg:    #F7D1E1;
-  --portfolio-bg-branding:    #F7D1E1;
-  --portfolio-bg-illustration:#D8EECF;
-  --portfolio-bg-web:         #FCF0C2;
-  --portfolio-bg-couple:      #C5C3FF;
-  --color-section-a: var(--portfolio-bg-branding);
-  --color-section-b: var(--portfolio-bg-web);
+  --color-bg: #F6FBFF;
+  --color-bg-alt: #0B5C6520;   /* aqua overlay */
+  --color-text: #0A1F29;
+  --color-cta: #ff8b61;        /* Turquoise/Aquatic Awe */
+  --color-footer: #0b5c6542;
+
+  --skill-design-bg:    #D4F7F2;
+  --skill-coding-bg:    #E0E9FF;
+  --skill-other-bg:     #FFE4EA;
+
+  --portfolio-bg-branding:     #FFD2D8;  /* blush suave */
+  --portfolio-bg-illustration: #CFFAF2;  /* aqua pastel */
+  --portfolio-bg-web:          #F2EAD1;  /* arena fría */
+  --portfolio-bg-couple:       #D7D5FF;  /* lila frío */
+
+  --color-section-a: var(--skill-coding-bg);
+  --color-section-b: var(--color-bg-alt);
 }
 
 .dark {
-  --color-bg: #1D3557;
-  --color-bg-alt: #152d39;
-  --color-text: #FDEEDC;
-  --color-cta: #FF6F3C;
-  --skill-design-bg:   #335B8B;
-  --skill-coding-bg:   #6a2b7b;
-  --skill-other-bg:    #9A3D60;
-  --portfolio-bg-branding:    #7F3E53;
-  --portfolio-bg-illustration:#397b28;
-  --portfolio-bg-web:         #906f2d;
-  --portfolio-bg-couple:      #364cb0;
-  --color-section-a: var(--portfolio-bg-branding);
-  --color-section-b: var(--portfolio-bg-web);
+  --color-bg: #071A21;
+  --color-bg-alt: #0B2730;
+  --color-text: #EAFBFF;
+  --color-cta: #ff8b61;
+  --color-footer: #083034;
+
+  --skill-design-bg:    #0C3C3E;
+  --skill-coding-bg:    #1D2E60;
+  --skill-other-bg:     #4A2A35;
+
+  --portfolio-bg-branding:     #5A2A3D;
+  --portfolio-bg-illustration: #0C4A3B;
+  --portfolio-bg-web:          #3F3A22;
+  --portfolio-bg-couple:       #2B2A68;
+
+  --color-section-a: var(--portfolio-bg-illustration);
+  --color-section-b: var(--portfolio-bg-couple);
 }
+
 
 html { scroll-behavior: smooth; }
 
@@ -52,11 +61,11 @@ main {
 
 /* Gradientes dinámicos para el fondo principal */
 :root {
-  --main-gradient: linear-gradient(180deg, #FDEEDC 0%, #457b9d35 100%);
+  --main-gradient: linear-gradient(180deg, #F6FBFF 0%, #0B5C6520 100%);
 }
 
 .dark {
-  --main-gradient: linear-gradient(180deg, #1D3557 0%, #152d39 100%);
+  --main-gradient: linear-gradient(180deg, #071A21 0%, #0B2730 100%);
 }
 
 .active-link { text-decoration: underline; }

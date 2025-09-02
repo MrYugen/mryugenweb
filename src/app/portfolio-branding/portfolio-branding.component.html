@@ -62,7 +62,7 @@
 
             <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
                 <div *ngFor="let project of brandingProjects; let i = index"
-                    class="mb-6 break-inside-avoid rounded-2xl shadow-lg bg-white dark:bg-bg-alt transition hover:scale-[1.02] hover:shadow-2xl group cursor-pointer overflow-hidden relative reveal-card"
+                    class="mb-6 break-inside-avoid rounded-2xl shadow-xl bg-white dark:bg-bg-alt transition hover:scale-[1.02] hover:shadow-2xl group cursor-pointer overflow-hidden relative reveal-card"
                     tabindex="0" aria-label="Ver más sobre el proyecto" (touchstart)="onCardTouchStart($event, i)"
                     (touchend)="onCardTouchEnd($event, i)"
                     style="min-width: 300px; max-width: 370px; min-height: 470px; margin-left:auto; margin-right:auto;">
@@ -89,7 +89,7 @@
                     <div class="p-4 flex flex-col gap-2">
                         <h3 class="text-xl font-bold text-cta mb-1">{{ project.title }}</h3>
                         <p class="text-base text-gray-700 dark:text-gray-300 mb-2">{{ project.summary }}</p>
-                        <a class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-cta font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white transition"
+                        <a class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
                             [routerLink]="['/portfolio/branding', project.slug]">
                             Ver más
                         </a>

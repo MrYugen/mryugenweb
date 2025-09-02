@@ -31,8 +31,16 @@
 <p align="center">
   <img src="src/docs/screenshots/Home_mryugenweb_claro.png" alt="Home completo claro" width="300" />  
   <img src="src/docs/screenshots/Home_mryugenweb_oscuro.png" alt="Home completo oscuro" width="300" />
-  <img src="src/docs/screenshots/Branding completa_mryugenweb_claro.png" alt="Branding completo oscuro" width="300" />
-  <img src="src/docs/screenshots/Branding completa_mryugenweb_dark.png" alt="Branding completo oscuro" width="300" />  
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_claro.png" alt="Branding completo claro" width="300" />
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_dark.png" alt="Branding completo oscuro" width="300" />
+  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_claro.png" alt="Sección Ilustraciones completo claro" width="300" />
+  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_dark.png" alt="Sección Ilustraciones completo oscuro" width="300" />
+  <img src="src/docs/screenshots/Automatizacion_mryugenweb_claro.png" alt="Automatización completo claro" width="300" />
+  <img src="src/docs/screenshots/Automatizacion_mryugenweb_dark.png" alt="Automatización completo oscuro" width="300" />
+  <img src="src/docs/screenshots/EjemploProject_mryugenweb_claro.png" alt="Ejemplo proyecto branding claro" width="300" />
+  <img src="src/docs/screenshots/EjemploProject_mryugenweb_dark.png" alt="Ejemplo proyecto branding oscuro" width="300" />
+  <img src="src/docs/screenshots/Lightbox_ilustraciones_claro.png" alt="Ejemplo lightbox para ilustraciones claro" width="300" />
+  <img src="src/docs/screenshots/Lightbox_ilustraciones_dark.png" alt="Ejemplo lightbox para ilustraciones oscuro" width="300" />
 </p>
 
 ---

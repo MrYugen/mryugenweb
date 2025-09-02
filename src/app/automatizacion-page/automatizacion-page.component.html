@@ -14,23 +14,10 @@
     <!-- Presentación -->
     <section class="reveal-section max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4">
         <!-- Presentación: carrusel de imágenes -->
-        <div class="relative w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden">
-            <div class="flex items-center carousel-inner">
-                <!-- Secuencia de 6 imágenes genéricas -->
-                <img src="assets/images/automatizacion/carousel1.jpg" alt="Imagen 1" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel2.jpg" alt="Imagen 2" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel3.jpg" alt="Imagen 3" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel4.jpg" alt="Imagen 4" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel5.jpg" alt="Imagen 5" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel6.jpg" alt="Imagen 6" class="w-full inline-block">
-                <!-- Duplicar la secuencia para loop continuo -->
-                <img src="assets/images/automatizacion/carousel1.jpg" alt="Imagen 1" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel2.jpg" alt="Imagen 2" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel3.jpg" alt="Imagen 3" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel4.jpg" alt="Imagen 4" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel5.jpg" alt="Imagen 5" class="w-full inline-block">
-                <img src="assets/images/automatizacion/carousel6.jpg" alt="Imagen 6" class="w-full inline-block">
-            </div>
+        <div class="relative w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden carousel-container">
+            <img [src]="carouselImages[currentIndex]" alt="Imagen del carrusel" class="w-full">
+            <button class="carousel-button prev" (click)="prevImage()">&#10094;</button>
+            <button class="carousel-button next" (click)="nextImage()">&#10095;</button>
         </div>
         <!-- Columna de texto -->
         <div class="md:w-1/2">
@@ -39,17 +26,20 @@
                 pesadas.
                 Tanto si lideras un negocio como si solo quieres simplificar tu vida personal, la automatización de
                 procesos te permite
-                "comprar tiempo" para lo que de verdad importa.
+                <strong>"comprar tiempo"</strong> para lo que de verdad importa.
             </p>
             <h3 class="text-xl font-semibold mb-2">¿Qué es la automatización con IA y por qué ahora?</h3>
             <p class="mb-4 leading-relaxed">
-                Automatizar con inteligencia artificial consiste en identificar tareas repetitivas (esas que te quitan
+                Automatizar con inteligencia artificial consiste en <strong>identificar tareas repetitivas</strong>
+                (esas que te quitan
                 energía y no aportan valor)
                 y delegarlas en herramientas digitales capaces de realizarlas por ti. Hoy en día existen plataformas
-                no-code como N8N o Zapier
-                que conectan tus aplicaciones entre sí para crear "robots" que trabajan 24/7 sin errores ni descansos.
+                no-code como <em>N8N</em> o <em>Zapier</em>
+                que conectan tus aplicaciones entre sí para crear <strong>"robots" que trabajan 24/7 sin errores ni
+                    descansos.</strong>
                 La IA, además,
-                hace posible que estos flujos aprendan y mejoren con el tiempo, adaptándose a tus necesidades.
+                hace posible que estos flujos aprendan y mejoren con el tiempo, <strong>adaptándose a tus
+                    necesidades.</strong>
             </p>
             <p class="mb-4 leading-relaxed">
                 En 2025, esta tecnología se ha democratizado: ya no es un lujo futurista, sino una necesidad competitiva
@@ -82,7 +72,7 @@
                 a generar informes manualmente... Son procesos fundamentales pero tediosos, propensos a errores y que te
                 alejan de tareas estratégicas.
             </p>
-            <p class="mb-8 text-center font-semibold">La automatización inteligente es la solución.</p>
+            <p class="mb-8 text-center font-bold">La automatización inteligente es la solución.</p>
             <p class="text-center">Te muestro algunos ejemplos de los miles de problemas que se pueden resolver con
                 automatización.</p>
             <p class="mb-12 text-center">Puedes ver las soluciones <strong>pinchando en cada tarjeta.</strong></p>
@@ -97,11 +87,13 @@
                                 class="flip-img" />
                             <h4 class="flip-title">GESTIÓN DE FACTURAS Y CONTABILIDAD</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>Los autónomos y pequeñas empresas pierden horas tecleando facturas, registrando
-                                gastos y
-                                cuadrando cuentas manualmente.
-                                Muchas veces, se les escapa algún gasto deducible o se retrasan en el envío de facturas.
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>Los autónomos y pequeñas empresas pierden horas tecleando facturas, registrando
+                                    gastos y
+                                    cuadrando cuentas manualmente.
+                                    Muchas veces, se les escapa algún gasto deducible o se retrasan en el envío de
+                                    facturas.
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -131,9 +123,11 @@
                                 class="flip-img" />
                             <h4 class="flip-title">ATENCIÓN AL CLIENTE 24/7</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>El cliente escribe por WhatsApp, Instagram, email o la web y el autónomo no siempre
-                                puede contestar al momento (porque está trabajando o atendiendo a otros clientes).
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>El cliente escribe por WhatsApp, Instagram, email o la web y el autónomo no
+                                    siempre
+                                    puede contestar al momento (porque está trabajando o atendiendo a otros clientes).
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -162,10 +156,12 @@
                                 class="flip-img" />
                             <h4 class="flip-title">GESTIÓN DE CITAS, RESERVAS Y RECORDATORIOS</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>Peluquerías, clínicas, asesorías, talleres... pierden tiempo confirmando citas, y
-                                encima
-                                muchos clientes olvidan su hora.
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>Peluquerías, clínicas, asesorías, talleres... pierden tiempo confirmando citas,
+                                    y
+                                    encima
+                                    muchos clientes olvidan su hora.
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -193,9 +189,11 @@
                                 class="flip-img" />
                             <h4 class="flip-title">RECUPERACIÓN DE CARRITOS ABANDONADOS Y VENTAS ONLINE</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>En e-commerce y tiendas online, casi el 70% de los clientes abandona el carrito sin
-                                finalizar la compra.
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>En e-commerce y tiendas online, casi el 70% de los clientes abandona el carrito
+                                    sin
+                                    finalizar la compra.
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -222,9 +220,11 @@
                                 class="flip-img" />
                             <h4 class="flip-title">GESTIÓN DE LEADS Y PROPUESTAS COMERCIALES</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>Los autónomos reciben contactos por email, LinkedIn, WhatsApp, formularios web... y
-                                terminan perdiendo clientes porque no les hacen seguimiento rápido.
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>Los autónomos reciben contactos por email, LinkedIn, WhatsApp, formularios
+                                    web... y
+                                    terminan perdiendo clientes porque no les hacen seguimiento rápido.
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -253,9 +253,11 @@
                                 class="flip-img" />
                             <h4 class="flip-title">GESTIÓN DE EMPLEADOS, GASTOS Y PROCESOS INTERNOS</h4>
                             <div class="flip-problem">
-                                PROBLEMA:
-                                <br>Subir nóminas, dar de alta/baja empleados, pedir vacaciones, justificar gastos… todo
-                                esto quita horas valiosas.
+                                <p><strong>PROBLEMA:</strong>
+                                    <br>Subir nóminas, dar de alta/baja empleados, pedir vacaciones, justificar gastos…
+                                    todo
+                                    esto quita horas valiosas.
+                                </p>
                             </div>
                         </div>
                         <!-- Reverso (Solución) -->
@@ -284,11 +286,13 @@
                     <img src="assets/images/automatizacion/icono-tiempo.png" alt="Icono reloj"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1">Ahorro de tiempo y costes</h4>
+                        <h4 class="text-xl font-bold mb-1 uppercase">Ahorro de tiempo y costes</h4>
                         <br>
-                        <p>Tu equipo deja de malgastar jornadas en tareas repetitivas y puede centrarse en hacer crecer
-                            el negocio.
-                            Los "robots" trabajan más rápido y sin descanso, multiplicando la productividad.</p>
+                        <p class="uppercase"><strong>Tu equipo</strong> deja de malgastar jornadas en tareas repetitivas
+                            y <strong>puede centrarse en hacer crecer
+                                el negocio.</strong>
+                            Los "robots" trabajan más rápido y sin descanso, <strong>multiplicando la
+                                productividad.</strong></p>
                     </div>
                 </div>
             </div>
@@ -299,9 +303,10 @@
                     <img src="assets/images/automatizacion/icono-calidad.png" alt="Icono verificación"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1">Menos errores, más calidad</h4>
+                        <h4 class="text-xl font-bold mb-1 uppercase">Menos errores, más calidad</h4>
                         <br>
-                        <p>Al minimizar la intervención manual, se reducen los errores humanos y aumenta la precisión de
+                        <p class="uppercase">Al minimizar la intervención manual, <strong>se reducen los errores
+                                humanos</strong> y aumenta la precisión de
                             tu operativa.</p>
                     </div>
                 </div>
@@ -313,11 +318,11 @@
                     <img src="assets/images/automatizacion/icono-chat.png" alt="Icono chatbot"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1">Atención al cliente 24/7</h4>
+                        <h4 class="text-xl font-bold mb-1 uppercase">Atención al cliente 24/7</h4>
                         <br>
-                        <p>Un chatbot o flujo automatizado puede responder consultas frecuentes incluso mientras
-                            duermes,
-                            mejorando la experiencia de tus clientes al darles servicio inmediato.</p>
+                        <p class="uppercase">Un chatbot o flujo automatizado puede <strong>responder consultas</strong>
+                            frecuentes <strong>incluso mientras duermes</strong>,
+                            mejorando la experiencia de tus clientes al darles <strong>servicio inmediato.</strong></p>
                     </div>
                 </div>
             </div>
@@ -328,20 +333,23 @@
                     <img src="assets/images/automatizacion/icono-escalabilidad.png" alt="Icono gráfico ascendente"
                         class="w-17 h-17 md:order-none order-2">
                     <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1">Escalabilidad y eficiencia</h4>
+                        <h4 class="text-xl font-bold mb-1 uppercase">Escalabilidad y eficiencia</h4>
                         <br>
-                        <p>Puedes manejar un mayor volumen de trabajo sin contratar más personal, ya que las
+                        <p class="uppercase">Puedes <strong>manejar un mayor volumen de trabajo sin contratar más
+                                personal,</strong> ya que las
                             automatizaciones asumen la carga extra.
-                            Tu negocio estará preparado para crecer rápido, sin caos ni cuellos de botella.</p>
+                            Tu negocio estará preparado para <strong>crecer rápido,</strong> sin caos ni cuellos de
+                            botella.</p>
                     </div>
                 </div>
             </div>
             <!-- Frase motivadora + CTA para empresas -->
-            <p class="text-center text-lg font-semibold mb-4">No pierdas ventaja competitiva: empieza ya a delegar lo
+            <p class="text-center text-lg font-semibold mb-4 mt-8">No pierdas ventaja competitiva: empieza ya a delegar
+                lo
                 rutinario en la tecnología y descubre cómo tu empresa puede lograr más en menos tiempo.</p>
             <div class="text-center">
                 <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
+                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
                     Solicitar consultoría gratuita
                 </a>
             </div>
@@ -357,80 +365,89 @@
             <!-- Texto introductorio -->
             <p class="mb-8 leading-relaxed text-center">
                 La inteligencia artificial no es solo cosa de empresas. También puede ser tu aliada en casa, en tus
-                estudios y en tus hobbies.
-                Imagina llegar a tu hogar y que las luces y la temperatura se ajusten solas a tu gusto, o recibir
-                recordatorios inteligentes
-                para tus tareas diarias y eventos importantes. Las mismas herramientas que usan las grandes
-                organizaciones están disponibles
-                para facilitar tu vida cotidiana.
+                estudios y en tus hobbies.<br>
+                Imagina ajustar las luces, la temperatura o controlar un electrodoméstico de tu hogar a tu gusto
+                fácilmente mientras conversas con tu asistente virtual desde cualquier lugar del mundo, recibir
+                recordatorios inteligentes para tus tareas diarias y eventos importantes, o tener un chef, entrenador y
+                nutricionista personal, profesor particular virtual 24/7 siempre que lo necesites. <br><strong>Las
+                    mismas herramientas que usan las grandes organizaciones están disponibles
+                    para facilitar tu vida cotidiana.</strong>
             </p>
             <!-- Tarjetas mosaico (íconos + texto) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
 
                 <!-- Tarjeta 1: ESTUDIOS MÁS SENCILLOS -->
                 <div
-                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_estudios_sencillos.png" alt="Icono Estudios"
                         class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-semibold mb-2">ESTUDIOS MÁS SENCILLOS</h4>
+                    <h4 class="text-lg font-bold mb-2">ESTUDIOS MÁS SENCILLOS</h4>
                     <ul class="text-sm list-disc text-left pl-5">
-                        <li>Genera resúmenes de textos largos al instante.</li>
+                        <li>Genera resúmenes de textos largos al instante o chatea directamente con tu pdf y hazle
+                            preguntas.</li>
                         <li>Crea fichas de estudio automáticamente.</li>
                         <li>Practica idiomas con la ayuda de un tutor virtual impulsado por IA.</li>
+                        <li>Aprende cualquier cosa paso a paso mediante la lógica con el modo "Estudiar y Aprender".
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Tarjeta 2: NUTRICIÓN, BIENESTAR Y SALUD -->
                 <div
-                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_nutricion_bienestar.png"
                         alt="Icono Nutricion y Bienestar" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-semibold mb-2">NUTRICIÓN, BIENESTAR Y SALUD</h4>
+                    <h4 class="text-lg font-bold mb-2">NUTRICIÓN, BIENESTAR Y SALUD</h4>
                     <ul class="text-sm list-disc text-left pl-5">
                         <li>Lleva un registro automatizado de hábitos saludables (pasos diarios, horas de sueño,
-                            recordatorios para hidratarte).</li>
-                        <li>Recibe consejos personalizados a partir de tus datos recopilados.</li>
+                            recordatorios para hidratarte o moverte).</li>
+                        <li>Recibe consejos personalizados (nutrición, ejercicios, consejos) a partir de tus datos
+                            recopilados.</li>
                         <li>Es como tener un entrenador y asesor digital siempre pendiente de ti.</li>
                     </ul>
                 </div>
 
                 <!-- Tarjeta 3: ORGANIZACIÓN FAMILIAR -->
                 <div
-                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_organizacion_familiar.png"
                         alt="Icono Organización Familiar" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-semibold mb-2">ORGANIZACIÓN FAMILIAR</h4>
+                    <h4 class="text-lg font-bold mb-2">ORGANIZACIÓN FAMILIAR</h4>
                     <ul class="text-sm list-disc text-left pl-5">
                         <li>Centraliza calendarios y alertas de toda la familia con apps inteligentes que coordinan las
                             agendas de todos.</li>
                         <li>Te avisan de fechas importantes (cumpleaños, citas médicas, pagos) para que nada se pase por
                             alto.</li>
+                        <li>Te ayuda con las finanzas familiares, ofreciendo un seguimiento de gastos y presupuestos y
+                            dándote consejos de inversión y ahorro.</li>
                     </ul>
                 </div>
 
                 <!-- Tarjeta 4: HOBBIES Y CREATIVIDAD -->
                 <div
-                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_hobbies_creatividad.png"
                         alt="Icono Hobbies y Creatividad" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-semibold mb-2">HOBBIES Y CREATIVIDAD</h4>
+                    <h4 class="text-lg font-bold mb-2">HOBBIES Y CREATIVIDAD</h4>
                     <ul class="text-sm list-disc text-left pl-5">
                         <li>Obtén recomendaciones personalizadas de películas, música o libros según tus gustos.</li>
-                        <li>Usa herramientas de IA para inspirarte: desde diseñar un plan de entrenamiento fitness
-                            adaptado a ti, hasta recibir ideas frescas para tu próximo proyecto artístico.</li>
+                        <li>Usa herramientas de IA para inspirarte: habla con los personajes del libro que estas
+                            escribiendo para conocer sus miedos y sentimientos, genera imágenes de inspiración para tu
+                            próximo proyecto artístico o adéntrate en nuevos hobbies dejándote guiar por tu asistente
+                            virtual.</li>
                     </ul>
                 </div>
 
                 <!-- Tarjeta 5: HOGAR INTELIGENTE -->
                 <div
-                    class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
+                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
                     <img src="assets/images/automatizacion/icono_hogar_inteligente.png" alt="Icono Hogar Inteligente"
                         class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-semibold mb-2">HOGAR INTELIGENTE</h4>
+                    <h4 class="text-lg font-bold mb-2">HOGAR INTELIGENTE</h4>
                     <ul class="text-sm list-disc text-left pl-5">
-                        <li>Configura asistentes virtuales (Alexa, Google Assistant, etc.) para que gestionen tus
+                        <li>Configura asistentes virtuales (Alexa, Siri, Gemini, GPT, etc.) para que gestionen tus
                             rutinas domésticas.</li>
-                        <li>La cafetera se enciende sola cada mañana.</li>
+                        <li>Controla cada aspecto de tu hogar mientras estas fuera desde tu teléfono.</li>
                         <li>La lista de la compra se actualiza automáticamente según las recetas que planificas.</li>
                         <li>Las luces se apagan solas cuando sales de casa.</li>
                     </ul>
@@ -439,16 +456,16 @@
 
             <!-- Mentoría personal CTA -->
             <p class="text-center text-lg font-semibold mb-3">Con una mentoría personalizada, Mr. Yugen te enseña a usar
-                estas herramientas paso a paso, sin tecnicismos complejos. En poco tiempo dominarás trucos para
-                automatizar tareas cotidianas y ganar minutos u horas libres cada día.</p>
-            <p class="text-center font-semibold mb-6">Verás cómo pequeños cambios tecnológicos marcan una gran
-                diferencia en tu
-                calidad de vida.</p>
+                e implantar estas herramientas paso a paso, sin tecnicismos complejos. <br> En poco tiempo dominarás
+                trucos para
+                automatizar tareas cotidianas y ganar tiempo y seguridad.</p>
+            <p class="text-center font-semibold mb-6">Verás cómo PEQUEÑOS CAMBIOS TECNOLÓGICOS MARCAN UNA GRAN
+                DIFERENCIA EN TU CALIDAD DE VIDA</p>
             <p class="text-center text-lg font-bold mb-9">Reserva una sesión de mentoría 1:1 y descubre cómo la IA
                 puede ser tu asistente personal en el día a día.</p>
             <div class="text-center mb-2">
                 <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                    class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition">
+                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
                     Quiero aprender a usar IA en mi vida
                 </a>
             </div>
@@ -467,11 +484,12 @@
                 El mundo está adoptando rápidamente la inteligencia artificial para simplificar tareas y ser más
                 eficiente.
                 No te quedes atrás: estás a tiempo de sumarte a esta revolución en tu empresa y en tu vida.
-                Aprender a automatizar no es difícil si cuentas con la guía adecuada. Atrévete a dar el primer paso:
+                Aprender a automatizar y a usar la IA no es difícil si cuentas con la guía adecuada. Atrévete a dar el
+                primer paso:
                 automatiza y gana tiempo para lo que más valoras.
             </p>
             <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                class="inline-block px-8 py-3 bg-white text-cta rounded-full font-semibold hover:opacity-90 transition">
+                class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
                 Contáctanos
             </a>
         </div>
@@ -481,59 +499,9 @@
     <section class="py-10 px-4 bg-bg-alt text-text">
         <h2 class="text-2xl font-bold text-center mb-6">Trabajamos con las mejores herramientas</h2>
         <div class="overflow-hidden">
-            <div id="logos-container" class="flex items-center animate-marquee">
-                <!-- 21 logos repetidos para marquee -->
-                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 w-auto inline-block mx-4" />
-                <!-- Se duplica la lista para efecto continuo -->
-                <img src="assets/images/logos/zapier.png" alt="Zapier logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/make.png" alt="Make logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/n8n.png" alt="n8n logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/google_workspace.png" alt="Google Workspace logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/airtable.png" alt="Airtable logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/sql.png" alt="SQL logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/sheets.png" alt="Google Sheets logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/chatgpt.svg" alt="ChatGPT logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/gemini.png" alt="Gemini logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/copilot.webp" alt="GitHub Copilot logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/meta.svg" alt="Meta logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/claude.png" alt="Claude logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/grok.png" alt="Grok logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/notion.png" alt="Notion logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/trello.png" alt="Trello logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/slack.png" alt="Slack logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/whatsapp.png" alt="WhatsApp logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/telegram.png" alt="Telegram logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/stripe.png" alt="Stripe logo" class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/woocommerce.png" alt="WooCommerce logo"
-                    class="h-12 w-auto inline-block mx-4" />
-                <img src="assets/images/logos/shopify.png" alt="Shopify logo" class="h-12 w-auto inline-block mx-4" />
+            <div id="logos-container" class="inline-flex items-center">
+                <img *ngFor="let logo of logos.concat(logos)" [src]="logo.src" [alt]="logo.alt"
+                    class="h-8 w-auto flex-shrink-0" />
             </div>
         </div>
     </section>
@@ -561,13 +529,15 @@
             <h2 class="text-3xl font-bold text-center mb-2">Hablemos.</h2>
             <p class="text-center mb-6">Contáctanos y suscríbete</p>
             <p class="mb-4 text-sm text-center">
-                ¿Listo para transformar tu rutina con automatizaciones inteligentes? Rellena el siguiente formulario y
+                ¿Listo para transformar tu rutina con automatizaciones inteligentes? <br /> Rellena el siguiente
+                formulario y
                 cuéntanos en qué podríamos ayudarte.
             </p>
             <p class="mb-8 text-sm text-center">
-                Además, puedes suscribirte a nuestro newsletter para recibir tips y novedades sobre cómo aplicar la IA
-                en tu día a día.
-                Solo déjanos tu nombre, email y marca la casilla, aunque no redactes un mensaje.
+                Además, puedes <strong>SUSCRIBIRTE A NUESTRO NEWSLETTER</strong> para recibir tips y novedades sobre
+                cómo aplicar la IA
+                en tu día a día. Algunos usos que se pueden hacer de la IA son realmente sorprendentes.<br /><br />
+                <strong>Para suscribirte, solo déjanos tu nombre, email y marca la casilla.</strong>
             </p>
             <form novalidate class="space-y-4">
                 <div class="flex gap-4">
@@ -602,12 +572,12 @@
                         class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
                 </div>
                 <div class="flex items-start">
-                    <input id="newsletter" name="newsletter" type="checkbox" ngModel class="mt-1" />
-                    <label for="newsletter" class="ml-2 text-sm">Envíame 1 email/semana con ideas prácticas de
+                    <input id="newsletter" name="newsletter" type="checkbox" ngModel class="mt-3" />
+                    <label for="newsletter" class="ml-2 text-lg">Envíame 1 email/semana con ideas prácticas de
                         automatización.</label>
                 </div>
                 <button type="submit"
-                    class="w-full py-3 border-2 border-cta hover:bg-cta hover:text-white rounded-full font-semibold transition">
+                    class="w-full px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
                     Enviar
                 </button>
             </form>

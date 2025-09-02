@@ -51,7 +51,7 @@
             <div class="reveal-section max-w-xl mx-auto">
                 <app-before-after-slider [beforeImage]="project.bocetoImg" [afterImage]="project.finalImg"
                     altBefore="Boceto a lápiz" altAfter="Diseño final digital"></app-before-after-slider>
-                <p class="text-xs text-gray-500 text-center mt-2">Desliza para ver el cambio</p>
+                <p class="text-xs text-black dark:text-white text-center mt-2">Desliza para ver el cambio</p>
             </div>
             <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify" [innerHTML]="project.bocetoDescription">
             </p>
@@ -71,7 +71,7 @@
             </div>
             <p class="text-lg leading-relaxed max-w-3xl mx-auto text-justify" [innerHTML]="project.conclusionText"></p>
             <a [routerLink]="['/']" fragment="contact"
-                class="reveal-section inline-block mt-4 px-6 py-3 rounded-full border border-cta text-cta font-semibold text-base bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white transition-colors duration-300">
+                class="reveal-section inline-block mt-4 px-6 py-3 rounded-full border border-cta text-cta dark:text-bg font-semibold text-base bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white hover:dark:text-white transition-colors duration-300">
                 {{ project.ctaText }}
             </a>
         </section>

@@ -1,11 +1,13 @@
-<header class="fixed top-0 w-full z-50 bg-bg/70 backdrop-blur-md transition-colors duration-300 h-16">
+<header
+    class="fixed top-0 w-full z-50 bg-[color:var(--color-bg)] dark:bg-bg/80 border-b border-white/20 backdrop-blur-md transition-colors duration-300 h-16">
     <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
         <!-- Logo clickable, cambia según tema -->
         <a routerLink="/">
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
         </a>
-        <ul class="hidden md:flex space-x-6" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
-            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
+        <ul class="hidden md:flex space-x-6 drop-shadow-sm" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
+            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta"
+                    (click)="mobileOpen=false">Home</a></li>
             <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta"
                     (click)="mobileOpen=false">Habilidades</a></li>
             <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta"

@@ -23,8 +23,8 @@ img.loaded {
   user-select: none;
   touch-action: none;
   max-width:90vw;
-  max-height:75vh;        /* cabe sin desplazamiento vertical */
-  width:auto;             /* 👉 evita estirar la miniatura panorámica */
+  max-height:75vh;        
+  width:auto;             
   object-fit:contain;
   margin-inline:auto;
   transition:transform .35s;
@@ -40,7 +40,7 @@ img.loaded {
 }
 
 .nav-btn,.close-btn{
-  @apply absolute top-1/2 -translate-y-1/2 text-text bg-white/70 dark:bg-slate-900/70
+  @apply absolute top-1/2 -translate-y-1/2 text-text  bg-white/70 dark:bg-teal-600
   rounded-full p-2 shadow-lg backdrop-blur-md transition hover:bg-cta dark:hover:bg-cta 
 }
 .nav-btn svg,.close-btn svg{ width:32px;height:32px; stroke-width:2; }
