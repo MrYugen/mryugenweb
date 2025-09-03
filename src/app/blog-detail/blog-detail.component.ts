@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -6,12 +6,13 @@ import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { BlogService, BlogPost } from '../services/blog.service';
 import { ThemeService } from '../services/theme.service';
+import { FormsModule } from '@angular/forms';
 import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-blog-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, ScrollToTopComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, ScrollToTopComponent, FormsModule],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })
@@ -19,6 +20,12 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   post?: BlogPost;
   currentUrl = '';
   isDarkMode = false;
+
+  // Newsletter form state
+  email: string = '';
+  submitting = false;
+  successMessage = '';
+  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +47,27 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
     if (typeof window !== 'undefined') {
       this.currentUrl = window.location.href;
     }
+  }
+
+  onSubscribe() {
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    const email = this.email?.trim();
+    const emailValid = !!email && /\S+@\S+\.\S+/.test(email);
+    if (!emailValid) {
+      this.errorMessage = 'Por favor, introduce un email valido.';
+      return;
+    }
+
+    this.submitting = true;
+
+    // TODO: Replace with real newsletter API call
+    setTimeout(() => {
+      this.submitting = false;
+      this.successMessage = 'Gracias por suscribirte. Revisa tu correo para confirmar.';
+      this.email = '';
+    }, 800);
   }
 
   ngAfterViewInit() {

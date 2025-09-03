@@ -12,11 +12,7 @@
   border: none;
   padding: 0.5rem;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.carousel-container:hover .carousel-button {
-  opacity: 1;
+  border-radius: 0.5rem;
 }
 
 .carousel-button.prev {
@@ -99,6 +95,19 @@
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
+}
+
+/* Icono que indica que la tarjeta es interactiva */
+.flip-front::after,
+.flip-back::after {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  background: var(--flip-icon) no-repeat center/contain;
+  pointer-events: none;
 }
 
 .flip-back {

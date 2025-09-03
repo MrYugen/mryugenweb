@@ -1,0 +1,84 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+
+    <app-hero [isDarkMode]="isDarkMode" title="Proyectos Web" [ctaText]="'Ver proyectos web'" [showCTA]="true"
+        [ctaTextColor]="'white'" [ctaLink]="'/portfolio/web#projects'" bgImageLight="/assets/images/portfolio_web.png"
+        bgImageDark="/assets/images/portfolio_web2.png" logoLight="assets/images/logo-hero-light.svg"
+        logoDark="assets/images/logo-hero-light.svg" [logoAlt]="'Logo Proyectos Web'"></app-hero>
+
+    <main class="py-5 px-4" style="background: var(--main-gradient); min-height: 60vh;">
+        <section class="max-w-5xl mx-auto px-4 mt-5 mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                ¿Cómo se construye un sitio web efectivo?
+            </h2>
+            <p class="text-center max-w-2xl mx-auto mb-10 text-lg">
+                Cada proyecto web combina investigación, diseño y desarrollo para ofrecer experiencias digitales únicas.
+                Descubre el proceso que sigo para materializar ideas en la web.
+            </p>
+
+            <div class="relative overflow-hidden" style="max-height: 80vh;">
+                <button
+                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    (click)="prevSlide()">←</button>
+
+                <div class="flex transition-transform duration-700 ease-in-out" (touchstart)="onTouchStart($event)"
+                    (touchend)="onTouchEnd($event)" [style.transform]="'translateX(-' + currentStep * 100 + '%)'"
+                    style="min-height: 40vh; width: 100%;">
+                    <div *ngFor="let step of webSteps; let i = index"
+                        class="min-w-full flex flex-col items-center justify-between px-4">
+                        <img [src]="step.image" [alt]="step.title"
+                            class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-2xl shadow-lg mb-1"
+                            style="max-width:340px; max-height:340px;" />
+                        <div class="flex flex-col items-center">
+                            <h3 class="text-2xl font-semibold mb-2 text-center">{{ step.title }}</h3>
+                            <p class="text-base text-center text-text/90 dark:text-white/80">{{ step.text }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    (click)="nextSlide()">→</button>
+            </div>
+        </section>
+
+        <section id="projects" class="max-w-6xl mx-auto px-4 pt-10 pb-20 reveal-section">
+            <h2 class="text-3xl font-bold mb-2 text-center">Proyectos destacados de desarrollo web</h2>
+            <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-12">
+                Explora procesos completos detrás de sitios web atractivos y funcionales
+            </p>
+
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+                <div *ngFor="let project of webProjects; let i = index"
+                    class="mb-6 break-inside-avoid rounded-2xl shadow-xl bg-white dark:bg-bg-alt transition hover:scale-[1.02] hover:shadow-2xl group cursor-pointer overflow-hidden relative reveal-card"
+                    tabindex="0" aria-label="Ver más sobre el proyecto" (touchstart)="onCardTouchStart($event, i)"
+                    (touchend)="onCardTouchEnd($event, i)"
+                    style="min-width: 300px; max-width: 370px; min-height: 470px; margin-left:auto; margin-right:auto;">
+                    <img [src]="project.images[currentImageIndexes[i]]" [alt]="project.title"
+                        class="w-full object-cover rounded-t-2xl transition-opacity duration-500 group-hover:opacity-80"
+                        [style.opacity]="imageFadeState[i] ? '1' : '0'" loading="lazy" />
+
+                    <button (click)="prevImage(i)"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-400 dark:bg-bg-alt/80 text-white dark:text-white rounded-full shadow p-1 z-10 opacity-0 group-hover:opacity-100 transition"
+                        style="transition: opacity 0.3s" aria-label="Anterior imagen" tabindex="0">←</button>
+
+                    <button (click)="nextImage(i)"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-400 dark:bg-bg-alt/80 text-white dark:text-white rounded-full shadow p-1 z-10 opacity-0 group-hover:opacity-100 transition"
+                        style="transition: opacity 0.3s" aria-label="Siguiente imagen" tabindex="0">→</button>
+
+                    <div class="p-4 flex flex-col gap-2">
+                        <h3 class="text-xl font-bold text-cta mb-1">{{ project.title }}</h3>
+                        <p class="text-base text-gray-700 dark:text-gray-300 mb-2">{{ project.summary }}</p>
+                        <a class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
+                            [routerLink]="['/portfolio/web', project.slug]">
+                            Ver más
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

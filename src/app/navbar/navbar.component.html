@@ -1,7 +1,7 @@
 <header
     class="fixed top-0 w-full z-50 bg-[color:var(--color-bg)] dark:bg-bg/80 border-b border-white/20 backdrop-blur-md transition-colors duration-300 h-16">
     <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <!-- Logo clickable, cambia según tema -->
+        <!-- Logo clickable, cambia segǧn tema -->
         <a routerLink="/">
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
         </a>
@@ -21,13 +21,17 @@
         <!-- Toggle / Mobile hamburger -->
         <div class="flex items-center space-x-4">
             <button (click)="toggleTheme.emit()"
+                class="focus:outline-none"
+                [attr.aria-pressed]="isDarkMode"
                 [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
-                <span *ngIf="!isDarkMode">🌙</span>
-                <span *ngIf="isDarkMode">☀️</span>
+                <span class="theme-toggle" [class.is-dark]="isDarkMode">
+                    <img class="icon sun" src="assets/images/icons/theme-sun.png" alt="" aria-hidden="true" />
+                    <img class="icon moon" src="assets/images/icons/theme-moon.png" alt="" aria-hidden="true" />
+                </span>
             </button>
             <button class="md:hidden" (click)="menuToggle.emit()"
-                [attr.aria-label]="mobileOpen ? 'Cerrar menú' : 'Abrir menú'">
-                <!-- ícono hamburguesa -->
+                [attr.aria-label]="mobileOpen ? 'Cerrar menǧ' : 'Abrir menǧ'">
+                <!-- ��cono hamburguesa -->
                 <svg class="w-6 h-6" fill="none" stroke="currentColor">
                     <path *ngIf="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6h16M4 12h16M4 18h16" />

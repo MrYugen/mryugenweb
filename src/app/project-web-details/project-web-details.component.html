@@ -1,0 +1,24 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="project">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+
+    <app-hero [isDarkMode]="isDarkMode" [title]="project.title" [showCTA]="false" [bgImageLight]="project.heroBgLight"
+        [bgImageDark]="project.heroBgDark" logoLight="assets/images/logo-hero-light.svg"
+        logoDark="assets/images/logo-hero-light.svg" [logoAlt]="project.title"></app-hero>
+
+    <main class="py-10 px-4 max-w-5xl mx-auto">
+        <section class="mb-12">
+            <p class="text-lg" [innerHTML]="project.overview"></p>
+        </section>
+
+        <section *ngFor="let section of project.sections" class="mb-16">
+            <h2 class="text-2xl font-bold mb-4">{{ section.title }}</h2>
+            <div class="flex flex-col md:flex-row gap-6 items-center">
+                <img [src]="section.image" [alt]="section.title" class="w-full md:w-1/2 rounded-lg shadow">
+                <p class="md:w-1/2" [innerHTML]="section.text"></p>
+            </div>
+        </section>
+    </main>
+
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

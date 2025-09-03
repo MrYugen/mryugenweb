@@ -30,6 +30,10 @@ export class BlogComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    gsap.from('.blog-card', { opacity: 0, y: 30, stagger: 0.2, duration: 0.6 });
+    gsap.fromTo(
+      '.blog-card',
+      { opacity: 0, y: 0 },
+      { opacity: 1, y: 0, stagger: 0.2, duration: 0.6 }
+    );
   }
 }

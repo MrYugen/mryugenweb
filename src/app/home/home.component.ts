@@ -102,7 +102,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       id: 'web',
       title: 'Proyectos Web',
       description: 'Proyectos web a medida con la mejor experiencia de usuario.',
-      link: '/portfolio/websites',
+      link: '/portfolio/web',
       images: [
         'assets/images/portfolio_web.png',
         'assets/images/portfolio_web2.png',

@@ -10,6 +10,8 @@
   --color-cta: #ff8b61;        /* Turquoise/Aquatic Awe */
   --color-footer: #0b5c6542;
 
+  --flip-icon: url('/assets/images/automatizacion/flip-icon-dark.png');
+
   --skill-design-bg:    #D4F7F2;
   --skill-coding-bg:    #E0E9FF;
   --skill-other-bg:     #FFE4EA;
@@ -29,6 +31,8 @@
   --color-text: #EAFBFF;
   --color-cta: #ff8b61;
   --color-footer: #083034;
+
+  --flip-icon: url('/assets/images/automatizacion/flip-icon-light.png');
 
   --skill-design-bg:    #0C3C3E;
   --skill-coding-bg:    #1D2E60;
