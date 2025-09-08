@@ -5,9 +5,9 @@
 /* Paleta Aqua Glow + Mr. Yugen */
 :root {
   --color-bg: #F6FBFF;
-  --color-bg-alt: #0B5C6520;   /* aqua overlay */
+  --color-bg-alt: #0B5C6520;
   --color-text: #0A1F29;
-  --color-cta: #ff8b61;        /* Turquoise/Aquatic Awe */
+  --color-cta: #ff8b61;   
   --color-footer: #0b5c6542;
 
   --flip-icon: url('/assets/images/automatizacion/flip-icon-dark.png');
@@ -16,10 +16,10 @@
   --skill-coding-bg:    #E0E9FF;
   --skill-other-bg:     #FFE4EA;
 
-  --portfolio-bg-branding:     #FFD2D8;  /* blush suave */
-  --portfolio-bg-illustration: #CFFAF2;  /* aqua pastel */
-  --portfolio-bg-web:          #F2EAD1;  /* arena fría */
-  --portfolio-bg-couple:       #D7D5FF;  /* lila frío */
+  --portfolio-bg-branding:     #FFD2D8; 
+  --portfolio-bg-illustration: #CFFAF2; 
+  --portfolio-bg-web:          #F2EAD1; 
+  --portfolio-bg-couple:       #D7D5FF; 
 
   --color-section-a: var(--skill-coding-bg);
   --color-section-b: var(--color-bg-alt);

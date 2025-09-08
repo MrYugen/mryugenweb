@@ -32,55 +32,55 @@ export class PortfolioWebComponent implements OnInit, OnDestroy, AfterViewInit {
   webSteps = [
     {
       title: '1. Planificación',
-      text: 'Definición de objetivos, público y arquitectura de la información del sitio.',
-      image: 'assets/images/portfolio_web.png'
+      text: 'En esta primera fase se definen los cimientos del proyecto. Se recaban los requisitos del cliente o de la idea, estableciendo objetivos claros para el sitio web. Aquí se decide la estructura de contenidos, se elabora un mapa del sitio y se bosquejan los primeros wireframes (esquemas de página) para visualizar la distribución de elementos. Una buena planificación implica investigar la audiencia y la competencia, anticipando las funcionalidades necesarias antes de escribir una sola línea de código.',
+      image: 'assets/images/web/planificacion_web.png'
     },
     {
       title: '2. Diseño',
-      text: 'Creación de wireframes y prototipos visuales centrados en la experiencia de usuario.',
-      image: 'assets/images/portfolio_web2.png'
+      text: 'Con la planificación en mano, sigue la fase de diseño visual. Aquí se transforma la estrategia en una identidad gráfica: se eligen paletas de colores, tipografías y estilos que reflejen la marca o personalidad del proyecto. El diseñador crea maquetas o prototipos de cada página, definiendo la apariencia de botones, galerías, textos e imágenes. Es un proceso creativo donde se busca el equilibrio entre estética y usabilidad, asegurando que el sitio sea atractivo pero también fácil de navegar. Los detalles de UX (experiencia de usuario) son pulidos para guiar al visitante intuitivamente por el contenido.',
+      image: 'assets/images/web/diseño_web.png'
     },
     {
       title: '3. Desarrollo',
-      text: 'Implementación del diseño con tecnologías modernas y código optimizado.',
-      image: 'assets/images/portfolio_web3.png'
+      text: 'Una vez aprobado el diseño, comienza el desarrollo. En esta etapa se escribe el código que dará vida al sitio. Los desarrolladores construyen el front-end a partir del diseño (creando las páginas con HTML, CSS y JavaScript o utilizando frameworks), y configuran la lógica del back-end si la web lo requiere (servidores, bases de datos). Es un proceso metódico: se integran todas las piezas, se realizan pruebas internas y se corrigen errores. Poco a poco, el sitio web pasa de un conjunto de diseños estáticos a una aplicación web funcional. La colaboración entre diseño y desarrollo es crucial aquí, ajustando detalles para que la versión final sea fiel al look & feel planeado y funcione de manera fluida.',
+      image: 'assets/images/web/desarrollo_web.png'
     },
     {
       title: '4. Lanzamiento',
-      text: 'Pruebas finales, despliegue y seguimiento del rendimiento del sitio.',
-      image: 'assets/images/proyecto1_img1.jpg'
+      text: 'El paso final es el lanzamiento del sitio web. Tras varias rondas de pruebas y ajustes, llega el momento de poner el proyecto online. Se despliega la web en un servidor o plataforma de hosting, configurando el dominio para que sea accesible al público. Esta etapa incluye pruebas finales de rendimiento y asegurarse de que todo (formularios, enlaces, funciones) opere correctamente en producción. El lanzamiento se vive con emoción: es como ver despegar un cohete después de mucho trabajo. Una vez en línea, el sitio comienza su vida real con usuarios reales. Además, se consideran planes de mantenimiento futuro, backups y posibles mejoras, sabiendo que una web exitosa evoluciona constantemente incluso después de su lanzamiento.',
+      image: 'assets/images/web/lanzamiento_web.png'
     }
   ];
 
   webProjects = [
     {
-      title: 'Project Alpha',
-      summary: 'Sitio corporativo responsivo con diseño minimalista.',
-      slug: 'project-alpha',
+      title: 'Estévez Asesores - Página Web Corporativa',
+      summary: 'Sitio corporativo responsivo con diseño minimalista creado desde cero como una Single Page Application (SPA) con Angular 17 y TypeScript.',
+      slug: 'estevez-asesores',
       images: [
-        'assets/images/portfolio_web.png',
-        'assets/images/portfolio_web2.png',
-        'assets/images/portfolio_web3.png'
+        'assets/images/web/estevez_web.jpg',
+        'assets/images/web/estevez_web2.jpg',
+        'assets/images/web/estevez_web3.jpg'
       ]
     },
     {
-      title: 'Project Beta',
-      summary: 'Landing page dinámica para promoción de servicios.',
-      slug: 'project-beta',
+      title: 'Mr. Yugen - CV, Portfolio, Blog y Servicios Web',
+      summary: 'Single Page Application (SPA) con Angular 17 y TypeScript, con diseño responsivo y modo oscuro/claro.',
+      slug: 'mr-yugen',
       images: [
-        'assets/images/proyecto1_img1.jpg',
-        'assets/images/proyecto1_img2.jpg',
-        'assets/images/proyecto1_img3.jpg'
+        'assets/images/web/mryugen_web.jpg',
+        'assets/images/web/mryugen_web2.jpg',
+        'assets/images/web/mryugen_web3.jpg'
       ]
     },
     {
-      title: 'Project Gamma',
-      summary: 'Plataforma web con panel de administración personalizado.',
-      slug: 'project-gamma',
+      title: 'Couple Clash - Landing Page moderna para presentación de juego de mesa',
+      summary: 'Landing Page moderna para la presentación de un juego de mesa, creada con No-Code tools y adaptada para SEO.',
+      slug: 'couple-clash',
       images: [
-        'assets/images/proyecto2_img1.jpg',
-        'assets/images/proyecto2_img2.jpg',
-        'assets/images/proyecto2_img3.jpg'
+        'assets/images/web/couple_clash_web.jpg',
+        'assets/images/web/couple_clash_web2.jpg',
+        'assets/images/web/couple_clash_web3.jpg'
       ]
     }
   ];

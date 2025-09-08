@@ -13,16 +13,16 @@ import { FooterComponent } from '../footer/footer.component';
 })
 export class UnderConstructionComponent {
   /** Imagen de fondo para la página completa */
-  @Input() backgroundImage: string = '../assets/images/hero-bg-light.jpg';
+  @Input() backgroundImage: string = '../assets/images/under-construction/hero-under-construction.jpg';
 
   /** Título principal mostrado en la página */
-  @Input() title: string = 'En construcción';
+  @Input() title: string = 'Couple Clash llega pronto';
 
   /** Subtítulo opcional */
-  @Input() subtitle: string = 'Estamos trabajando en ello';
+  @Input() subtitle: string = 'Cargando… 99%';
 
   /** Mensaje descriptivo */
-  @Input() message: string = 'Vuelve pronto para descubrir las novedades.';
+  @Input() message: string = 'Couple Clash está muy cerca de su lanzamiento. Sin duda, estoy seguro de que te encantará y se convertirá en uno de tus juegos favoritos. Déjame tu email y entra en la primera oleada: actualizaciones, acceso anticipado, descuento especial en las primeras 48 horas del lanzamiento y sorpresas exclusivas.';
 
   /** Evento emitido con el email del usuario al pulsar "Notifícame" */
   @Output() notify = new EventEmitter<string>();

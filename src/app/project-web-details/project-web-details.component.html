@@ -1,24 +1,110 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="project">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
 
-    <app-hero [isDarkMode]="isDarkMode" [title]="project.title" [showCTA]="false" [bgImageLight]="project.heroBgLight"
-        [bgImageDark]="project.heroBgDark" logoLight="assets/images/logo-hero-light.svg"
-        logoDark="assets/images/logo-hero-light.svg" [logoAlt]="project.title"></app-hero>
+  <main class="py-12 px-4 max-w-5xl mx-auto mt-10">
+    <!-- INTRODUCCIÓN -->
+    <section class="reveal-section mb-16 text-center">
+      <h2 class="text-2xl font-extrabold tracking-wide mb-4">INTRODUCCIÓN</h2>
+      <p class="text-lg leading-relaxed">{{ project.overview }}</p>
+    </section>
 
-    <main class="py-10 px-4 max-w-5xl mx-auto">
-        <section class="mb-12">
-            <p class="text-lg" [innerHTML]="project.overview"></p>
-        </section>
+    <!-- TECNOLOGÍAS EMPLEADAS (si existen datos) -->
+    <section *ngIf="project.tech" class="reveal-section mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <img [src]="project.tech!.image" alt="Tecnologías empleadas" loading="lazy" class="w-full rounded-xl shadow" />
+        <div>
+          <h3 class="text-2xl font-bold mb-4">TECNOLOGÍAS EMPLEADAS</h3>
+          <ul class="space-y-3">
+            <li *ngFor="let t of project.tech!.items" class="reveal-card">
+              <p><span class="font-semibold">{{ t.label }}:</span> {{ t.value }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-        <section *ngFor="let section of project.sections" class="mb-16">
-            <h2 class="text-2xl font-bold mb-4">{{ section.title }}</h2>
-            <div class="flex flex-col md:flex-row gap-6 items-center">
-                <img [src]="section.image" [alt]="section.title" class="w-full md:w-1/2 rounded-lg shadow">
-                <p class="md:w-1/2" [innerHTML]="section.text"></p>
+    <!-- Fallback de secciones simples para proyectos antiguos -->
+    <section *ngIf="!project.tech && project.sections && project.sections.length" class="reveal-section mb-16">
+      <div *ngFor="let s of project.sections" class="mb-10">
+        <h3 class="text-2xl font-bold mb-4">{{ s.title }}</h3>
+        <div class="flex flex-col md:flex-row gap-6 items-center">
+          <img [src]="s.image" [alt]="s.title" class="w-full md:w-1/2 rounded-xl shadow" loading="lazy" />
+          <p class="md:w-1/2 leading-relaxed">{{ s.text }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPOSITORIO EN GITHUB (si existe) -->
+    <section *ngIf="project.repo" class="reveal-section mb-16 text-center">
+      <h3 class="text-2xl font-extrabold tracking-wide mb-4">REPOSITORIO EN GITHUB</h3>
+      <p class="max-w-3xl mx-auto leading-relaxed">{{ project.repo!.text }}</p>
+
+      <div class="mt-6" *ngIf="project.repo!.url">
+        <a [href]="project.repo!.url" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 px-6 py-3 border-2 border-cta rounded-full hover:bg-cta hover:text-white transition">
+          <img src="/assets/images/web/github-mark.png" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" />
+          Ver repositorio
+        </a>
+      </div>
+    </section>
+
+    <!-- LÓGICA TÉCNICA -->
+    <section *ngIf="project.logic" class="reveal-section mb-16">
+      <h3 class="text-2xl font-extrabold tracking-wide text-center mb-2">LÓGICA TÉCNICA</h3>
+      <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-10">
+        {{ project.logic!.subtitle || 'Aspectos clave' }}
+      </p>
+
+      <div class="space-y-10">
+        <div *ngFor="let point of project.logic!.points"
+          class="reveal-card flex flex-col md:flex-row gap-6 items-center"
+          [ngClass]="{ 'md:flex-row-reverse': point.align === 'right' }">
+          <ng-container *ngIf="point.image as media">
+            <div class="w-full md:w-1/2">
+              <video *ngIf="isVideo(media)"
+                     #logicVideo
+                     class="w-full rounded-xl shadow"
+                     [src]="media"
+                     preload="metadata"
+                     playsinline
+                     webkit-playsinline
+                     muted
+                     disablePictureInPicture
+                     controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+                     (contextmenu)="$event.preventDefault()">
+              </video>
+              <p *ngIf="isVideo(media)" class="mt-2 text-sm italic text-text/70 text-center md:text-left">
+                Pincha para reproducir de nuevo
+              </p>
+              <img *ngIf="!isVideo(media)"
+                   [src]="media" alt="Detalle técnico" loading="lazy"
+                   class="w-full rounded-xl shadow" />
             </div>
-        </section>
-    </main>
+          </ng-container>
+          <p class="md:w-1/2 leading-relaxed">{{ point.text }}</p>
+        </div>
+      </div>
+    </section>
 
-    <app-footer></app-footer>
-    <app-scroll-to-top></app-scroll-to-top>
+    <!-- IMAGEN GRANDE HORIZONTAL -->
+    <section *ngIf="project.featuredImage" class="reveal-section mb-16">
+      <img [src]="project.featuredImage" alt="Imagen destacada del proyecto" loading="lazy"
+        class="w-full rounded-2xl shadow" />
+    </section>
+
+    <!-- IMPACTO -->
+    <section *ngIf="project.impact" class="reveal-section mb-8 text-center">
+      <h3 class="text-2xl font-extrabold tracking-wide mb-4">IMPACTO</h3>
+      <p class="max-w-3xl mx-auto leading-relaxed whitespace-pre-line">{{ project.impact!.text }}</p>
+      <div class="mt-8">
+        <a [href]="project.impact!.ctaLink"
+          class="inline-block px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta hover:text-white transition">
+          {{ project.impact!.ctaLabel }}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+  <app-scroll-to-top></app-scroll-to-top>
 </div>
