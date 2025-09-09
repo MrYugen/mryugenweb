@@ -1,11 +1,17 @@
 <div
-  class="flex flex-col min-h-screen bg-cover bg-center"
+  [class.dark]="isDarkMode"
+  class="flex flex-col min-h-screen bg-bg text-text transition-colors duration-300 bg-cover bg-center"
   [ngStyle]="{ 'background-image': backgroundImage ? 'url(' + backgroundImage + ')' : '' }"
 >
-  <app-navbar></app-navbar>
+  <app-navbar
+    [isDarkMode]="isDarkMode"
+    [mobileOpen]="mobileOpen"
+    (toggleTheme)="toggleTheme()"
+    (menuToggle)="mobileOpen = !mobileOpen"
+  ></app-navbar>
 
   <div class="flex-grow flex items-center">
-    <div class="max-w-xl mx-8 text-left text-white bg-black/40 p-8 rounded-md">
+    <div class="max-w-xl mx-8 text-left text-white bg-black/40 dark:bg-black/60 p-8 rounded-md">
       <h1 class="text-4xl font-bold mb-4">{{ title }}</h1>
       <h2 class="text-2xl mb-4">{{ subtitle }}</h2>
       <p class="mb-6">{{ message }}</p>
@@ -18,7 +24,7 @@
           placeholder="Tu correo"
           class="p-2 rounded-l w-full text-gray-900"
         />
-        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-r">
+        <button type="submit" class="bg-cta text-white px-4 py-2 rounded-r">
           Notifícame
         </button>
       </form>

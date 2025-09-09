@@ -7,7 +7,7 @@
 
     <!-- HERO VISUAL -->
 
-    <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'"></app-hero>
+    <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'" [ctaLink]="'/under-construction'"></app-hero>
 
     <!-- ABOUT / STORYTELLING -->
     <section id="about" class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4"
@@ -64,43 +64,44 @@
                 <!-- Diseño Gráfico e Ilustración -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-design-bg)] dark:bg-[color:var(--skill-design-bg)] skills-card">
-                    <img src="assets/images/MrYugenDiseñador.png" alt="Icono Mr Yugen Diseñador Gráfico"
+                    <img src="assets/images/MrYugenDiseñador.png" alt="Icono con Mr Yugen como Diseñador Gráfico"
                         class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Diseño Gráfico & Ilustración</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Photoshop -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_Photoshop_CC_icon.svg" alt="Photoshop"
+                            <img src="assets/images/icons/Adobe_Photoshop_CC_icon.svg" alt="Logo Photoshop"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Photoshop</figcaption>
                         </figure>
                         <!-- Illustrator -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_Illustrator_CC_icon.svg" alt="Illustrator"
+                            <img src="assets/images/icons/Adobe_Illustrator_CC_icon.svg" alt="Logo Illustrator"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Illustrator</figcaption>
                         </figure>
                         <!-- InDesign -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="InDesign"
+                            <img src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="Logo InDesign"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">InDesign</figcaption>
                         </figure>
                         <!-- Procreate -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Procreate_icon.jpeg" alt="Procreate" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Procreate_icon.jpeg" alt="Logo Procreate"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Procreate</figcaption>
                         </figure>
                         <!-- UX/UI -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/UX-UI icon.png" alt="UX UI" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/UX-UI icon.png" alt="Logo UX/UI" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">UX/UI</figcaption>
                         </figure>
                         <!-- Maquetación -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Maquetacion icon.png" alt="Maquetación"
+                            <img src="assets/images/icons/Maquetacion icon.png" alt="Logo Maquetación"
                                 class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Maquetación</figcaption>
+                            <figcaption class="text-xs text-center">Maquetación Web y Editorial</figcaption>
                         </figure>
                     </div>
                 </div>
@@ -108,55 +109,55 @@
                 <!-- Programación con Código -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-coding-bg)] dark:bg-[color:var(--skill-coding-bg)] skills-card">
-                    <img src="assets/images/MrYugenProgramador.png" alt="Icono Mr Yugen Programador"
+                    <img src="assets/images/MrYugenProgramador.png" alt="Icono de Mr Yugen como Programador"
                         class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Programación con Código</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <!-- HTML5 -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/HTML5_logo.svg" alt="HTML5" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/HTML5_logo.svg" alt="Logo HTML5" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">HTML5</figcaption>
                         </figure>
                         <!-- CSS3 -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/CSS3_logo.svg" alt="CSS3" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/CSS3_logo.svg" alt="Logo CSS3" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">CSS3</figcaption>
                         </figure>
                         <!-- JavaScript -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/JS.svg" alt="JavaScript" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/JS.svg" alt="Logo JavaScript" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">JavaScript</figcaption>
                         </figure>
                         <!-- Angular -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Angular_logo.svg" alt="Angular" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Angular_logo.svg" alt="Logo Angular" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Angular</figcaption>
                         </figure>
                         <!-- Python -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Python-logo.svg" alt="Python" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Python-logo.svg" alt="Logo Python" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Python</figcaption>
                         </figure>
                         <!-- SQL -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Sql_logo.svg" alt="SQL" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Sql_logo.svg" alt="Logo SQL" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">SQL</figcaption>
                         </figure>
                         <!-- TypeScript -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Typescript_logo.svg" alt="TypeScript"
+                            <img src="assets/images/icons/Typescript_logo.svg" alt="Logo TypeScript"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">TypeScript</figcaption>
                         </figure>
                         <!-- TailWind CSS -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="TailWind CSS"
+                            <img src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="Logo TailWind CSS"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">TailWind CSS</figcaption>
                         </figure>
                         <!-- Node.JS -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Node.js_logo.svg" alt="Node.js" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Node.js_logo.svg" alt="Logo Node.js" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Node.js</figcaption>
                         </figure>
                     </div>
@@ -165,7 +166,7 @@
                 <!-- Otras Skills -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-other-bg)] dark:bg-[color:var(--skill-other-bg)] skills-card">
-                    <img src="assets/images/MrYugenIA+Ingles.png" alt="Icono Otras skills"
+                    <img src="assets/images/MrYugenIA+Ingles.png" alt="Icono que representa Otras skills"
                         class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Otras Skills</h3>
                     <div class="grid grid-cols-3 gap-4">
@@ -183,39 +184,42 @@
                         </figure>
                         <!-- AI & Prompts -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/AI Prompts.png" alt="AI Agents" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/AI Prompts.png" alt="Icono AI Prompts"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">AI & Prompts</figcaption>
                         </figure>
                         <!-- Automatización -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/AI Agents.png" alt="Automatización" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/AI Agents.png" alt="Icono Automatización"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Automatización</figcaption>
                         </figure>
                         <!-- Copywriting -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/copywriter_logo.png" alt="Copywriting"
+                            <img src="assets/images/icons/copywriter_logo.png" alt="Icono Copywriting"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Copywriting</figcaption>
                         </figure>
                         <!-- No-Code -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/No code.png" alt="No-Code" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/No code.png" alt="Icono No-Code" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Vibe Coding</figcaption>
                         </figure>
                         <!-- Arduino -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Arduino_Logo.svg" alt="Arduino" class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Arduino</figcaption>
+                            <img src="assets/images/icons/Arduino_Logo.svg" alt="Icono Arduino"
+                                class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs">Contabilidad y Fiscalidad</figcaption>
                         </figure>
                         <!-- Blockchain -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/blockchain-icon.svg" alt="Blockchain"
+                            <img src="assets/images/icons/blockchain-icon.svg" alt="Icono Blockchain"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Blockchain</figcaption>
                         </figure>
                         <!-- Crypto -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Bitcoin.svg" alt="Crypto" class="w-10 h-10 mb-1" />
+                            <img src="assets/images/icons/Bitcoin.svg" alt="Logo Bitcoin" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Crypto</figcaption>
                         </figure>
                     </div>
@@ -346,9 +350,9 @@
             </p>
 
             <!-- CTA -->
-            <button class="opacity-0 group-hover:opacity-100 transition-opacity duration-500
+            <button routerLink="/automation" class="opacity-0 group-hover:opacity-100 transition-opacity duration-500
                 px-8 py-3 border-2 border-cta hover:bg-cta rounded-full font-semibold"
-                aria-label="Más información sobre automatización">
+                aria-label="Más información sobre automatización de procesos">
                 Pulsa para ahorrar tiempo
             </button>
         </div>
@@ -362,7 +366,8 @@
 
             <!-- Lado izquierdo (Imagen + emails) centrado -->
             <div #contactLeft class="flex flex-col items-center text-center space-y-4">
-                <img src="assets/images/contact_picture2.png" alt="Contacto" class="w-64 mb-4" loading="lazy" />
+                <img src="assets/images/contact_picture2.png"
+                    alt="Icono gracioso de un sobre cute para la seccion Contacto" class="w-64 mb-4" loading="lazy" />
                 <p class="font-medium text-lg">
                     Puedes ponerte en contacto conmigo en:
                 </p>

@@ -115,7 +115,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       title: 'Couple Clash',
       description:
         '5 años de trabajo plasmados en este original juego de mesa.',
-      link: '/portfolio/couple-clash',
+      link: '/under-construction',
       images: [
         'assets/images/CoupleClashPorfolio.png',
         'assets/images/CoupleClashPorfolio2.png',

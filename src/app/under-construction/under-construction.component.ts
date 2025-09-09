@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-under-construction',
@@ -29,6 +30,20 @@ export class UnderConstructionComponent {
 
   /** Modelo para el input del correo */
   email = '';
+
+  // Estado UI
+  isDarkMode = false;
+  mobileOpen = false;
+
+  constructor(private theme: ThemeService) {
+    // Inicializa el tema según preferencia guardada
+    this.isDarkMode = this.theme.isDark();
+  }
+
+  // Cambia el tema y actualiza estado
+  toggleTheme() {
+    this.isDarkMode = this.theme.toggle();
+  }
 
   onNotify() {
     if (this.email) {

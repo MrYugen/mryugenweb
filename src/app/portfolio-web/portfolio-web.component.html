@@ -5,7 +5,7 @@
         [subtitle]="'Creatividad y tecnología unidas para crear sitios web de impacto'" [showCTA]="true"
         ctaText="Ver proyectos web" [ctaTextColor]="'white'" [ctaLink]="'/portfolio/web#projects'"
         bgImageLight="/assets/images/web/portfolio_web_claro.jpg"
-        bgImageDark="/assets/images/web/portfolio_web_dark.jpg" logoLight="assets/images/logo-hero-light.svg"
+        bgImageDark="/assets/images/web/portfolio_web_dark.jpg" logoLight="assets/images/logo-hero-dark.svg"
         logoDark="assets/images/logo-hero-dark.svg" [logoAlt]="'Logo Proyectos Web'" [overlayOpacity]="0.25"></app-hero>
 
     <main class="py-5 px-4" style="background: var(--main-gradient); min-height: 60vh;">
@@ -73,10 +73,27 @@
                     <div class="p-4 flex flex-col gap-2">
                         <h3 class="text-xl font-bold text-cta mb-1">{{ project.title }}</h3>
                         <p class="text-base text-gray-700 dark:text-gray-300 mb-2">{{ project.summary }}</p>
-                        <a class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
-                            [routerLink]="['/portfolio/web', project.slug]">
-                            Ver más
-                        </a>
+                        <ng-container [ngSwitch]="project.slug">
+                            <!-- Estévez Asesores: CTA disabled and text changed -->
+                            <span *ngSwitchCase="'estevez-asesores'"
+                                  class="mt-2 inline-block self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 opacity-70 cursor-default select-none">
+                                Próximamente
+                            </span>
+
+                            <!-- Couple Clash: CTA goes to under-construction -->
+                            <a *ngSwitchCase="'couple-clash'"
+                               class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
+                               [routerLink]="'/under-construction'">
+                                Ver más
+                            </a>
+
+                            <!-- Default behavior for other projects -->
+                            <a *ngSwitchDefault
+                               class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
+                               [routerLink]="['/portfolio/web', project.slug]">
+                                Ver más
+                            </a>
+                        </ng-container>
                     </div>
                 </div>
             </div>
