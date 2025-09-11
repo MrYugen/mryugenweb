@@ -1,158 +1,230 @@
-# 🧩 Mr. Yugen Web
+# Mr. Yugen Web
 
-**Mr. Yugen Web** es el portafolio y sitio personal de **Miguel Estévez** (_Mr. Yugen_): diseñador gráfico, ilustrador y desarrollador web. Aquí encontrarás:
+Portafolio y sitio personal de Miguel Estévez (Mr. Yugen): diseño gráfico, ilustración y desarrollo web con foco en experiencia de usuario, rendimiento y accesibilidad. Aquí encontrarás:
 
-- 🎨 Mi CV digital y sección “Sobre mí”  
-- ⚙️ Servicios de automatización  
-- 🖼️ Portfolio de **Branding**, Ilustración, Proyectos Web y **Couple Clash**  
-- 📝 Blog con tutoriales y reflexiones  
-- 📬 Formulario de contacto
+- Mi CV y sección “Sobre mí”
+- Servicios de automatización de procesos e IA aplicada
+- Portfolio de Branding, Ilustración y Proyectos Web (incluye Couple Clash)
+- Blog con artículos, tutoriales y reflexiones
+- Formulario de contacto y textos legales
 
----
+—
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [🧩 Mr. Yugen Web](#-mr-yugen-web)
-  - [📋 Tabla de Contenidos](#-tabla-de-contenidos)
-  - [🎥 Demo](#-demo)
-  - [✨ Características](#-características)
-  - [🛠 Tecnologías](#-tecnologías)
-  - [📂 Estructura del Proyecto](#-estructura-del-proyecto)
-  - [🚀 Instalación y Desarrollo](#-instalación-y-desarrollo)
-  - [🔧 Problemas Conocidos](#-problemas-conocidos)
-  - [🤝 Contribución](#-contribución)
-  - [📄 Licencia](#-licencia)
-  - [✍️ Autor y Contacto](#️-autor-y-contacto)
+- [Mr. Yugen Web](#mr-yugen-web)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Visión General](#visión-general)
+  - [Capturas](#capturas)
+  - [Características](#características)
+  - [Tecnologías](#tecnologías)
+  - [Estructura](#estructura)
+  - [Rutas Principales](#rutas-principales)
+  - [Instalación y Desarrollo](#instalación-y-desarrollo)
+  - [Pruebas](#pruebas)
+  - [Despliegue](#despliegue)
+  - [Problemas Conocidos](#problemas-conocidos)
+  - [Contribución](#contribución)
+  - [Licencia](#licencia)
+  - [Autor y Contacto](#autor-y-contacto)
 
----
+—
 
-## 🎥 Demo
+## Visión General
+
+Proyecto SPA en Angular 17 que centraliza mi trabajo creativo y técnico. El sitio utiliza componentes standalone, enrutado con restauración de scroll, modo claro/oscuro persistente y animaciones con GSAP/ScrollTrigger. El contenido está optimizado para rendimiento (lazy‑loading de imágenes) y SEO (metadatos y JSON‑LD). Algunas secciones, como la página dedicada a Couple Clash, están en desarrollo.
+
+Dominio oficial previsto: https://mryugen.com
+
+—
+
+## Capturas
 
 <p align="center">
-  <img src="src/docs/screenshots/Home_mryugenweb_claro.png" alt="Home completo claro" width="300" />  
-  <img src="src/docs/screenshots/Home_mryugenweb_oscuro.png" alt="Home completo oscuro" width="300" />
-  <img src="src/docs/screenshots/Branding completa_mryugenweb_claro.png" alt="Branding completo claro" width="300" />
-  <img src="src/docs/screenshots/Branding completa_mryugenweb_dark.png" alt="Branding completo oscuro" width="300" />
-  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_claro.png" alt="Sección Ilustraciones completo claro" width="300" />
-  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_dark.png" alt="Sección Ilustraciones completo oscuro" width="300" />
-  <img src="src/docs/screenshots/Automatizacion_mryugenweb_claro.png" alt="Automatización completo claro" width="300" />
-  <img src="src/docs/screenshots/Automatizacion_mryugenweb_dark.png" alt="Automatización completo oscuro" width="300" />
+  <img src="src/docs/screenshots/Home_mryugenweb_claro.png" alt="Home claro" width="300" />
+  <img src="src/docs/screenshots/Home_mryugenweb_oscuro.png" alt="Home oscuro" width="300" />
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_claro.png" alt="Branding claro" width="300" />
+  <img src="src/docs/screenshots/Branding completa_mryugenweb_dark.png" alt="Branding oscuro" width="300" />
+  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_claro.png" alt="Ilustraciones claro" width="300" />
+  <img src="src/docs/screenshots/Ilustraciones_mryugenweb_dark.png" alt="Ilustraciones oscuro" width="300" />
+  <img src="src/docs/screenshots/Automatizacion_mryugenweb_claro.png" alt="Automatización claro" width="300" />
+  <img src="src/docs/screenshots/Automatizacion_mryugenweb_dark.png" alt="Automatización oscuro" width="300" />
   <img src="src/docs/screenshots/EjemploProject_mryugenweb_claro.png" alt="Ejemplo proyecto branding claro" width="300" />
   <img src="src/docs/screenshots/EjemploProject_mryugenweb_dark.png" alt="Ejemplo proyecto branding oscuro" width="300" />
-  <img src="src/docs/screenshots/Lightbox_ilustraciones_claro.png" alt="Ejemplo lightbox para ilustraciones claro" width="300" />
-  <img src="src/docs/screenshots/Lightbox_ilustraciones_dark.png" alt="Ejemplo lightbox para ilustraciones oscuro" width="300" />
+  <img src="src/docs/screenshots/Lightbox_ilustraciones_claro.png" alt="Lightbox ilustraciones claro" width="300" />
+  <img src="src/docs/screenshots/Lightbox_ilustraciones_dark.png" alt="Lightbox ilustraciones oscuro" width="300" />
 </p>
 
----
+—
 
-## ✨ Características
+## Características
 
-- **Routing SPA** con Angular 17 y `provideRouter` + scroll restoration.  
-- **Modo Claro/Oscuro** persistente (ThemeService + CSS variables).  
-- **Animaciones** suaves con GSAP y Framer Motion.  
-- **Responsive** 100%: menú desktop/tablet/mobile.  
-- **Accesibilidad**: semántica HTML, atributos ARIA, tamaños adecuados.  
-- **Lazy loading** de imágenes y optimización de rendimiento.
+- Enrutado SPA con `provideRouter` y `withInMemoryScrolling` (scroll al top y soporte de anclas).
+- Modo claro/oscuro persistente vía `ThemeService` + variables CSS (Tailwind `darkMode: 'class'`).
+- Animaciones fluidas con GSAP y ScrollTrigger; micro‑interacciones en cards, sliders y secciones.
+- Responsive 100% en desktop/tablet/móvil.
+- Accesibilidad: HTML semántico, labels y alt, focus states y tamaños legibles.
+- Rendimiento: imágenes `loading="lazy"`, CSS utilitario y uso de assets optimizados.
 
----
+—
 
-## 🛠 Tecnologías
+## Tecnologías
 
-- **Framework**: Angular 17 + TypeScript  
-- **Estilos**: Tailwind CSS (darkMode por clase)  
-- **Animaciones**: GSAP, Framer Motion  
-- **Test**: Jasmine + Karma  
-- **Herramientas**: VS Code, Git, GitHub  
+- Framework: Angular 17 (Standalone Components) + TypeScript
+- Estilos: Tailwind CSS (tema por variables CSS y clase `dark`)
+- Animaciones: GSAP + ScrollTrigger
+- Tests: Jasmine + Karma (con Chrome Headless opcional)
+- Herramientas: Angular CLI, VS Code, Git/GitHub
 
----
+—
 
-## 📂 Estructura del Proyecto
+## Estructura
 
+```
 src/
-├─ app/
-│  ├─ home/                ← Landing page
-│  ├─ portfolio-branding/  ← Branding (hero, proceso, masonry)
-│  ├─ navbar/, hero/, footer/, scroll-to-top/
-│  ├─ services/theme.service.ts
-│  ├─ app.routes.ts
-│  └─ app.config.ts        ← scrollPositionRestoration
-├─ assets/
-│  └─ images/…
-├─ docs/
-│  └─ screenshots/
-└─ styles.css
-Secciones implementadas
+  app/
+    home/                 # Landing: Hero, Sobre mí, Skills, Portfolio, Blog, Automatización, Contacto
+    portfolio-branding/   # Proceso y proyectos de branding (masonry + slider)
+    portfolio-web/        # Proceso y proyectos de web (masonry + slider)
+    ilustraciones/        # Galería de ilustraciones (con lightbox)
+    project-details/      # Detalles de proyecto de branding (incluye before/after slider)
+    project-web-details/  # Detalles de proyecto web
+    automatizacion-page/  # Página de servicios de automatización e IA
+    legal/                # Aviso legal, Privacidad, Cookies, Condiciones, Buenas prácticas
+    under-construction/   # Página temporal para contenido en desarrollo
+    navbar/, hero/, footer/, scroll-to-top/
+    services/
+      theme.service.ts    # Persistencia de modo oscuro
+      blog.service.ts     # Datos del blog (WIP)
+    app.routes.ts         # Rutas principales
+    app.config.ts         # Router + scroll restoration
+  assets/                 # Imágenes y recursos
+  docs/screenshots/       # Capturas usadas en el README
+  styles.css              # Variables y estilos globales
+```
 
-Home → Hero, Sobre mí, Skills, Portfolio preview, Blog, Automatización, Contacto, Footer
+—
 
-Branding → Hero, Proceso paso a paso, Masonry de proyectos destacados, Footer
+## Rutas Principales
 
-Project Details → Hero, Resumen y Detalles del encargo, Investigación y Moodboard, Boceto y Diseño final, Conclusión, Footer
+- `/` Home
+- `/blog` y `/blog/:slug`
+- `/portfolio/branding` y `/portfolio/branding/:slug`
+- `/portfolio/illustration`
+- `/portfolio/web` y `/portfolio/web/:slug`
+- `/automation`
+- `/under-construction`
+- Textos legales: `/aviso-legal`, `/politica-privacidad`, `/politica-cookies`, `/condiciones-generales`, `/buenas-practicas-tecnicas`
 
-## 🚀 Instalación y Desarrollo
+—
 
-- **Clona este repositorio**
+## Instalación y Desarrollo
 
-`git clone https://github.com/MrYugen/mryugenweb.git`
-`cd mryugenweb`
+Requisitos: Node.js 18+ y npm.
 
-- **Instala dependencias**
+1) Clona el repositorio
 
-`npm install`
+```
+git clone https://github.com/MrYugen/mryugenweb.git
+cd mryugenweb
+```
 
-- **Lanza el servidor de desarrollo**
+2) Instala dependencias
 
-`npm start`
+```
+npm install
+```
 
-- **Abre:**  `http://localhost:4200`
+3) Entorno de desarrollo
 
-- **Para ejecutar los test normales**
+```
+npm start
+```
 
-`npm test`
+Abre `http://localhost:4200`.
 
-- **Para ejecutar los test en modo headless**
+—
 
-`npm run test:ia`
+## Pruebas
 
-> ⚠️ **Nota:** La IA/automatización necesita tener Google Chrome instalado en su entorno.  
-> Estos comandos solo funcionan si existe Chrome disponible (en GitHub Actions ya viene por defecto).
+- Ejecutar tests en navegador
 
-## 🔧 Problemas Conocidos
+```
+npm test
+```
 
-Actualmente no hay problemas conocidos. Si encuentras algún bug, abre un issue en GitHub.
+- Ejecutar en headless (requiere Google Chrome)
 
-## 🤝 Contribución
+```
+npm run test:ia
+```
 
-- **Haz un fork del repositorio.**
+Nota: en CI (p. ej. GitHub Actions) suele estar disponible Chrome.
 
-- **Crea una rama de feature:**
+—
 
-`git checkout -b feature/mi-nueva-funcionalidad`
+## Despliegue
 
-- **Realiza tus cambios y commitea:**
+Genera build de producción en `dist/`:
 
-`git commit -m "feat: Descripción breve"`
+```
+npm run build
+```
 
-- **Push y abre un Pull Request.**
+El resultado es una app SPA estática que puedes servir con Nginx, Apache o un hosting estático (Netlify, Vercel, etc.). Configura el rewrite de SPA para redirigir rutas al `index.html`.
 
-## 📄 Licencia
+—
 
-Este proyecto está bajo Creative Commons BY-NC-SA 4.0.
+## Problemas Conocidos
 
-Puedes compartir y adaptar bajo:
+- Algunas secciones y entradas del blog están en evolución activa.
+- La página dedicada a Couple Clash está marcada como “En construcción”.
+- Problemas menores con la visualización de la web en algunos dispositivos móviles.
 
-Atribución a **Miguel Estévez - Mr. Yugen**
+Si encuentras un bug, abre un issue con pasos para reproducirlo.
 
-Sin uso comercial
+—
 
-Compartir bajo la misma licencia
+## Contribución
 
-## ✍️ Autor y Contacto
+1) Haz fork del repositorio
+
+2) Crea una rama de feature
+
+```
+git checkout -b feature/mi-nueva-funcionalidad
+```
+
+3) Realiza tus cambios y commitea
+
+```
+git commit -m "feat: descripción breve"
+```
+
+4) Haz push y abre un Pull Request
+
+—
+
+## Licencia
+
+Creative Commons BY‑NC‑SA 4.0.
+
+Puedes compartir y adaptar bajo las condiciones:
+
+- Atribución a Miguel Estévez – Mr. Yugen
+- Sin uso comercial
+- Compartir bajo la misma licencia
+
+Más info: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es
+
+—
+
+## Autor y Contacto
 
 **Miguel Estévez (Mr. Yugen)**
 
-**GitHub:** @MrYugen
+- GitHub: @MrYugen
+- Email: [mryugenmystery@gmail.com](mailto:mryugenmystery@gmail.com)
 
-**Email:** [mryugenmystery@gmail.com](mailto:mryugenmystery@gmail.com)
+Gracias por pasarte. Espero que este README te ayude a entender el proyecto y a contribuir si te apetece.
 
-¡Gracias por pasar por aquí! Espero que este README sirva de punto de partida claro y ayude a cualquiera que quiera colaborar.
