@@ -30,7 +30,7 @@
                     style="min-height: 40vh; width: 100%;">
                     <div *ngFor="let step of webSteps; let i = index"
                         class="min-w-full flex flex-col items-center justify-between px-4">
-                        <img [src]="step.image" [alt]="step.title"
+                        <img loading="lazy" [src]="step.image" [alt]="step.title"
                             class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-2xl mb-3"
                             style="max-width:340px; max-height:340px;" />
                         <div class="flex flex-col items-center">
@@ -76,21 +76,21 @@
                         <ng-container [ngSwitch]="project.slug">
                             <!-- Estévez Asesores: CTA disabled and text changed -->
                             <span *ngSwitchCase="'estevez-asesores'"
-                                  class="mt-2 inline-block self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 opacity-70 cursor-default select-none">
+                                class="mt-2 inline-block self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 opacity-70 cursor-default select-none">
                                 Próximamente
                             </span>
 
                             <!-- Couple Clash: CTA goes to under-construction -->
                             <a *ngSwitchCase="'couple-clash'"
-                               class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
-                               [routerLink]="'/under-construction'">
+                                class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
+                                [routerLink]="'/under-construction'">
                                 Ver más
                             </a>
 
                             <!-- Default behavior for other projects -->
                             <a *ngSwitchDefault
-                               class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
-                               [routerLink]="['/portfolio/web', project.slug]">
+                                class="mt-2 self-start px-4 py-1.5 rounded-full border border-cta text-text dark:text-bg font-semibold text-sm bg-white/90 dark:bg-bg/80 hover:bg-cta hover:text-white dark:hover:text-white transition"
+                                [routerLink]="['/portfolio/web', project.slug]">
                                 Ver más
                             </a>
                         </ng-container>

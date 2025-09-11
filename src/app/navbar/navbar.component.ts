@@ -11,10 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   @Input() isDarkMode: boolean = false;
-  @Input() mobileOpen: boolean = false;
+  mobileOpen = false;
 
   @Output() toggleTheme = new EventEmitter<void>();
-  @Output() menuToggle = new EventEmitter<void>();
-
-  // Opcional: puedes manejar aquí lógica del menú si lo prefieres
+  
+  toggleMenu() {
+    this.mobileOpen = !this.mobileOpen;
+  }
 }

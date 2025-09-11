@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
@@ -13,12 +15,11 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-automatizacion-page',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent],
+  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent],
   templateUrl: './automatizacion-page.component.html',
   styleUrls: ['./automatizacion-page.component.css']
 })
 export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDestroy {
-  mobileOpen = false;
   isDarkMode = false;
   carouselImages: string[] = [
     'assets/images/automatizacion/carousel_portada.jpg',

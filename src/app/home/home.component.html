@@ -1,9 +1,7 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
 
     <!-- NAVBAR -->
-    <app-navbar [isDarkMode]="isDarkMode" [mobileOpen]="mobileOpen" (toggleTheme)="toggleTheme()"
-        (menuToggle)="mobileOpen = !mobileOpen">
-    </app-navbar>
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
 
     <!-- HERO VISUAL -->
 
@@ -12,7 +10,7 @@
     <!-- ABOUT / STORYTELLING -->
     <section id="about" class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4"
         aria-labelledby="about-heading">
-        <img src="assets/images/profile_mryugen.png" alt="Imagen de perfil de Mr. Yugen al estilo anime"
+        <img loading="lazy" src="assets/images/profile_mryugen.png" alt="Imagen de perfil de Mr. Yugen al estilo anime"
             class="w-48 h-48 rounded-full shadow-lg" #aboutImage />
         <div #aboutText>
             <h2 id="about-heading" class="text-3xl font-bold mb-4">¿Quién es Mr. Yugen?</h2>
@@ -64,42 +62,43 @@
                 <!-- Diseño Gráfico e Ilustración -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-design-bg)] dark:bg-[color:var(--skill-design-bg)] skills-card">
-                    <img src="assets/images/MrYugenDiseñador.png" alt="Icono con Mr Yugen como Diseñador Gráfico"
-                        class="mx-auto mb-4 w-32 h-32" />
+                    <img loading="lazy" src="assets/images/MrYugenDiseñador.png"
+                        alt="Icono con Mr Yugen como Diseñador Gráfico" class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Diseño Gráfico & Ilustración</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Photoshop -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_Photoshop_CC_icon.svg" alt="Logo Photoshop"
-                                class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Adobe_Photoshop_CC_icon.svg"
+                                alt="Logo Photoshop" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Photoshop</figcaption>
                         </figure>
                         <!-- Illustrator -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_Illustrator_CC_icon.svg" alt="Logo Illustrator"
-                                class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Adobe_Illustrator_CC_icon.svg"
+                                alt="Logo Illustrator" class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Illustrator</figcaption>
                         </figure>
                         <!-- InDesign -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="Logo InDesign"
+                            <img loading="lazy" src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="Logo InDesign"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">InDesign</figcaption>
                         </figure>
                         <!-- Procreate -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Procreate_icon.jpeg" alt="Logo Procreate"
+                            <img loading="lazy" src="assets/images/icons/Procreate_icon.jpeg" alt="Logo Procreate"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Procreate</figcaption>
                         </figure>
                         <!-- UX/UI -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/UX-UI icon.png" alt="Logo UX/UI" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/UX-UI icon.png" alt="Logo UX/UI"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">UX/UI</figcaption>
                         </figure>
                         <!-- Maquetación -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Maquetacion icon.png" alt="Logo Maquetación"
+                            <img loading="lazy" src="assets/images/icons/Maquetacion icon.png" alt="Logo Maquetación"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs text-center">Maquetación Web y Editorial</figcaption>
                         </figure>
@@ -109,55 +108,62 @@
                 <!-- Programación con Código -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-coding-bg)] dark:bg-[color:var(--skill-coding-bg)] skills-card">
-                    <img src="assets/images/MrYugenProgramador.png" alt="Icono de Mr Yugen como Programador"
-                        class="mx-auto mb-4 w-32 h-32" />
+                    <img loading="lazy" src="assets/images/MrYugenProgramador.png"
+                        alt="Icono de Mr Yugen como Programador" class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Programación con Código</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <!-- HTML5 -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/HTML5_logo.svg" alt="Logo HTML5" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/HTML5_logo.svg" alt="Logo HTML5"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">HTML5</figcaption>
                         </figure>
                         <!-- CSS3 -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/CSS3_logo.svg" alt="Logo CSS3" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/CSS3_logo.svg" alt="Logo CSS3"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">CSS3</figcaption>
                         </figure>
                         <!-- JavaScript -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/JS.svg" alt="Logo JavaScript" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/JS.svg" alt="Logo JavaScript"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">JavaScript</figcaption>
                         </figure>
                         <!-- Angular -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Angular_logo.svg" alt="Logo Angular" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Angular_logo.svg" alt="Logo Angular"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Angular</figcaption>
                         </figure>
                         <!-- Python -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Python-logo.svg" alt="Logo Python" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Python-logo.svg" alt="Logo Python"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Python</figcaption>
                         </figure>
                         <!-- SQL -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Sql_logo.svg" alt="Logo SQL" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Sql_logo.svg" alt="Logo SQL"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">SQL</figcaption>
                         </figure>
                         <!-- TypeScript -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Typescript_logo.svg" alt="Logo TypeScript"
+                            <img loading="lazy" src="assets/images/icons/Typescript_logo.svg" alt="Logo TypeScript"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">TypeScript</figcaption>
                         </figure>
                         <!-- TailWind CSS -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="Logo TailWind CSS"
+                            <img loading="lazy" src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="Logo TailWind CSS"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">TailWind CSS</figcaption>
                         </figure>
                         <!-- Node.JS -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Node.js_logo.svg" alt="Logo Node.js" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Node.js_logo.svg" alt="Logo Node.js"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Node.js</figcaption>
                         </figure>
                     </div>
@@ -166,60 +172,62 @@
                 <!-- Otras Skills -->
                 <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
                 bg-[color:var(--skill-other-bg)] dark:bg-[color:var(--skill-other-bg)] skills-card">
-                    <img src="assets/images/MrYugenIA+Ingles.png" alt="Icono que representa Otras skills"
+                    <img loading="lazy" src="assets/images/MrYugenIA+Ingles.png" alt="Icono que representa Otras skills"
                         class="mx-auto mb-4 w-32 h-32" />
                     <h3 class="text-xl font-semibold text-center mb-3">Otras Skills</h3>
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Inglés escrito -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Ingles escrito.png" alt="Inglés Escrito"
+                            <img loading="lazy" src="assets/images/icons/Ingles escrito.png" alt="Inglés Escrito"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Inglés Escrito</figcaption>
                         </figure>
                         <!-- Inglés hablado -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Ingles hablado.png" alt="Inglés Hablado"
+                            <img loading="lazy" src="assets/images/icons/Ingles hablado.png" alt="Inglés Hablado"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Inglés Hablado</figcaption>
                         </figure>
                         <!-- AI & Prompts -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/AI Prompts.png" alt="Icono AI Prompts"
+                            <img loading="lazy" src="assets/images/icons/AI Prompts.png" alt="Icono AI Prompts"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">AI & Prompts</figcaption>
                         </figure>
                         <!-- Automatización -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/AI Agents.png" alt="Icono Automatización"
+                            <img loading="lazy" src="assets/images/icons/AI Agents.png" alt="Icono Automatización"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Automatización</figcaption>
                         </figure>
                         <!-- Copywriting -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/copywriter_logo.png" alt="Icono Copywriting"
+                            <img loading="lazy" src="assets/images/icons/copywriter_logo.png" alt="Icono Copywriting"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Copywriting</figcaption>
                         </figure>
                         <!-- No-Code -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/No code.png" alt="Icono No-Code" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/No code.png" alt="Icono No-Code"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Vibe Coding</figcaption>
                         </figure>
-                        <!-- Arduino -->
+                        <!-- Contabilidad y Finanzas -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Arduino_Logo.svg" alt="Icono Arduino"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Contabilidad y Fiscalidad</figcaption>
+                            <img loading="lazy" src="assets/images/icons/presupuesto.png"
+                                alt="Icono Contabilidad y Fiscalidad" class="w-10 h-10 mb-1" />
+                            <figcaption class="text-xs text-center">Contabilidad y Fiscalidad</figcaption>
                         </figure>
                         <!-- Blockchain -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/blockchain-icon.svg" alt="Icono Blockchain"
+                            <img loading="lazy" src="assets/images/icons/blockchain-icon.svg" alt="Icono Blockchain"
                                 class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Blockchain</figcaption>
                         </figure>
                         <!-- Crypto -->
                         <figure class="flex flex-col items-center">
-                            <img src="assets/images/icons/Bitcoin.svg" alt="Logo Bitcoin" class="w-10 h-10 mb-1" />
+                            <img loading="lazy" src="assets/images/icons/Bitcoin.svg" alt="Logo Bitcoin"
+                                class="w-10 h-10 mb-1" />
                             <figcaption class="text-xs">Crypto</figcaption>
                         </figure>
                     </div>
@@ -254,7 +262,7 @@
                     [ngStyle]="{ 'background-color': 'var(--portfolio-bg-' + item.id + ')' }">
                     <!-- Imagen con carousel al click -->
                     <div class="relative" (pointerdown)="onPointerDown($event)" (pointerup)="onPointerUp($event, item)">
-                        <img [src]="item.images[item.currentIndex]" [alt]="item.title"
+                        <img loading="lazy" [src]="item.images[item.currentIndex]" [alt]="item.title"
                             class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110 rounded-lg"
                             (click)="nextImage(item)" />
                         <!-- Flechas -->
@@ -304,7 +312,7 @@
             <a *ngFor="let post of latestPosts" [routerLink]="['/blog', post.slug]"
                 class="blog-card relative block rounded-2xl overflow-hidden shadow-lg">
                 <!-- Imagen redondeada -->
-                <img [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
+                <img loading="lazy" [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
                 <!-- Overlay oscurito al 60% + hover -->
                 <div class="absolute inset-0 bg-black/60 flex flex-col justify-center items-center
                 opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -327,7 +335,7 @@
     </section>
 
     <!-- SERVICIOS DESTACADOS -->
-    <section id="automation" class="relative h-screen overflow-hidden group" aria-labelledby="automation-heading">
+    <section id="automation" class="relative min-h-screen overflow-hidden group" aria-labelledby="automation-heading">
         <!-- Fondo parallax -->
         <div #parallaxBg class="absolute top-[-10vh] left-0 w-full h-[120vh] bg-center bg-cover"
             style="background-image: url('assets/images/automatizacion_background.jpg')" loading="lazy"></div>
@@ -336,7 +344,7 @@
         <div class="absolute inset-0 bg-black/10 group-hover:bg-black/60 transition-colors duration-500"></div>
 
         <!-- Contenido -->
-        <div class="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center text-white">
             <h2 id="automation-heading" class="text-5xl font-bold leading-tight mb-6 drop-shadow-md">
                 Automatización de Procesos para Empresas y Particulares
             </h2>
@@ -410,6 +418,11 @@
                         class="w-full py-3 border-2 border-cta hover:bg-cta hover:text-white rounded-full font-semibold transition">
                         Pulsa y te leeré en breve
                     </button>
+                    <p class="text-xs text-[color:var(--text)]/70 mt-4">Al enviar este formulario aceptas nuestro
+                        <a routerLink="/aviso-legal" class="underline">Aviso Legal</a>,
+                        <a routerLink="/politica-privacidad" class="underline">Política de Privacidad</a> y las
+                        <a routerLink="/condiciones-generales" class="underline">Condiciones Generales</a>.
+                    </p>
 
                 </form>
             </div>

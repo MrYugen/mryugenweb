@@ -6,32 +6,28 @@
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
         </a>
         <ul class="hidden md:flex space-x-6 drop-shadow-sm" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
-            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta"
-                    (click)="mobileOpen=false">Home</a></li>
+            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
             <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta"
                     (click)="mobileOpen=false">Habilidades</a></li>
             <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta"
                     (click)="mobileOpen=false">Portfolio</a></li>
             <li><a routerLink="/blog" class="hover:text-cta" (click)="mobileOpen=false">Blog</a></li>
-            <li><a routerLink="/automation" class="hover:text-cta"
-                    (click)="mobileOpen=false">Automatización</a></li>
+            <li><a routerLink="/automation" class="hover:text-cta" (click)="mobileOpen=false">Automatización</a></li>
             <li><a [routerLink]="['/']" fragment="contact" class="hover:text-cta"
                     (click)="mobileOpen=false">Contacto</a></li>
         </ul>
         <!-- Toggle / Mobile hamburger -->
         <div class="flex items-center space-x-4">
-            <button (click)="toggleTheme.emit()"
-                class="focus:outline-none"
-                [attr.aria-pressed]="isDarkMode"
+            <button (click)="toggleTheme.emit()" class="focus:outline-none" [attr.aria-pressed]="isDarkMode"
                 [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
                 <span class="theme-toggle" [class.is-dark]="isDarkMode">
                     <img class="icon sun" src="assets/images/icons/theme-sun.png" alt="" aria-hidden="true" />
                     <img class="icon moon" src="assets/images/icons/theme-moon.png" alt="" aria-hidden="true" />
                 </span>
             </button>
-            <button class="md:hidden" (click)="menuToggle.emit()"
-                [attr.aria-label]="mobileOpen ? 'Cerrar menǧ' : 'Abrir menǧ'">
-                <!-- ��cono hamburguesa -->
+            <button class="md:hidden" (click)="toggleMenu()"
+                [attr.aria-label]="mobileOpen ? 'Cerrar menú' : 'Abrir menú'" [attr.aria-expanded]="mobileOpen">
+                <!-- Ícono hamburguesa -->
                 <svg class="w-6 h-6" fill="none" stroke="currentColor">
                     <path *ngIf="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M4 6h16M4 12h16M4 18h16" />
@@ -42,7 +38,8 @@
         </div>
     </nav>
     <!-- Mobile menu fullscreen -->
-    <div *ngIf="mobileOpen" class="fixed inset-0 bg-bg flex flex-col items-center justify-center space-y-8 text-xl">
+    <div *ngIf="mobileOpen"
+        class="fixed inset-0 z-50 bg-bg flex flex-col items-center justify-center space-y-8 text-xl">
         <a href="#hero" (click)="mobileOpen=false">Home</a>
         <a href="#skills" (click)="mobileOpen=false">Skills</a>
         <a href="#portfolio" (click)="mobileOpen=false">Portfolio</a>

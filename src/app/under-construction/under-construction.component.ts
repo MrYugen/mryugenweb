@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ThemeService } from '../services/theme.service';
@@ -8,7 +9,7 @@ import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-under-construction',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, FooterComponent],
   templateUrl: './under-construction.component.html',
   styleUrl: './under-construction.component.css'
 })
@@ -33,7 +34,6 @@ export class UnderConstructionComponent {
 
   // Estado UI
   isDarkMode = false;
-  mobileOpen = false;
 
   constructor(private theme: ThemeService) {
     // Inicializa el tema según preferencia guardada

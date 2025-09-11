@@ -9,6 +9,11 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 import { AutomatizacionPageComponent } from './automatizacion-page/automatizacion-page.component';
 import { UnderConstructionComponent } from './under-construction/under-construction.component';
+import { AvisoLegalComponent } from './legal/aviso-legal/aviso-legal.component';
+import { PoliticaPrivacidadComponent } from './legal/politica-privacidad/politica-privacidad.component';
+import { PoliticaCookiesComponent } from './legal/politica-cookies/politica-cookies.component';
+import { CondicionesGeneralesComponent } from './legal/condiciones-generales/condiciones-generales.component';
+import { BuenasPracticasComponent } from './legal/buenas-practicas/buenas-practicas.component';
 
 export const routes: Routes = [
   // 1) La ruta raíz carga HomeComponent
@@ -34,6 +39,13 @@ export const routes: Routes = [
 
   // Página temporal de "En construcción"
   { path: 'under-construction', component: UnderConstructionComponent },
+
+  // Textos legales
+  { path: 'aviso-legal', component: AvisoLegalComponent },
+  { path: 'politica-privacidad', component: PoliticaPrivacidadComponent },
+  { path: 'politica-cookies', component: PoliticaCookiesComponent },
+  { path: 'condiciones-generales', component: CondicionesGeneralesComponent },
+  { path: 'buenas-practicas-tecnicas', component: BuenasPracticasComponent },
 
   // 3) Cualquier otra URL redirige a '' (Home)
   { path: '**', redirectTo: '', pathMatch: 'full' }

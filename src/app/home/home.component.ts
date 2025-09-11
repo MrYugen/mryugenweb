@@ -54,7 +54,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private startX = 0;
   private intervals: any[] = [];
 
-  mobileOpen = false;  // Control del menú hamburguesa
   isDarkMode = false;  // Estado del tema
 
   onPointerDown(e: PointerEvent) {

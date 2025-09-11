@@ -7,6 +7,10 @@
     transition: background-image 0.3s ease;
 }
 
+@media (max-width: 768px) {
+    .hero { background-attachment: scroll; }
+}
+
 /* Overlay para mejorar legibilidad */
 .hero::before {
     content: '';

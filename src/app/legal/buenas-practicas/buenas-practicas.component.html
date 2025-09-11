@@ -1,0 +1,35 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <main class="max-w-3xl mx-auto py-16 px-4 prose">
+        <h1>BUENAS PRÁCTICAS TÉCNICAS</h1>
+        <br>
+        <p>En Mr. Yugen adoptamos diversas buenas prácticas técnicas para garantizar la transparencia, el cumplimiento
+            normativo y la comodidad de nuestros usuarios al navegar por el Sitio Web. A continuación, destacamos dos
+            aspectos importantes implementados en nuestra web:</p>
+        <br>
+        <ul>
+            <li><strong>Accesibilidad de la información legal:</strong> Todos los textos legales (Aviso Legal, Política
+                de Privacidad, Política de Cookies y Condiciones Generales de Contratación) están disponibles de forma
+                permanente para el usuario en el Sitio Web. En concreto, se han incluido enlaces visibles hacia estas
+                secciones en el pie de página (footer) de todas las páginas del sitio, así como referencias o enlaces en
+                los formularios de recogida de datos (por ejemplo, junto a los campos de suscripción o contacto) para
+                que el usuario pueda consultar la información pertinente antes de completar el envío de sus datos. De
+                este modo, garantizamos que el usuario tenga acceso fácil e inmediato a nuestras políticas y condiciones
+                desde cualquier sección del Sitio Web.</li>
+                <br>
+            <li><strong>Gestión del consentimiento de cookies:</strong> El Sitio Web cuenta con mecanismos técnicos que
+                permiten al usuario gestionar sus preferencias de cookies en cualquier momento. Tras la primera visita,
+                donde el usuario puede aceptar, rechazar o personalizar el uso de cookies mediante el banner inicial,
+                permanece accesible en todo momento una herramienta de configuración (por ejemplo, un enlace en el
+                footer denominado "Configuración de Cookies" o similar). A través de dicha herramienta, el usuario puede
+                modificar o retirar su consentimiento previamente otorgado para el uso de cookies no esenciales de forma
+                sencilla y efectiva. Esto asegura el cumplimiento de la normativa en materia de cookies (LSSI y RGPD) y
+                otorga al usuario un control continuo sobre su privacidad durante la navegación.</li>
+        </ul>
+        <p>Estas buenas prácticas reflejan nuestro compromiso con la protección de los derechos de los usuarios y con el
+            cumplimiento de las exigencias legales vigentes, facilitando una experiencia de uso transparente y segura en
+            nuestra página web.</p>
+    </main>
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

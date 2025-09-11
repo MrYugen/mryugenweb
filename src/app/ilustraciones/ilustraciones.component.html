@@ -48,8 +48,9 @@
                         <path d="M9 6l6 6-6 6" />
                     </svg>
                 </button>
-                <img [src]="illustrations[activeIndex].process[currentStep]" [alt]="illustrations[activeIndex].title"
-                    class="modal-img" (click)="toggleZoom()" [class.zoomed]="zoomed"
+                <img loading="lazy" [src]="illustrations[activeIndex].process[currentStep]"
+                    [alt]="illustrations[activeIndex].title" class="modal-img" (click)="toggleZoom()"
+                    [class.zoomed]="zoomed"
                     [ngStyle]="zoomed ? { 'transform': 'scale(1.7) translate(' + imgOffset.x + 'px,' + imgOffset.y + 'px)' } : null"
                     [style.cursor]="zoomed ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in'"
                     (mouseenter)="showZoomHint = true" (mouseleave)="showZoomHint = false"
@@ -68,8 +69,8 @@
 
             </div>
             <div class="flex justify-center gap-2 mt-4">
-                <img *ngFor="let p of illustrations[activeIndex].process; let j=index" [src]="p" (click)="setStep(j)"
-                    [alt]="illustrations[activeIndex].title + ' paso ' + (j+1)"
+                <img loading="lazy" *ngFor="let p of illustrations[activeIndex].process; let j=index" [src]="p"
+                    (click)="setStep(j)" [alt]="illustrations[activeIndex].title + ' paso ' + (j+1)"
                     class="w-16 h-16 object-cover rounded cursor-pointer border-2"
                     [class.border-cta]="j===currentStep" />
             </div>

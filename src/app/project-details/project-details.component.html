@@ -93,7 +93,7 @@
         <div class="relative" (click)="$event.stopPropagation()">
             <button id="lightbox-close" class="absolute -top-12 -right-28 text-8xl text-orange-600"
                 (click)="closeLightbox()" aria-label="Cerrar">×</button>
-            <img [src]="activeImage" alt="Imagen ampliada" class="max-h-[90vh] rounded-xl shadow-xl" />
+            <img loading="lazy" [src]="activeImage" alt="Imagen ampliada" class="max-h-[90vh] rounded-xl shadow-xl" />
         </div>
     </div>
 
