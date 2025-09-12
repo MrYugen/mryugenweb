@@ -1,4 +1,4 @@
-#hero .hero-content p{ @apply text-white md:text-white; }
+#hero .hero-content p{ @apply text-white; }
 
 img.blur-sm {
   filter: blur(20px);

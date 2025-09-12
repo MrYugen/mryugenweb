@@ -8,3 +8,16 @@
   }
 
   figure:hover img { @apply scale-110 transition-transform; }
+
+  /* Parallax background adjustments */
+  .parallax-bg {
+    top: -15vh;
+    min-height: calc(100vh + 20vh);
+  }
+
+  @media (max-width: 768px) {
+    .parallax-bg {
+      top: 0;
+      min-height: 100vh;
+    }
+  }

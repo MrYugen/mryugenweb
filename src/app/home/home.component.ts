@@ -243,8 +243,8 @@ ngAfterViewInit() {
       this.intervals.push(id);
     });
 
-    // Automatización Parallax
-    if (this.parallaxBg) {
+   // Automatización Parallax (deshabilitado en pantallas pequeñas)
+    if (this.parallaxBg && window.innerWidth > 768) {
       gsap.to(this.parallaxBg.nativeElement, {
         y: () => window.innerHeight * 0.3, // Ajusta el valor si lo quieres más/menos pronunciado
         ease: 'none',

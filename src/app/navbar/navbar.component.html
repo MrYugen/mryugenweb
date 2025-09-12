@@ -1,9 +1,9 @@
 <header
     class="fixed top-0 w-full z-50 bg-[color:var(--color-bg)] dark:bg-bg/80 border-b border-white/20 backdrop-blur-md transition-colors duration-300 h-16">
-    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <!-- Logo clickable, cambia segǧn tema -->
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4 w-full overflow-x-hidden">
+        <!-- Logo clickable, cambia según tema -->
         <a routerLink="/">
-            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-96 max-h-10" />
+            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-8 sm:h-10 w-auto" />
         </a>
         <ul class="hidden md:flex space-x-6 drop-shadow-sm" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
             <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
@@ -38,13 +38,12 @@
         </div>
     </nav>
     <!-- Mobile menu fullscreen -->
-    <div *ngIf="mobileOpen"
-        class="fixed inset-0 z-50 bg-bg flex flex-col items-center justify-center space-y-8 text-xl">
-        <a href="#hero" (click)="mobileOpen=false">Home</a>
-        <a href="#skills" (click)="mobileOpen=false">Skills</a>
-        <a href="#portfolio" (click)="mobileOpen=false">Portfolio</a>
-        <a [routerLink]="['/blog']" (click)="mobileOpen=false">Blog</a>
-        <a [routerLink]="['/automation']" (click)="mobileOpen=false">Automatización</a>
-        <a href="#contact" (click)="mobileOpen=false">Contacto</a>
+    <div *ngIf="mobileOpen" class="fixed inset-0 z-50 bg-bg flex flex-col items-center justify-center gap-8 text-xl">
+        <a href="#hero" (click)="mobileOpen=false" class="block w-full text-center">Home</a>
+        <a href="#skills" (click)="mobileOpen=false" class="block w-full text-center">Skills</a>
+        <a href="#portfolio" (click)="mobileOpen=false" class="block w-full text-center">Portfolio</a>
+        <a [routerLink]="['/blog']" (click)="mobileOpen=false" class="block w-full text-center">Blog</a>
+        <a [routerLink]="['/automation']" (click)="mobileOpen=false" class="block w-full text-center">Automatización</a>
+        <a href="#contact" (click)="mobileOpen=false" class="block w-full text-center">Contacto</a>
     </div>
 </header>

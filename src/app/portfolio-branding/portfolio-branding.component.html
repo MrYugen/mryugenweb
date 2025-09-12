@@ -10,7 +10,7 @@
     <main class="py-5 px-4" style="background: var(--main-gradient); min-height: 60vh;">
         <section class="max-w-5xl mx-auto px-4 mt-5 mb-12">
             <!-- Título y texto introductorio -->
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-4">
                 ¿Cómo nace una marca memorable?
             </h2>
             <p class="text-center max-w-2xl mx-auto mb-10 text-lg">
@@ -25,7 +25,7 @@
             <div class="relative overflow-hidden" style="max-height: 80vh;">
                 <!-- Botón Izquierda -->
                 <button
-                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    class="absolute left-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10"
                     (click)="prevSlide()">
                     ←
                 </button>
@@ -37,35 +37,40 @@
                     <div *ngFor="let step of brandingSteps; let i = index"
                         class="min-w-full flex flex-col items-center justify-between px-4">
                         <img loading="lazy" [src]="step.image" [alt]="step.title"
-                            class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-2xl shadow-lg mb-1"
-                            style="max-width:340px; max-height:340px;" />
+                            class="w-80 h-80 md:w-96 md:h-96 object-cover rounded-2xl shadow-lg mb-1 max-w-[340px] max-h-[340px]" />
                         <div class="flex flex-col items-center">
-                            <h3 class="text-2xl font-semibold mb-2 text-center">{{ step.title }}</h3>
+                            <h3 class="text-2xl md:text-4xl font-semibold mb-2 text-center">{{ step.title }}</h3>
                             <p class="text-base text-center text-text/90 dark:text-white/80">{{ step.text }}</p>
                         </div>
                     </div>
                 </div>
                 <!-- Botón Derecha -->
                 <button
-                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10 hidden md:block"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-orange-500/80 text-white dark:bg-bg-alt/80 rounded-full shadow p-2 z-10"
                     (click)="nextSlide()">
                     →
+                </button>
+            </div>
+            <div class="flex justify-center mt-3 gap-2">
+                <button *ngFor="let step of brandingSteps; let i = index" class="w-3 h-3 rounded-full"
+                    [class.bg-orange-500]="i === currentStep" [class.bg-gray-300]="i !== currentStep"
+                    [class.dark:bg-gray-600]="i !== currentStep" (click)="goToSlide(i)"
+                    aria-label="Ir al paso {{ i + 1 }}">
                 </button>
             </div>
         </section>
 
         <section id="projects" class="max-w-6xl mx-auto px-4 pt-10 pb-20 reveal-section">
-            <h2 class="text-3xl font-bold mb-2 text-center">Proyectos destacados de branding</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-2 text-center">Proyectos destacados de branding</h2>
             <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-12">
                 Explora el proceso creativo detrás de identidades visuales únicas que dejan huella
             </p>
 
             <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
                 <div *ngFor="let project of brandingProjects; let i = index"
-                    class="mb-6 break-inside-avoid rounded-2xl shadow-xl bg-white dark:bg-bg-alt transition hover:scale-[1.02] hover:shadow-2xl group cursor-pointer overflow-hidden relative reveal-card"
+                    class="mb-6 break-inside-avoid rounded-2xl shadow-xl bg-white dark:bg-bg-alt transition hover:scale-[1.02] hover:shadow-2xl group cursor-pointer overflow-hidden relative reveal-card w-full max-w-xs sm:max-w-sm md:max-w-md min-h-[470px] mx-auto"
                     tabindex="0" aria-label="Ver más sobre el proyecto" (touchstart)="onCardTouchStart($event, i)"
-                    (touchend)="onCardTouchEnd($event, i)"
-                    style="min-width: 300px; max-width: 370px; min-height: 470px; margin-left:auto; margin-right:auto;">
+                    (touchend)="onCardTouchEnd($event, i)">
                     <!-- Imagen del carrusel con fade -->
                     <img [src]="project.images[currentImageIndexes[i]]" [alt]="project.title"
                         class="w-full object-cover rounded-t-2xl transition-opacity duration-500 group-hover:opacity-80"

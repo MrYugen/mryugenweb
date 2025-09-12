@@ -291,7 +291,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   // Hero slider
   prevSlide() { this.currentStep = this.currentStep > 0 ? this.currentStep - 1 : this.brandingSteps.length - 1; }
   nextSlide() { this.currentStep = this.currentStep < this.brandingSteps.length - 1 ? this.currentStep + 1 : 0; }
-  goToSlide(i: number) { this.currentStep = i; }
+  goToSlide(index: number) { this.currentStep = index; }
   onTouchStart(event: TouchEvent) { this.startX = event.touches[0].clientX; }
   onTouchEnd(event: TouchEvent) {
     const delta = event.changedTouches[0].clientX - this.startX;
