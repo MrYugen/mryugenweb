@@ -1,5 +1,8 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
     <main class="max-w-3xl mx-auto py-16 px-4 prose">
         <h1>BUENAS PRÁCTICAS TÉCNICAS</h1>
         <br>
@@ -16,7 +19,7 @@
                 que el usuario pueda consultar la información pertinente antes de completar el envío de sus datos. De
                 este modo, garantizamos que el usuario tenga acceso fácil e inmediato a nuestras políticas y condiciones
                 desde cualquier sección del Sitio Web.</li>
-                <br>
+            <br>
             <li><strong>Gestión del consentimiento de cookies:</strong> El Sitio Web cuenta con mecanismos técnicos que
                 permiten al usuario gestionar sus preferencias de cookies en cualquier momento. Tras la primera visita,
                 donde el usuario puede aceptar, rechazar o personalizar el uso de cookies mediante el banner inicial,

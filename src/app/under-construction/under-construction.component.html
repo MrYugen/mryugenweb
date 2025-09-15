@@ -1,7 +1,10 @@
 <div [class.dark]="isDarkMode"
   class="flex flex-col min-h-screen bg-bg text-text transition-colors duration-300 bg-cover bg-center"
   [ngStyle]="{ 'background-image': backgroundImage ? 'url(' + backgroundImage + ')' : '' }">
-  <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+    (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
 
   <div class="flex-grow flex items-center">
     <div class="max-w-xl mx-8 text-left text-white bg-black/40 dark:bg-black/60 p-8 rounded-md">

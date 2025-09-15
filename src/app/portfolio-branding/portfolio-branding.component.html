@@ -1,5 +1,8 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
 
     <app-hero [isDarkMode]="isDarkMode" title="Branding" [ctaText]="'Ver proyectos de branding'" [showCTA]="true"
         [ctaTextColor]="'white'" [ctaLink]="'/portfolio/branding#projects'"
@@ -55,7 +58,7 @@
                 <button *ngFor="let step of brandingSteps; let i = index" class="w-3 h-3 rounded-full"
                     [class.bg-orange-500]="i === currentStep" [class.bg-gray-300]="i !== currentStep"
                     [class.dark:bg-gray-600]="i !== currentStep" (click)="goToSlide(i)"
-                    aria-label="Ir al paso {{ i + 1 }}">
+                    [attr.aria-label]="'Ir al paso ' + (i + 1)">
                 </button>
             </div>
         </section>

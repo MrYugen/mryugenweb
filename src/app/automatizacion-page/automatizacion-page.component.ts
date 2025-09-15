@@ -7,6 +7,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { HeroComponent } from '../hero/hero.component';
 import { ThemeService } from '../services/theme.service';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
+
 // Importar GSAP y plugin ScrollTrigger
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 @Component({
   selector: 'app-automatizacion-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent],
+  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent, MobileNavbarComponent],
   templateUrl: './automatizacion-page.component.html',
   styleUrls: ['./automatizacion-page.component.css']
 })

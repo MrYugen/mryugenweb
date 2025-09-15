@@ -1,5 +1,7 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
     <main class="max-w-3xl mx-auto py-16 px-4 prose">
         <h1>AVISO LEGAL</h1>
         <p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de

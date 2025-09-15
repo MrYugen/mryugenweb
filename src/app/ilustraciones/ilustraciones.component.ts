@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
@@ -19,6 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
     CommonModule,
     RouterModule,
     NavbarComponent,
+    MobileNavbarComponent,
     HeroComponent,
     FooterComponent,
     ScrollToTopComponent

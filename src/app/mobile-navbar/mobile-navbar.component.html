@@ -1,0 +1,41 @@
+<header class="fixed top-0 w-full z-50 bg-[color:var(--color-bg)] dark:bg-bg/80 
+            border-b border-white/20 backdrop-blur-md transition-colors duration-300">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4 w-full overflow-x-hidden">
+        <!-- Logo a la izquierda -->
+        <a routerLink="/">
+            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-8 sm:h-10 w-auto" />
+        </a>
+        <!-- Botón hamburguesa y toggle de tema a la derecha -->
+        <div class="flex items-center space-x-4">
+            <!-- Botón menú hamburguesa (se transforma en X al abrir) -->
+            <button (click)="toggleMenu()" class="focus:outline-none"
+                [attr.aria-label]="menuOpen ? 'Cerrar menú' : 'Abrir menú'" [attr.aria-expanded]="menuOpen">
+                <span class="burger-icon" [class.open]="menuOpen">
+                    <span></span><span></span><span></span>
+                </span>
+            </button>
+            <!-- Botón toggle tema claro/oscuro -->
+            <button (click)="toggleTheme.emit()" class="focus:outline-none" [attr.aria-pressed]="isDarkMode"
+                [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
+                <span class="theme-toggle" [class.is-dark]="isDarkMode">
+                    <img class="icon sun" src="assets/images/icons/theme-sun.png" alt="" aria-hidden="true" />
+                    <img class="icon moon" src="assets/images/icons/theme-moon.png" alt="" aria-hidden="true" />
+                </span>
+            </button>
+        </div>
+    </nav>
+    <!-- Menú desplegable móvil (links de navegación) -->
+    <div *ngIf="menuOpen" @openClose class="flex flex-col items-center pt-8 gap-8 text-xl overflow-y-auto"
+        [ngClass]="isDarkMode ? 'text-white bg-bg/90' : 'text-text bg-bg'">
+        <a routerLink="/" fragment="hero" class="block w-full text-center hover:text-cta" (click)="closeMenu()">Home</a>
+        <a routerLink="/" fragment="skills" class="block w-full text-center hover:text-cta"
+            (click)="closeMenu()">Habilidades</a>
+        <a routerLink="/" fragment="portfolio" class="block w-full text-center hover:text-cta"
+            (click)="closeMenu()">Portfolio</a>
+        <a routerLink="/blog" class="block w-full text-center hover:text-cta" (click)="closeMenu()">Blog</a>
+        <a routerLink="/automation" class="block w/full text-center hover:text-cta"
+            (click)="closeMenu()">Automatización</a>
+        <a routerLink="/" fragment="contact" class="block w-full text-center hover:text-cta mb-4"
+            (click)="closeMenu()">Contacto</a>
+    </div>
+</header>

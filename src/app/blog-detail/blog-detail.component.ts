@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { BlogService, BlogPost } from '../services/blog.service';
@@ -12,7 +13,7 @@ import { gsap } from 'gsap';
 @Component({
   selector: 'app-blog-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, ScrollToTopComponent, FormsModule],
+  imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent, ScrollToTopComponent, FormsModule],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from '../navbar/navbar.component';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
@@ -33,6 +34,7 @@ interface PortfolioItem {
     CommonModule,
     RouterModule,
     NavbarComponent,
+    MobileNavbarComponent,
     HeroComponent,
     FooterComponent,
     ScrollToTopComponent,

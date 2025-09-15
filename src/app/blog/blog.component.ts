@@ -8,11 +8,12 @@ import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { BlogService, BlogPost } from '../services/blog.service';
 import { ThemeService } from '../services/theme.service';
 import { gsap } from 'gsap';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, HeroComponent, ScrollToTopComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, FooterComponent, HeroComponent, ScrollToTopComponent, MobileNavbarComponent],
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
 })

@@ -1,5 +1,8 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
 
     <app-hero [isDarkMode]="isDarkMode" title="Ilustraciones"
         [subtitle]="'Explora la colección de ilustraciones de Mr. Yugen en alta resolución'" [showCTA]="false"

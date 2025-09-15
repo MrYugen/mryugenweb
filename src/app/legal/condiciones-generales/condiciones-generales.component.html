@@ -1,5 +1,8 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
     <main class="max-w-3xl mx-auto py-16 px-4 prose">
         <h1>CONDICIONES GENERALES DE CONTRATACIÓN</h1>
         <p>Las presentes Condiciones Generales de Contratación (en adelante, las "<strong>Condiciones</strong>") regulan
@@ -12,7 +15,8 @@
             contratación.</p>
         <br>
         <h2>IDENTIFICACIÓN DEL PRESTADOR</h2>
-        <p>El Prestador de los servicios es <strong>Miguel Estévez</strong> (Mr. Yugen), profesional con domicilio en Malaga, España. Correo electrónico de contacto: <a
+        <p>El Prestador de los servicios es <strong>Miguel Estévez</strong> (Mr. Yugen), profesional con domicilio en
+            Malaga, España. Correo electrónico de contacto: <a
                 href="mailto:direccion&#64;mryugen.com">direccion&#64;mryugen.com</a>.</p>
         <br>
         <h2>SERVICIOS Y PRODUCTOS OFRECIDOS</h2>
@@ -256,8 +260,9 @@
             a la jurisdicción de los Juzgados y Tribunales de Malaga, España.</p>
         <p>Asimismo, en cumplimiento del Reglamento (UE) nº 524/2013, si el Cliente tiene la condición de consumidor, le
             informamos de que la Comisión Europea pone a su disposición una plataforma de resolución de litigios en
-            línea, accesible en la dirección <a class="text-blue-700" href="https://ec.europa.eu/consumers/odr" target="_blank"
-                rel="noopener">https://ec.europa.eu/consumers/odr</a>. El Cliente podrá recurrir a dicha plataforma para
+            línea, accesible en la dirección <a class="text-blue-700" href="https://ec.europa.eu/consumers/odr"
+                target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a>. El Cliente podrá recurrir a dicha
+            plataforma para
             intentar resolver de forma extrajudicial cualquier disputa que pudiera surgir en la contratación electrónica
             de nuestros servicios o productos.</p>
         <p>No obstante, el Prestador invita al Cliente a contactar previamente (por los medios de contacto habituales)

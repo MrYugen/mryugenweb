@@ -1,5 +1,8 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="project">
-  <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+    (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
 
   <main class="py-12 px-4 max-w-5xl mx-auto mt-10">
     <!-- INTRODUCCIÓN -->

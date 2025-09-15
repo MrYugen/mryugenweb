@@ -1,5 +1,8 @@
 ﻿<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="post">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
 
     <article class="max-w-3xl mx-auto py-16 px-4">
         <h1 class="text-4xl font-bold mb-4">{{ post.title }}</h1>

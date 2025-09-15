@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-under-construction',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent],
   templateUrl: './under-construction.component.html',
   styleUrl: './under-construction.component.css'
 })
