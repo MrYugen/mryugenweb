@@ -13,6 +13,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS_DATA as PROJECTS_DATA_CONST, Project } from './projects.data';
 gsap.registerPlugin(ScrollTrigger);
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-project-details',
@@ -62,6 +63,10 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngAfterViewInit(): void {
+    if (prefersReducedMotion()) {
+      return;
+    }
+    
     // Animación de aparición para cada sección (fade + slide-up)
     gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
       gsap.from(section, {

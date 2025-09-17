@@ -6,20 +6,15 @@
             <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-8 sm:h-10 w-auto" />
         </a>
         <ul class="hidden md:flex space-x-6 drop-shadow-sm" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
-            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta" (click)="mobileOpen=false">Home</a></li>
-            <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta"
-                    (click)="mobileOpen=false">Habilidades</a></li>
-            <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta"
-                    (click)="mobileOpen=false">Portfolio</a></li>
-            <li><a routerLink="/blog" class="hover:text-cta" (click)="mobileOpen=false">Blog</a></li>
-            <li><a routerLink="/automation" class="hover:text-cta" (click)="mobileOpen=false">Automatización</a></li>
-            <li><a [routerLink]="['/']" fragment="contact" class="hover:text-cta"
-                    (click)="mobileOpen=false">Contacto</a></li>
+            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta">Home</a></li>
+            <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta">Habilidades</a></li>
+            <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta">Portfolio</a></li>
+            <li><a routerLink="/blog" class="hover:text-cta">Blog</a></li>
+            <li><a routerLink="/automation" class="hover:text-cta">Automatización</a></li>
+            <li><a [routerLink]="['/']" fragment="contact" class="hover:text-cta">Contacto</a></li>
         </ul>
         <div class="flex items-center space-x-4">
-            <button (click)="toggleTheme.emit()"
-                class="focus:outline-none"
-                [attr.aria-pressed]="isDarkMode"
+            <button (click)="toggleTheme.emit()" class="focus:outline-none" [attr.aria-pressed]="isDarkMode"
                 [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
                 <span class="theme-toggle" [class.is-dark]="isDarkMode">
                     <img class="icon sun" src="assets/images/icons/theme-sun.png" alt="" aria-hidden="true" />

@@ -13,6 +13,7 @@ import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-automatizacion-page',
@@ -114,6 +115,10 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   ngAfterViewInit(): void {
+    if (prefersReducedMotion()) {
+      return;
+    }
+    
     // Animaciones de aparición con GSAP al hacer scroll
     gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
       gsap.from(section, {

@@ -10,6 +10,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { ThemeService } from '../services/theme.service';
 import { ILLUSTRATIONS, Illustration } from './ilustraciones.data';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +55,9 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
   touchActive = false;
 
   ngAfterViewInit() {
+    if (prefersReducedMotion()) {
+      return;
+    }
     gsap.utils.toArray<HTMLElement>('.illu-card').forEach((card, i) => {
       gsap.from(card, {
         opacity: 0,

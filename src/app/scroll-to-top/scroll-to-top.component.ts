@@ -1,6 +1,7 @@
 import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -45,14 +46,17 @@ export class ScrollToTopComponent {
   }
 
   scrollToTop() {
-    // Microanimación bounce con GSAP
-    if (this.scrollBtn) {
+    const reduceMotion = prefersReducedMotion();
+
+    if (!reduceMotion && this.scrollBtn) {
+      // Microanimación bounce con GSAP
       gsap.fromTo(
         this.scrollBtn.nativeElement,
         { scale: 1 },
         { scale: 1.2, yoyo: true, repeat: 1, duration: 0.18, ease: 'power1.inOut' }
       );
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 }

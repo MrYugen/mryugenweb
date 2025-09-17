@@ -9,6 +9,7 @@ import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { ThemeService } from '../services/theme.service';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -108,6 +109,10 @@ export class PortfolioWebComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (prefersReducedMotion()) {
+      return;
+    }
+    
     gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
       gsap.from(section, {
         opacity: 0,

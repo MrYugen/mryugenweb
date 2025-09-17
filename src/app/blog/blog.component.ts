@@ -9,6 +9,7 @@ import { BlogService, BlogPost } from '../services/blog.service';
 import { ThemeService } from '../services/theme.service';
 import { gsap } from 'gsap';
 import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-blog',
@@ -31,6 +32,10 @@ export class BlogComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (prefersReducedMotion()) {
+      return;
+    }
+    
     gsap.fromTo(
       '.blog-card',
       { opacity: 0, y: 0 },

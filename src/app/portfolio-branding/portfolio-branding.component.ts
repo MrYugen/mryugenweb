@@ -9,6 +9,7 @@ import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { ThemeService } from '../services/theme.service';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -219,42 +220,46 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   ngAfterViewInit() {
-  // Reveal de secciones (se inician 100px después de salir del viewport)
-  gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
-    gsap.from(section, {
-      opacity: 0,
-      y: 60,
-      duration: 1.2,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top bottom-=100px',     // <-- 100px bajo el fondo
-        toggleActions: 'play none none none',
-        once: true
-      }
+  if (prefersReducedMotion()) {
+      return;
+    }
+
+    // Reveal de secciones (se inician 100px después de salir del viewport)
+    gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 60,
+        duration: 1.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom-=100px',     // <-- 100px bajo el fondo
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
     });
-  });
 
   // Reveal de cada tarjeta en cascada
-  gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
-    gsap.from(card, {
-      opacity: 0,
-      y: 40,
-      duration: 0.8,
-      delay: i * 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top bottom-=100px',     // <-- igual aquí
-        toggleActions: 'play none none none',
-        once: true
-      }
+    gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        delay: i * 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=100px',     // <-- igual aquí
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
     });
-  });
 
-  // Asegúrate de refrescar tras definirlos
-  ScrollTrigger.refresh();
-  }
+      // Asegúrate de refrescar tras definirlos
+      ScrollTrigger.refresh();
+    }
 
   ngOnDestroy() {
   // Limpia todos los intervals de los carruseles al destruir el componente

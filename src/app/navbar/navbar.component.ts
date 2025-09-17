@@ -11,11 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   @Input() isDarkMode: boolean = false;
-  mobileOpen = false;
 
   @Output() toggleTheme = new EventEmitter<void>();
   
-  toggleMenu() {
-    this.mobileOpen = !this.mobileOpen;
-  }
 }

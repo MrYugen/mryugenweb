@@ -62,6 +62,7 @@ Dominio oficial previsto: https://mryugen.com
 - Enrutado SPA con `provideRouter` y `withInMemoryScrolling` (scroll al top y soporte de anclas).
 - Modo claro/oscuro persistente vía `ThemeService` + variables CSS (Tailwind `darkMode: 'class'`).
 - Animaciones fluidas con GSAP y ScrollTrigger; micro‑interacciones en cards, sliders y secciones.
+- Respeta `prefers-reduced-motion`: detecta la preferencia del usuario y desactiva/paraliza animaciones pesadas de GSAP cuando se solicita.
 - Responsive 100% en desktop/tablet/móvil.
 - Accesibilidad: HTML semántico, labels y alt, focus states y tamaños legibles.
 - Rendimiento: imágenes `loading="lazy"`, CSS utilitario y uso de assets optimizados.

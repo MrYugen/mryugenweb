@@ -13,6 +13,7 @@ import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { FormsModule } from '@angular/forms';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 import { ThemeService } from '../services/theme.service';
 import { BlogService, BlogPost } from '../services/blog.service';
@@ -43,9 +44,8 @@ interface PortfolioItem {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']  // Fichero de estilos locales
 })
-export class HomeComponent implements AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
-  @ViewChild('heroButton')  heroButton!: ElementRef<HTMLButtonElement>;
   @ViewChild('aboutImage', { static: false }) aboutImage!: ElementRef<HTMLImageElement>;
   @ViewChild('aboutText', { static: false }) aboutText!: ElementRef<HTMLDivElement>;
   @ViewChildren('portfolioCard') portfolioCards!: QueryList<ElementRef>;
@@ -53,8 +53,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('contactLeft', { static: false }) contactLeft!: ElementRef;
   @ViewChild('contactRight', { static: false }) contactRight!: ElementRef;
 
-  private startX = 0;
-  private intervals: any[] = [];
+private startX = 0;
+private intervals: ReturnType<typeof setInterval>[] = [];
+
 
   isDarkMode = false;  // Estado del tema
 
@@ -70,7 +71,8 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
   
   scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reduceMotion = prefersReducedMotion();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
   
   // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
@@ -162,7 +164,10 @@ ngAfterViewInit() {
   this.intervals.forEach(id => clearInterval(id));
   this.intervals = [];
 
-  gsap.registerPlugin(ScrollTrigger);
+  const reduceMotion = prefersReducedMotion();
+
+  if (!reduceMotion) {
+    gsap.registerPlugin(ScrollTrigger);
 
     // About Image Animation
     if (this.aboutImage) {
@@ -210,19 +215,19 @@ ngAfterViewInit() {
     // Portfolio Animation
     gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card, i) => {
     gsap.from(card, {
-      opacity: 0,
-      y: 40,
-      duration: 0.9,
-      delay: i * 0.3,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 85%',   
-        toggleActions: 'play none none none',
-        once: true
-      }
+        opacity: 0,
+        y: 40,
+        duration: 0.9,
+        delay: i * 0.3,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true
+        }
+      });
     });
-  });
 
     // Blog Animation
     gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
@@ -245,7 +250,7 @@ ngAfterViewInit() {
       this.intervals.push(id);
     });
 
-   // Automatización Parallax (deshabilitado en pantallas pequeñas)
+    // Automatización Parallax (deshabilitado en pantallas pequeñas)
     if (this.parallaxBg && window.innerWidth > 768) {
       gsap.to(this.parallaxBg.nativeElement, {
         y: () => window.innerHeight * 0.3, // Ajusta el valor si lo quieres más/menos pronunciado
@@ -289,6 +294,12 @@ ngAfterViewInit() {
 
     // Siempre refresca los triggers al final para asegurar
     ScrollTrigger.refresh();
+  }
+
+  if (reduceMotion) {
+    // Sin animaciones automáticas, pero aseguramos que el carrusel no inicie.
+    this.intervals = [];
+  }
 }
 
   ngOnDestroy() {

@@ -11,6 +11,7 @@ import { WEB_PROJECTS, WebProject } from '../project-web-details/web-projects.da
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-project-web-details',
@@ -43,47 +44,50 @@ export class ProjectWebDetailsComponent implements OnInit, AfterViewInit, OnDest
   toggleTheme() { this.isDarkMode = this.theme.toggle(); }
 
   ngAfterViewInit(): void {
-    // Animaciones de aparición con GSAP al hacer scroll
-    setTimeout(() => {
-      gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
-        gsap.from(section, {
-          opacity: 0,
-          y: 60,
-          duration: 1.0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom-=100px',
-            toggleActions: 'play none none none',
-            once: true
-          }
+    const reduceMotion = prefersReducedMotion();
+
+    if (!reduceMotion) {
+      // Animaciones de aparición con GSAP al hacer scroll
+      setTimeout(() => {
+        gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
+          gsap.from(section, {
+            opacity: 0,
+            y: 60,
+            duration: 1.0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom-=100px',
+              toggleActions: 'play none none none',
+              once: true
+            }
+          });
         });
-      });
+        gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
+            gsap.from(card, {
+              opacity: 0,
+              y: 40,
+              duration: 0.8,
+              delay: i * 0.08,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom-=80px',
+                toggleActions: 'play none none none',
+                once: true
+              }
+            });
+          });
 
-      gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
-        gsap.from(card, {
-          opacity: 0,
-          y: 40,
-          duration: 0.8,
-          delay: i * 0.08,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top bottom-=80px',
-            toggleActions: 'play none none none',
-            once: true
-          }
-        });
-      });
+          ScrollTrigger.refresh();
+          }, 0);
+        }
 
-      ScrollTrigger.refresh();
-    }, 0);
-
-    // Observadores para videos de la lógica técnica
-    // Se re-inicializan si la lista de videos cambia (por cambio de proyecto o de vista)
-    this.initVideoObservers();
-    this.logicVideos?.changes.subscribe(() => this.initVideoObservers());
-  }
+        // Observadores para videos de la lógica técnica
+        // Se re-inicializan si la lista de videos cambia (por cambio de proyecto o de vista)
+        this.initVideoObservers();
+        this.logicVideos?.changes.subscribe(() => this.initVideoObservers());
+      }
 
   ngOnDestroy(): void {
     ScrollTrigger.getAll().forEach(t => t.kill());

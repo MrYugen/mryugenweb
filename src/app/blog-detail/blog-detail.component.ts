@@ -9,6 +9,7 @@ import { BlogService, BlogPost } from '../services/blog.service';
 import { ThemeService } from '../services/theme.service';
 import { FormsModule } from '@angular/forms';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../utils/motion.utils';
 
 @Component({
   selector: 'app-blog-detail',
@@ -72,6 +73,10 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (prefersReducedMotion()) {
+      return;
+    }
+    
     gsap.from('.post-content', { opacity: 0, y: 20, duration: 0.6 });
   }
 }
