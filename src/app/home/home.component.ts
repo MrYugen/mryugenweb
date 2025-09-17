@@ -165,6 +165,12 @@ ngAfterViewInit() {
   this.intervals = [];
 
   const reduceMotion = prefersReducedMotion();
+  const isMobileViewport = window.innerWidth <= 768;
+
+  const getDirectionalAnimation = (horizontalOffset: number) =>
+    isMobileViewport
+      ? { x: 0, y: horizontalOffset > 0 ? 30 : -30 }
+      : { x: horizontalOffset };
 
   if (!reduceMotion) {
     gsap.registerPlugin(ScrollTrigger);
@@ -177,7 +183,7 @@ ngAfterViewInit() {
           start: 'top 80%',
           once: true, // Solo una vez al hacer scroll
         },
-        x: -50,
+        ...getDirectionalAnimation(-50),
         opacity: 0,
         duration: 1
       });
@@ -191,7 +197,7 @@ ngAfterViewInit() {
           start: 'top 80%',
           once: true, // Solo una vez al hacer scroll
         },
-        x: 50,
+        ...getDirectionalAnimation(50),
         opacity: 0,
         duration: 1
       });
@@ -272,7 +278,7 @@ ngAfterViewInit() {
           start: 'top 90%',
           once: true,
         },
-        x: -50,
+        ...getDirectionalAnimation(-50),
         opacity: 0,
         duration: 1
       });
@@ -286,7 +292,7 @@ ngAfterViewInit() {
           start: 'top 90%',
           once: true,
         },
-        x: 50,
+        ...getDirectionalAnimation(50),
         opacity: 0,
         duration: 1
       });

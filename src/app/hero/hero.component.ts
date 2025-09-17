@@ -21,7 +21,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   @Input() showTitle: boolean = true;    // Mostrar/ocultar título
   @Input() subtitle?: string; // Nuevo input opcional para el subtitulo
   @Input() subtitleClass = '';
-  @Input() logoSize: string = 'w-96'; // Tailwind class por defecto
+  @Input() logoSize: string = 'w-96 max-w-full sm:w-96'; // Tailwind class por defecto
   @Input() overlayOpacity: number = 0.15; // Por defecto 15%
   @Input() logoEffect: string = ''; // Efecto del logo, por defecto vacío
   @Input() showCTA: boolean = true; // Por defecto muestra el botón
