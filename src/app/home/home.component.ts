@@ -17,6 +17,7 @@ import { prefersReducedMotion } from '../utils/motion.utils';
 
 import { ThemeService } from '../services/theme.service';
 import { BlogService, BlogPost } from '../services/blog.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 gsap.registerPlugin(ScrollTrigger);
 
 interface PortfolioItem {
@@ -40,6 +41,7 @@ interface PortfolioItem {
     FooterComponent,
     ScrollToTopComponent,
     FormsModule
+    ,HttpClientModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']  // Fichero de estilos locales
@@ -58,6 +60,10 @@ private intervals: ReturnType<typeof setInterval>[] = [];
 
 
   isDarkMode = false;  // Estado del tema
+  // Campos del formulario de contacto
+  name: string = "";
+  email: string = "";
+  message: string = "";
 
   onPointerDown(e: PointerEvent) {
     this.startX = e.clientX;
@@ -74,7 +80,7 @@ private intervals: ReturnType<typeof setInterval>[] = [];
     const reduceMotion = prefersReducedMotion();
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }
-  
+
   // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
     portfolioItems: PortfolioItem[] = [
     {
@@ -139,7 +145,7 @@ private intervals: ReturnType<typeof setInterval>[] = [];
       (item.currentIndex - 1 + item.images.length) % item.images.length;
   }
 
-  constructor(private theme: ThemeService, private blogService: BlogService) {
+  constructor(private theme: ThemeService, private blogService: BlogService, private http: HttpClient) {
     // Inicializa el tema según lo guardado en localStorage
     this.isDarkMode = this.theme.isDark();
   }
@@ -154,10 +160,36 @@ private intervals: ReturnType<typeof setInterval>[] = [];
   }
 
   onSubmit() {
-    // lógica para envío de formulario
-    // TODO: implementar envío de formulario de contacto (llamar a tu backend o servicio)
-    console.log('Enviar formulario de contacto');
-  }
+  // Prepara los datos en un objeto JSON
+  const datos = {
+    name: this.name,
+    email: this.email,
+    message: this.message
+    // (En este formulario Home solo hay esos tres campos)
+  };
+
+  // Realiza la petición HTTP POST al script PHP
+  this.http.post('https://mryugen.com/contacto.php', datos, { responseType: 'text' })
+    .subscribe({
+      next: (respuesta) => {
+        if (respuesta === 'OK') {
+          alert("✅ Mensaje enviado correctamente. ¡Gracias por contactarme! Pronto recibirás un email de confirmación.");
+          // Opcional: limpiar los campos o hacer alguna acción extra
+          this.name = "";
+          this.email = "";
+          this.message = "";
+        } else {
+          // Si recibimos algo distinto a "OK", igualmente lo tratamos como error genérico
+          console.error("Respuesta inesperada:", respuesta);
+          alert("⚠️ Ocurrió algo inesperado. Intenta de nuevo o más tarde.");
+        }
+      },
+      error: (err) => {
+        console.error("Error en la petición:", err);
+        alert("❌ No se pudo enviar el mensaje. Por favor intenta de nuevo.");
+      }
+    });
+}
 
 ngAfterViewInit() {
   // Limpia cualquier intervalo anterior por si acaso

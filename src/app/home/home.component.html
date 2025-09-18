@@ -399,20 +399,20 @@
 
                     <div>
                         <label for="name" class="block font-medium mb-1">Nombre</label>
-                        <input id="name" name="name" ngModel required placeholder="¿Cómo debo llamarte?"
+                        <input id="name" name="name" [(ngModel)]="name" required placeholder="¿Cómo debo llamarte?"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
                     </div>
 
                     <div>
                         <label for="email" class="block font-medium mb-1">Email</label>
-                        <input id="email" name="email" type="email" ngModel required
+                        <input id="email" name="email" type="email" [(ngModel)]="email" required
                             placeholder="Tu mejor email, por favor"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
                     </div>
 
                     <div>
                         <label for="message" class="block font-medium mb-1">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" ngModel required
+                        <textarea id="message" name="message" rows="5" [(ngModel)]="message" required
                             placeholder="¿En qué te puedo ayudar?"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
                     </div>

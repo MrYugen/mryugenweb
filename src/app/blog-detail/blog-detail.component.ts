@@ -10,11 +10,12 @@ import { ThemeService } from '../services/theme.service';
 import { FormsModule } from '@angular/forms';
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from '../utils/motion.utils';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-blog-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent, ScrollToTopComponent, FormsModule],
+  imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent, ScrollToTopComponent, FormsModule, HttpClientModule],
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })
@@ -32,7 +33,8 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private blogService: BlogService,
-    private theme: ThemeService
+    private theme: ThemeService,
+    private http: HttpClient
   ) {
     this.isDarkMode = this.theme.isDark();
   }
@@ -52,25 +54,40 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
   onSubscribe() {
-    this.errorMessage = '';
-    this.successMessage = '';
+  this.errorMessage = "";
+  this.successMessage = "";
 
-    const email = this.email?.trim();
-    const emailValid = !!email && /\S+@\S+\.\S+/.test(email);
-    if (!emailValid) {
-      this.errorMessage = 'Por favor, introduce un email valido.';
-      return;
-    }
-
-    this.submitting = true;
-
-    // TODO: Replace with real newsletter API call
-    setTimeout(() => {
-      this.submitting = false;
-      this.successMessage = 'Gracias por suscribirte. Revisa tu correo para confirmar.';
-      this.email = '';
-    }, 800);
+  const emailTrim = this.email.trim();
+  const emailValido = /\S+@\S+\.\S+/.test(emailTrim);
+  if (!emailValido) {
+    this.errorMessage = 'Por favor, introduce un email válido.';
+    return;
   }
+
+  // Opcional: para pedir nombre en la suscripción, incluirlo
+  const datos = { email: emailTrim /*, name: this.nombre ?? "" */ };
+
+  this.submitting = true;
+  this.http.post('https://mryugen.com/suscribir.php', datos, { responseType: 'text' })
+    .subscribe({
+      next: (res) => {
+        this.submitting = false;
+        if (res === 'OK' || res === 'DUPLICATE') {
+          // 'DUPLICATE' lo tratamos como suscripción exitosa también, porque ya existe
+          this.successMessage = 'Gracias por suscribirte. Revisa tu correo para confirmar.';
+          this.email = "";
+        } else {
+          // Cualquier otro texto inesperado
+          console.warn("Respuesta de suscripción:", res);
+          this.errorMessage = 'Hubo un problema al suscribirte. Intenta más tarde.';
+        }
+      },
+      error: () => {
+        this.submitting = false;
+        this.errorMessage = 'Error de servidor. Por favor, inténtalo de nuevo más tarde.';
+      }
+    });
+}
 
   ngAfterViewInit() {
     if (prefersReducedMotion()) {

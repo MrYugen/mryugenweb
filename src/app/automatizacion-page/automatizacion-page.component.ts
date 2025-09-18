@@ -8,6 +8,7 @@ import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { HeroComponent } from '../hero/hero.component';
 import { ThemeService } from '../services/theme.service';
 import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 // Importar GSAP y plugin ScrollTrigger
 import { gsap } from 'gsap';
@@ -18,12 +19,21 @@ import { prefersReducedMotion } from '../utils/motion.utils';
 @Component({
   selector: 'app-automatizacion-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent, MobileNavbarComponent],
+  imports: [CommonModule, RouterModule, FormsModule, NavbarComponent, FooterComponent, ScrollToTopComponent, HeroComponent, MobileNavbarComponent, HttpClientModule],
   templateUrl: './automatizacion-page.component.html',
   styleUrls: ['./automatizacion-page.component.css']
 })
 export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDestroy {
   isDarkMode = false;
+  // Campos del formulario de contacto
+  name: string = "";
+  email: string = "";
+  message: string = "";
+  automationIdea: string = "";
+  tipo_autonomo: boolean = false;
+  tipo_particular: boolean = false;
+  newsletter: boolean = false;
+
   carouselImages: string[] = [
     'assets/images/automatizacion/carousel_portada.jpg',
     'assets/images/automatizacion/carousel1.jpg',
@@ -81,7 +91,7 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  constructor(private themeService: ThemeService) {}
+  constructor(private themeService: ThemeService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.isDarkMode = this.themeService.isDark();
@@ -91,6 +101,38 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   toggleTheme() {
     this.isDarkMode = this.themeService.toggle();
   }
+
+  onSubmit() {
+  const datos = {
+    name: this.name,
+    email: this.email,
+    message: this.message,
+    automationIdea: this.automationIdea,
+    // Convertir booleans a verdadero/falso en forma de 1/0 o true/false:
+    tipo_autonomo: this.tipo_autonomo,
+    tipo_particular: this.tipo_particular,
+    newsletter: this.newsletter
+  };
+
+  this.http.post('https://mryugen.com/contacto.php', datos, { responseType: 'text' })
+    .subscribe({
+      next: (res) => {
+        if (res === 'OK') {
+          alert("✅ ¡Gracias por contactar! Te responderé pronto.");
+          // reset campos si quieres
+          this.name = ""; this.email = ""; this.message = ""; 
+          this.automationIdea = "";
+          this.tipo_autonomo = false; this.tipo_particular = false; this.newsletter = false;
+        } else {
+          console.error("Respuesta inesperada:", res);
+          alert("⚠️ Hubo un detalle erroneo al enviar, por favor intenta nuevamente.");
+        }
+      },
+      error: () => {
+        alert("❌ Error de servidor. Intenta más tarde.");
+      }
+    });
+}
 
   // Alternar estado de una tarjeta (flip card) al hacer clic
   toggleCard(index: number) {

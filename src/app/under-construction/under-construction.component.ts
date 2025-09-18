@@ -6,11 +6,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ThemeService } from '../services/theme.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-under-construction',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent],
+  imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent, HttpClientModule],
   templateUrl: './under-construction.component.html',
   styleUrl: './under-construction.component.css'
 })
@@ -36,7 +37,7 @@ export class UnderConstructionComponent {
   // Estado UI
   isDarkMode = false;
 
-  constructor(private theme: ThemeService) {
+  constructor(private theme: ThemeService, private http: HttpClient) {
     // Inicializa el tema según preferencia guardada
     this.isDarkMode = this.theme.isDark();
   }
@@ -47,9 +48,27 @@ export class UnderConstructionComponent {
   }
 
   onNotify() {
-    if (this.email) {
-      this.notify.emit(this.email);
-      this.email = '';
-    }
+  if (this.email) {
+    // Podemos opcionalmente hacer alguna validación de formato email aquí también
+    this.http.post('https://mryugen.com/suscribir.php', { email: this.email.trim() }, { responseType: 'text' })
+      .subscribe({
+        next: (res) => {
+          if (res === 'OK' || res === 'DUPLICATE') {
+            alert("¡Te avisaremos cuando el sitio esté listo!"); 
+            // Puedes mostrar un mensaje más elaborado en el HTML si lo prefieres
+            this.email = "";
+          } else {
+            console.error("Respuesta suscribir:", res);
+            alert("Hubo un problema al registrar tu correo. Intenta más tarde.");
+          }
+        },
+        error: () => {
+          alert("Error de servidor. Inténtalo de nuevo en unos minutos.");
+        }
+      });
+    // Emitir el evento original si lo necesitas en otro lugar:
+    this.notify.emit(this.email);
+    this.email = "";
   }
 }
+      }
