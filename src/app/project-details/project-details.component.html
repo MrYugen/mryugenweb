@@ -87,16 +87,26 @@
         </div>
     </main>
 
-    <div *ngIf="lightboxOpen" id="lightbox" role="dialog"
-        class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <button id="lightbox-prev" class="absolute left-4 text-8xl text-white" (click)="prevImage()"
-            aria-label="Anterior">‹</button>
-        <button id="lightbox-next" class="absolute right-4 text-8xl text-white" (click)="nextImage()"
-            aria-label="Siguiente">›</button>
-        <div class="relative" (click)="$event.stopPropagation()">
-            <button id="lightbox-close" class="absolute -top-12 -right-28 text-8xl text-orange-600"
-                (click)="closeLightbox()" aria-label="Cerrar">×</button>
-            <img loading="lazy" [src]="activeImage" alt="Imagen ampliada" class="max-h-[90vh] rounded-xl shadow-xl" />
+    <div *ngIf="lightboxOpen" id="lightbox" role="dialog" aria-modal="true"
+        class="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 px-4" (click)="closeLightbox()">
+        <button id="lightbox-prev" type="button"
+            class="absolute left-3 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-white/25 bg-white/10 text-white text-lg sm:text-xl md:text-2xl shadow-lg backdrop-blur transition focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-black hover:bg-white/20 hover:text-white z-30"
+            (click)="prevImage(); $event.stopPropagation()" aria-label="Anterior">
+            <span aria-hidden="true" class="leading-none">‹</span>
+        </button>
+        <button id="lightbox-next" type="button"
+            class="absolute right-3 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-white/25 bg-white/10 text-white text-lg sm:text-xl md:text-2xl shadow-lg backdrop-blur transition focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-black hover:bg-white/20 hover:text-white z-30"
+            (click)="nextImage(); $event.stopPropagation()" aria-label="Siguiente">
+            <span aria-hidden="true" class="leading-none">›</span>
+        </button>
+        <div class="relative w-full max-w-4xl" (click)="$event.stopPropagation()">
+            <button id="lightbox-close" type="button"
+                class="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6 flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full border border-white/25 bg-white/10 text-white text-lg sm:text-xl md:text-2xl shadow-lg backdrop-blur transition focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-black hover:bg-white/20 hover:text-white z-40"
+                (click)="closeLightbox(); $event.stopPropagation()" aria-label="Cerrar">
+                <span aria-hidden="true" class="leading-none">×</span>
+            </button>
+            <img loading="lazy" [src]="activeImage" alt="Imagen ampliada"
+                class="max-h-[70vh] sm:max-h-[75vh] md:max-h-[85vh] w-full object-contain rounded-xl shadow-xl" />
         </div>
     </div>
 

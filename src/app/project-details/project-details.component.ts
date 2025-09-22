@@ -38,6 +38,9 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
 
   PROJECTS_DATA: Project[] = PROJECTS_DATA_CONST;
 
+  private scrollPosition = 0;
+  private bodyScrollLocked = false;
+
   constructor(private route: ActivatedRoute, private theme: ThemeService) {}
 
   ngOnInit(): void {
@@ -103,11 +106,14 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   ngOnDestroy(): void {
     // Limpiar triggers de ScrollTrigger al salir de la página
     ScrollTrigger.getAll().forEach(t => t.kill());
+    if (this.bodyScrollLocked) {
+      this.toggleBodyScroll(false);
+    }
   }
 
   // Método para el toggle desde el Navbar
   toggleTheme() {
-  this.isDarkMode = this.theme.toggle();
+    this.isDarkMode = this.theme.toggle();
   }
 
   openLightbox(url: string, list: string[], index: number) {
@@ -115,6 +121,7 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     this.activeList = list;
     this.activeIndex = index;
     this.lightboxOpen = true;
+    this.toggleBodyScroll(true);
     setTimeout(() => {
       const closeBtn = document.getElementById('lightbox-close');
       closeBtn?.focus();
@@ -123,6 +130,7 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
 
   closeLightbox() {
     this.lightboxOpen = false;
+    this.toggleBodyScroll(false);
   }
 
   prevImage() {
@@ -151,6 +159,32 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
       const closeBtn = document.getElementById('lightbox-close');
       event.preventDefault();
       closeBtn?.focus();
+    }
+  }
+  private toggleBodyScroll(disable: boolean) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    const body = document.body;
+
+    if (disable) {
+      this.scrollPosition = window.scrollY || 0;
+      body.classList.add('overflow-hidden');
+      body.style.position = 'fixed';
+      body.style.width = '100%';
+      body.style.top = `-${this.scrollPosition}px`;
+      this.bodyScrollLocked = true;
+    } else {
+      if (!this.bodyScrollLocked) {
+        return;
+      }
+      body.classList.remove('overflow-hidden');
+      body.style.position = '';
+      body.style.width = '';
+      body.style.top = '';
+      window.scrollTo({ top: this.scrollPosition });
+      this.bodyScrollLocked = false;
     }
   }
 }
