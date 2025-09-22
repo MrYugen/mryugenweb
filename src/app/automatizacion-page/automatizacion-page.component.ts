@@ -33,6 +33,7 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   tipo_autonomo: boolean = false;
   tipo_particular: boolean = false;
   newsletter: boolean = false;
+  submitting = false;
 
   carouselImages: string[] = [
     'assets/images/automatizacion/carousel_portada.jpg',
@@ -103,36 +104,41 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   }
 
   onSubmit() {
-  const datos = {
-    name: this.name,
-    email: this.email,
-    message: this.message,
-    automationIdea: this.automationIdea,
-    // Convertir booleans a verdadero/falso en forma de 1/0 o true/false:
-    tipo_autonomo: this.tipo_autonomo,
-    tipo_particular: this.tipo_particular,
-    newsletter: this.newsletter
-  };
+    // Validación mínima en cliente (coincide con el PHP)
+    if (!this.name.trim() || !this.email.trim() || !this.message.trim()) return;
 
-  this.http.post('https://mryugen.com/contacto.php', datos, { responseType: 'text' })
-    .subscribe({
-      next: (res) => {
-        if (res === 'OK') {
-          alert("✅ ¡Gracias por contactar! Te responderé pronto.");
-          // reset campos si quieres
-          this.name = ""; this.email = ""; this.message = ""; 
-          this.automationIdea = "";
-          this.tipo_autonomo = false; this.tipo_particular = false; this.newsletter = false;
-        } else {
-          console.error("Respuesta inesperada:", res);
-          alert("⚠️ Hubo un detalle erroneo al enviar, por favor intenta nuevamente.");
+    const datos = {
+      name: this.name,
+      email: this.email,
+      message: this.message,
+      automationIdea: this.automationIdea,
+      tipo_autonomo: this.tipo_autonomo,
+      tipo_particular: this.tipo_particular,
+      newsletter: this.newsletter
+    };
+
+    this.submitting = true;
+    this.http.post('/contacto.php', datos, { responseType: 'text' })
+      .subscribe({
+        next: (res) => {
+          this.submitting = false;
+          if (res === 'OK') {
+            alert('✅ ¡Gracias por contactar! Te responderé pronto.');
+            this.name = ''; this.email = ''; this.message = '';
+            this.automationIdea = '';
+            this.tipo_autonomo = false; this.tipo_particular = false; this.newsletter = false;
+          } else {
+            console.error('Respuesta inesperada:', res);
+            alert('⚠️ Hubo un detalle erróneo al enviar, por favor intenta nuevamente.');
+          }
+        },
+        error: (err) => {
+          this.submitting = false;
+          console.error(err);
+          alert('❌ Error de servidor. Intenta más tarde.');
         }
-      },
-      error: () => {
-        alert("❌ Error de servidor. Intenta más tarde.");
-      }
-    });
-}
+      });
+  }
 
   // Alternar estado de una tarjeta (flip card) al hacer clic
   toggleCard(index: number) {

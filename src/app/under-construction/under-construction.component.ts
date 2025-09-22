@@ -13,7 +13,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, NavbarComponent, MobileNavbarComponent, FooterComponent, HttpClientModule],
   templateUrl: './under-construction.component.html',
-  styleUrl: './under-construction.component.css'
+  styleUrls: ['./under-construction.component.css']
 })
 export class UnderConstructionComponent {
   /** Imagen de fondo para la página completa */
@@ -49,8 +49,7 @@ export class UnderConstructionComponent {
 
   onNotify() {
   if (this.email) {
-    // Podemos opcionalmente hacer alguna validación de formato email aquí también
-    this.http.post('https://mryugen.com/suscribir.php', { email: this.email.trim() }, { responseType: 'text' })
+    this.http.post('/suscribir.php', { email: this.email.trim() }, { responseType: 'text' })
       .subscribe({
         next: (res) => {
           if (res === 'OK' || res === 'DUPLICATE') {

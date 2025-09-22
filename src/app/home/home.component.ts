@@ -169,7 +169,7 @@ private intervals: ReturnType<typeof setInterval>[] = [];
   };
 
   // Realiza la petición HTTP POST al script PHP
-  this.http.post('https://mryugen.com/contacto.php', datos, { responseType: 'text' })
+  this.http.post('/contacto.php', datos, { responseType: 'text' })
     .subscribe({
       next: (respuesta) => {
         if (respuesta === 'OK') {

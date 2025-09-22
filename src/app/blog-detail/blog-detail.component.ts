@@ -68,7 +68,7 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   const datos = { email: emailTrim /*, name: this.nombre ?? "" */ };
 
   this.submitting = true;
-  this.http.post('https://mryugen.com/suscribir.php', datos, { responseType: 'text' })
+  this.http.post('/suscribir.php', datos, { responseType: 'text' })
     .subscribe({
       next: (res) => {
         this.submitting = false;
