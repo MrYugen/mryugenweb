@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, Input, AfterViewInit, ViewChild, ElementRef, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import { prefersReducedMotion } from '../utils/motion.utils';
   styleUrls: ['./hero.component.css']
 })
 
-export class HeroComponent implements AfterViewInit, OnDestroy {
+export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() isDarkMode: boolean = false;
   @Input() title: string = 'Creatividad. Diseño. Código';
   @Input() showTitle: boolean = true;    // Mostrar/ocultar título
@@ -28,6 +28,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   @Input() ctaText: string = 'Descubre Couple Clash'; // Texto del botón
   @Input() bgImageLight: string = '/assets/images/hero-bg-light.jpg';
   @Input() bgImageDark: string = '/assets/images/hero-bg-dark.jpg';
+  @Input() bgImageLightMobile?: string;
+  @Input() bgImageDarkMobile?: string;
   @Input() logoLight: string = 'assets/images/logo-hero-light.svg';
   @Input() logoDark: string = 'assets/images/logo-hero-dark.svg';
   @Input() ctaTextColor?: string;
@@ -38,7 +40,37 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
   @ViewChild('heroSection', { static: false }) heroSection!: ElementRef<HTMLElement>;
 
+  isMobileOrTablet = false;
+
 constructor(private router: Router) { /* ... */ }
+  ngOnInit(): void {
+    this.updateDeviceType();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.updateDeviceType();
+  }
+
+  private updateDeviceType(): void {
+    if (typeof window !== 'undefined') {
+      this.isMobileOrTablet = window.innerWidth <= 1024;
+    }
+  }
+
+  getBackgroundImage(): string {
+    if (this.isMobileOrTablet) {
+      if (this.isDarkMode && this.bgImageDarkMobile) {
+        return this.bgImageDarkMobile;
+      }
+
+      if (!this.isDarkMode && this.bgImageLightMobile) {
+        return this.bgImageLightMobile;
+      }
+    }
+
+    return this.isDarkMode ? this.bgImageDark : this.bgImageLight;
+  }
 
 goToCTA() {
     const reduceMotion = prefersReducedMotion();

@@ -1,4 +1,3 @@
-
   #about img {
     @apply shadow-xl shadow-black/50;
   }
@@ -13,6 +12,17 @@
   .parallax-bg {
     top: -15vh;
     min-height: calc(100vh + 20vh);
+  }
+
+  .automation-banner {
+    background-image: url('../../assets/images/automatizacion_background.jpg');
+  }
+
+  @media (max-width: 1024px) {
+    .automation-banner {
+      background-image: url('../../assets/images/automatizacion-background-mobile.jpg');
+      background-position: center top;
+    }
   }
 
   @media (max-width: 768px) {

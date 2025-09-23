@@ -8,6 +8,8 @@ export interface Project {
   title: string;
   heroBgLight: string;
   heroBgDark: string;
+  heroBgLightMobile?: string;
+  heroBgDarkMobile?: string;
   logoLight: string;
   logoDark: string;
   ctaText: string;
@@ -184,6 +186,8 @@ export const PROJECTS_DATA: Project[] = [
     title: 'Swamp Labs',
     heroBgLight: '/assets/images/hero-swamp-labs-light.jpg',
     heroBgDark: '/assets/images/hero-swamp-labs-dark.jpg',
+    heroBgLightMobile: '/assets/images/hero-swamp-labs-light-mobile.jpg',
+    heroBgDarkMobile: '/assets/images/hero-swamp-labs-dark-mobile.jpg',
     logoLight: '/assets/images/logo-swamp-labs.png',
     logoDark: '/assets/images/logo-swamp-labs.png',
     ctaText: 'Diseña una identidad única y digital',
@@ -389,6 +393,7 @@ export const PROJECTS_DATA: Project[] = [
     title: 'Caffeine Studios',
     heroBgLight: '/assets/images/hero-caffeine-studios-light.jpg',
     heroBgDark: '/assets/images/hero-caffeine-studios-dark.jpg',
+    heroBgDarkMobile: '/assets/images/hero-caffeine-studios-dark-mobile.jpg',
     logoLight: '/assets/images/logo-caffeine-studios.png',
     logoDark: '/assets/images/logo-caffeine-studios.png',
     ctaText: 'Dale energía a tu marca',
