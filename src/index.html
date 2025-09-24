@@ -7,30 +7,92 @@
     content="Portfolio y blog de Miguel Estévez (Mr. Yugen). Diseño gráfico, desarrollo web, automatización de procesos, juegos de mesa y uso de AI y No-Code.">
   <meta name="keywords"
     content="diseño gráfico, creativo, creatividad, desarrollo web, Angular, Tailwind, ilustración, automatización de procesos, couple clash, juegos de mesa, boardgame, cards, inteligencia artificial, Mr. Yugen, Miguel Estévez">
-  <title>Mr. Yugen – Portafolio & Blog Creativo. Aprende a crear un juego de mesa desde cero.</title>
-  <meta property="og:title" content="Mr. Yugen – Portafolio & Blog Creativo" />
+  <title>Mr. Yugen – Portfolio & Blog Creativo. Aprende a crear un juego de mesa desde cero.</title>
+  <meta property="og:title" content="Mr. Yugen – Portfolio & Blog Creativo" />
   <meta property="og:description"
-    content="Diseño, ilustración, código y creatividad. El portafolio y blog personal de Mr. Yugen." />
-  <meta property="og:image" content="https://mryugen.com/og-image.jpg" />
+    content="Diseño, ilustración, código y creatividad. El portfolio y blog personal de Mr. Yugen." />
+  <meta property="og:image" content="https://mryugen.com/assets/og/og-image.jpg" />
   <meta property="og:url" content="https://mryugen.com/" />
   <meta name="twitter:card" content="summary_large_image" />
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <script type="application/ld+json">
-{
+    {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Miguel Estévez",
   "alternateName": "Mr. Yugen",
   "url": "https://mryugen.com",
   "sameAs": [
-    "https://github.com/MrYugen"
+  "https://github.com/MrYugen"
   ],
   "jobTitle": "Creativo, Ilustrador & Diseñador UX/UI",
-  "description": "Creativo, diseñador gráfico y desarrollador web (Angular) con experiencia en automatización de procesos. Apasionado por la ilustración, el diseño de juegos de mesa y el uso de inteligencia artificial y herramientas No-Code.",
-}
+  "description": "Creativo, diseñador gráfico y desarrollador web (Angular) con experiencia en automatización de
+  procesos. Apasionado por la ilustración, el diseño de juegos de mesa y el uso de inteligencia artificial y
+  herramientas No-Code.",
+  }
 </script>
+
+  <!-- Configuración de Klaro CMP -->
+  <script defer src="https://api.kiprotect.com/v1/privacy-managers/e5599e6b3725d6bb69153c0690f8e4ec/klaro.js"></script>
+
+  <!-- Tema visual para Klaro (variables CSS) -->
+  <style>
+    :root {
+      --klaro-primary: #FF6F3C;
+      --klaro-secondary: #1D3557;
+      --klaro-bg: #FDEEDC;
+      --klaro-link: #457B9D;
+      --klaro-danger: #E63946;
+      --klaro-radius: 16px;
+      --klaro-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+      --klaro-font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell;
+    }
+  </style>
+
+  <!-- Google Analytics 4 (gtag.js) - Bloqueado por CMP hasta consentimiento -->
+  <script async type="text/plain" data-type="application/javascript" data-name="google-analytics"
+    data-src="https://www.googletagmanager.com/gtag/js?id=G-XG47LT9HDL">
+</script>
+
+  <script type="text/plain" data-type="application/javascript" data-name="google-analytics">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent','default',{'analytics_storage':'denied'});
+  gtag('js', new Date());
+  gtag('config','G-XG47LT9HDL',{'send_page_view':false});
+</script>
+
+  <!-- Sincroniza Consent Mode al aceptar/declinar en Klaro -->
+  <script>
+    (function waitForKlaro() {
+      if (!window.klaro) return setTimeout(waitForKlaro, 50);
+      var manager = klaro.getManager();
+
+      function sendInitialPV() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view', {
+            page_title: document.title,
+            page_path: location.pathname + location.search + location.hash,
+            page_location: window.location.href
+          });
+        }
+      }
+
+      function applyGcm() {
+        var consent = manager.getConsent('google-analytics');
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', { 'analytics_storage': consent ? 'granted' : 'denied' });
+          if (consent) sendInitialPV(); // <- page_view inmediato tras aceptar
+        }
+      }
+
+      applyGcm();
+      manager.watch({ update: function () { applyGcm(); } });
+    })();
+  </script>
+
 </head>
 
 <body>
