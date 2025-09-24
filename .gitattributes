@@ -1,0 +1,39 @@
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.sh text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.mp4 binary
+*.mov binary
+*.avi binary
+*.pdf binary
+*.zip binary
+*.7z binary
+*.gz binary
+*.rar binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# Keep Angular/TypeScript sources normalized
+*.ts text
+*.tsx text
+*.js text
+*.jsx text
+*.json text
+*.html text
+*.css text
+*.scss text
+*.sass text
+*.md text
