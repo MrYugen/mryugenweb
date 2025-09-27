@@ -395,41 +395,73 @@
                 <h2 id="contact-heading" class="text-3xl md:text-5xl font-bold mb-2">Contacto</h2>
                 <p class="uppercase tracking-wide text-sm text-[color:var(--text)]/70 mb-6">¿Trabajamos juntos?</p>
 
-                <form (ngSubmit)="onSubmit()" #contactForm="ngForm" novalidate class="space-y-4">
+                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate
+                    [attr.aria-busy]="submitting ? true : null" class="space-y-4">
+
+                    <p class="text-sm text-[color:var(--text)]/70">Los campos marcados con <span
+                            class="text-red-600">*</span> son obligatorios.</p>
 
                     <div>
-                        <label for="name" class="block font-medium mb-1">Nombre</label>
-                        <input id="name" name="name" [(ngModel)]="name" required placeholder="¿Cómo debo llamarte?"
-                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                        <label for="name" class="block font-medium mb-1">Nombre <span
+                                class="text-red-600">*</span></label>
+                        <input id="name" name="name" [(ngModel)]="contactName" #nameCtrl="ngModel" required
+                            placeholder="¿Cómo debo llamarte?"
+                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                            [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null" />
+                        <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-1 text-sm text-red-600">El nombre es
+                            obligatorio.</p>
                     </div>
 
                     <div>
-                        <label for="email" class="block font-medium mb-1">Email</label>
-                        <input id="email" name="email" type="email" [(ngModel)]="email" required
-                            placeholder="Tu mejor email, por favor"
-                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                        <label for="email" class="block font-medium mb-1">Email <span
+                                class="text-red-600">*</span></label>
+                        <input id="email" name="email" type="email" [(ngModel)]="contactEmail" #emailCtrl="ngModel"
+                            required email placeholder="Tu mejor email, por favor"
+                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                            [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null" />
+                        <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-1 text-sm text-red-600">
+                            <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+                            <span *ngIf="emailCtrl.errors?.['email']">Introduce un email válido
+                                (nombre&#64;dominio.com).</span>
+                        </p>
                     </div>
 
+
                     <div>
-                        <label for="message" class="block font-medium mb-1">Mensaje</label>
-                        <textarea id="message" name="message" rows="5" [(ngModel)]="message" required
-                            placeholder="¿En qué te puedo ayudar?"
+                        <label for="message" class="block font-medium mb-1">Mensaje <span
+                                class="text-red-600">*</span></label>
+                        <textarea id="message" name="message" rows="5" [(ngModel)]="contactMessage"
+                            #messageCtrl="ngModel" required maxlength="300" placeholder="¿En qué te puedo ayudar?"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
+                        <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
+                            <span>Hasta 300 caracteres.</span>
+                            <span>{{ (contactMessage.length || 0) }}/300</span>
+                        </div>
+                        <p *ngIf="messageCtrl.invalid && messageCtrl.touched && messageCtrl.errors?.['required']"
+                            class="mt-1 text-sm text-red-600">
+                            El mensaje es obligatorio.
+                        </p>
+                        <p *ngIf="messageCtrl.errors?.['maxlength'] && messageCtrl.touched"
+                            class="mt-1 text-sm text-red-600">
+                            El mensaje puede tener como máximo 300 caracteres.
+                        </p>
                     </div>
 
-                    <button type="submit" [disabled]="contactForm.invalid"
+                    <button type="submit" [disabled]="submitting || contactForm.invalid"
                         class="w-full py-3 border-2 border-cta hover:bg-cta hover:text-white rounded-full font-semibold transition">
-                        Pulsa y te leeré en breve
+                        {{ submitting ? 'Enviando…' : 'Pulsa y te leeré en breve' }}
                     </button>
+
+                    <p *ngIf="success" class="text-green-600 text-sm">{{ success }}</p>
+                    <p *ngIf="error" class="text-red-600 text-sm">{{ error }}</p>
+
                     <p class="text-xs text-[color:var(--text)]/70 mt-4">Al enviar este formulario aceptas nuestro
                         <a routerLink="/aviso-legal" class="underline">Aviso Legal</a>,
                         <a routerLink="/politica-privacidad" class="underline">Política de Privacidad</a> y las
                         <a routerLink="/condiciones-generales" class="underline">Condiciones Generales</a>.
                     </p>
-
                 </form>
             </div>
-
         </div>
     </section>
 

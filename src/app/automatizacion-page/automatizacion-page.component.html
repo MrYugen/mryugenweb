@@ -11,8 +11,8 @@
         [bgImageLight]="'assets/images/automatizacion/automation-hero-light.jpg'"
         [bgImageDark]="'assets/images/automatizacion/automation-hero-dark.jpg'"
         [bgImageLightMobile]="'assets/images/automatizacion/automation-hero-light-mobile.jpg'"
-        [bgImageDarkMobile]="'assets/images/automatizacion/automation-hero-dark-mobile.jpg'" [logoLight]="''" [logoDark]="''"
-        [showCTA]="false">
+        [bgImageDarkMobile]="'assets/images/automatizacion/automation-hero-dark-mobile.jpg'" [logoLight]="''"
+        [logoDark]="''" [showCTA]="false">
     </app-hero>
 
     <!-- Presentación -->
@@ -546,9 +546,10 @@
                 Además, puedes <strong>SUSCRIBIRTE A NUESTRO NEWSLETTER</strong> para recibir tips y novedades sobre
                 cómo aplicar la IA
                 en tu día a día. Algunos usos que se pueden hacer de la IA son realmente sorprendentes.<br /><br />
-                <strong>Para suscribirte, solo déjanos tu nombre, email y marca la casilla.</strong>
             </p>
-            <form novalidate (ngSubmit)="onSubmit()" #f="ngForm" class="space-y-4">
+            <form novalidate (ngSubmit)="onSubmit(f)" #f="ngForm" class="space-y-4">
+                <p class="text-sm text-[color:var(--text)]/70">Los campos marcados con <span
+                        class="text-red-600">*</span> son obligatorios.</p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <label class="inline-flex items-center">
                         <input type="checkbox" name="tipo_autonomo" [(ngModel)]="tipo_autonomo" class="mr-2">
@@ -561,31 +562,61 @@
                 </div>
 
                 <div>
-                    <label for="name" class="block font-medium mb-1">Nombre</label>
-                    <input id="name" name="name" [(ngModel)]="name" required placeholder="¿Cómo debo llamarte?"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                    <label for="name" class="block font-medium mb-1">Nombre <span class="text-red-600">*</span></label>
+                    <input id="name" name="name" [(ngModel)]="name" #nameCtrl="ngModel" required
+                        placeholder="¿Cómo debo llamarte?"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                        [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null" />
+                    <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-1 text-sm text-red-600">El nombre es
+                        obligatorio.</p>
                 </div>
 
                 <div>
-                    <label for="email" class="block font-medium mb-1">Email</label>
-                    <input id="email" name="email" type="email" [(ngModel)]="email" required
+                    <label for="email" class="block font-medium mb-1">Email <span class="text-red-600">*</span></label>
+                    <input id="email" name="email" type="email" [(ngModel)]="email" #emailCtrl="ngModel" required email
                         placeholder="Tu mejor email, por favor"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                        [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null" />
+                    <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-1 text-sm text-red-600">
+                        <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+                        <span *ngIf="emailCtrl.errors?.['email']">Introduce un email valido
+                            (nombre&#64;dominio.com).</span>
+                    </p>
                 </div>
 
                 <div>
-                    <label for="automationIdea" class="block font-medium mb-1">¿Sabes qué quieres automatizar?</label>
+                    <label for="automationIdea" class="block font-medium mb-1">¿Sabes qué quieres automatizar? <span
+                            class="text-[color:var(--text)]/70">(opcional)</span></label>
                     <input id="automationIdea" name="automationIdea" type="text" [(ngModel)]="automationIdea"
-                        placeholder="(Opcional) Comenta brevemente tu idea"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900" />
+                        #automationCtrl="ngModel" maxlength="300" placeholder="(Opcional) Comenta brevemente tu idea"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                        [attr.aria-invalid]="automationCtrl.errors?.['maxlength'] && automationCtrl.touched ? true : null" />
+                    <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
+                        <span>Hasta 150 caracteres.</span>
+                        <span>{{ automationIdea.length || 0 }}/150</span>
+                    </div>
+                    <p *ngIf="automationCtrl.errors?.['maxlength'] && automationCtrl.touched"
+                        class="mt-1 text-sm text-red-600">El texto puede tener como máximo 150 caracteres.</p>
                 </div>
 
                 <div>
-                    <label for="message" class="block font-medium mb-1">Mensaje/Consulta</label>
-                    <textarea id="message" name="message" rows="4" [(ngModel)]="message" required
-                        placeholder="¿En qué podemos ayudarte?"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
+                    <label for="message" class="block font-medium mb-1">Mensaje/Consulta <span
+                            class="text-red-600">*</span></label>
+                    <textarea id="message" name="message" rows="4" [(ngModel)]="message" #messageCtrl="ngModel" required
+                        maxlength="300" placeholder="¿En qué puedo ayudarte?"
+                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
+                        [attr.aria-invalid]="messageCtrl.invalid && messageCtrl.touched ? true : null"></textarea>
+                    <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
+                        <span>Hasta 300 caracteres.</span>
+                        <span>{{ message.length || 0 }}/300</span>
+                    </div>
+                    <p *ngIf="messageCtrl.invalid && messageCtrl.touched" class="mt-1 text-sm text-red-600">
+                        <span *ngIf="messageCtrl.errors?.['required']">El mensaje es obligatorio.</span>
+                        <span *ngIf="messageCtrl.errors?.['maxlength']">El mensaje puede tener como máximo 300
+                            caracteres.</span>
+                    </p>
                 </div>
+
 
                 <div class="flex items-start">
                     <input id="newsletter" name="newsletter" type="checkbox" [(ngModel)]="newsletter" class="mt-3" />
@@ -593,9 +624,13 @@
                         automatización.</label>
                 </div>
 
+                <div class="space-y-1" aria-live="polite">
+                    <p *ngIf="submitSuccess" class="text-sm text-green-600 font-semibold">{{ submitSuccessMessage }}</p>
+                    <p *ngIf="submitError" class="text-sm text-red-600" role="alert">{{ submitErrorMessage }}</p>
+                </div>
                 <button type="submit" [disabled]="f.invalid || submitting"
                     class="w-full px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
-                    Enviar
+                    {{ submitting ? 'Enviando...' : 'Enviar' }}
                 </button>
 
                 <p class="text-xs text-text/70 mt-4">

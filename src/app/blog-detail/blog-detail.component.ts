@@ -54,40 +54,26 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
   onSubscribe() {
-  this.errorMessage = "";
-  this.successMessage = "";
+    this.successMessage = ''; this.errorMessage = '';
+    const email = this.email?.trim();
+    if (!/\S+@\S+\.\S+/.test(email)) { this.errorMessage = 'Por favor, introduce un email válido.'; return; }
 
-  const emailTrim = this.email.trim();
-  const emailValido = /\S+@\S+\.\S+/.test(emailTrim);
-  if (!emailValido) {
-    this.errorMessage = 'Por favor, introduce un email válido.';
-    return;
-  }
-
-  // Opcional: para pedir nombre en la suscripción, incluirlo
-  const datos = { email: emailTrim /*, name: this.nombre ?? "" */ };
-
-  this.submitting = true;
-  this.http.post('/suscribir.php', datos, { responseType: 'text' })
-    .subscribe({
-      next: (res) => {
+    this.submitting = true;
+    this.http.post('/suscribir.php', { email }, { responseType: 'text' as const }).subscribe({
+      next: (t) => {
+        const res = (t || '').trim();
+        if (res === 'OK')      this.successMessage = '¡Gracias por suscribirte!';
+        else if (res === 'DUPLICATE') this.successMessage = 'Ya estabas suscrito 😊';
+        else                   this.errorMessage = 'Respuesta inesperada: ' + res;
         this.submitting = false;
-        if (res === 'OK' || res === 'DUPLICATE') {
-          // 'DUPLICATE' lo tratamos como suscripción exitosa también, porque ya existe
-          this.successMessage = 'Gracias por suscribirte. Revisa tu correo para confirmar.';
-          this.email = "";
-        } else {
-          // Cualquier otro texto inesperado
-          console.warn("Respuesta de suscripción:", res);
-          this.errorMessage = 'Hubo un problema al suscribirte. Intenta más tarde.';
-        }
+        if (this.successMessage) this.email = '';
       },
-      error: () => {
+      error: (err) => {
+        this.errorMessage = typeof err?.error === 'string' ? err.error : 'Error del servidor';
         this.submitting = false;
-        this.errorMessage = 'Error de servidor. Por favor, inténtalo de nuevo más tarde.';
       }
     });
-}
+  }
 
   ngAfterViewInit() {
     if (prefersReducedMotion()) {

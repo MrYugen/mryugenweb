@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "cookieExpiresAfterDays": 180,
+  "name": "default",
+  "status": "active",
+  "id": "6d844f3888aa016a83adb492da98ec21",
+  "elementID": "klaro",
+  "storageMethod": "cookie",
+  "cookieName": "klaro",
+  "cookieDomain": "mryugen.com",
+  "additionalClass": "mr-yugen-cmp",
+  "lang": "es",
+  "languages": [
+    "es",
+    "en"
+  ],
+  "hideToggleAll": false,
+  "htmlTexts": true,
+  "embedded": false,
+  "groupByPurpose": true,
+  "purposeOrder": [
+    "performance",
+    "marketing"
+  ],
+  "default": false,
+  "mustConsent": false,
+  "disablePoweredBy": true,
+  "acceptAll": true,
+  "hideDeclineAll": false,
+  "noticeAsModal": false,
+  "translations": {
+    "en": {
+      "consentModal": {
+        "title": "Manage your preferences"
+      },
+      "consentNotice": {
+        "description": "We use cookies to improve your experience, measure site usage and, if you consent, show more relevant content. You can accept, reject or customize your choice now and change it anytime via the “Cookie preferences” link. Learn more in our <a href=\"/politica-privacidad\" target=\"_blank\" rel=\"noopener\">Privacy Policy</a>.",
+        "learnMore": "Customize"
+      },
+      "contextualConsent": {
+        "description": "Do you want to load external content supplied by Google Analytics?"
+      },
+      "purposes": {
+        "marketing": {
+          "description": "These cookies help us show you more relevant content and campaigns on and off mryugen.com. Our advertising partners may combine your visit with information from other sites to measure campaigns, build audiences, and avoid repeated ads. If you refuse, you’ll still see content, but it may be less relevant. You can change your choice at any time.",
+          "title": "Marketing & Personalized Ads"
+        },
+        "performance": {
+          "description": "We use measurement cookies (e.g., Google Analytics 4) to understand how people use mryugen.com: most-viewed pages, navigation paths, devices, and load times. This helps us improve content and speed. We do not use this data for advertising or to identify you. It only runs if you consent, and you can change your choice anytime.",
+          "title": "Analytics & Site Performance"
+        }
+      },
+      "service": {
+        "optOut": {
+          "description": "If you previously consented to this category, you can withdraw your consent here. It will stop collecting data from now on.",
+          "title": "You can opt out anytime"
+        },
+        "required": {
+          "description": "Cookies essential for basic functions like security, page loading, system preferences, or remembering your consent. They are always set and are not used for advertising.",
+          "title": "Necessary (essential)"
+        }
+      }
+    },
+    "es": {
+      "consentModal": {
+        "title": "Gestiona tus preferencias"
+      },
+      "consentNotice": {
+        "description": "Usamos cookies para mejorar tu experiencia, medir el uso del sitio y, si lo aceptas, mostrarte contenido más relevante. Puedes aceptar, rechazar o configurar tu elección ahora o cambiarla cuando quieras en el enlace “Preferencias de cookies”. Lee más en nuestra <a href=\"/politica-privacidad\" target=\"_blank\" rel=\"noopener\">Política de privacidad</a>",
+        "learnMore": "Configurar"
+      },
+      "contextualConsent": {
+        "description": "¿Quieres cargar el contenido externo suministrado por Google Analytics?"
+      },
+      "privacyPolicyUrl": "https://www.mryugen.com/politica-privacidad",
+      "purposes": {
+        "marketing": {
+          "description": "Estas cookies permiten mostrarte contenido y campañas más relevantes dentro y fuera de mryugen.com. Nuestros socios publicitarios pueden combinar datos de tu visita con información de otras webs para medir campañas, crear audiencias y evitar anuncios repetidos. Si las rechazas, seguirás viendo contenido, pero puede ser menos relevante. Puedes cambiar tu elección en cualquier momento.",
+          "title": "Marketing y anuncios personalizados"
+        },
+        "performance": {
+          "description": "Usamos cookies de medición (p. ej., Google Analytics 4) para entender cómo se navega por mryugen.com: páginas más vistas, rutas, dispositivos y tiempos de carga. Esta información nos ayuda a mejorar contenido y velocidad. No la usamos para publicidad ni para identificarte. Solo se activa si la aceptas, y puedes cambiar tu elección cuando quieras.",
+          "title": "Analítica y rendimiento del sitio"
+        }
+      },
+      "service": {
+        "optOut": {
+          "description": "Si ya habías aceptado esta categoría, puedes retirar tu consentimiento aquí. Dejará de recopilar datos desde este momento.",
+          "title": "Puedes desactivarlo cuando quieras"
+        },
+        "required": {
+          "description": "Cookies imprescindibles para funciones básicas como seguridad, carga de página, preferencias del sistema o recordar tu consentimiento. Se instalan siempre y no almacenan datos con fines publicitarios.",
+          "title": "Necesarias (imprescindibles)"
+        }
+      }
+    },
+    "zz": {
+      "privacyPolicyUrl": "https://www.mryugen.com/politica-privacidad",
+      "purposes": {
+        "marketing": {
+          "title": "Marketing y anuncios personalizados"
+        },
+        "performance": {
+          "title": "Analítica y rendimiento del sitio"
+        }
+      }
+    }
+  },
+  "styling": {
+    "theme": [
+      "bottom"
+    ]
+  },
+  "services": [
+    {
+      "id": "524150fde8bafb3c3a1528556344a378",
+      "version": 1,
+      "name": "google-analytics",
+      "onAccept": "// we grant analytics storage\nif (typeof gtag === 'function'){\n  gtag('consent', 'update', {\n      'analytics_storage': 'granted',\n  });\n}",
+      "onDecline": "// we deny analytics storage\nif (typeof gtag === 'function'){\n  gtag('consent', 'update', {\n      'analytics_storage': 'denied',\n  });\n}",
+      "purposes": [
+        "performance"
+      ],
+      "default": false,
+      "required": false,
+      "optOut": false,
+      "contextualConsentOnly": false,
+      "onlyOnce": false,
+      "translations": {
+        "$en": {
+          "description": "Google Analytics is a web analytics solution offered by Google."
+        },
+        "de": {
+          "description": "Google Analytics ist eine Web-Analyse-Lösung, die von Google angeboten wird."
+        },
+        "en": {
+          "description": "Google Analytics is a web analytics solution offered by Google."
+        },
+        "es": {
+          "description": "Google Analytics es una solución de análisis web ofrecida por Google."
+        },
+        "fr": {
+          "description": "Google Analytics est une solution d'analyse web proposée par Google."
+        },
+        "it": {
+          "description": "Google Analytics è una soluzione di analisi web offerta da Google."
+        },
+        "nl": {
+          "description": "Google Analytics is een webanalyse-oplossing die door Google wordt aangeboden."
+        },
+        "pl": {
+          "description": "Google Analytics to rozwiązanie do analizy stron internetowych oferowane przez Google."
+        },
+        "pt": {
+          "description": "O Google Analytics é uma solução de análise da web oferecida pelo Google."
+        },
+        "zh": {
+          "description": "Google Analytics是谷歌提供的网络分析解决方案。"
+        },
+        "zz": {
+          "cookieDetailsUrl": "https://developers.google.com/analytics/devguides/collection/analyticsjs/cookie-usage",
+          "privacyPolicyUrl": "https://policies.google.com/privacy?hl={lang}",
+          "title": "Google Analytics"
+        }
+      },
+      "cookies": [
+        {
+          "pattern": "^_ga$",
+          "expiresAfter": "2 years",
+          "path": "/",
+          "_id": "_w5o71lp74"
+        },
+        { "pattern": "^_ga_.*", "expiresAfter": "2 years", "path": "/" },
+        {
+          "pattern": "^_gid$",
+          "expiresAfter": "24 hours",
+          "path": "",
+          "_id": "_pm2mx4kxk"
+        },
+        {
+          "pattern": "^_gat$",
+          "expiresAfter": "1 minute",
+          "path": "",
+          "_id": "_5o9xahu9y"
+        },
+        {
+          "pattern": "^AMP_TOKEN$",
+          "expiresAfter": "1 year",
+          "path": "",
+          "_id": "_nrzk9jizk"
+        },
+        {
+          "pattern": "^_gac_",
+          "expiresAfter": "90 days",
+          "path": "",
+          "_id": "_eabcd8n4i"
+        },
+        {
+          "pattern": "^__utmz$",
+          "expiresAfter": "6 months",
+          "path": "",
+          "_id": "_skfcvwpvr"
+        },
+        {
+          "pattern": "^__utma$",
+          "expiresAfter": "never",
+          "path": "",
+          "_id": "_a2t8wya95"
+        },
+        {
+          "pattern": "^__utmb$",
+          "expiresAfter": "30 minutes",
+          "path": "",
+          "_id": "_z5jkkmf0l"
+        },
+        {
+          "pattern": "^__utmv$",
+          "expiresAfter": "never",
+          "path": "",
+          "_id": "_auaphymfo"
+        },
+        {
+          "pattern": "^__utmt$",
+          "expiresAfter": "10 minutes",
+          "path": "",
+          "_id": "_v3uh6zrj1"
+        }
+      ],
+      "localStorage": [],
+      "sessionStorage": [],
+      "elements": [
+        {
+          "tagName": "script",
+          "content": { "patterns": ["googletagmanager\\.com/gtag/js", "gtag\\("] }
+        }
+      ],
+      "requests": [
+        {
+          "url": "https://www\\.google-analytics\\.com"
+        }
+      ],
+      "actions": null,
+      "_id": "_6gurkphzn"
+    }
+  ]
+}

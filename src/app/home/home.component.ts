@@ -10,14 +10,14 @@ import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 // Trae FormsModule para ngModel, ngSubmit, ngForm…
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from '../utils/motion.utils';
 
 import { ThemeService } from '../services/theme.service';
 import { BlogService, BlogPost } from '../services/blog.service';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpErrorResponse } from '@angular/common/http';
 gsap.registerPlugin(ScrollTrigger);
 
 interface PortfolioItem {
@@ -32,7 +32,7 @@ interface PortfolioItem {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [                       // <-- aquí le dices qué módulos usar
+  imports: [                    
     CommonModule,
     RouterModule,
     NavbarComponent,
@@ -61,9 +61,13 @@ private intervals: ReturnType<typeof setInterval>[] = [];
 
   isDarkMode = false;  // Estado del tema
   // Campos del formulario de contacto
-  name: string = "";
-  email: string = "";
-  message: string = "";
+  contactName: string = '';
+  contactEmail: string = '';
+  contactMessage: string = '';
+
+  submitting = false;
+  success = '';
+  error = '';
 
   onPointerDown(e: PointerEvent) {
     this.startX = e.clientX;
@@ -159,37 +163,30 @@ private intervals: ReturnType<typeof setInterval>[] = [];
     this.isDarkMode = this.theme.toggle();
   }
 
-  onSubmit() {
-  // Prepara los datos en un objeto JSON
-  const datos = {
-    name: this.name,
-    email: this.email,
-    message: this.message
-    // (En este formulario Home solo hay esos tres campos)
-  };
+  onSubmit(form: NgForm) {
+    if (form.invalid || this.submitting) return;
+    this.submitting = true;
+    this.success = '';
+    this.error = '';
 
-  // Realiza la petición HTTP POST al script PHP
-  this.http.post('/contacto.php', datos, { responseType: 'text' })
-    .subscribe({
-      next: (respuesta) => {
-        if (respuesta === 'OK') {
-          alert("✅ Mensaje enviado correctamente. ¡Gracias por contactarme! Pronto recibirás un email de confirmación.");
-          // Opcional: limpiar los campos o hacer alguna acción extra
-          this.name = "";
-          this.email = "";
-          this.message = "";
-        } else {
-          // Si recibimos algo distinto a "OK", igualmente lo tratamos como error genérico
-          console.error("Respuesta inesperada:", respuesta);
-          alert("⚠️ Ocurrió algo inesperado. Intenta de nuevo o más tarde.");
+    this.http.post('/contacto.php', form.value, { responseType: 'text' as const }) // <- API devuelve texto
+      .subscribe({
+        next: (text) => {
+          const t = (text || '').trim();
+          if (t === 'OK') {
+            this.success = '¡Gracias! Te responderé muy pronto.';
+            form.resetForm();
+          } else {
+            this.error = 'Error inesperado: ' + t;
+          }
+          this.submitting = false;
+        },
+        error: (err) => {
+          this.error = typeof err?.error === 'string' ? err.error : 'Error del servidor';
+          this.submitting = false;
         }
-      },
-      error: (err) => {
-        console.error("Error en la petición:", err);
-        alert("❌ No se pudo enviar el mensaje. Por favor intenta de nuevo.");
-      }
-    });
-}
+      });
+  }
 
 ngAfterViewInit() {
   // Limpia cualquier intervalo anterior por si acaso

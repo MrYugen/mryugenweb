@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { HeroComponent } from '../hero/hero.component';
 import { ThemeService } from '../services/theme.service';
 import { MobileNavbarComponent } from '../mobile-navbar/mobile-navbar.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 // Importar GSAP y plugin ScrollTrigger
 import { gsap } from 'gsap';
@@ -34,6 +34,11 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
   tipo_particular: boolean = false;
   newsletter: boolean = false;
   submitting = false;
+
+  submitSuccess = false;
+  submitSuccessMessage = '';
+  submitError = false;
+  submitErrorMessage = '';
 
   carouselImages: string[] = [
     'assets/images/automatizacion/carousel_portada.jpg',
@@ -103,9 +108,25 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
     this.isDarkMode = this.themeService.toggle();
   }
 
-  onSubmit() {
-    // Validación mínima en cliente (coincide con el PHP)
-    if (!this.name.trim() || !this.email.trim() || !this.message.trim()) return;
+  onSubmit(form: NgForm) {
+    if (!form) {
+      return;
+    }
+
+    if (form.invalid) {
+      form.form.markAllAsTouched();
+      return;
+    }
+
+    if (!this.name.trim() || !this.email.trim() || !this.message.trim()) {
+      form.form.markAllAsTouched();
+      return;
+    }
+
+    this.submitSuccess = false;
+    this.submitSuccessMessage = '';
+    this.submitError = false;
+    this.submitErrorMessage = '';
 
     const datos = {
       name: this.name,
@@ -122,20 +143,45 @@ export class AutomatizacionPageComponent implements OnInit, AfterViewInit, OnDes
       .subscribe({
         next: (res) => {
           this.submitting = false;
+
           if (res === 'OK') {
-            alert('✅ ¡Gracias por contactar! Te responderé pronto.');
-            this.name = ''; this.email = ''; this.message = '';
+            this.submitSuccess = true;
+            this.submitSuccessMessage = 'Mensaje enviado correctamente. Te contactare muy pronto.';
+            form.resetForm({
+              tipo_autonomo: false,
+              tipo_particular: false,
+              newsletter: false
+            });
+            this.name = '';
+            this.email = '';
+            this.message = '';
             this.automationIdea = '';
-            this.tipo_autonomo = false; this.tipo_particular = false; this.newsletter = false;
+            this.tipo_autonomo = false;
+            this.tipo_particular = false;
+            this.newsletter = false;
           } else {
             console.error('Respuesta inesperada:', res);
-            alert('⚠️ Hubo un detalle erróneo al enviar, por favor intenta nuevamente.');
+            this.submitError = true;
+            this.submitErrorMessage = 'Respuesta inesperada del servidor. Intentalo de nuevo mas tarde.';
           }
         },
-        error: (err) => {
+        error: (err: HttpErrorResponse) => {
           this.submitting = false;
-          console.error(err);
-          alert('❌ Error de servidor. Intenta más tarde.');
+          this.submitSuccess = false;
+          this.submitError = true;
+
+          console.error('Error en el envio:', err);
+
+          const serverMessage = typeof err?.error === 'string' ? err.error.trim() : '';
+          if (serverMessage) {
+            this.submitErrorMessage = serverMessage;
+          } else if (err?.status === 0) {
+            this.submitErrorMessage = 'No se pudo conectar con el servidor. Comprueba tu conexion e intentalo otra vez.';
+          } else if (err?.status >= 500) {
+            this.submitErrorMessage = 'Ocurrio un error en el servidor. Intentalo de nuevo mas tarde.';
+          } else {
+            this.submitErrorMessage = 'No se pudo enviar el mensaje. Revisa los datos e intentalo de nuevo.';
+          }
         }
       });
   }
