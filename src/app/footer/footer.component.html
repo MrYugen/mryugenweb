@@ -1,7 +1,8 @@
 <footer id="footer" class="py-6 bg-[color:var(--color-footer)] text-[color:var(--text)] transition-colors duration-300">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 px-4">
+    <div
+        class="max-w-6xl mx-auto flex flex-col items-center space-y-6 px-4 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-4 xl:flex xl:flex-row xl:items-center xl:justify-between xl:space-y-0">
         <!-- Logo y © -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-3 md:col-span-1 md:justify-self-start">
             <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen Logo" class="w-10 h-10" />
             <p class="text-sm">
                 © {{ currentYear }} Miguel Estévez – Mr. Yugen. Todos los derechos reservados.
@@ -9,7 +10,7 @@
         </div>
 
         <!-- Enlaces legales -->
-        <div class="flex flex-wrap justify-center gap-x-4 text-sm">
+        <div class="flex flex-wrap justify-center gap-x-4 text-sm md:col-span-2 md:justify-start">
             <a routerLink="/aviso-legal" class="hover:underline">Aviso Legal</a>
             <a routerLink="/politica-privacidad" class="hover:underline">Política de Privacidad</a>
             <a routerLink="/politica-cookies" class="hover:underline">Política de Cookies</a>
@@ -18,34 +19,41 @@
         </div>
 
         <!-- Redes Sociales -->
-        <div class="flex items-center space-x-3">
+        <div
+            class="flex items-center space-x-3 md:col-span-1 md:justify-self-end md:flex-col md:items-end md:space-y-3 md:space-x-0 xl:flex-row xl:items-center xl:space-x-3 xl:space-y-0">
             <span class="font-medium">Visítanos:</span>
-            <a href="https://www.behance.net/mryugen" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de Behance">
-                <img loading="lazy" src="assets/images/icons/behance_logo.svg" alt="Logo Behance" class="w-10 h-10" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de LinkedIn">
-                <img loading="lazy" src="assets/images/icons/linkedin_logo.svg" alt="Logo LinkedIn" class="w-10 h-10" />
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61570843803720" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de Facebook">
-                <img loading="lazy" src="assets/images/icons/facebook_logo.svg" alt="Logo Facebook" class="w-10 h-10" />
-            </a>
-            <a href="https://www.instagram.com/couple_clash/" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de Instagram">
-                <img loading="lazy" src="assets/images/icons/instagram_logo.svg" alt="Logo Instagram"
-                    class="w-10 h-10" />
-            </a>
-            <a href="https://x.com/Mister_Yugen" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de X/Twitter">
-                <img loading="lazy" src="assets/images/icons/x_logo.svg" alt="Logo X" class="w-10 h-10" />
-            </a>
-            <a href="https://kickstarter.com" target="_blank" rel="noopener noreferrer"
-                aria-label="Ir al perfil de Kickstarter">
-                <img loading="lazy" src="assets/images/icons/kickstarter_logo.svg" alt="Logo Kickstarter"
-                    class="w-10 h-10" />
-            </a>
+            <div class="flex items-center space-x-3 md:space-x-4">
+                <a href="https://www.behance.net/mryugen" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ir al perfil de Behance">
+                    <img loading="lazy" src="assets/images/icons/behance_logo.svg" alt="Logo Behance"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ir al perfil de LinkedIn">
+                    <img loading="lazy" src="assets/images/icons/linkedin_logo.svg" alt="Logo LinkedIn"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61570843803720" target="_blank"
+                    rel="noopener noreferrer" aria-label="Ir al perfil de Facebook">
+                    <img loading="lazy" src="assets/images/icons/facebook_logo.svg" alt="Logo Facebook"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+                <a href="https://www.instagram.com/couple_clash/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ir al perfil de Instagram">
+                    <img loading="lazy" src="assets/images/icons/instagram_logo.svg" alt="Logo Instagram"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+                <a href="https://x.com/Mister_Yugen" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ir al perfil de X/Twitter">
+                    <img loading="lazy" src="assets/images/icons/x_logo.svg" alt="Logo X"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+                <a href="https://kickstarter.com" target="_blank" rel="noopener noreferrer"
+                    aria-label="Ir al perfil de Kickstarter">
+                    <img loading="lazy" src="assets/images/icons/kickstarter_logo.svg" alt="Logo Kickstarter"
+                        class="w-10 h-10 md:w-12 md:h-12" />
+                </a>
+            </div>
         </div>
     </div>
 </footer>

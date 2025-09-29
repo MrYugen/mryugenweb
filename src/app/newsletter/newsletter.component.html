@@ -1,0 +1,125 @@
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+
+    <main
+        class="pt-16 bg-gradient-to-b from-white via-[#f3f5ff] to-white dark:from-bg dark:via-bg/95 dark:to-bg min-h-screen flex flex-col">
+        <section class="flex-1 flex items-center">
+            <div class="w-full mx-auto max-w-6xl px-4 py-16 lg:py-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <p class="text-sm uppercase tracking-[0.3em] text-cta/80 font-semibold">Newsletter Mr. Yugen</p>
+                        <h1 class="text-4xl sm:text-5xl font-bold text-[color:var(--text)] dark:text-white">
+                            Inspírate (y actúa) cada semana
+                        </h1>
+                        <p class="text-lg text-[color:var(--text)]/80 dark:text-white/80">
+                            Recibirás 1 email con con ideas accionables de automatización, IA, diseño y
+                            desarrollo de juegos de mesa. Curado a mano, sin spam externos y en formato digest para leer
+                            en
+                            5 minutos.
+                        </p>
+                        <ul class="space-y-3 text-[color:var(--text)]/75 dark:text-white/70">
+                            <li class="flex items-start gap-3">
+                                <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
+                                <span>Guías rápidas para Automatizar tareas diarias para ganar horas reales.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
+                                <span>Exprimir la IA con prompts útiles y ejemplos listos para usar.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
+                                <span>Crear tu juego paso a paso: procesos, arte y decisiones de diseño.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
+                                <span>Backstage de Couple Clash: aprendizajes, errores y recursos exclusivos.</span>
+                            </li>
+                        </ul>
+                        <p class="text-sm text-[color:var(--text)]/60 dark:text-white/60">Privado, sin compartir tu
+                            email.
+                            Nada de ruido, solo valor y entretenimiento.</p>
+                    </div>
+
+                    <div
+                        class="bg-white/90 dark:bg-[#0c0c14]/90 backdrop-blur shadow-2xl rounded-3xl border border-white/40 dark:border-white/10 p-8 sm:p-10">
+                        <form #newsletterForm="ngForm" (ngSubmit)="onSubmit(newsletterForm)" novalidate
+                            class="space-y-6" [attr.aria-busy]="submitting ? true : null">
+                            <div>
+                                <label for="name"
+                                    class="block text-sm font-semibold text-[color:var(--text)] dark:text-white mb-2">Nombre</label>
+                                <input id="name" name="name" type="text" [(ngModel)]="name" #nameCtrl="ngModel" required
+                                    minlength="2" (input)="clearFeedback()"
+                                    class="w-full rounded-2xl border border-[color:var(--text)]/10 bg-white dark:bg-bg/70 px-4 py-3 text-base text-[color:var(--text)] dark:text-white focus:outline-none focus:ring-2 focus:ring-cta"
+                                    [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null"
+                                    autocomplete="name" placeholder="¿Cómo te llamas?" />
+                                <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-2 text-sm text-red-600">
+                                    <span *ngIf="nameCtrl.errors?.['required']">Este campo es obligatorio.</span>
+                                    <span *ngIf="nameCtrl.errors?.['minlength']">Introduce al menos 2 caracteres.</span>
+                                </p>
+                            </div>
+
+                            <div>
+                                <label for="email"
+                                    class="block text-sm font-semibold text-[color:var(--text)] dark:text-white mb-2">Email</label>
+                                <input id="email" name="email" type="email" [(ngModel)]="email" #emailCtrl="ngModel"
+                                    required email (input)="clearFeedback()"
+                                    class="w-full rounded-2xl border border-[color:var(--text)]/10 bg-white dark:bg-bg/70 px-4 py-3 text-base text-[color:var(--text)] dark:text-white focus:outline-none focus:ring-2 focus:ring-cta"
+                                    [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null"
+                                    autocomplete="email" placeholder="Tu mejor email" />
+                                <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-2 text-sm text-red-600">
+                                    <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
+                                    <span *ngIf="emailCtrl.errors?.['email']">Introduce un email válido
+                                        (nombre&#64;dominio.com).</span>
+                                </p>
+                            </div>
+
+                            <div class="flex items-start gap-3 text-sm text-[color:var(--text)]/70 dark:text-white/70">
+                                <input id="privacy" type="checkbox" name="privacyAccepted" [(ngModel)]="privacyAccepted"
+                                    #privacyCtrl="ngModel" required (change)="clearFeedback()"
+                                    class="mt-1 h-4 w-4 rounded border border-[color:var(--text)]/40 text-cta focus:ring-cta" />
+                                <label for="privacy" class="leading-relaxed">
+                                    Confirmo que he leído y acepto el
+                                    <a routerLink="/aviso-legal" class="underline hover:text-cta">Aviso Legal</a>
+                                    y la
+                                    <a routerLink="/politica-privacidad" class="underline hover:text-cta">Política de
+                                        Privacidad</a>.
+                                </label>
+                            </div>
+                            <p *ngIf="privacyCtrl.invalid && privacyCtrl.touched" class="-mt-4 text-sm text-red-600">
+                                Debes
+                                aceptar las condiciones para continuar.</p>
+
+                            <div class="space-y-2">
+                                <button type="submit"
+                                    class="w-full rounded-full bg-cta text-white font-semibold py-3 transition-colors duration-200 hover:bg-cta/90 disabled:opacity-40 disabled:cursor-not-allowed"
+                                    [disabled]="submitting || newsletterForm.invalid">
+                                    {{ submitting ? 'Enviando…' : 'Quiero recibir la newsletter' }}
+                                </button>
+
+                                <p *ngIf="successMessage" class="text-sm text-green-600" role="alert"
+                                    aria-live="polite">{{
+                                    successMessage }}</p>
+                                <p *ngIf="errorMessage" class="text-sm text-red-600" role="alert" aria-live="assertive">
+                                    {{
+                                    errorMessage }}</p>
+                            </div>
+
+                            <p class="text-xs text-[color:var(--text)]/60 dark:text-white/60">
+                                Información básica sobre protección de datos: Responsable: Mr. Yugen. Finalidad:
+                                enviarte la
+                                newsletter semanal.
+                                Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros. Derechos:
+                                puedes acceder, rectificar y
+                                suprimir tus datos escribiendo a direccion&#64;mryugen.com.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <app-footer></app-footer>
+    <app-scroll-to-top></app-scroll-to-top>
+</div>

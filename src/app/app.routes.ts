@@ -14,6 +14,7 @@ import { PoliticaPrivacidadComponent } from './legal/politica-privacidad/politic
 import { PoliticaCookiesComponent } from './legal/politica-cookies/politica-cookies.component';
 import { CondicionesGeneralesComponent } from './legal/condiciones-generales/condiciones-generales.component';
 import { BuenasPracticasComponent } from './legal/buenas-practicas/buenas-practicas.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 export const routes: Routes = [
   // 1) La ruta raíz carga HomeComponent
@@ -36,6 +37,9 @@ export const routes: Routes = [
 
   // Automatización de procesos
   { path: 'automation', component: AutomatizacionPageComponent },
+
+  // Newsletter
+  { path: 'newsletter', component: NewsletterComponent },
 
   // Página temporal de "En construcción"
   { path: 'under-construction', component: UnderConstructionComponent },
