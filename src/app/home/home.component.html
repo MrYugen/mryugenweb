@@ -7,7 +7,6 @@
 
 
     <!-- HERO VISUAL -->
-
     <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'" [ctaLink]="'/under-construction'"></app-hero>
 
     <!-- ABOUT / STORYTELLING -->
@@ -44,6 +43,8 @@
     </section>
 
     <!-- SKILLS -->
+    <!-- Wrapped in @defer to improve initial load performance -->
+    @defer (on viewport) {
     <section id="skills" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
         aria-labelledby="skills-heading">
         <div class="max-w-5xl mx-auto">
@@ -238,9 +239,14 @@
             </div>
         </div>
     </section>
+    } @placeholder {
+        <div class="h-96 flex items-center justify-center">Cargando experiencia...</div>
+    }
 
 
     <!-- PORTFOLIO -->
+    <!-- Wrapped in @defer to improve initial load performance -->
+    @defer (on viewport) {
     <section id="portfolio" class="py-16 px-4 bg-bg text-text transition-colors duration-300"
         aria-labelledby="portfolio-heading">
         <div class="max-w-5xl mx-auto">
@@ -260,7 +266,8 @@
 
             <!-- Tarjetas -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div *ngFor="let item of portfolioItems" #portfolioCard
+                @for (item of portfolioItems; track item.id) {
+                <div #portfolioCard
                     class="portfolio-card relative rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
                     [ngStyle]="{ 'background-color': 'var(--portfolio-bg-' + item.id + ')' }">
                     <!-- Imagen con carousel al click -->
@@ -287,11 +294,16 @@
                         </a>
                     </div>
                 </div>
+                }
             </div>
         </div>
     </section>
+    } @placeholder {
+        <div class="h-96 flex items-center justify-center">Cargando portfolio...</div>
+    }
 
     <!-- BLOG PREVIEW -->
+    @defer (on viewport) {
     <section id="blog" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
         aria-labelledby="blog-heading">
         <div class="max-w-5xl mx-auto text-center">
@@ -312,7 +324,8 @@
         </div>
         <!-- Grid de entradas -->
         <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <a *ngFor="let post of latestPosts" [routerLink]="['/blog', post.slug]"
+            @for (post of latestPosts; track post.slug) {
+            <a [routerLink]="['/blog', post.slug]"
                 class="blog-card relative block rounded-2xl overflow-hidden shadow-lg">
                 <!-- Imagen redondeada -->
                 <img loading="lazy" [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
@@ -327,6 +340,7 @@
                     </p>
                 </div>
             </a>
+            }
         </div>
         <!-- CTA Ver más entradas -->
         <div class="text-center mt-10">
@@ -336,6 +350,9 @@
             </a>
         </div>
     </section>
+    } @placeholder {
+        <div class="h-96 flex items-center justify-center">Cargando blog...</div>
+    }
 
     <!-- SERVICIOS DESTACADOS -->
     <section id="automation" class="relative min-h-screen overflow-hidden group" aria-labelledby="automation-heading">
@@ -408,8 +425,9 @@
                             placeholder="¿Cómo debo llamarte?"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
                             [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null" />
-                        <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-1 text-sm text-red-600">El nombre es
-                            obligatorio.</p>
+                        @if (nameCtrl.invalid && nameCtrl.touched) {
+                            <p class="mt-1 text-sm text-red-600">El nombre es obligatorio.</p>
+                        }
                     </div>
 
                     <div>
@@ -419,11 +437,12 @@
                             required email placeholder="Tu mejor email, por favor"
                             class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
                             [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null" />
-                        <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-1 text-sm text-red-600">
-                            <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
-                            <span *ngIf="emailCtrl.errors?.['email']">Introduce un email válido
-                                (nombre&#64;dominio.com).</span>
-                        </p>
+                        @if (emailCtrl.invalid && emailCtrl.touched) {
+                            <p class="mt-1 text-sm text-red-600">
+                                @if (emailCtrl.errors?.['required']) { <span>El email es obligatorio.</span> }
+                                @if (emailCtrl.errors?.['email']) { <span>Introduce un email válido (nombre&#64;dominio.com).</span> }
+                            </p>
+                        }
                     </div>
 
 
@@ -437,14 +456,12 @@
                             <span>Hasta 300 caracteres.</span>
                             <span>{{ (contactMessage.length || 0) }}/300</span>
                         </div>
-                        <p *ngIf="messageCtrl.invalid && messageCtrl.touched && messageCtrl.errors?.['required']"
-                            class="mt-1 text-sm text-red-600">
-                            El mensaje es obligatorio.
-                        </p>
-                        <p *ngIf="messageCtrl.errors?.['maxlength'] && messageCtrl.touched"
-                            class="mt-1 text-sm text-red-600">
-                            El mensaje puede tener como máximo 300 caracteres.
-                        </p>
+                        @if (messageCtrl.invalid && messageCtrl.touched && messageCtrl.errors?.['required']) {
+                            <p class="mt-1 text-sm text-red-600">El mensaje es obligatorio.</p>
+                        }
+                        @if (messageCtrl.errors?.['maxlength'] && messageCtrl.touched) {
+                            <p class="mt-1 text-sm text-red-600">El mensaje puede tener como máximo 300 caracteres.</p>
+                        }
                     </div>
 
                     <button type="submit" [disabled]="submitting || contactForm.invalid"
@@ -452,8 +469,12 @@
                         {{ submitting ? 'Enviando…' : 'Pulsa y te leeré en breve' }}
                     </button>
 
-                    <p *ngIf="success" class="text-green-600 text-sm">{{ success }}</p>
-                    <p *ngIf="error" class="text-red-600 text-sm">{{ error }}</p>
+                    @if (success) {
+                        <p class="text-green-600 text-sm">{{ success }}</p>
+                    }
+                    @if (error) {
+                        <p class="text-red-600 text-sm">{{ error }}</p>
+                    }
 
                     <p class="text-xs text-[color:var(--text)]/70 mt-4">Al enviar este formulario aceptas nuestro
                         <a routerLink="/aviso-legal" class="underline">Aviso Legal</a>,
