@@ -1,6 +1,9 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <app-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
-    <app-mobile-navbar [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-mobile-navbar>
+        
+    <!-- NAVBAR ESCRITORIO Y MOVILES -->
+    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-mobile-navbar>
 
     <main
         class="pt-16 bg-gradient-to-b from-white via-[#f3f5ff] to-white dark:from-bg dark:via-bg/95 dark:to-bg min-h-screen flex flex-col">
@@ -13,7 +16,7 @@
                             Inspírate (y actúa) cada semana
                         </h1>
                         <p class="text-lg text-[color:var(--text)]/80 dark:text-white/80">
-                            Recibirás 1 email con con ideas accionables de automatización, IA, diseño y
+                            Recibirás 1 email con ideas accionables de automatización, IA, diseño y
                             desarrollo de juegos de mesa. Curado a mano, sin spam externos y en formato digest para leer
                             en
                             5 minutos.
@@ -21,7 +24,7 @@
                         <ul class="space-y-3 text-[color:var(--text)]/75 dark:text-white/70">
                             <li class="flex items-start gap-3">
                                 <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
-                                <span>Guías rápidas para Automatizar tareas diarias para ganar horas reales.</span>
+                                <span>Guías rápidas para Automatizar tareas diarias y ganar horas reales. Más tiempo para lo que te importa.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
@@ -29,7 +32,7 @@
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>
-                                <span>Crear tu juego paso a paso: procesos, arte y decisiones de diseño.</span>
+                                <span>Crear tu juego de mesa paso a paso: procesos, arte y decisiones de diseño.</span>
                             </li>
                             <li class="flex items-start gap-3">
                                 <span class="mt-3 h-2 w-2 rounded-full bg-cta"></span>

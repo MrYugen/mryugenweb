@@ -73,3 +73,41 @@ main {
 }
 
 .active-link { text-decoration: underline; }
+
+/* --- SHAPE DIVIDER HERO --- */
+
+.custom-shape-divider-bottom-1766011292 {
+    position: absolute;
+    bottom: -1px; 
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 20;
+}
+
+.custom-shape-divider-bottom-1766011292 svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px); 
+    height: 80px; 
+}
+
+/* --- VERSIÓN MÓVIL Y TABLET (Responsive) --- */
+@media (max-width: 768px) {
+    .custom-shape-divider-bottom-1766011292 svg {
+        height: 50px; 
+        width: calc(200% + 1.3px); 
+    }
+}
+
+/* Colores */
+.custom-shape-divider-bottom-1766011292 .shape-fill {
+    fill: #F6FBFF; /* Color modo claro */
+}
+
+/* Dark mode override */
+.dark .custom-shape-divider-bottom-1766011292 .shape-fill {
+    fill: #071A21; /* Color modo oscuro */
+}
