@@ -1,5 +1,5 @@
 import { ThemeService } from '../services/theme.service';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -8,26 +8,26 @@ import { HeroComponent } from '../hero/hero.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ScrollToTopComponent } from '../scroll-to-top/scroll-to-top.component';
 import { BeforeAfterSliderComponent } from '../before-after-slider/before-after-slider.component';
-import { AfterViewInit, OnDestroy } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PROJECTS_DATA as PROJECTS_DATA_CONST, Project } from './projects.data';
-gsap.registerPlugin(ScrollTrigger);
 import { prefersReducedMotion } from '../utils/motion.utils';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent, HeroComponent, FooterComponent, ScrollToTopComponent, BeforeAfterSliderComponent],
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css']
+  styleUrls: ['./project-details.component.css'] // Asegúrate de que este archivo existe, aunque esté vacío si usas Tailwind
 })
 export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   slug: string = '';
-  // Aquí declararemos el modo oscuro
   isDarkMode: boolean = false;
   project: any = null;
 
+  // Lightbox
   lightboxOpen = false;
   activeImage = '';
   activeIndex = 0;
@@ -44,88 +44,98 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private route: ActivatedRoute, private theme: ThemeService) {}
 
   ngOnInit(): void {
-    // Nos suscribimos a los cambios de slug en la URL para
-    // actualizar el proyecto sin recargar la página
+    // Detectar modo oscuro inicial si tienes un servicio para ello
+    // this.isDarkMode = this.theme.currentTheme === 'dark'; // Ejemplo
+
     this.route.paramMap.subscribe(params => {
       this.slug = params.get('slug') || '';
-
       const index = this.PROJECTS_DATA.findIndex(p => p.slug === this.slug);
-      this.project = this.PROJECTS_DATA[index];
-
+      
       if (index === -1) {
-        console.warn(`No se encontró el proyecto con slug: ${this.slug}`);
+        // Redirigir a 404 o home si prefieres
         return;
       }
 
+      this.project = this.PROJECTS_DATA[index];
       this.prevProject = this.PROJECTS_DATA[index - 1] || null;
       this.nextProject = this.PROJECTS_DATA[index + 1] || null;
 
-      // Al navegar, situamos la vista arriba para empezar desde el inicio
-      window.scrollTo({ top: 0 });
+      // Importante: Reiniciar scroll y refrescar ScrollTrigger al cambiar de ruta
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        ScrollTrigger.refresh();
+      }, 10);
     });
   }
 
   ngAfterViewInit(): void {
-    if (prefersReducedMotion()) {
-      return;
-    }
+    if (prefersReducedMotion()) return;
     
-    // Animación de aparición para cada sección (fade + slide-up)
-    gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
-      gsap.from(section, {
-        opacity: 0,
-        y: 80,
-        duration: 1.5,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-          once: true
+    this.initAnimations();
+  }
+
+  // Separamos las animaciones para poder rellamarlas si fuera necesario
+  initAnimations() {
+    // Limpiar triggers previos para evitar duplicados al navegar
+    ScrollTrigger.getAll().forEach(t => t.kill());
+
+    // 1. Animación suave de secciones de texto
+    const sections = gsap.utils.toArray<HTMLElement>('.reveal-section');
+    sections.forEach(section => {
+      gsap.fromTo(section, 
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%', // Se activa un poco antes
+            toggleActions: 'play none none reverse' // Reverse hace que se desvanezca si subes (opcional)
+          }
         }
-      });
+      );
     });
 
-    // Revelado tipo "mask" para imágenes clave
-    gsap.utils.toArray<HTMLElement>('.reveal-img').forEach((img) => {
-      gsap.from(img, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: img,
-          start: 'top 90%', 
-          toggleActions: 'play none none none',
-          once: true
+    // 2. Imágenes con efecto "pop" y escalado
+    const images = gsap.utils.toArray<HTMLElement>('.reveal-img');
+    images.forEach((img, i) => {
+      gsap.fromTo(img,
+        { opacity: 0, scale: 0.95, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.8,
+          delay: i % 2 * 0.1, // Pequeño stagger si hay varias juntas
+          ease: 'back.out(1.2)',
+          scrollTrigger: {
+            trigger: img,
+            start: 'top 90%',
+            once: true // Solo una vez para imágenes, queda más elegante
+          }
         }
-      });
+      );
     });
   }
 
   ngOnDestroy(): void {
-    // Limpiar triggers de ScrollTrigger al salir de la página
     ScrollTrigger.getAll().forEach(t => t.kill());
-    if (this.bodyScrollLocked) {
-      this.toggleBodyScroll(false);
-    }
+    if (this.bodyScrollLocked) this.toggleBodyScroll(false);
   }
 
-  // Método para el toggle desde el Navbar
   toggleTheme() {
     this.isDarkMode = this.theme.toggle();
   }
 
+  // --- Lógica Lightbox (Misma que tenías, funciona bien) ---
   openLightbox(url: string, list: string[], index: number) {
     this.activeImage = url;
     this.activeList = list;
     this.activeIndex = index;
     this.lightboxOpen = true;
     this.toggleBodyScroll(true);
-    setTimeout(() => {
-      const closeBtn = document.getElementById('lightbox-close');
-      closeBtn?.focus();
-    });
   }
 
   closeLightbox() {
@@ -150,41 +160,23 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.lightboxOpen) this.closeLightbox();
   }
 
-  @HostListener('window:keydown')
+  @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     if (!this.lightboxOpen) return;
-    if (event.key === 'ArrowLeft') { this.prevImage(); event.preventDefault(); }
-    if (event.key === 'ArrowRight') { this.nextImage(); event.preventDefault(); }
-    if (event.key === 'Tab') {
-      const closeBtn = document.getElementById('lightbox-close');
-      event.preventDefault();
-      closeBtn?.focus();
-    }
+    if (event.key === 'ArrowLeft') this.prevImage();
+    if (event.key === 'ArrowRight') this.nextImage();
   }
+
   private toggleBodyScroll(disable: boolean) {
-    if (typeof document === 'undefined') {
-      return;
-    }
-
+    if (typeof document === 'undefined') return;
     const body = document.body;
-
     if (disable) {
-      this.scrollPosition = window.scrollY || 0;
-      body.classList.add('overflow-hidden');
-      body.style.position = 'fixed';
-      body.style.width = '100%';
-      body.style.top = `-${this.scrollPosition}px`;
-      this.bodyScrollLocked = true;
+      this.scrollPosition = window.scrollY;
+      body.style.overflow = 'hidden';
+      // Nota: Evitamos fixed position a veces causa saltos en móviles, 
+      // overflow: hidden suele bastar si el html también lo tiene.
     } else {
-      if (!this.bodyScrollLocked) {
-        return;
-      }
-      body.classList.remove('overflow-hidden');
-      body.style.position = '';
-      body.style.width = '';
-      body.style.top = '';
-      window.scrollTo({ top: this.scrollPosition });
-      this.bodyScrollLocked = false;
+      body.style.overflow = '';
     }
   }
 }

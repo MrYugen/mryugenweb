@@ -45,7 +45,7 @@ export const PROJECTS_DATA: Project[] = [
     showCTA: false,            
     logoSize: 'w-[300px] max-w-full md:w-[450px]',
 
-    clientName: 'Selu Rizo Fotografía - Fotógrafo profesional',
+    clientName: 'Selu Rizo Fotografía - Fotógrafo profesional freelance',
     date: 'Mayo 2020',
     tools: [ { name: 'Photoshop', icon: 'assets/images/icons/Adobe_Photoshop_CC_icon.svg' },
       { name: 'Illustrator', icon: 'assets/images/icons/Adobe_Illustrator_CC_icon.svg' }, ],
@@ -55,9 +55,10 @@ export const PROJECTS_DATA: Project[] = [
     // → Datos de sección 2 (moodboard)
     moodboardImgs: [
       '/assets/images/selu_mood1.jpg',
-      '/assets/images/selu_mood2.jpg'
+      '/assets/images/selu_mood2.jpg',
+      '/assets/images/selu_mood3.jpg'
     ],
-    moodboardText: 'Todo gran proyecto comienza con una profunda comprensión de la marca. Analicé las tendencias actuales en fotografía profesional, estudiando paletas cromáticas, estilos tipográficos y el universo visual de la competencia.<br><br><strong>El objetivo: descubrir aquello que hace a Selu Rizo diferente y transformarlo en un lenguaje visual auténtico.</strong> La creatividad se plasmó en papel y pantalla: generé diversas propuestas, buscando un equilibrio entre elegancia y personalidad.',
+    moodboardText: 'Todo gran proyecto comienza con una profunda comprensión. Analicé las tendencias actuales, paletas cromáticas y tipografías del sector.<br><br><strong>El objetivo: descubrir aquello que hace a Selu Rizo diferente y transformarlo en un lenguaje visual auténtico.</strong> La creatividad se plasmó en papel y pantalla: generé diversas propuestas, buscando un equilibrio entre elegancia y personalidad.',
 
     // → Datos de sección 3 (before/after)
     bocetoDescription: '<em>La clave diferencial</em> llegó al decidir sustituir la letra “e” de “Selu” por una espiral de Fibonacci, símbolo universal de perfección y belleza natural, ejecutada con un trazo pictórico rojo que añade energía y fuerza visual a la marca.<br><br>Esta espiral no solo representa la mirada creativa de Selu, sino que evoca la composición armónica presente en sus fotografías, transmitiendo profesionalidad y arte a partes iguales. El logotipo evolucionó en un formato <strong>100% vectorial</strong>, listo para adaptarse a cualquier soporte y necesidad del cliente.',
@@ -68,7 +69,8 @@ export const PROJECTS_DATA: Project[] = [
     conclusionText: 'Desarrollé dos versiones cromáticas —para fondo claro y oscuro— garantizando máxima legibilidad y coherencia en cualquier contexto. Las tarjetas de visita, diseñadas para impactar a primera vista, se aprobaron en la primera propuesta: un diseño limpio, potente y alineado con la identidad recién creada.<br><br>Entregué todos los archivos finales del logotipo y sus variantes, preparados para impresión profesional y uso digital inmediato. Coordiné la producción de las tarjetas de visita para su primera tirada, asegurando una presentación impecable.<br><br><strong>¿Buscas una identidad visual que eleve tu marca y transmita lo mejor de ti?</strong><br><br>Hablemos y convierte tu proyecto en un referente.',
     mockups: [
       '/assets/images/selu_mockup1.jpg',
-      '/assets/images/selu_mockup2.jpg'
+      '/assets/images/selu_mockup2.jpg',
+      '/assets/images/selu_mockup3.jpg'
     ]
   },
   {
