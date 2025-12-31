@@ -557,5 +557,5 @@ export const PROJECTS_DATA: Project[] = [
     '/assets/images/folly_mockup3.jpg',
     ]
 },
-  // ... Añade mas proyectos
+  // ... Mas proyectos
 ];

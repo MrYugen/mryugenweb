@@ -20,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger);
   standalone: true,
   imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent, HeroComponent, FooterComponent, ScrollToTopComponent, BeforeAfterSliderComponent],
   templateUrl: './project-details.component.html',
-  styleUrls: ['./project-details.component.css'] // Asegúrate de que este archivo existe, aunque esté vacío si usas Tailwind
+  styleUrls: ['./project-details.component.css']
 })
 export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   slug: string = '';
@@ -44,15 +44,13 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
   constructor(private route: ActivatedRoute, private theme: ThemeService) {}
 
   ngOnInit(): void {
-    // Detectar modo oscuro inicial si tienes un servicio para ello
-    // this.isDarkMode = this.theme.currentTheme === 'dark'; // Ejemplo
 
     this.route.paramMap.subscribe(params => {
       this.slug = params.get('slug') || '';
       const index = this.PROJECTS_DATA.findIndex(p => p.slug === this.slug);
       
       if (index === -1) {
-        // Redirigir a 404 o home si prefieres
+        // Redirigir a 404 o home
         return;
       }
 
@@ -60,7 +58,7 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
       this.prevProject = this.PROJECTS_DATA[index - 1] || null;
       this.nextProject = this.PROJECTS_DATA[index + 1] || null;
 
-      // Importante: Reiniciar scroll y refrescar ScrollTrigger al cambiar de ruta
+      // Reiniciar scroll y refrescar ScrollTrigger al cambiar de ruta
       setTimeout(() => {
         window.scrollTo(0, 0);
         ScrollTrigger.refresh();
@@ -91,8 +89,8 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
           ease: 'power2.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top 85%', // Se activa un poco antes
-            toggleActions: 'play none none reverse' // Reverse hace que se desvanezca si subes (opcional)
+            start: 'top 85%', 
+            toggleActions: 'play none none reverse' 
           }
         }
       );
@@ -129,7 +127,7 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     this.isDarkMode = this.theme.toggle();
   }
 
-  // --- Lógica Lightbox (Misma que tenías, funciona bien) ---
+  // --- Lógica Lightbox ---
   openLightbox(url: string, list: string[], index: number) {
     this.activeImage = url;
     this.activeList = list;
@@ -173,8 +171,7 @@ export class ProjectDetailsComponent implements OnInit, AfterViewInit, OnDestroy
     if (disable) {
       this.scrollPosition = window.scrollY;
       body.style.overflow = 'hidden';
-      // Nota: Evitamos fixed position a veces causa saltos en móviles, 
-      // overflow: hidden suele bastar si el html también lo tiene.
+      // Nota: Evitamos fixed position a veces causa saltos en móviles, mejor solo overflow hidden
     } else {
       body.style.overflow = '';
     }

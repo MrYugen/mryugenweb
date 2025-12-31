@@ -31,17 +31,22 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class IlustracionesComponent implements AfterViewInit, OnDestroy {
   isDarkMode = false;
-
   illustrations = ILLUSTRATIONS;
-  zoomed = false;
+  
+  // Lightbox State
   modalOpen = false;
+  activeIndex = 0;
+  currentStep = 3; 
+
+  // Zoom / Drag State
+  zoomed = false;
   isDragging = false;
   dragStart = { x: 0, y: 0 };
   imgOffset = { x: 0, y: 0 };
   imgLastOffset = { x: 0, y: 0 };
-  showZoomHint = false;
-  activeIndex = 0;
-  currentStep = 3;
+  
+  // Touch Specific
+  touchActive = false;
 
   constructor(private theme: ThemeService) {
     this.isDarkMode = this.theme.isDark();
@@ -51,73 +56,97 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
     this.isDarkMode = this.theme.toggle();
   }
 
-  // Touch específico
-  touchActive = false;
-
   ngAfterViewInit() {
-    if (prefersReducedMotion()) {
-      return;
-    }
-    gsap.utils.toArray<HTMLElement>('.illu-card').forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: i * 0.2,
-        ease: 'power2.out'
-      });
+    if (prefersReducedMotion()) return;
+    
+    // Animación Stagger más elegante para el Grid
+    gsap.from('.illu-card', {
+      duration: 0.8,
+      opacity: 0,
+      y: 60,
+      stagger: 0.1, // Efecto cascada entre elementos
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: 'main',
+        start: 'top 80%'
+      }
     });
-    ScrollTrigger.refresh();
   }
 
   ngOnDestroy() {
     ScrollTrigger.getAll().forEach(t => t.kill());
-    document.body.classList.remove('overflow-hidden');
+    this.unlockBody();
   }
 
   onImageLoad(event: Event) {
-    (event.target as HTMLImageElement).classList.add('loaded');
+    (event.target as HTMLElement).classList.add('loaded');
   }
 
-  openModal(i: number) {
-    this.activeIndex = i;
-    this.currentStep = 3;
+  // --- LIGHTBOX LOGIC ---
+
+  openModal(index: number) {
+    this.activeIndex = index;
+    // Asumimos que la última imagen es siempre la final
+    this.currentStep = this.illustrations[index].process.length - 1; 
     this.modalOpen = true;
-    document.body.classList.add('overflow-hidden');
+    this.resetZoom();
+    this.lockBody();
   }
 
   closeModal() {
     this.modalOpen = false;
-    document.body.classList.remove('overflow-hidden');
+    this.resetZoom();
+    this.unlockBody();
   }
 
   nextIllustration() {
     this.activeIndex = (this.activeIndex + 1) % this.illustrations.length;
-    this.currentStep = 3;
+    this.currentStep = this.illustrations[this.activeIndex].process.length - 1;
+    this.resetZoom();
   }
 
   prevIllustration() {
     this.activeIndex = (this.activeIndex - 1 + this.illustrations.length) % this.illustrations.length;
-    this.currentStep = 3;
+    this.currentStep = this.illustrations[this.activeIndex].process.length - 1;
+    this.resetZoom();
   }
 
-  setStep(i: number) {
-    this.currentStep = i;
+  setStep(index: number) {
+    this.currentStep = index;
   }
 
-  @HostListener('window:keyup.escape')
-  onEscape() {
-    if (this.modalOpen) this.closeModal();
+  // Helper para las etiquetas del Timeline
+  getStepLabel(index: number): string {    
+    const total = this.illustrations[this.activeIndex].process.length;
+    if (index === 0) return 'Boceto';
+    if (index === total - 1) return 'Final';
+    if (index === 1) return 'Línea';
+    if (index === 2) return 'Color';
+    return `Paso ${index + 1}`;
   }
-  // Cuando se pincha la imagen ampliada
+
+  // --- ZOOM & DRAG LOGIC ---
+
+  toggleZoom() {
+    this.zoomed = !this.zoomed;
+    if (!this.zoomed) {
+      this.resetZoom();
+    }
+  }
+
+  resetZoom() {
+    this.zoomed = false;
+    this.imgOffset = { x: 0, y: 0 };
+    this.imgLastOffset = { x: 0, y: 0 };
+  }
+
   startDrag(event: MouseEvent) {
     if (!this.zoomed) return;
     this.isDragging = true;
     this.dragStart = { x: event.clientX, y: event.clientY };
-    event.preventDefault();
-    }
+    event.preventDefault(); // Evita selecciones de texto
+  }
 
-  // Mientras arrastra
   onDrag(event: MouseEvent) {
     if (!this.zoomed || !this.isDragging) return;
     const dx = event.clientX - this.dragStart.x;
@@ -128,47 +157,61 @@ export class IlustracionesComponent implements AfterViewInit, OnDestroy {
     };
   }
 
-  // Cuando suelta
   endDrag() {
     if (!this.zoomed) return;
     this.isDragging = false;
     this.imgLastOffset = { ...this.imgOffset };
   }
 
-// Al hacer zoom/deszoom, resetea offset
-  toggleZoom() {
-    this.zoomed = !this.zoomed;
-    if (!this.zoomed) {
-      this.imgOffset = { x: 0, y: 0 };
-      this.imgLastOffset = { x: 0, y: 0 };
-    }
+  // Touch Events
+  onTouchStartImage(event: TouchEvent) {
+    if (!this.zoomed) return;
+    this.touchActive = true;
+    this.isDragging = true;
+    const touch = event.touches[0];
+    this.dragStart = { x: touch.clientX, y: touch.clientY };
   }
-  // MÉTODOS PARA TOUCH
-onTouchStartImage(event: TouchEvent) {
-  if (!this.zoomed) return;
-  this.touchActive = true;
-  this.isDragging = true;
-  const touch = event.touches[0];
-  this.dragStart = { x: touch.clientX, y: touch.clientY };
-  event.preventDefault();
-}
 
-onTouchMoveImage(event: TouchEvent) {
-  if (!this.zoomed || !this.touchActive) return;
-  const touch = event.touches[0];
-  const dx = touch.clientX - this.dragStart.x;
-  const dy = touch.clientY - this.dragStart.y;
-  this.imgOffset = {
-    x: this.imgLastOffset.x + dx,
-    y: this.imgLastOffset.y + dy
-  };
-}
+  onTouchMoveImage(event: TouchEvent) {
+    if (!this.zoomed || !this.touchActive) return;
+    const touch = event.touches[0];
+    const dx = touch.clientX - this.dragStart.x;
+    const dy = touch.clientY - this.dragStart.y;
+    this.imgOffset = {
+      x: this.imgLastOffset.x + dx,
+      y: this.imgLastOffset.y + dy
+    };
+    event.preventDefault(); // Evita scroll de la página fondo
+  }
 
-onTouchEndImage() {
-  if (!this.zoomed) return;
-  this.isDragging = false;
-  this.touchActive = false;
-  this.imgLastOffset = { ...this.imgOffset };
-}
-}
+  onTouchEndImage() {
+    this.isDragging = false;
+    this.touchActive = false;
+    this.imgLastOffset = { ...this.imgOffset };
+  }
 
+  // --- UTILS ---
+  
+  @HostListener('window:keyup.escape')
+  onEscape() {
+    if (this.modalOpen) this.closeModal();
+  }
+
+  @HostListener('window:keydown.arrowright')
+  onArrowRight() {
+    if (this.modalOpen) this.nextIllustration();
+  }
+
+  @HostListener('window:keydown.arrowleft')
+  onArrowLeft() {
+    if (this.modalOpen) this.prevIllustration();
+  }
+
+  private lockBody() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  private unlockBody() {
+    document.body.style.overflow = '';
+  }
+}

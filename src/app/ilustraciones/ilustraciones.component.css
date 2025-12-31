@@ -1,47 +1,128 @@
 #hero .hero-content p{ @apply text-white; }
 
-img.blur-sm {
-  filter: blur(20px);
+/* --- GRID GALERÍA --- */
+img.fade-in-image {
   opacity: 0;
-  transition: filter 0.5s, opacity 0.5s;
+  transition: opacity 0.8s ease-out, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 
-img.loaded {
-  filter: blur(0);
+img.fade-in-image.loaded {
   opacity: 1;
 }
 
+.illu-card {
+  break-inside: avoid;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Aceleración hardware */
+}
+
+/* Hover sutil en el grid: Solo un pequeño lift y brillo */
 .illu-card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  filter: brightness(1.1);
 }
 
-.illu-card img {
-  transition: transform 0.3s ease, opacity 0.5s;
+/* --- LIGHTBOX INMERSIVO --- */
+/* Forzamos estilos oscuros dentro del lightbox independientemente del tema */
+.lightbox-container {
+  background-color: rgba(5, 5, 5, 0.96); /* Casi negro puro */
+  backdrop-filter: blur(15px);
 }
 
-.modal-img{
-  user-select: none;
-  touch-action: none;
-  max-width:90vw;
-  max-height:75vh;        
-  width:auto;             
-  object-fit:contain;
-  margin-inline:auto;
-  transition:transform .35s;
-  display: block;
+.modal-img {
+  max-height: 75vh;
+  max-width: 95vw;
+  object-fit: contain;
   margin: 0 auto;
-  transition: box-shadow 0.2s;
-}
-.modal-img.zoomed{ 
-  cursor: grab; /* visible solo en desktop */
-  cursor:zoom-out;
-  transform:scale(1.6);   /* o usa scale(2) + overflow-auto en el padre */
-  box-shadow: 0 0 40px 10px rgba(0,0,0,0.3);
+  user-select: none;
+  transition: transform 0.1s linear;
+  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
 }
 
-.nav-btn,.close-btn{
-  @apply absolute top-1/2 -translate-y-1/2 text-text  bg-white/70 dark:bg-teal-600
-  rounded-full p-2 shadow-lg backdrop-blur-md transition hover:bg-cta dark:hover:bg-cta 
+.modal-img.zoomed {
+  cursor: grab;
+  cursor: -webkit-grab;
 }
-.nav-btn svg,.close-btn svg{ width:32px;height:32px; stroke-width:2; }
-.left-4{left:1rem}.right-4{right:1rem}.close-btn{top:1rem;right:1rem;transform:none}
+
+.modal-img.zoomed:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* --- TIMELINE DE PROCESO --- */
+.timeline-track {
+  position: relative;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 99px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.timeline-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--cta-color, #f97316); /* Naranja por defecto */
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: #333;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.timeline-dot:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+  border-color: #fff;
+}
+
+.timeline-dot.active {
+  background-color: var(--cta-color, #f97316);
+  border-color: var(--cta-color, #f97316);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+/* Tooltip simple para los pasos */
+.timeline-label {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.timeline-dot:hover .timeline-label,
+.timeline-dot.active .timeline-label {
+  opacity: 1;
+  color: #fff;
+}
+
+/* Botones de navegación minimalistas */
+.nav-arrow {
+  @apply text-white/30 hover:text-white transition-colors duration-300 p-4;
+}
+.nav-arrow svg {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}

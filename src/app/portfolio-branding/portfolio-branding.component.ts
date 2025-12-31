@@ -33,6 +33,9 @@ gsap.registerPlugin(ScrollTrigger);
 export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewInit {
   isDarkMode = false;
 
+  // Estado de la sección "Proceso"
+  activeStep = 0;
+
   brandingSteps = [
     {
       title: '1. Investigación',
@@ -93,6 +96,16 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
       'assets/images/proyecto3_img3.jpg'
     ],
   },
+    {
+    title: 'Swamp Labs',
+    summary: 'Diseño de Concept Art, logotipo y recursos gráficos para una colección NFT británica',
+    slug: 'swamp-labs',
+    images: [
+      'assets/images/proyecto5_img1.jpg',
+      'assets/images/proyecto5_img2.jpg',
+      'assets/images/proyecto5_img3.jpg'
+    ],
+  },
   {
     title: 'Amor y Arte',
     summary: 'Branding y packaging para una artista especializada en muñecos reborn',
@@ -103,16 +116,7 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
       'assets/images/proyecto4_img3.jpg'
     ],
   },
-  {
-    title: 'Swamp Labs',
-    summary: 'Diseño de Concept Art, logotipo y recursos gráficos para una colección NFT británica',
-    slug: 'swamp-labs',
-    images: [
-      'assets/images/proyecto5_img1.jpg',
-      'assets/images/proyecto5_img2.jpg',
-      'assets/images/proyecto5_img3.jpg'
-    ],
-  },
+
   {
     title: 'Ikigai Games',
     summary: 'Diseño de identidad visual para un sello editorial de juegos de mesa',
@@ -164,13 +168,13 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
     ],
   },
   {
-    title: 'Couple Clash',
-    summary: 'Todo el proceso creativo de mi proyecto más ambicioso: diseño, branding y estrategia',
-    slug: 'couple-clash',
+    title: 'The Folly Inn UK',
+    summary: 'Diseño de identidad visual y cartel para una taberna típica inglesa con esencia tradicional',
+    slug: 'the-folly-inn-uk',
     images: [
-      'assets/images/proyecto11_img1.jpg',
-      'assets/images/proyecto11_img2.jpg',
-      'assets/images/proyecto11_img3.jpg'
+      'assets/images/proyecto13_img1.jpg',
+      'assets/images/proyecto13_img2.jpg',
+      'assets/images/proyecto13_img3.jpg'
     ],
   },
   {
@@ -183,130 +187,101 @@ export class PortfolioBrandingComponent implements OnInit, OnDestroy, AfterViewI
       'assets/images/proyecto12_img3.jpg'
     ],
   },
-  {
-    title: 'The Folly Inn UK',
-    summary: 'Diseño de identidad visual y cartel para una taberna típica inglesa con esencia tradicional',
-    slug: 'the-folly-inn-uk',
+    {
+    title: 'Couple Clash',
+    summary: 'Todo el proceso creativo de mi proyecto más ambicioso: diseño, branding y estrategia',
+    slug: 'couple-clash',
     images: [
-      'assets/images/proyecto13_img1.jpg',
-      'assets/images/proyecto13_img2.jpg',
-      'assets/images/proyecto13_img3.jpg'
+      'assets/images/proyecto11_img1.jpg',
+      'assets/images/proyecto11_img2.jpg',
+      'assets/images/proyecto11_img3.jpg'
     ],
   },
 ];
   
+  // Control de Hover en Proyectos
   currentImageIndexes: number[] = [];
-  imageFadeState: boolean[] = [];
-  private carouselIntervals: any[] = [];
+  private hoverIntervals: any[] = []; // Guardamos los intervals individuales
 
-  // Control del slide superior
-  currentStep = 0;
-  private startX = 0;
-
-  constructor(
-    private theme: ThemeService,
-  ) {
+  constructor(private theme: ThemeService) {
     this.isDarkMode = this.theme.isDark();
   }
 
   ngOnInit() {
-    // Inicializa carruseles en cada tarjeta
+    // Inicializamos índices en 0
     this.currentImageIndexes = this.brandingProjects.map(() => 0);
-    this.imageFadeState = this.brandingProjects.map(() => true);
-    this.brandingProjects.forEach((_, i) => {
-      const interval = setInterval(() => this.fadeImage(i), 20000 + i * 500);
-      this.carouselIntervals.push(interval);
-    });    
   }
 
   ngAfterViewInit() {
-  if (prefersReducedMotion()) {
-      return;
-    }
+    if (prefersReducedMotion()) return;
 
-    // Reveal de secciones (se inician 100px después de salir del viewport)
+    // Animaciones de entrada simples y elegantes
     gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
       gsap.from(section, {
         opacity: 0,
-        y: 60,
-        duration: 1.2,
+        y: 50,
+        duration: 1,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top bottom-=100px',     // <-- 100px bajo el fondo
-          toggleActions: 'play none none none',
-          once: true
+          start: 'top 85%'
         }
       });
     });
 
-  // Reveal de cada tarjeta en cascada
-    gsap.utils.toArray<HTMLElement>('.reveal-card').forEach((card, i) => {
-      gsap.from(card, {
+    // Stagger para las tarjetas
+    ScrollTrigger.batch('.reveal-card', {
+      onEnter: batch => gsap.from(batch, {
         opacity: 0,
-        y: 40,
+        y: 60,
+        stagger: 0.1,
         duration: 0.8,
-        delay: i * 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top bottom-=100px',     // <-- igual aquí
-          toggleActions: 'play none none none',
-          once: true
-        }
-      });
+        ease: 'power2.out'
+      }),
+      start: 'top 90%'
     });
-
-      // Asegúrate de refrescar tras definirlos
-      ScrollTrigger.refresh();
-    }
+  }
 
   ngOnDestroy() {
-  // Limpia todos los intervals de los carruseles al destruir el componente
-  this.carouselIntervals.forEach(id => clearInterval(id));
-  // ✔ NUEVO: matar triggers de GSAP
-  ScrollTrigger.getAll().forEach(t => t.kill());
+    this.stopAllHovers();
+    ScrollTrigger.getAll().forEach(t => t.kill());
   }
 
-  // Carousel interno
-  fadeImage(i: number) {
-    this.imageFadeState[i] = false;
-    setTimeout(() => {
-      this.currentImageIndexes[i] =
-        (this.currentImageIndexes[i] + 1) % this.brandingProjects[i].images.length;
-      this.imageFadeState[i] = true;
-    }, 250);
-  }
-  prevImage(i: number) { this.imageFadeState[i] = false; setTimeout(() => {
-    this.currentImageIndexes[i] = (this.currentImageIndexes[i] - 1 + this.brandingProjects[i].images.length) %
-      this.brandingProjects[i].images.length;
-    this.imageFadeState[i] = true;
-  }, 250); }
-  nextImage(i: number) { this.imageFadeState[i] = false; setTimeout(() => {
-    this.currentImageIndexes[i] = (this.currentImageIndexes[i] + 1) % this.brandingProjects[i].images.length;
-    this.imageFadeState[i] = true;
-  }, 250); }
-
-  // Swipe táctil
-  onCardTouchStart(event: TouchEvent, i: number) { this.startX = event.touches[0].clientX; }
-  onCardTouchEnd(event: TouchEvent, i: number) {
-    const delta = event.changedTouches[0].clientX - this.startX;
-    if (delta > 50) this.prevImage(i);
-    if (delta < -50) this.nextImage(i);
-  }
-
-  // Hero slider
-  prevSlide() { this.currentStep = this.currentStep > 0 ? this.currentStep - 1 : this.brandingSteps.length - 1; }
-  nextSlide() { this.currentStep = this.currentStep < this.brandingSteps.length - 1 ? this.currentStep + 1 : 0; }
-  goToSlide(index: number) { this.currentStep = index; }
-  onTouchStart(event: TouchEvent) { this.startX = event.touches[0].clientX; }
-  onTouchEnd(event: TouchEvent) {
-    const delta = event.changedTouches[0].clientX - this.startX;
-    if (delta > 50) this.prevSlide();
-    if (delta < -50) this.nextSlide();
-  }
-
-  // Tema
   toggleTheme() { this.isDarkMode = this.theme.toggle(); }
+
+  // --- LOGICA GRID ASIMÉTRICO ---
+  // Define patrón: Cada 3 items, el primero es grande (ej: 0, 3, 6...)
+  // O haz un patrón 2-1, 1-2. Aquí usamos un patrón simple:
+  isFeatured(index: number): boolean {
+    // Ejemplo: El primero (0) y el cuarto (3) son grandes.
+    // Patrón: Grande, Pequeño, Pequeño -> Grande, Pequeño, Pequeño
+    return index % 3 === 0;
+  }
+
+  // --- LOGICA HOVER ---
+  startProjectHover(index: number) {
+    // Si ya hay un intervalo (usuario entra y sale rápido)
+    this.stopProjectHover(index);
+
+    // Cambiar imagen cada 800ms mientras esté el mouse encima
+    this.hoverIntervals[index] = setInterval(() => {
+      this.currentImageIndexes[index] = 
+        (this.currentImageIndexes[index] + 1) % this.brandingProjects[index].images.length;
+    }, 900); 
+  }
+
+  stopProjectHover(index: number) {
+    if (this.hoverIntervals[index]) {
+      clearInterval(this.hoverIntervals[index]);
+      this.hoverIntervals[index] = null;
+    }
+    this.currentImageIndexes[index] = 0;
+  }
+
+  private stopAllHovers() {
+    this.hoverIntervals.forEach(interval => {
+      if (interval) clearInterval(interval);
+    });
+  }
 }
 
