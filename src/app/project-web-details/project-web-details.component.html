@@ -1,104 +1,174 @@
 <div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="project">
-  <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
-  <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+
+  <app-navbar class="hidden md:block fixed w-full z-40 top-0" [isDarkMode]="isDarkMode"
+    (toggleTheme)="toggleTheme()"></app-navbar>
+  <app-mobile-navbar class="block md:hidden fixed w-full z-40 top-0" [isDarkMode]="isDarkMode"
     (toggleTheme)="toggleTheme()"></app-mobile-navbar>
 
+  <app-hero [isDarkMode]="isDarkMode" [title]="project.title" [showCTA]="false" [bgImageLight]="'assets/images/web/mryugenweb_img4.jpg'"
+    [bgImageDark]="'assets/images/web/mryugen_web.jpg'" [logoAlt]="project.title" logoLight="assets/images/logo-hero-dark.svg" [overlayOpacity]="0.2">
+  </app-hero>
 
-  <main class="py-12 px-4 max-w-5xl mx-auto mt-10">
-    <!-- INTRODUCCIÓN -->
-    <section class="reveal-section mb-16 text-center">
-      <h2 class="text-2xl font-extrabold tracking-wide mb-4">INTRODUCCIÓN</h2>
-      <p class="text-lg leading-relaxed">{{ project.overview }}</p>
-    </section>
+  <main class="max-w-[1400px] mx-auto px-6 py-20 relative z-10">
 
-    <!-- TECNOLOGÍAS EMPLEADAS (si existen datos) -->
-    <section *ngIf="project.tech" class="reveal-section mb-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <img [src]="project.tech!.image" alt="Tecnologías empleadas" loading="lazy" class="w-full rounded-xl shadow" />
-        <div>
-          <h3 class="text-2xl font-bold mb-4">TECNOLOGÍAS EMPLEADAS</h3>
-          <ul class="space-y-3">
-            <li *ngFor="let t of project.tech!.items" class="reveal-card">
-              <p><span class="font-semibold">{{ t.label }}:</span> {{ t.value }}</p>
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 reveal-section">
+
+      <div class="lg:col-span-7 space-y-8">
+        <h2 class="text-sm font-bold tracking-[0.2em] text-cta uppercase">Overview</h2>
+        <h3 class="text-3xl md:text-5xl font-black leading-tight">
+          El desafío del <br> diseño hecho código.
+        </h3>
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-light text-justify">
+          {{ project.overview }}
+        </p>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div
+          class="bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 p-8 rounded-3xl backdrop-blur-sm">
+          <ul class="space-y-6">
+            <li class="flex flex-col border-b border-gray-200 dark:border-white/10 pb-4 last:border-0 last:pb-0">
+              <span class="text-xs uppercase tracking-widest text-gray-400 mb-1">Rol</span>
+              <span class="font-bold text-lg">Full Stack Developer & UI Designer</span>
+            </li>
+            <li class="flex flex-col border-b border-gray-200 dark:border-white/10 pb-4 last:border-0 last:pb-0">
+              <span class="text-xs uppercase tracking-widest text-gray-400 mb-1">Stack Principal</span>
+              <div class="flex gap-2 flex-wrap mt-1">
+                <span
+                  class="px-3 py-1 bg-white dark:bg-black rounded-full text-xs font-medium border border-gray-200 dark:border-white/20">Angular
+                  17</span>
+                <span
+                  class="px-3 py-1 bg-white dark:bg-black rounded-full text-xs font-medium border border-gray-200 dark:border-white/20">Tailwind</span>
+                <span
+                  class="px-3 py-1 bg-white dark:bg-black rounded-full text-xs font-medium border border-gray-200 dark:border-white/20">GSAP</span>
+              </div>
+            </li>
+            <li class="flex flex-col pb-4">
+              <span class="text-xs uppercase tracking-widest text-gray-400 mb-1">Tipo</span>
+              <span class="font-bold text-lg">SPA / Open Source</span>
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Fallback de secciones simples para proyectos antiguos -->
-    <section *ngIf="!project.tech && project.sections && project.sections.length" class="reveal-section mb-16">
-      <div *ngFor="let s of project.sections" class="mb-10">
-        <h3 class="text-2xl font-bold mb-4">{{ s.title }}</h3>
-        <div class="flex flex-col md:flex-row gap-6 items-center">
-          <img [src]="s.image" [alt]="s.title" class="w-full md:w-1/2 rounded-xl shadow" loading="lazy" />
-          <p class="md:w-1/2 leading-relaxed">{{ s.text }}</p>
+    <section *ngIf="project.tech" class="mb-32 reveal-section">
+      <div class="flex items-end justify-between mb-12">
+        <h2 class="text-4xl font-black">Tech Stack</h2>
+        <div class="hidden md:block h-[1px] flex-1 bg-gray-200 dark:bg-white/10 ml-8"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let t of project.tech!.items; let i = index"
+          class="group p-6 rounded-2xl bg-white dark:bg-[#111] border border-gray-100 dark:border-white/5 hover:border-cta/50 transition-colors duration-300 shadow-sm hover:shadow-xl reveal-card">
+
+          <div
+            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center mb-4 text-cta group-hover:scale-110 transition-transform">
+            <span class="font-bold text-lg">#{{i+1}}</span>
+          </div>
+
+          <h4 class="font-bold text-lg mb-2">{{ t.label }}</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{{ t.value }}</p>
         </div>
       </div>
     </section>
 
-    <!-- REPOSITORIO EN GITHUB (si existe) -->
-    <section *ngIf="project.repo" class="reveal-section mb-16 text-center">
-      <h3 class="text-2xl font-extrabold tracking-wide mb-4">REPOSITORIO EN GITHUB</h3>
-      <p class="max-w-3xl mx-auto leading-relaxed">{{ project.repo!.text }}</p>
+    <section *ngIf="project.repo" class="mb-32 reveal-section">
+      <div
+        class="relative overflow-hidden rounded-3xl bg-[#0d1117] text-white p-8 md:p-16 border border-white/10 group">
 
-      <div class="mt-6" *ngIf="project.repo!.url">
-        <a [href]="project.repo!.url" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 px-6 py-3 border-2 border-cta rounded-full hover:bg-cta hover:text-white transition">
-          <img loading="lazy" src="/assets/images/web/github-mark.png" viewBox="0 0 24 24" width="20" height="20"
-            aria-hidden="true" />
-          Ver repositorio
-        </a>
+        <div
+          class="absolute top-0 right-0 w-[300px] h-[300px] bg-cta/20 blur-[100px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/2">
+        </div>
+
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+          <div class="md:w-2/3 space-y-6">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              <span class="ml-2 font-mono text-xs text-gray-500">bash — 80x24</span>
+            </div>
+            <h3 class="text-3xl md:text-4xl font-bold font-mono">git clone {{ project.title }}</h3>
+            <p class="text-gray-400 leading-relaxed max-w-2xl">{{ project.repo!.text }}</p>
+          </div>
+
+          <div class="md:w-1/3 flex justify-center md:justify-end">
+            <a *ngIf="project.repo!.url" [href]="project.repo!.url" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-bold hover:bg-cta hover:text-white transition-all transform hover:scale-105 shadow-lg shadow-white/10">
+              <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                </path>
+              </svg>
+              Ver en GitHub
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- LÓGICA TÉCNICA -->
-    <section *ngIf="project.logic" class="reveal-section mb-16">
-      <h3 class="text-2xl font-extrabold tracking-wide text-center mb-2">LÓGICA TÉCNICA</h3>
-      <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-10">
-        {{ project.logic!.subtitle || 'Aspectos clave' }}
-      </p>
+    <section *ngIf="project.logic" class="mb-32">
+      <div class="text-center mb-20 reveal-section">
+        <h2 class="text-4xl md:text-5xl font-black mb-4">Deep Dive</h2>
+        <p class="text-gray-500 uppercase tracking-widest text-sm">{{ project.logic!.subtitle || 'Arquitectura &
+          Decisiones' }}</p>
+      </div>
 
-      <div class="space-y-10">
-        <div *ngFor="let point of project.logic!.points"
-          class="reveal-card flex flex-col md:flex-row gap-6 items-center"
-          [ngClass]="{ 'md:flex-row-reverse': point.align === 'right' }">
-          <ng-container *ngIf="point.image as media">
-            <div class="w-full md:w-1/2">
-              <video *ngIf="isVideo(media)" #logicVideo class="w-full rounded-xl shadow" [src]="media"
-                preload="metadata" playsinline webkit-playsinline muted disablePictureInPicture
-                controlslist="nodownload noplaybackrate noremoteplayback nofullscreen"
+      <div class="space-y-24">
+        <div *ngFor="let point of project.logic!.points; let i = index"
+          class="group grid grid-cols-1 lg:grid-cols-2 gap-12 items-center reveal-card">
+
+          <div
+            class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10 bg-black aspect-video"
+            [ngClass]="{'lg:order-last': i % 2 === 0}"> <ng-container *ngIf="point.image as media">
+              <video *ngIf="isVideo(media)" #logicVideo
+                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                [src]="media" preload="metadata" playsinline webkit-playsinline muted disablePictureInPicture loop
                 (contextmenu)="$event.preventDefault()">
               </video>
-              <p *ngIf="isVideo(media)" class="mt-2 text-sm italic text-text/70 text-center md:text-left">
-                Pincha para reproducir de nuevo
-              </p>
               <img *ngIf="!isVideo(media)" [src]="media" alt="Detalle técnico" loading="lazy"
-                class="w-full rounded-xl shadow" />
-            </div>
-          </ng-container>
-          <p class="md:w-1/2 leading-relaxed">{{ point.text }}</p>
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+
+              <div *ngIf="isVideo(media)"
+                class="absolute bottom-4 right-4 bg-black/50 backdrop-blur px-3 py-1 rounded-full text-xs text-white border border-white/20">
+                Auto-play
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="space-y-6">
+            <div class="w-12 h-1 bg-cta"></div>
+            <h3 class="text-2xl font-bold">Punto Clave #{{i + 1}}</h3>
+            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-justify">
+              {{ point.text }}
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- IMAGEN GRANDE HORIZONTAL -->
-    <section *ngIf="project.featuredImage" class="reveal-section mb-16">
-      <img [src]="project.featuredImage" alt="Imagen destacada del proyecto" loading="lazy"
-        class="w-full rounded-2xl shadow" />
-    </section>
-
-    <!-- IMPACTO -->
-    <section *ngIf="project.impact" class="reveal-section mb-8 text-center">
-      <h3 class="text-2xl font-extrabold tracking-wide mb-4">IMPACTO</h3>
-      <p class="max-w-3xl mx-auto leading-relaxed whitespace-pre-line">{{ project.impact!.text }}</p>
-      <div class="mt-8">
-        <a [href]="project.impact!.ctaLink"
-          class="inline-block px-8 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta hover:text-white transition">
-          {{ project.impact!.ctaLabel }}
-        </a>
+    <section *ngIf="project.featuredImage" class="reveal-section mb-32 -mx-6 md:-mx-0">
+      <div class="relative w-full h-[50vh] md:h-[70vh] overflow-hidden md:rounded-3xl">
+        <img [src]="project.featuredImage" alt="Highlight" loading="lazy"
+          class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-[20s] ease-linear" />
       </div>
     </section>
+
+    <section *ngIf="project.impact"
+      class="reveal-section max-w-4xl mx-auto text-center py-10 bg-gradient-to-b from-transparent to-gray-50 dark:to-white/5 rounded-3xl">
+      <h3 class="text-3xl font-black mb-8">El Impacto</h3>
+      <p class="text-xl leading-relaxed text-gray-600 dark:text-gray-300 mb-10 whitespace-pre-line">
+        {{ project.impact!.text }}
+      </p>
+
+      <a [href]="project.impact!.ctaLink"
+        class="inline-block px-10 py-4 bg-cta text-white rounded-full font-bold text-lg shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1 transition-all">
+        {{ project.impact!.ctaLabel }}
+      </a>
+    </section>
+
   </main>
 
   <app-footer></app-footer>

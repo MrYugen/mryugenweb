@@ -1,0 +1,14 @@
+/* Para el efecto "Terminal" del repositorio */
+.font-mono {
+  font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+/* Mejora de lectura en textos largos */
+p {
+  text-wrap: pretty;
+}
+
+/* Glassmorphism utilities */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}

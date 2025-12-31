@@ -1,0 +1,20 @@
+/* Asegura que las imágenes no se deformen y tengan buen contraste */
+img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Utilidad para ocultar scrollbar si fuera necesario */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Efecto para textos con gradiente si se usa en línea */
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }

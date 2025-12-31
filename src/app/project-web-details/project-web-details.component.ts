@@ -117,25 +117,16 @@ export class ProjectWebDetailsComponent implements OnInit, AfterViewInit, OnDest
         (video as any).disablePictureInPicture = true;
       } catch {}
 
-      // Reproducir al hacer click (replay), sin permitir pausar ni otros controles
-      const clickHandler = () => {
-        try {
-          video.currentTime = 0;
-          void video.play();
-        } catch {}
-      };
-      video.addEventListener('click', clickHandler);
-
       const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting && !this.autoplayedOnce.has(video)) {
+          if (entry.isIntersecting) {
             try {
               // Reproducir automáticamente una vez al entrar en viewport
-              void video.play().then(() => {
-                this.autoplayedOnce.add(video);
-              }).catch(() => {
-                // Si el navegador bloquea autoplay por alguna política, no hacemos nada.
-              });
+              void video.play();
+            } catch {}
+          } else {
+            try {
+              video.pause();
             } catch {}
           }
         });
@@ -151,8 +142,6 @@ export class ProjectWebDetailsComponent implements OnInit, AfterViewInit, OnDest
         } catch {}
       };
       video.addEventListener('ended', endedHandler);
-
-      // Guardar referencias de handlers para potencial extensión futura si se requiere quitarlos
     });
   }
 

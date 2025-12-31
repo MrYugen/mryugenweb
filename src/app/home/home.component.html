@@ -8,7 +8,7 @@
 
     <!-- HERO VISUAL -->
 
-    <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'" [ctaLink]="'/under-construction'"></app-hero>
+    <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'" [showCTA]="false"></app-hero>
 
     <!-- ABOUT / STORYTELLING -->
     <section id="about" class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4"
@@ -372,7 +372,8 @@
             </p>
 
             <!-- CTA -->
-            <button routerLink="/automation" class="px-8 py-3 border-2 border-cta hover:bg-cta rounded-full font-semibold"
+            <button routerLink="/automation"
+                class="px-8 py-3 border-2 border-cta hover:bg-cta rounded-full font-semibold"
                 aria-label="Más información sobre automatización de procesos">
                 Pulsa para ahorrar tiempo
             </button>
