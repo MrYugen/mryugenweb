@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, HostListener} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -19,16 +19,19 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   templateUrl: './blog-detail.component.html',
   styleUrls: ['./blog-detail.component.scss']
 })
-export class BlogDetailComponent implements OnInit, AfterViewInit {
+export class BlogDetailComponent implements OnInit {
   post?: BlogPost;
+  relatedPosts: BlogPost[] = [];
+  
   currentUrl = '';
   isDarkMode = false;
+  readingProgress = 0; // % de lectura
 
-  // Newsletter form state
-  email: string = '';
+  // Newsletter
+  email = '';
   submitting = false;
-  successMessage = '';
   errorMessage = '';
+  successMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -44,13 +47,27 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    const slug = this.route.snapshot.paramMap.get('slug');
-    if (slug) {
-      this.post = this.blogService.getPostBySlug(slug);
-    }
+    // Suscribirse a cambios de parámetros para recargar si pinchan en "Relacionados"
+    this.route.paramMap.subscribe(params => {
+        const slug = params.get('slug');
+        if (slug) {
+          this.post = this.blogService.getPostBySlug(slug);
+          if (this.post) {
+            this.relatedPosts = this.blogService.getRelatedPosts(this.post.slug, this.post.category);
+          }
+          window.scrollTo(0, 0); // Scroll arriba al cambiar
+        }
+    });
+
     if (typeof window !== 'undefined') {
       this.currentUrl = window.location.href;
     }
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    this.readingProgress = (window.scrollY / totalHeight) * 100;
   }
 
   onSubscribe() {
@@ -59,6 +76,11 @@ export class BlogDetailComponent implements OnInit, AfterViewInit {
     if (!/\S+@\S+\.\S+/.test(email)) { this.errorMessage = 'Por favor, introduce un email válido.'; return; }
 
     this.submitting = true;
+    setTimeout(() => {
+        this.submitting = false;
+        this.successMessage = "¡Gracias! Te has unido al club.";
+        this.email = '';
+    }, 1500);
     this.http.post('/suscribir.php', { email }, { responseType: 'text' as const }).subscribe({
       next: (t) => {
         const res = (t || '').trim();

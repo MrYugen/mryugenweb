@@ -1,4 +1,18 @@
-.post-content img {
-  max-width: 100%;
-  height: auto;
+::ng-deep .prose {
+  h2 { @apply text-3xl font-bold mt-12 mb-6; }
+  h3 { @apply text-2xl font-bold mt-8 mb-4; }
+  
+  /* CAMBIO AQUÍ: Quitamos el /80 del @apply y usamos opacity estándar */
+  p { 
+    @apply mb-6 leading-relaxed text-lg text-text; 
+    opacity: 0.8; 
+  }
+
+  blockquote { 
+    @apply border-l-4 border-cta pl-6 italic text-xl text-text my-8 bg-gray-50 dark:bg-white/5 p-6 rounded-r-lg; 
+  }
+  ul { @apply list-disc list-inside mb-6 ml-4; }
+  pre { @apply bg-[#1e1e1e] text-white p-6 rounded-xl overflow-x-auto mb-8 font-mono text-sm; }
+  code { @apply font-mono text-cta bg-gray-100 dark:bg-white/10 px-1 py-0.5 rounded; }
+  img { @apply w-full rounded-2xl shadow-lg my-8; }
 }

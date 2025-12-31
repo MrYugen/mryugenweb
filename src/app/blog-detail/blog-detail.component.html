@@ -1,55 +1,95 @@
 ﻿<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300" *ngIf="post">
+
+    <div class="fixed top-0 left-0 h-1 bg-cta z-[100]" [style.width.%]="readingProgress"></div>
+
     <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
     <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
         (toggleTheme)="toggleTheme()"></app-mobile-navbar>
 
+    <header class="relative w-full h-[50vh] min-h-[400px] flex items-end pb-12 overflow-hidden">
+        <img [src]="post.image" class="absolute inset-0 w-full h-full object-cover z-0" [alt]="post.title">
+        <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/80 to-transparent z-10"></div>
 
-    <article class="max-w-3xl mx-auto py-16 px-4">
-        <h1 class="text-4xl font-bold mb-4">{{ post.title }}</h1>
-        <p class="text-sm text-text/70 mb-6">{{ post.date | date:'mediumDate' }} - {{ post.author }}</p>
-        <img [src]="post.image" [alt]="post.title" class="w-full rounded-lg mb-8" loading="lazy" />
-        <div class="post-content" [innerHTML]="post.content"></div>
-
-        <!-- Compartir -->
-        <div class="flex space-x-4 mt-8">
-            <a [href]="'https://www.facebook.com/sharer/sharer.php?u=' + currentUrl" target="_blank"
-                rel="noopener noreferrer" class="px-4 py-2 rounded bg-cta text-white"
-                aria-label="Compartir en Facebook">Facebook</a>
-            <a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank" rel="noopener noreferrer"
-                class="px-4 py-2 rounded bg-cta text-white" aria-label="Compartir en X">Twitter/X</a>
-            <a [href]="'https://www.linkedin.com/shareArticle?mini=true&url=' + currentUrl" target="_blank"
-                rel="noopener noreferrer" class="px-4 py-2 rounded bg-cta text-white"
-                aria-label="Compartir en LinkedIn">LinkedIn</a>
+        <div class="relative z-20 max-w-4xl mx-auto px-4 w-full text-center md:text-left">
+            <span class="inline-block px-3 py-1 bg-cta text-white text-xs font-bold rounded-full mb-4">{{ post.category
+                }}</span>
+            <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">{{ post.title }}</h1>
+            <div class="flex items-center justify-center md:justify-start gap-4 text-sm font-medium text-text/70">
+                <span>{{ post.date | date:'longDate' }}</span>
+                <span>•</span>
+                <span>{{ post.readTime }} lectura</span>
+                <span>•</span>
+                <span>Por {{ post.author }}</span>
+            </div>
         </div>
+    </header>
 
-        <!-- Newsletter -->
-        <section class="mt-12 p-6 rounded-lg border border-text/10 bg-bg-alt">
-            <form (ngSubmit)="onSubscribe()" #subscribeForm="ngForm" class="flex flex-col gap-3">
-                <label for="newsletterEmail" class="text-sm font-medium">Suscribete al newsletter semanal</label>
-                <input id="newsletterEmail" name="email" type="email" [(ngModel)]="email" required email
-                    placeholder="Tu mejor email"
-                    class="w-full px-4 py-2 rounded border border-text/20 bg-bg text-text focus:outline-none focus:ring-2 focus:ring-cta"
-                    aria-label="Introduce tu email para suscribirte al newsletter" />
+    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-                <button type="submit" class="px-5 py-2 rounded bg-cta text-white font-semibold disabled:opacity-60"
-                    [disabled]="submitting || !subscribeForm.form.valid" aria-label="Suscribirme al newsletter">
-                    {{ submitting ? 'Suscribiendo...' : 'Suscribirme' }}
-                </button>
+        <aside class="lg:col-span-3 lg:sticky lg:top-32 h-fit order-2 lg:order-1">
+            <div class="mb-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-text/50 mb-4">Etiquetas</h3>
+                <div class="flex flex-wrap gap-2">
+                    <span *ngFor="let tag of post.tags"
+                        class="px-3 py-1 bg-gray-100 dark:bg-white/10 rounded-md text-xs">#{{tag}}</span>
+                </div>
+            </div>
 
-                <p *ngIf="successMessage" class="text-green-600 text-sm">{{ successMessage }}</p>
-                <p *ngIf="errorMessage" class="text-red-600 text-sm">{{ errorMessage }}</p>
+            <div class="mb-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-text/50 mb-4">Compartir</h3>
+                <div class="flex gap-2">
+                    <a [href]="'https://twitter.com/intent/tweet?url=' + currentUrl" target="_blank"
+                        class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center hover:bg-black hover:text-white transition-colors">𝕏</a>
+                    <a [href]="'https://www.linkedin.com/sharing/share-offsite/?url=' + currentUrl" target="_blank"
+                        class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-colors">in</a>
+                </div>
+            </div>
+        </aside>
 
-                <p class="text-xs text-text/70">Al suscribirte, aceptas recibir el newsletter semanal y confirmas que
-                    has leído y aceptas nuestros
-                    <a routerLink="/condiciones-generales" class="underline">Términos y Condiciones</a> y la
-                    <a routerLink="/politica-privacidad" class="underline">Política de Privacidad</a>.
-                </p>
-            </form>
-        </section>
-        <div class="mt-12">
-            <a routerLink="/blog" class="text-cta font-semibold">Volver al blog</a>
+        <article class="lg:col-span-9 order-1 lg:order-2">
+            <div class="prose dark:prose-invert prose-lg max-w-none prose-headings:font-bold prose-a:text-cta hover:prose-a:text-cta/80 prose-img:rounded-2xl"
+                [innerHTML]="post.content">
+            </div>
+
+            <section class="mt-20 p-8 md:p-12 rounded-3xl bg-black text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-cta/20 rounded-full blur-[100px] pointer-events-none">
+                </div>
+
+                <div class="relative z-10 text-center max-w-2xl mx-auto">
+                    <h3 class="text-3xl font-bold mb-4">¿Te ha gustado este artículo?</h3>
+                    <p class="text-gray-400 mb-8">Únete a la newsletter y recibe consejos sobre diseño, no-code y mis
+                        aventuras creando juegos de mesa.</p>
+
+                    <form (ngSubmit)="onSubscribe()" #subscribeForm="ngForm" class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" [(ngModel)]="email" name="email" required placeholder="tu@email.com"
+                            class="flex-1 px-6 py-4 rounded-full bg-white/10 border border-white/10 focus:border-cta focus:outline-none text-white placeholder:text-gray-500">
+                        <button type="submit" [disabled]="submitting"
+                            class="px-8 py-4 rounded-full bg-cta font-bold hover:bg-white hover:text-black transition-colors disabled:opacity-50">
+                            {{ submitting ? '...' : 'Suscribirme' }}
+                        </button>
+                    </form>
+
+                    <p *ngIf="successMessage" class="mt-4 text-green-400 font-medium">{{ successMessage }}</p>
+                </div>
+            </section>
+
+        </article>
+    </div>
+
+    <section class="max-w-7xl mx-auto px-4 py-20 border-t border-gray-200 dark:border-white/10 mt-12">
+        <h3 class="text-2xl font-bold mb-8">También te podría interesar...</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <a *ngFor="let related of relatedPosts" [routerLink]="['/blog', related.slug]"
+                class="group flex gap-6 items-center p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                <img [src]="related.image" class="w-24 h-24 rounded-xl object-cover" [alt]="related.title">
+                <div>
+                    <span class="text-xs text-cta font-bold uppercase">{{ related.category }}</span>
+                    <h4 class="font-bold text-lg leading-tight group-hover:underline decoration-cta underline-offset-4">
+                        {{ related.title }}</h4>
+                </div>
+            </a>
         </div>
-    </article>
+    </section>
 
     <app-footer></app-footer>
     <app-scroll-to-top></app-scroll-to-top>

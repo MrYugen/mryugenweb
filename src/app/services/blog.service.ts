@@ -4,25 +4,43 @@ export interface BlogPost {
   id: number;
   slug: string;
   title: string;
-  category: string;
+  category: string; // Categoría principal para el filtro
+  tags: string[];   // Etiquetas secundarias
   excerpt: string;
-  content: string; // HTML
+  content: string;  // HTML
   date: string;
   author: string;
   image: string;
+  readTime: string; // Nuevo: Tiempo de lectura
+  featured?: boolean; // Nuevo: Para destacar en el Bento Grid (ocupa más espacio)
 }
 
 @Injectable({
     providedIn: 'root'
 })
 export class BlogService {
+
+  // Categorías para el filtro del frontend
+  public categories = [
+    'Todos',
+    'Couple Clash',
+    'Diseño Gráfico',
+    'Ilustración Digital',
+    'Branding',
+    'Automatización',
+    'UX/UI',
+    'Escritura'
+  ];
+
   private posts: BlogPost[] = [
+    // 1. COUPLE CLASH (Destacado)
     {
       id: 1,
       slug: 'mi-odisea-creativa',
-      title: '#1 El inicio de todo: Mi Odisea Creativa',
-      category: 'Experiencias',
-      excerpt: 'Cómo empezó todo en un país remoto y cómo una idea evolucionó hasta convertirse en Couple Clash.',
+      title: 'El inicio de todo: Mi Odisea Creativa con Couple Clash',
+      category: 'Couple Clash',
+      tags: ['Game Design', 'Emprendimiento', 'UK'],
+      excerpt: 'Cómo empezó todo en un país remoto y cómo una idea evolucionó hasta convertirse en Couple Clash. La historia real detrás de los cartones.',
       content: `<h2><strong>HABLANDO DEL TIEMPO</strong></h2>
         <br />
         <h3><strong>El tiempo es una ilusión…</strong></h3>
@@ -86,19 +104,20 @@ export class BlogService {
         <p>Si has llegado hasta aquí, <strong>gracias</strong>. La presentación siempre es lo más aburrido; ahora empieza lo bueno. Abre la mente, desempolva esa idea que llevas tiempo posponiendo y prepárate para un viaje creativo.</p>
         <p>Aquí, en este rincón del tiempo, empezamos una nueva odisea. </p>
         <br />
-        <p><strong>¡No te pierdas lo que viene!</strong> Suscríbete y acompáñame en esta aventura de creación, risas y... ¿por qué no? Unas cuantas discusiones bien llevadas.</p>
-        <figure class="my-6">
-          <img src="assets/images/blog/banner_logos.jpg" alt="Mr. Yugen/Ikigais Games/Couple Clash, Suscribete" loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-md" />
-        </figure>` ,
-      date: '2024-12-06',
-      author: 'Texto original escrito por Mr. Yugen',
-      image: 'assets/images/blog/nuevo_comienzo.jpg'
+      `,
+      date: '2024-12-18',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog_post2.jpg', 
+      readTime: '8 min',
+      featured: true // IMPORTANTE: Saldrá grande
     },
+      // 2. ERRORES COMUNES AL DISEÑAR UN JUEGO DE MESA (Parte 1)
     {
       id: 2,
       slug: 'errores-juego-parte-1',
       title: '#2 Errores comunes al diseñar un juego de mesa (Parte 1)',
-      category: 'Juego de mesa',
+      category: 'Couple Clash',
+      tags: ['Game Design', 'Emprendimiento', 'UK'],
       excerpt: 'Desde mi desgracia personal, te cuento los errores más comunes al diseñar un juego de mesa y cómo evitarlos.',
       content: `<h2><em>Una guía con un toque de desgracia personal</em></h2>
         <br />
@@ -167,20 +186,24 @@ export class BlogService {
         <p>Y hasta aquí la parte 1 de la guía de <strong>errores comunes al diseñar un juego y cómo evitarlos.</strong></p>
         <p>En breve tendrás una segunda parte cargadita de contenido: tres grandes consejos más, en un orden que quizás no esperes, que para mí son imprescindibles de conocer antes de lanzarte a la odisea de crear tu propio juego de mesa.</p><br />
         <p><strong>¡No te pierdas lo que viene!</strong> Suscríbete y acompáñame en esta aventura de creación, risas y... ¿por qué no? Unas cuantas discusiones bien llevadas.</p>
-        <figure class="my-6">
-          <img src="assets/images/blog/banner_logos.jpg" alt="Mr. Yugen/Ikigais Games/Couple Clash, Suscribete" loading="lazy" decoding="async" class="w-full h-auto rounded-2xl shadow-md" />
-        </figure>`,
+        `,
       date: '2024-12-13',
-      author: 'Texto original escrito por Mr. Yugen',
-      image: 'assets/images/blog_post2.jpg'
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog_post3.jpg', 
+      readTime: '8 min',
+      featured: false
     },
+    // 3. ERRORES COMUNES AL DISEÑAR UN JUEGO DE MESA (Parte 2)
     {
       id: 3,
       slug: 'errores-juego-parte-2',
       title: '#3 Errores comunes al diseñar un juego de mesa (Parte 2)',
-      category: 'Juego de mesa',
+      category: 'Couple Clash',
+      tags: ['Game Design', 'Emprendimiento', 'UK'],
       excerpt: 'El gran final de las “desgracias”, los últimos errores más habituales en la creación de un juego de mesa. ¡Que no te pase lo mismo!',
-      content: ` 
+      content: `
+        <h2><em>La guía definitiva con un toque de desgracia personal (Parte 2)</em></h2>
+        <br /> 
         <p>Y aquí volvemos, con la segunda parte de nuestra Guía de <strong>Errores Comunes al Diseñar un Juego y Cómo Evitarlos.</strong></p>
         <p>En el anterior artículo estuvimos creando el esqueleto de nuestro juego y dándole una ambientación que le dota de alma.</p>
         <p>Es hora de continuar y no precisamente con el diseño del juego, que sería lo lógico en este punto. Ahora toca exponerse y seguir puliendo los puntos anteriores aunque pensemos que están perfectos.</p>
@@ -263,16 +286,116 @@ export class BlogService {
         </figure>
       ` ,
       date: '2024-12-18',
-      author: 'Texto original escrito por Mr. Yugen',
-      image: 'assets/images/blog/prototipo_fase_inicial.jpg'
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/prototipo_fase_inicial.jpg',
+      readTime: '8 min',
+      featured: false
     },
+    // 4. AUTOMATIZACIÓN (Técnico)
+    {
+      id: 4,
+      slug: 'automatizacion-procesos-python',
+      title: 'Automatiza tu aburrimiento: Scripts en Python para diseñadores',
+      category: 'Automatización',
+      tags: ['Python', 'Productividad', 'No-Code'],
+      excerpt: '¿Cansado de renombrar 500 archivos a mano? Te enseño cómo gané 10 horas a la semana automatizando tareas repetitivas.',
+      content: `
+        <h2>¿Por qué automatizar?</h2>
+        <p>Si lo haces más de tres veces, automatízalo. Esa es mi regla de oro...</p>
+        <h3>El Script Mágico</h3>
+        <pre><code class="language-python">import os
+def renombrar_archivos():
+    # Tu código aquí para salvar vidas
+    print("Archivos renombrados con éxito")</code></pre>
+        <p>Con este simple bloque, te ahorras horas de clic derecho + cambiar nombre.</p>
+      `,
+      date: '2025-01-10',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/python_automation.jpg', // Placeholder
+      readTime: '5 min',
+      featured: true
+    },
+    // 5. BRANDING
+    {
+      id: 5,
+      slug: 'psicologia-color-branding',
+      title: 'Más allá del azul: Psicología del color en Branding',
+      category: 'Branding',
+      tags: ['Teoría del Color', 'Identidad Visual'],
+      excerpt: 'El color no es solo estética, es emoción. Descubre cómo elegir la paleta perfecta para transmitir los valores de tu marca.',
+      content: `<p>Lorem ipsum dolor sit amet...</p>`,
+      date: '2025-01-15',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/branding_colors.jpg',
+      readTime: '6 min',
+      featured: false
+    },
+    // 6. UX/UI
+    {
+      id: 6,
+      slug: 'maquetacion-ux-ui-moderna',
+      title: 'De Figma al Código: Buenas prácticas de Maquetación',
+      category: 'UX/UI',
+      tags: ['Figma', 'Angular', 'Tailwind'],
+      excerpt: 'Cómo mantener la fidelidad del diseño al pasarlo a código. Tips para desarrolladores con ojo de diseñador.',
+      content: `<p>El eterno conflicto entre diseñadores y desarrolladores se acaba hoy...</p>`,
+      date: '2025-01-20',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/ui_design.jpg',
+      readTime: '10 min',
+      featured: false
+    },
+    // 5. ILUSTRACIÓN
+    {
+      id: 7,
+      slug: 'ilustracion-digital-procreate',
+      title: 'Mi flujo de trabajo en Procreate: Del boceto al arte final',
+      category: 'Ilustración Digital',
+      tags: ['Procreate', 'iPad', 'Tutorial'],
+      excerpt: 'Capas, máscaras y pinceles. Te enseño cómo organizo mis archivos para no volverme loco dibujando.',
+      content: `<p>Procreate ha cambiado las reglas del juego...</p>`,
+      date: '2025-02-01',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/illustration_process.jpg',
+      readTime: '7 min',
+      featured: true
+    },
+     // 6. ESCRITURA
+    {
+      id: 8,
+      slug: 'guia-escritura-creativa',
+      title: 'Bloqueo del escritor: Cómo salir del folio en blanco',
+      category: 'Escritura',
+      tags: ['Storytelling', 'Creatividad'],
+      excerpt: 'Técnicas para desbloquear tu creatividad cuando las musas están de vacaciones.',
+      content: `<p>Escribir es reescribir. No tengas miedo al primer borrador de mierda...</p>`,
+      date: '2025-02-05',
+      author: 'Mr. Yugen',
+      image: 'assets/images/blog/writing_tips.jpg',
+      readTime: '4 min',
+      featured: false
+    }
   ];
+
+  constructor() { }
 
   getPosts(): BlogPost[] {
     return this.posts;
   }
 
   getPostBySlug(slug: string): BlogPost | undefined {
-    return this.posts.find(p => p.slug === slug);
+    return this.posts.find(post => post.slug === slug);
+  }
+
+  // Nuevo: Obtener posts relacionados (excluyendo el actual)
+  getRelatedPosts(currentSlug: string, category: string): BlogPost[] {
+    return this.posts
+      .filter(post => post.category === category && post.slug !== currentSlug)
+      .slice(0, 2); // Devuelve máx 2
+  }
+
+  // Nuevo: Obtener categorías únicas dinámicamente si quisieras
+  getCategories(): string[] {
+    return this.categories;
   }
 }
