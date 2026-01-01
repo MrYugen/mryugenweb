@@ -1,9 +1,30 @@
-/* Toggle de tema con transición de iconos */
+/* Link Base Style */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-cta, #f97316); /* Color naranja */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Theme Toggle (Mantenemos tu CSS original, funciona bien) */
 .theme-toggle {
-  position: relative;
-  width: 1.75rem;   /* 28px */
-  height: 1.75rem;  /* 28px */
-  display: inline-block;
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
 }
 
 .theme-toggle .icon {

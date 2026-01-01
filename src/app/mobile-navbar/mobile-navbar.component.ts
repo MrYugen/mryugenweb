@@ -27,14 +27,21 @@ export class MobileNavbarComponent {
   @Output() toggleTheme = new EventEmitter<void>();
 
   menuOpen: boolean = false;
+  portfolioOpen: boolean = false; // Estado del acordeón
 
   /** Alterna el estado abierto/cerrado del menú móvil */
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    if (!this.menuOpen) this.portfolioOpen = false; // Resetear acordeón al cerrar
+  }
+
+  togglePortfolio(): void {
+    this.portfolioOpen = !this.portfolioOpen;
   }
 
   /** Cierra el menú (se invoca al hacer clic en un enlace) */
   closeMenu(): void {
     this.menuOpen = false;
+    this.portfolioOpen = false;
   }
 }

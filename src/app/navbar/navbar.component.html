@@ -1,28 +1,85 @@
-<header
-    class="fixed top-0 w-full z-50 bg-[color:var(--color-bg)] dark:bg-bg/80 border-b border-white/20 backdrop-blur-md transition-colors duration-300 h-16">
-    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4 w-full overflow-x-hidden">
-        <!-- Logo clickable, cambia según tema -->
-        <a routerLink="/">
-            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo" class="h-8 sm:h-10 w-auto" />
+<header class="fixed top-0 w-full z-50 transition-all duration-300 h-20 flex items-center"
+    [ngClass]="isScrolled ? 'bg-bg/80 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 shadow-sm' : 'bg-transparent'">
+
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 w-full">
+
+        <a routerLink="/" class="flex-shrink-0 relative group">
+            <img src="assets/images/logo_mryugen.svg" alt="Mr. Yugen logo"
+                class="h-8 sm:h-10 w-auto transition-transform duration-300 group-hover:scale-105" />
         </a>
-        <ul class="hidden md:flex space-x-6 drop-shadow-sm" [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
-            <li><a [routerLink]="['/']" fragment="hero" class="hover:text-cta">Home</a></li>
-            <li><a [routerLink]="['/']" fragment="skills" class="hover:text-cta">Habilidades</a></li>
-            <li><a [routerLink]="['/']" fragment="portfolio" class="hover:text-cta">Portfolio</a></li>
-            <li><a routerLink="/blog" class="hover:text-cta">Blog</a></li>
-            <li><a routerLink="/automation" class="hover:text-cta">Automatización</a></li>
-            <li><a routerLink="/newsletter" class="hover:text-cta">Newsletter</a></li>
-            <li><a [routerLink]="['/']" fragment="contact" class="hover:text-cta">Contacto</a></li>
+
+        <ul class="hidden md:flex items-center gap-8 font-medium text-md tracking-wide"
+            [ngClass]="isDarkMode ? 'text-white' : 'text-text'">
+
+            <li>
+                <a [routerLink]="['/']" fragment="hero" class="nav-link">Home</a>
+            </li>
+
+            <li class="relative group h-20 flex items-center">
+                <button
+                    class="nav-link flex items-center gap-1 group-hover:text-cta transition-colors focus:outline-none">
+                    Portfolio
+                    <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180 opacity-70" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div
+                    class="absolute top-[80%] left-1/2 -translate-x-1/2 w-56 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                    <div
+                        class="bg-white dark:bg-[#1a1a1a] rounded-2xl shadow-xl border border-gray-100 dark:border-white/10 overflow-hidden p-2">
+
+                        <a routerLink="/portfolio/branding"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item">
+                            <span class="text-xl group-hover/item:scale-110 transition-transform">✨</span>
+                            <div>
+                                <span class="block font-bold text-text dark:text-white">Branding</span>
+                                <span class="text-[10px] text-text/50 uppercase tracking-wider">Identidad</span>
+                            </div>
+                        </a>
+
+                        <a routerLink="/ilustraciones"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item">
+                            <span class="text-xl group-hover/item:scale-110 transition-transform">🎨</span>
+                            <div>
+                                <span class="block font-bold text-text dark:text-white">Ilustración</span>
+                                <span class="text-[10px] text-text/50 uppercase tracking-wider">Arte Digital</span>
+                            </div>
+                        </a>
+
+                        <a routerLink="/portfolio/web"
+                            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item">
+                            <span class="text-xl group-hover/item:scale-110 transition-transform">💻</span>
+                            <div>
+                                <span class="block font-bold text-text dark:text-white">Web</span>
+                                <span class="text-[10px] text-text/50 uppercase tracking-wider">Desarrollo</span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </li>
+
+            <li><a routerLink="/automatizacion" class="nav-link">Automatización</a></li>
+            <li><a routerLink="/blog" class="nav-link">Blog</a></li>
         </ul>
-        <div class="flex items-center space-x-4">
-            <button (click)="toggleTheme.emit()" class="focus:outline-none" [attr.aria-pressed]="isDarkMode"
+
+        <div class="hidden md:flex items-center gap-6">
+            <button (click)="toggleTheme.emit()"
+                class="focus:outline-none opacity-80 hover:opacity-100 transition-opacity"
                 [attr.aria-label]="isDarkMode ? 'Activar modo claro' : 'Activar modo oscuro'">
                 <span class="theme-toggle" [class.is-dark]="isDarkMode">
                     <img class="icon sun" src="assets/images/icons/theme-sun.png" alt="" aria-hidden="true" />
                     <img class="icon moon" src="assets/images/icons/theme-moon.png" alt="" aria-hidden="true" />
                 </span>
             </button>
-        </div>
-    </nav>
 
+            <a [routerLink]="['/']" fragment="contact"
+                class="px-6 py-2.5 rounded-full bg-cta text-white font-bold text-sm hover:shadow-lg hover:shadow-cta/30 hover:-translate-y-0.5 transition-all duration-300">
+                Contacto
+            </a>
+        </div>
+
+    </nav>
 </header>

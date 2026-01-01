@@ -107,7 +107,7 @@ export class BlogService {
       `,
       date: '2024-12-18',
       author: 'Mr. Yugen',
-      image: 'assets/images/blog_post2.jpg', 
+      image: 'assets/images/blog_post1.webp', 
       readTime: '8 min',
       featured: true // IMPORTANTE: Saldrá grande
     },
@@ -189,7 +189,7 @@ export class BlogService {
         `,
       date: '2024-12-13',
       author: 'Mr. Yugen',
-      image: 'assets/images/blog_post3.jpg', 
+      image: 'assets/images/blog_post2.jpg', 
       readTime: '8 min',
       featured: false
     },
@@ -287,7 +287,7 @@ export class BlogService {
       ` ,
       date: '2024-12-18',
       author: 'Mr. Yugen',
-      image: 'assets/images/blog/prototipo_fase_inicial.jpg',
+      image: 'assets/images/blog_post3.png',
       readTime: '8 min',
       featured: false
     },

@@ -1,650 +1,294 @@
-<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
-    <!-- Navbar fijo superior -->
-    <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
-    <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300 overflow-x-hidden">
+
+    <app-navbar class="hidden md:block fixed w-full z-40 top-0" [isDarkMode]="isDarkMode"
+        (toggleTheme)="toggleTheme()"></app-navbar>
+    <app-mobile-navbar class="block md:hidden fixed w-full z-40 top-0" [isDarkMode]="isDarkMode"
         (toggleTheme)="toggleTheme()"></app-mobile-navbar>
 
-
-    <!-- Hero Section -->
-    <app-hero [isDarkMode]="isDarkMode" [title]="'Automatiza procesos tediosos y recupera tu tiempo'"
-        [subtitle]="'Automatización inteligente: la forma más sencilla de liberar horas cada semana'"
+    <app-hero [isDarkMode]="isDarkMode" [title]="'Recupera tu tiempo. Automatiza tu vida.'"
+        [subtitle]="'Ya seas una empresa buscando eficiencia o un particular queriendo un mayordomo digital. La IA trabaja para ti.'"
         [bgImageLight]="'assets/images/automatizacion/automation-hero-light.jpg'"
-        [bgImageDark]="'assets/images/automatizacion/automation-hero-dark.jpg'"
-        [bgImageLightMobile]="'assets/images/automatizacion/automation-hero-light-mobile.jpg'"
-        [bgImageDarkMobile]="'assets/images/automatizacion/automation-hero-dark-mobile.jpg'" [logoLight]="''"
-        [logoDark]="''" [showCTA]="false">
+        [bgImageDark]="'assets/images/automatizacion/automation-hero-dark.jpg'" [showCTA]="true"
+        ctaText="Auditoría Gratuita" ctaLink="#contacto" [overlayOpacity]="0.4">
     </app-hero>
 
-    <!-- Presentación -->
-    <section class="reveal-section max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4">
-        <!-- Presentación: carrusel de imágenes -->
-        <div class="relative w-full md:w-1/2 rounded-xl shadow-lg overflow-hidden carousel-container">
-            <img loading="lazy" [src]="carouselImages[currentIndex]" alt="Imagen del carrusel" class="w-full">
-            <button class="carousel-button prev" (click)="prevImage()">&#10094;</button>
-            <button class="carousel-button next" (click)="nextImage()">&#10095;</button>
-        </div>
-        <!-- Columna de texto -->
-        <div class="md:w-1/2">
-            <p class="mb-4 leading-relaxed">
-                Recupera horas valiosas en tu día a día dejando que la inteligencia artificial se encargue de las tareas
-                pesadas.
-                Tanto si lideras un negocio como si solo quieres simplificar tu vida personal, la automatización de
-                procesos te permite
-                <strong>"comprar tiempo"</strong> para lo que de verdad importa.
-            </p>
-            <h3 class="text-xl font-semibold mb-2">¿Qué es la automatización con IA y por qué ahora?</h3>
-            <p class="mb-4 leading-relaxed">
-                Automatizar con inteligencia artificial consiste en <strong>identificar tareas repetitivas</strong>
-                (esas que te quitan
-                energía y no aportan valor)
-                y delegarlas en herramientas digitales capaces de realizarlas por ti. Hoy en día existen plataformas
-                no-code como <em>N8N</em> o <em>Zapier</em>
-                que conectan tus aplicaciones entre sí para crear <strong>"robots" que trabajan 24/7 sin errores ni
-                    descansos.</strong>
-                La IA, además,
-                hace posible que estos flujos aprendan y mejoren con el tiempo, <strong>adaptándose a tus
-                    necesidades.</strong>
-            </p>
-            <p class="mb-4 leading-relaxed">
-                En 2025, esta tecnología se ha democratizado: ya no es un lujo futurista, sino una necesidad competitiva
-                y al alcance de cualquiera.
-                De hecho, casi la mitad de las empresas que han adoptado IA la usan para automatizar sus flujos de
-                trabajo o apoyar decisiones,
-                señal de que el momento de aprovecharla es ahora.
-            </p>
-            <!-- CTA a Particulares -->
-            <div class="mt-6">
-                <span class="mr-2"><strong>Gana tiempo automatizando tu día a día</strong></span>
-                <a href="#particulares" (click)="scrollToSection('particulares', $event)"
-                    class="inline-block px-6 py-3 border-2 border-cta text-text rounded-full font-semibold hover:bg-cta hover:text-white transition mt-6">
-                    IA para particulares →
-                </a>
-            </div>
-        </div>
-    </section>
+    <section class="w-full bg-bg py-20 md:py-32 border-b border-gray-200 dark:border-white/5 reveal-section">
+        <div class="max-w-screen-2xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-    <!-- Sección Empresas (Autónomos y negocios) -->
-    <section class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300">
-        <div class="max-w-5xl mx-auto">
-            <!-- Título de sección -->
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-center">Para empresas y autónomos: eficiencias que se
-                traducen en ahorros reales</h2>
-            <!-- Introducción problemática -->
-            <p class="mb-6 leading-relaxed text-center">
-                <em>¿Te suena familiar?</em> Dedicas horas a copiar y pegar datos entre sistemas, a enviar correos de
-                seguimiento uno por uno,
-                a generar informes manualmente... Son procesos fundamentales pero tediosos, propensos a errores y que te
-                alejan de tareas estratégicas.
-            </p>
-            <p class="mb-8 text-center font-bold">La automatización inteligente es la solución.</p>
-            <p class="text-center">Te muestro algunos ejemplos de los miles de problemas que se pueden resolver con
-                automatización.</p>
-            <p class="mb-12 text-center">Puedes ver las soluciones <strong>pinchando en cada tarjeta.</strong></p>
-            <!-- Flip Cards: Problema/Solución (interactivas) -->
-            <div class="flex flex-wrap gap-8 justify-center items-stretch">
-                <!-- Tarjeta 1 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(0)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[0]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_1.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">GESTIÓN DE FACTURAS Y CONTABILIDAD</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>Los autónomos y pequeñas empresas pierden horas tecleando facturas, registrando
-                                    gastos y
-                                    cuadrando cuentas manualmente.
-                                    Muchas veces, se les escapa algún gasto deducible o se retrasan en el envío de
-                                    facturas.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <!-- ...reverso actual, sin cambios... -->
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Extraer automáticamente datos de facturas y tickets (OCR con IA).</li>
-                                <li>Enviarlos directo al programa contable.</li>
-                                <li>Recordatorios automáticos de facturas impagadas.</li>
-                                <li>Conciliación bancaria semi-automática.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Esto ahorra cientos de horas al año y reduce errores
-                                humanos.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 2 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(1)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[1]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_2.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">ATENCIÓN AL CLIENTE 24/7</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>El cliente escribe por WhatsApp, Instagram, email o la web y el autónomo no
-                                    siempre
-                                    puede contestar al momento (porque está trabajando o atendiendo a otros clientes).
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Chatbots conectados a WhatsApp, Messenger o web.</li>
-                                <li>Respuestas inteligentes y filtrado de consultas frecuentes.</li>
-                                <li>Redirección automática de los casos complejos a la persona adecuada.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Resultado: clientes atendidos siempre y más
-                                oportunidades
-                                cerradas.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(2)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[2]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_3.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">GESTIÓN DE CITAS, RESERVAS Y RECORDATORIOS</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>Peluquerías, clínicas, asesorías, talleres... pierden tiempo confirmando citas,
-                                    y
-                                    encima
-                                    muchos clientes olvidan su hora.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Agenda online conectada con Google Calendar.</li>
-                                <li>Recordatorios automáticos por WhatsApp/SMS/email.</li>
-                                <li>Reprogramación automática si alguien cancela.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Menos ausencias y más organización sin llamadas
-                                eternas.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 4 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(3)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[3]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_4.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">RECUPERACIÓN DE CARRITOS ABANDONADOS Y VENTAS ONLINE</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>En e-commerce y tiendas online, casi el 70% de los clientes abandona el carrito
-                                    sin
-                                    finalizar la compra.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Detectar carritos abandonados.</li>
-                                <li>Enviar emails/WhatsApp recordando el pedido.</li>
-                                <li>Ofrecer un descuento automático si no compran en X horas.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Aumenta la facturación sin más esfuerzo humano.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 5 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(4)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[4]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_5.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">GESTIÓN DE LEADS Y PROPUESTAS COMERCIALES</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>Los autónomos reciben contactos por email, LinkedIn, WhatsApp, formularios
-                                    web... y
-                                    terminan perdiendo clientes porque no les hacen seguimiento rápido.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Captura automática de leads de todas las fuentes.</li>
-                                <li>Creación de ficha en CRM.</li>
-                                <li>Envío automático de una propuesta base en minutos.</li>
-                                <li>Seguimiento automatizado si el cliente no responde.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Se gana velocidad y profesionalidad, clave para cerrar
-                                más ventas.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 6 -->
-                <div class="flip-card automatiza-card" (click)="toggleCard(5)">
-                    <div class="flip-inner" [ngClass]="{'rotated': flipped[5]}">
-                        <!-- Anverso (Problema) -->
-                        <div class="flip-front">
-                            <img loading="lazy" src="assets/images/automatizacion/flip_card_6.jpg"
-                                alt="Gestión de facturas" class="flip-img" />
-                            <h4 class="flip-title">GESTIÓN DE EMPLEADOS, GASTOS Y PROCESOS INTERNOS</h4>
-                            <div class="flip-problem">
-                                <p><strong>PROBLEMA:</strong>
-                                    <br>Subir nóminas, dar de alta/baja empleados, pedir vacaciones, justificar gastos…
-                                    todo
-                                    esto quita horas valiosas.
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Reverso (Solución) -->
-                        <div class="flip-back">
-                            <h4 class="font-bold mb-2">Solución con IA + Automatización:</h4>
-                            <br>
-                            <ul class="text-sm list-disc pl-5 mb-2">
-                                <li>Flujos de onboarding/offboarding de empleados.</li>
-                                <li>Digitalización de tickets de gasto → directo a la contabilidad.</li>
-                                <li>Formularios automáticos para vacaciones y ausencias.</li>
-                            </ul>
-                            <br>
-                            <p class="text-lg text-center italic">Menos papeleo y más foco en lo que realmente importa:
-                                el negocio.</p>
-                            <img loading="lazy" src="assets/images/logo_mryugen.svg" alt="Mr. Yugen"
-                                class="w-16 mx-auto mt-4">
+            <div class="order-2 lg:order-1 space-y-2">
+                <h2 class="text-xs font-bold tracking-[0.2em] text-cta uppercase mb-6">Workflow</h2>
+                <h3 class="text-3xl md:text-5xl font-black mb-10 leading-tight">
+                    De manual a <br> <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">Automático</span>
+                </h3>
+
+                <div class="space-y-4 relative">
+                    <div class="absolute left-[19px] top-4 bottom-4 w-[2px] bg-gray-200 dark:bg-white/10"></div>
+
+                    <div *ngFor="let step of methodologySteps; let i = index"
+                        class="group relative pl-10 cursor-pointer transition-all duration-300"
+                        (mouseenter)="activeStep = i" (click)="activeStep = i">
+
+                        <div class="absolute left-[14px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-white dark:border-[#0f0f0f] transition-all duration-300 z-10"
+                            [ngClass]="activeStep === i ? 'bg-cta scale-125' : 'bg-gray-300 dark:bg-gray-700'"></div>
+
+                        <h4 class="text-xl md:text-2xl font-bold transition-colors duration-300 flex items-center gap-3"
+                            [ngClass]="activeStep === i ? 'text-text' : 'text-text/40'">
+                            <span class="text-sm font-mono opacity-50">0{{i}}</span> {{ step.title }}
+                        </h4>
+
+                        <div class="overflow-hidden transition-all duration-500 max-h-0 opacity-0"
+                            [ngClass]="{'max-h-40 opacity-100 mt-2': activeStep === i}">
+                            <p class="text-sm md:text-base text-text/70 leading-relaxed max-w-md">
+                                {{ step.text }}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Beneficios de automatizar (Lo que ganas) -->
-            <h3 class="text-2xl md:text-4xl font-bold mt-16 mb-8 text-center">Lo que ganas al automatizar</h3>
-            <!-- Bloque 1: Ahorro de tiempo y costes -->
+
             <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-                    <img loading="lazy" src="assets/images/automatizacion/icono-tiempo.png" alt="Icono reloj"
-                        class="w-17 h-17 md:order-none order-2">
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1 uppercase">Ahorro de tiempo y costes</h4>
-                        <br>
-                        <p class="uppercase"><strong>Tu equipo</strong> deja de malgastar jornadas en tareas repetitivas
-                            y <strong>puede centrarse en hacer crecer
-                                el negocio.</strong>
-                            Los "robots" trabajan más rápido y sin descanso, <strong>multiplicando la
-                                productividad.</strong></p>
+                class="order-1 lg:order-2 h-[400px] md:h-[500px] w-full relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-white/10">
+                <ng-container *ngFor="let step of methodologySteps; let i = index">
+                    <div class="absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out bg-black"
+                        [ngClass]="activeStep === i ? 'opacity-100 z-10' : 'opacity-0 z-0'">
+                        <img [src]="step.image" [alt]="step.title"
+                            class="w-full h-full object-cover opacity-90 transition-transform duration-[10s] hover:scale-105"
+                            loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-12 bg-bg-alt border-y border-gray-200 dark:border-white/5 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 mb-8 text-center">
+            <p class="text-sm uppercase tracking-widest text-text/50 font-bold">Powered by Modern Tech</p>
+        </div>
+
+        <div
+            class="scroller relative z-10 max-w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+            <div class="scroller-inner flex gap-16 py-4 w-max animate-scroll">
+                <ng-container *ngFor="let item of techStack">
+                    <div class="flex items-center gap-3 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-help"
+                        [title]="item.name">
+                        <img [src]="item.icon" [alt]="item.name" class="h-10 w-auto object-contain max-w-[120px]">
+                    </div>
+                </ng-container>
+                <ng-container *ngFor="let item of techStack">
+                    <div
+                        class="flex items-center gap-3 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                        <img [src]="item.icon" [alt]="item.name" class="h-10 w-auto object-contain max-w-[120px]">
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-4 bg-bg reveal-section">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Automatización para <span class="text-cta">Todos</span>
+                </h2>
+                <p class="text-xl text-text/70">Tanto si facturas millones como si solo quieres organizar tu nevera.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-4 flex flex-col gap-2 sticky top-24">
+                    <button *ngFor="let useCase of useCases; let i = index" (click)="setUseCase(i)"
+                        class="text-left px-6 py-5 rounded-xl transition-all duration-300 flex items-center gap-4 border-l-4 group"
+                        [ngClass]="activeUseCase === i 
+                                ? 'bg-bg-alt border-cta shadow-lg translate-x-2' 
+                                : 'border-transparent hover:bg-gray-50 dark:hover:bg-white/5 opacity-70 hover:opacity-100'">
+                        <span class="text-2xl group-hover:scale-110 transition-transform">{{ useCase.icon }}</span>
+                        <div>
+                            <span class="font-bold block">{{ useCase.title }}</span>
+                            <span class="text-xs text-text/50 uppercase tracking-wider font-bold">{{ useCase.category
+                                }}</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="lg:col-span-8">
+                    <div
+                        class="min-h-[500px] bg-bg-alt rounded-3xl p-8 md:p-12 border border-gray-200 dark:border-white/5 shadow-2xl relative overflow-hidden transition-all">
+                        <div
+                            class="absolute top-0 right-0 w-80 h-80 bg-cta/5 rounded-full blur-[100px] transition-colors duration-500">
+                        </div>
+
+                        <div class="relative z-10 animate-fade-in" *ngIf="useCases[activeUseCase]">
+                            <div class="flex items-center gap-4 mb-6">
+                                <span class="text-4xl">{{ useCases[activeUseCase].icon }}</span>
+                                <h3 class="text-3xl md:text-4xl font-bold">{{ useCases[activeUseCase].title }}</h3>
+                            </div>
+
+                            <p class="text-xl text-text/80 mb-10 leading-relaxed border-l-4 border-cta/30 pl-6">
+                                {{ useCases[activeUseCase].description }}
+                            </p>
+
+                            <h4
+                                class="text-xs uppercase tracking-widest font-bold text-cta mb-6 flex items-center gap-2">
+                                <span class="w-8 h-[1px] bg-cta"></span> Ejemplos de implementación
+                            </h4>
+
+                            <div class="grid sm:grid-cols-1 gap-4">
+                                <div *ngFor="let point of useCases[activeUseCase].points"
+                                    class="group p-4 bg-bg rounded-xl border border-gray-200 dark:border-white/5 hover:border-cta/30 transition-all hover:shadow-md">
+                                    <div class="font-bold mb-1 flex items-center gap-2">
+                                        <span class="text-green-500">⚡</span> {{ point.title }}
+                                    </div>
+                                    <p class="text-sm text-text/60 pl-6">{{ point.desc }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Bloque 2: Menos errores, más calidad -->
-            <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
-                <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
-                    <img loading="lazy" src="assets/images/automatizacion/icono-calidad.png" alt="Icono verificación"
-                        class="w-17 h-17 md:order-none order-2">
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1 uppercase">Menos errores, más calidad</h4>
-                        <br>
-                        <p class="uppercase">Al minimizar la intervención manual, <strong>se reducen los errores
-                                humanos</strong> y aumenta la precisión de
-                            tu operativa.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Bloque 3: Atención al cliente 24/7 -->
-            <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-                    <img loading="lazy" src="assets/images/automatizacion/icono-chat.png" alt="Icono chatbot"
-                        class="w-17 h-17 md:order-none order-2">
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1 uppercase">Atención al cliente 24/7</h4>
-                        <br>
-                        <p class="uppercase">Un chatbot o flujo automatizado puede <strong>responder consultas</strong>
-                            frecuentes <strong>incluso mientras duermes</strong>,
-                            mejorando la experiencia de tus clientes al darles <strong>servicio inmediato.</strong></p>
-                    </div>
-                </div>
-            </div>
-            <!-- Bloque 4: Escalabilidad y eficiencia -->
-            <div
-                class="bg-[color:var(--portfolio-bg-couple)] dark:bg-[color:var(--portfolio-bg-couple)] rounded-xl shadow-md p-4 mb-4 reveal-section">
-                <div class="flex flex-col md:flex-row-reverse items-center md:items-start gap-4">
-                    <img loading="lazy" src="assets/images/automatizacion/icono-escalabilidad.png"
-                        alt="Icono gráfico ascendente" class="w-17 h-17 md:order-none order-2">
-                    <div class="flex-1">
-                        <h4 class="text-xl font-bold mb-1 uppercase">Escalabilidad y eficiencia</h4>
-                        <br>
-                        <p class="uppercase">Puedes <strong>manejar un mayor volumen de trabajo sin contratar más
-                                personal,</strong> ya que las
-                            automatizaciones asumen la carga extra.
-                            Tu negocio estará preparado para <strong>crecer rápido,</strong> sin caos ni cuellos de
-                            botella.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Frase motivadora + CTA para empresas -->
-            <p class="text-center text-lg font-semibold mb-4 mt-8">No pierdas ventaja competitiva: empieza ya a delegar
-                lo
-                rutinario en la tecnología y descubre cómo tu empresa puede lograr más en menos tiempo.</p>
-            <div class="text-center">
-                <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
-                    Solicitar consultoría gratuita
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Sección Particulares -->
-    <section id="particulares" class="py-16 px-4">
-        <div class="max-w-5xl mx-auto">
-            <!-- Título de sección -->
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-center">Para particulares: Tu asistente personal de IA
-                para el día a día</h2>
-            <p class="mb-8 leading-relaxed text-center">
-                La inteligencia artificial no es solo cosa de empresas. También puede ser tu aliada en casa, en tus
-                estudios y en tus hobbies.<br>
-                Imagina ajustar las luces, la temperatura o controlar un electrodoméstico de tu hogar a tu gusto
-                fácilmente mientras conversas con tu asistente virtual desde cualquier lugar del mundo, recibir
-                recordatorios inteligentes para tus tareas diarias y eventos importantes, o tener un chef, entrenador y
-                nutricionista personal, profesor particular virtual 24/7 siempre que lo necesites. <br><strong>Las
-                    mismas herramientas que usan las grandes organizaciones están disponibles
-                    para facilitar tu vida cotidiana.</strong>
-            </p>
-            <!-- Tarjetas mosaico (íconos + texto) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+    <section class="py-20 px-4 reveal-section">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-black text-center mb-16">Cómo puedo ayudarte</h2>
 
-                <!-- Tarjeta 1: ESTUDIOS MÁS SENCILLOS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div
-                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img loading="lazy" src="assets/images/automatizacion/icono_estudios_sencillos.png"
-                        alt="Icono Estudios" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-bold mb-2">ESTUDIOS MÁS SENCILLOS</h4>
-                    <ul class="text-sm list-disc text-left pl-5">
-                        <li>Genera resúmenes de textos largos al instante o chatea directamente con tu pdf y hazle
-                            preguntas.</li>
-                        <li>Crea fichas de estudio automáticamente.</li>
-                        <li>Practica idiomas con la ayuda de un tutor virtual impulsado por IA.</li>
-                        <li>Aprende cualquier cosa paso a paso mediante la lógica con el modo "Estudiar y Aprender".
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Tarjeta 2: NUTRICIÓN, BIENESTAR Y SALUD -->
-                <div
-                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img loading="lazy" src="assets/images/automatizacion/icono_nutricion_bienestar.png"
-                        alt="Icono Nutricion y Bienestar" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-bold mb-2">NUTRICIÓN, BIENESTAR Y SALUD</h4>
-                    <ul class="text-sm list-disc text-left pl-5">
-                        <li>Lleva un registro automatizado de hábitos saludables (pasos diarios, horas de sueño,
-                            recordatorios para hidratarte o moverte).</li>
-                        <li>Recibe consejos personalizados (nutrición, ejercicios, consejos) a partir de tus datos
-                            recopilados.</li>
-                        <li>Es como tener un entrenador y asesor digital siempre pendiente de ti.</li>
-                    </ul>
-                </div>
-
-                <!-- Tarjeta 3: ORGANIZACIÓN FAMILIAR -->
-                <div
-                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img loading="lazy" src="assets/images/automatizacion/icono_organizacion_familiar.png"
-                        alt="Icono Organización Familiar" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-bold mb-2">ORGANIZACIÓN FAMILIAR</h4>
-                    <ul class="text-sm list-disc text-left pl-5">
-                        <li>Centraliza calendarios y alertas de toda la familia con apps inteligentes que coordinan las
-                            agendas de todos.</li>
-                        <li>Te avisan de fechas importantes (cumpleaños, citas médicas, pagos) para que nada se pase por
-                            alto.</li>
-                        <li>Te ayuda con las finanzas familiares, ofreciendo un seguimiento de gastos y presupuestos y
-                            dándote consejos de inversión y ahorro.</li>
-                    </ul>
-                </div>
-
-                <!-- Tarjeta 4: HOBBIES Y CREATIVIDAD -->
-                <div
-                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img loading="lazy" src="assets/images/automatizacion/icono_hobbies_creatividad.png"
-                        alt="Icono Hobbies y Creatividad" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-bold mb-2">HOBBIES Y CREATIVIDAD</h4>
-                    <ul class="text-sm list-disc text-left pl-5">
-                        <li>Obtén recomendaciones personalizadas de películas, música o libros según tus gustos.</li>
-                        <li>Usa herramientas de IA para inspirarte: habla con los personajes del libro que estas
-                            escribiendo para conocer sus miedos y sentimientos, genera imágenes de inspiración para tu
-                            próximo proyecto artístico o adéntrate en nuevos hobbies dejándote guiar por tu asistente
-                            virtual.</li>
-                    </ul>
-                </div>
-
-                <!-- Tarjeta 5: HOGAR INTELIGENTE -->
-                <div
-                    class="bg-[color:var(--portfolio-bg-web)] dark:bg-[color:var(--portfolio-bg-web)] p-6 rounded-xl shadow-lg text-center transition-transform hover:scale-[1.03] reveal-card">
-                    <img loading="lazy" src="assets/images/automatizacion/icono_hogar_inteligente.png"
-                        alt="Icono Hogar Inteligente" class="w-17 h-17 mx-auto mb-2">
-                    <h4 class="text-lg font-bold mb-2">HOGAR INTELIGENTE</h4>
-                    <ul class="text-sm list-disc text-left pl-5">
-                        <li>Configura asistentes virtuales (Alexa, Siri, Gemini, GPT, etc.) para que gestionen tus
-                            rutinas domésticas.</li>
-                        <li>Controla cada aspecto de tu hogar mientras estas fuera desde tu teléfono.</li>
-                        <li>La lista de la compra se actualiza automáticamente según las recetas que planificas.</li>
-                        <li>Las luces se apagan solas cuando sales de casa.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Mentoría personal CTA -->
-            <p class="text-center text-lg font-semibold mb-3">Con una mentoría personalizada, Mr. Yugen te enseña a usar
-                e implantar estas herramientas paso a paso, sin tecnicismos complejos. <br> En poco tiempo dominarás
-                trucos para
-                automatizar tareas cotidianas y ganar tiempo y seguridad.</p>
-            <p class="text-center font-semibold mb-6">Verás cómo PEQUEÑOS CAMBIOS TECNOLÓGICOS MARCAN UNA GRAN
-                DIFERENCIA EN TU CALIDAD DE VIDA</p>
-            <p class="text-center text-lg font-bold mb-9">Reserva una sesión de mentoría 1:1 y descubre cómo la IA
-                puede ser tu asistente personal en el día a día.</p>
-            <div class="text-center mb-2">
-                <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                    class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
-                    Quiero aprender a usar IA en mi vida
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Banner Call To Action -->
-    <section class="relative bg-cover bg-center bg-no-repeat bg-fixed text-white py-16 px-4 text-center"
-        style="background-image: url('assets/images/automatizacion/cta_banner.jpg');">
-        <!-- Capa oscura superpuesta -->
-        <div class="absolute inset-0 bg-black/50"></div>
-        <!-- Contenido del banner -->
-        <div class="relative z-10 max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">No te quedes atrás: aprende, automatiza y gana tiempo</h2>
-            <p class="max-w-3xl mx-auto mb-6 leading-relaxed text-lg font-medium">
-                El mundo está adoptando rápidamente la inteligencia artificial para simplificar tareas y ser más
-                eficiente.
-                No te quedes atrás: estás a tiempo de sumarte a esta revolución en tu empresa y en tu vida.
-                Aprender a automatizar y a usar la IA no es difícil si cuentas con la guía adecuada. Atrévete a dar el
-                primer paso:
-                automatiza y gana tiempo para lo que más valoras.
-            </p>
-            <a href="#contact-form" (click)="scrollToSection('contact-form', $event)"
-                class="inline-block px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
-                Contáctanos
-            </a>
-        </div>
-    </section>
-
-    <!-- Carrusel de logos de herramientas -->
-    <section class="py-10 px-4 bg-bg-alt text-text">
-        <h2 class="text-2xl md:text-4xl font-bold text-center mb-6">Trabajamos con las mejores herramientas</h2>
-        <div class="overflow-hidden">
-            <div id="logos-container" class="inline-flex items-center">
-                <img loading="lazy" *ngFor="let logo of logos.concat(logos)" [src]="logo.src" [alt]="logo.alt"
-                    class="h-8 w-auto flex-shrink-0" />
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección FAQ -->
-    <section class="py-16 px-4">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold mb-8 text-center">FAQ</h2>
-            <div *ngFor="let faq of faqs; let i = index" class="border-b border-text/30">
-                <button (click)="toggleFAQ(i)"
-                    class="w-full text-left py-3 font-semibold flex justify-between items-center">
-                    {{ faq.pregunta }}
-                    <span class="ml-2">{{ isFaqOpen(i) ? '–' : '+' }}</span>
-                </button>
-                <div *ngIf="isFaqOpen(i)" class="pl-2 pb-4 text-sm whitespace-pre-line">
-                    {{ faq.respuesta }}
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formulario de Contacto -->
-    <section id="contact-form" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300">
-        <div class="max-w-lg mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-2">Hablemos.</h2>
-            <p class="text-center mb-6">Contáctanos y suscríbete</p>
-            <p class="mb-4 text-sm text-center">
-                ¿Listo para transformar tu rutina con automatizaciones inteligentes? <br /> Rellena el siguiente
-                formulario y
-                cuéntanos en qué podríamos ayudarte.
-            </p>
-            <p class="mb-8 text-sm text-center">
-                Además, puedes <strong>SUSCRIBIRTE A NUESTRO NEWSLETTER</strong> para recibir tips y novedades sobre
-                cómo aplicar la IA
-                en tu día a día. Algunos usos que se pueden hacer de la IA son realmente sorprendentes.<br /><br />
-            </p>
-            <form novalidate (ngSubmit)="onSubmit(f)" #f="ngForm" class="space-y-4">
-                <p class="text-sm text-[color:var(--text)]/70">Los campos marcados con <span
-                        class="text-red-600">*</span> son obligatorios.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="tipo_autonomo" [(ngModel)]="tipo_autonomo" class="mr-2">
-                        Autónomo/Empresa
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" name="tipo_particular" [(ngModel)]="tipo_particular" class="mr-2">
-                        Particular
-                    </label>
-                </div>
-
-                <div>
-                    <label for="name" class="block font-medium mb-1">Nombre <span class="text-red-600">*</span></label>
-                    <input id="name" name="name" [(ngModel)]="name" #nameCtrl="ngModel" required
-                        placeholder="¿Cómo debo llamarte?"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                        [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null" />
-                    <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-1 text-sm text-red-600">El nombre es
-                        obligatorio.</p>
-                </div>
-
-                <div>
-                    <label for="email" class="block font-medium mb-1">Email <span class="text-red-600">*</span></label>
-                    <input id="email" name="email" type="email" [(ngModel)]="email" #emailCtrl="ngModel" required email
-                        placeholder="Tu mejor email, por favor"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                        [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null" />
-                    <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-1 text-sm text-red-600">
-                        <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
-                        <span *ngIf="emailCtrl.errors?.['email']">Introduce un email valido
-                            (nombre&#64;dominio.com).</span>
+                    class="lg:col-span-2 group p-8 md:p-10 rounded-3xl bg-bg-alt border border-gray-200 dark:border-white/10 hover:border-cta/50 transition-all duration-300 hover:shadow-2xl">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-3xl mb-6">
+                        🔍</div>
+                    <h3 class="text-2xl font-bold mb-3">Auditoría & Consultoría</h3>
+                    <p class="text-text/70 mb-6 leading-relaxed max-w-2xl">
+                        Analizo tus flujos de trabajo (personales o empresariales). Encuentro dónde pierdes tiempo y
+                        diseño una hoja de ruta para automatizarlo. Te entrego un plan de acción claro y sin
+                        tecnicismos.
                     </p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-500">Estrategia</span>
                 </div>
 
-                <div>
-                    <label for="automationIdea" class="block font-medium mb-1">¿Sabes qué quieres automatizar? <span
-                            class="text-[color:var(--text)]/70">(opcional)</span></label>
-                    <input id="automationIdea" name="automationIdea" type="text" [(ngModel)]="automationIdea"
-                        #automationCtrl="ngModel" maxlength="300" placeholder="(Opcional) Comenta brevemente tu idea"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                        [attr.aria-invalid]="automationCtrl.errors?.['maxlength'] && automationCtrl.touched ? true : null" />
-                    <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
-                        <span>Hasta 150 caracteres.</span>
-                        <span>{{ automationIdea.length || 0 }}/150</span>
+                <div
+                    class="group p-8 rounded-3xl bg-bg-alt border border-gray-200 dark:border-white/10 hover:border-cta/50 transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-3xl mb-6">
+                        🤖</div>
+                    <h3 class="text-xl font-bold mb-3">Bots a Medida</h3>
+                    <p class="text-sm text-text/70 mb-6">Scripts en Python, bots de Telegram/Discord o Scrapers web que
+                        trabajan 24/7 sin descanso.</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-purple-500">Código</span>
+                </div>
+
+                <div
+                    class="group p-8 rounded-3xl bg-bg-alt border border-gray-200 dark:border-white/10 hover:border-cta/50 transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center text-3xl mb-6">
+                        ⚡</div>
+                    <h3 class="text-xl font-bold mb-3">Integraciones No-Code</h3>
+                    <p class="text-sm text-text/70 mb-6">Conecto tus apps (Notion, Gmail, Calendar, Excel) para que los
+                        datos viajen solos.</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-orange-500">Make / Zapier</span>
+                </div>
+
+                <div
+                    class="group p-8 rounded-3xl bg-bg-alt border border-gray-200 dark:border-white/10 hover:border-cta/50 transition-all duration-300 hover:shadow-xl">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-green-500/10 text-green-500 flex items-center justify-center text-3xl mb-6">
+                        🎓</div>
+                    <h3 class="text-xl font-bold mb-3">Formación In-Company</h3>
+                    <p class="text-sm text-text/70 mb-6">Talleres prácticos para que tu equipo pierda el miedo a la IA y
+                        aprenda a usar ChatGPT productivamente.</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-green-500">Workshops</span>
+                </div>
+
+                <div
+                    class="group p-8 rounded-3xl bg-gradient-to-br from-cta/20 to-bg-alt border border-cta/30 hover:border-cta transition-all duration-300 hover:shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-cta text-white text-xs font-bold rounded-bl-xl">
+                        POPULAR</div>
+                    <div class="w-14 h-14 rounded-2xl bg-cta text-white flex items-center justify-center text-3xl mb-6">
+                        🤝</div>
+                    <h3 class="text-xl font-bold mb-3">Mentoría 1 a 1</h3>
+                    <p class="text-sm text-text/70 mb-6">Sesiones privadas conmigo. Aprende IA desde cero o solucionemos
+                        un problema técnico concreto juntos.</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-cta">Personalizado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto"
+        class="py-20 px-4 bg-gradient-to-b from-bg to-bg-alt border-t border-gray-200 dark:border-white/5">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16">
+
+            <div>
+                <h2 class="text-3xl font-black mb-8">Dudas Frecuentes</h2>
+                <div class="space-y-4">
+                    <div *ngFor="let item of faqs; let i = index"
+                        class="border border-gray-200 dark:border-white/10 rounded-2xl bg-bg overflow-hidden group">
+                        <button (click)="toggleFaq(i)"
+                            class="w-full text-left px-6 py-5 font-bold flex justify-between items-start gap-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                            <span class="text-lg leading-tight">{{ item.question }}</span>
+                            <span
+                                class="text-cta text-2xl leading-none transform transition-transform duration-300 shrink-0"
+                                [class.rotate-45]="isFaqOpen(i)">+</span>
+                        </button>
+                        <div class="px-6 text-text/70 overflow-hidden transition-all duration-300 whitespace-pre-line"
+                            [style.max-height]="isFaqOpen(i) ? '500px' : '0px'"
+                            [style.padding-bottom]="isFaqOpen(i) ? '1.5rem' : '0px'">
+                            {{ item.answer }}
+                        </div>
                     </div>
-                    <p *ngIf="automationCtrl.errors?.['maxlength'] && automationCtrl.touched"
-                        class="mt-1 text-sm text-red-600">El texto puede tener como máximo 150 caracteres.</p>
+                </div>
+            </div>
+
+            <div
+                class="bg-bg border border-gray-200 dark:border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative sticky top-24">
+                <div
+                    class="absolute -top-10 -right-10 w-40 h-40 bg-cta/20 rounded-full blur-[60px] pointer-events-none">
                 </div>
 
-                <div>
-                    <label for="message" class="block font-medium mb-1">Mensaje/Consulta <span
-                            class="text-red-600">*</span></label>
-                    <textarea id="message" name="message" rows="4" [(ngModel)]="message" #messageCtrl="ngModel" required
-                        maxlength="300" placeholder="¿En qué puedo ayudarte?"
-                        class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                        [attr.aria-invalid]="messageCtrl.invalid && messageCtrl.touched ? true : null"></textarea>
-                    <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
-                        <span>Hasta 300 caracteres.</span>
-                        <span>{{ message.length || 0 }}/300</span>
+                <h3 class="text-2xl font-bold mb-2">Empieza hoy</h3>
+                <p class="text-text/60 mb-8">Cuéntame qué te quita el sueño. Primera consulta gratuita.</p>
+
+                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="space-y-5 relative z-10">
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-text/50 mb-1">Nombre</label>
+                        <input type="text" name="name" [(ngModel)]="name" required
+                            class="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta transition-colors">
                     </div>
-                    <p *ngIf="messageCtrl.invalid && messageCtrl.touched" class="mt-1 text-sm text-red-600">
-                        <span *ngIf="messageCtrl.errors?.['required']">El mensaje es obligatorio.</span>
-                        <span *ngIf="messageCtrl.errors?.['maxlength']">El mensaje puede tener como máximo 300
-                            caracteres.</span>
-                    </p>
-                </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-text/50 mb-1">Email</label>
+                        <input type="email" name="email" [(ngModel)]="email" required email
+                            class="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase font-bold text-text/50 mb-1">Tu Reto (¿Empresa o
+                            Particular?)</label>
+                        <textarea name="message" [(ngModel)]="message" rows="4" required
+                            placeholder="Ej: Quiero automatizar mis facturas o quiero organizar mis estudios..."
+                            class="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta transition-colors"></textarea>
+                    </div>
 
+                    <div class="flex items-start gap-3 pt-2">
+                        <input type="checkbox" name="newsletter" [(ngModel)]="newsletter"
+                            class="mt-1 accent-cta w-4 h-4">
+                        <p class="text-xs text-text/60 leading-tight">Sí, envíame trucos de automatización (0 spam,
+                            prometido).</p>
+                    </div>
 
-                <div class="flex items-start">
-                    <input id="newsletter" name="newsletter" type="checkbox" [(ngModel)]="newsletter" class="mt-3" />
-                    <label for="newsletter" class="ml-2 text-lg">Envíame 1 email/semana con ideas prácticas de
-                        automatización.</label>
-                </div>
+                    <button type="submit" [disabled]="submitting || contactForm.invalid"
+                        class="w-full py-4 bg-cta text-white font-bold rounded-xl shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-lg">
+                        {{ submitting ? 'Enviando...' : 'Solicitar Auditoría' }}
+                    </button>
 
-                <div class="space-y-1" aria-live="polite">
-                    <p *ngIf="submitSuccess" class="text-sm text-green-600 font-semibold">{{ submitSuccessMessage }}</p>
-                    <p *ngIf="submitError" class="text-sm text-red-600" role="alert">{{ submitErrorMessage }}</p>
-                </div>
-                <button type="submit" [disabled]="f.invalid || submitting"
-                    class="w-full px-8 py-3 mt-6 border-2 border-cta text-white rounded-full bg-cta font-semibold hover:bg-green-600 transition">
-                    {{ submitting ? 'Enviando...' : 'Enviar' }}
-                </button>
-
-                <p class="text-xs text-text/70 mt-4">
-                    Al enviar este formulario aceptas nuestro
-                    <a routerLink="/aviso-legal" class="underline">Aviso Legal</a>,
-                    <a routerLink="/politica-privacidad" class="underline">Política de Privacidad</a> y las
-                    <a routerLink="/condiciones-generales" class="underline">Condiciones Generales</a>.
-                </p>
-            </form>
+                    <p *ngIf="submitSuccess" class="text-green-500 text-center font-bold text-sm mt-2 animate-bounce">{{
+                        submitSuccessMessage }}</p>
+                </form>
+            </div>
 
         </div>
     </section>
 
-    <!-- Pie de página y botón scroll-top -->
     <app-footer></app-footer>
     <app-scroll-to-top></app-scroll-to-top>
 </div>
