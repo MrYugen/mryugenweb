@@ -1,18 +1,39 @@
-<div class="ba-slider relative w-full overflow-hidden select-none touch-none">
-    <!-- Imagen base (before) -->
-    <img [src]="beforeImage" [alt]="altBefore" class="w-full block" loading="lazy" />
+<div class="ba-slider group relative w-full overflow-hidden select-none touch-none rounded-2xl shadow-xl"
+    (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
 
-    <!-- Imagen overlay (after) recortada según ratio -->
-    <div class="absolute top-0 right-0 h-full overflow-hidden transition-all" [style.width.%]="100 - ratio">
-        <img [src]="afterImage" [alt]="altAfter" class="w-full h-full object-cover" loading="lazy" />
+    <img [src]="beforeImage" [alt]="altBefore" class="w-full block object-cover" loading="lazy" />
+
+    <div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-orange-300 text-xs font-bold px-3 py-1 rounded-full pointer-events-none transition-opacity duration-300"
+        [class.opacity-100]="isHovered || isDragging" [class.opacity-0]="!isHovered && !isDragging">
+        {{ altBefore }}
     </div>
 
-    <!-- Handle deslizable -->
-    <div class="handle absolute top-0 h-full cursor-ew-resize transition-all" [style.left.%]="ratio"
+    <div class="absolute top-0 right-0 h-full overflow-hidden will-change-[width]" [style.width.%]="100 - ratio">
+
+        <img [src]="afterImage" [alt]="altAfter" class="absolute top-0 right-0 h-full max-w-none object-cover"
+            [style.width]="containerWidth + 'px'" />
+
+        <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-orange-300 text-xs font-bold px-3 py-1 rounded-full pointer-events-none transition-opacity duration-300"
+            [class.opacity-100]="isHovered || isDragging" [class.opacity-0]="!isHovered && !isDragging">
+            {{ altAfter }}
+        </div>
+
+    </div>
+
+    <div class="handle absolute top-0 h-full cursor-ew-resize focus:outline-none" [style.left.%]="ratio"
         (mousedown)="startDrag($event)" (touchstart)="startDrag($event)" tabindex="0" (keydown)="onKey($event)">
-        <!-- Línea central -->
-        <div class="absolute top-0 left-1/2 h-full w-px bg-cta"></div>
-        <!-- Círculo de control -->
-        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-cta rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 h-full w-1 bg-orange-500 shadow-[0_0_10px_rgba(0,0,0,0.3)]">
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-orange-50 rounded-full shadow-2xl flex items-center justify-center text-orange-500 transition-transform duration-200"
+            [class.scale-110]="isDragging">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8L22 12L18 16"></path>
+                <path d="M6 8L2 12L6 16"></path>
+            </svg>
+        </div>
     </div>
 </div>
