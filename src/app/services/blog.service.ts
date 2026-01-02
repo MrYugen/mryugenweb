@@ -23,7 +23,7 @@ export class BlogService {
   // Categorías para el filtro del frontend
   public categories = [
     'Todos',
-    'Couple Clash',
+    'Juegos de Mesa',
     'Diseño Gráfico',
     'Ilustración Digital',
     'Branding',

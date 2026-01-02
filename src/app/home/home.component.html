@@ -1,484 +1,288 @@
-<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300">
+<div [class.dark]="isDarkMode" class="min-h-screen bg-bg text-text transition-colors duration-300 overflow-x-hidden">
 
-    <!-- NAVBAR ESCRITORIO Y MOVILES -->
     <app-navbar class="hidden md:block" [isDarkMode]="isDarkMode" (toggleTheme)="toggleTheme()"></app-navbar>
     <app-mobile-navbar class="block md:hidden" [isDarkMode]="isDarkMode"
         (toggleTheme)="toggleTheme()"></app-mobile-navbar>
 
-
-    <!-- HERO VISUAL -->
-
     <app-hero [isDarkMode]="isDarkMode" [logoAlt]="'Logo de Mr. Yugen'" [showCTA]="false"></app-hero>
 
-    <!-- ABOUT / STORYTELLING -->
-    <section id="about" class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 py-16 px-4"
-        aria-labelledby="about-heading">
-        <img loading="lazy" src="assets/images/profile_mryugen.png" alt="Imagen de perfil de Mr. Yugen al estilo anime"
-            class="w-48 h-48 rounded-full shadow-lg" #aboutImage />
-        <div #aboutText>
-            <h2 id="about-heading" class="text-3xl md:text-5xl font-bold mb-4">¿Quién es Mr. Yugen?</h2>
-            <p class="mb-4 leading-relaxed">
-                ¡Hola! Soy <strong>Miguel Estévez</strong>, tambien conocido como <em>Mr. Yugen</em>, un
-                <strong>creativo multidisciplinar</strong> apasionado por
-                el <strong>diseño gráfico</strong> y las nuevas tecnologías.
-            </p>
-            <p class="mb-4 leading-relaxed">
-                Combino <strong>storytelling</strong>, <strong>UX/UI</strong>, <strong>inteligencia artificial</strong>
-                y <strong>tecnologías web</strong> para transformar ideas en
-                proyectos innovadores.</p>
-            <p class="mb-4 leading-relaxed">
-                <strong>¿Qué me diferencia?</strong> La fusión entre diseño, arte, tecnología y nuevas tendencias como
-                el uso de la
-                Inteligencia Artificial o herramientas low-code para crear soluciones creativas.
-            </p>
-            <p class="mb-4 leading-relaxed">
-                Mi mayor logro: Diseñar y desarrollar <strong>Couple Clash</strong>, un juego de mesa creado desde cero
-                que combina
-                narrativa, diseño, estrategia y branding para ofrecer una experiencia única.</p>
-            <p><strong>¿Buscas un profesional que aporte visión, creatividad y resultados?</strong></p><br>
-            <a href="#contact"
-                class="inline-block px-6 py-3 border-2 border-cta rounded-full font-semibold hover:bg-cta transition">
-                Hablemos →
-            </a>
-        </div>
-    </section>
+    <section id="about" class="py-24 px-6 relative overflow-hidden">
+        <div class="absolute top-20 left-0 w-64 h-64 bg-cta/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-    <!-- SKILLS -->
-    <section id="skills" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
-        aria-labelledby="skills-heading">
-        <div class="max-w-5xl mx-auto">
-            <!-- Titular -->
-            <h2 id="skills-heading" class="text-3xl md:text-5xl font-bold text-center mb-2">
-                Experiencia y Habilidades
-            </h2>
-            <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-4">
-                15 años transformando conceptos en realidades
-            </p>
-            <p class="max-w-2xl mx-auto text-center mb-12">
-                A lo largo de mi trayectoria, he combinado <strong>creatividad</strong> y <strong>técnica</strong> para
-                ofrecer <strong>soluciones
-                    visuales y digitales</strong> innovadoras, optimizadas en rendimiento y <em>UX</em>.
-            </p>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center reveal-section">
 
-            <!-- Tarjetas -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Diseño Gráfico e Ilustración -->
-                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
-                bg-[color:var(--skill-design-bg)] dark:bg-[color:var(--skill-design-bg)] skills-card">
-                    <img loading="lazy" src="assets/images/MrYugenDiseñador.png"
-                        alt="Icono con Mr Yugen como Diseñador Gráfico" class="mx-auto mb-4 w-32 h-32" />
-                    <h3 class="text-xl font-semibold text-center mb-3">Diseño Gráfico & Ilustración</h3>
-                    <div class="grid grid-cols-3 gap-4">
-                        <!-- Photoshop -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Adobe_Photoshop_CC_icon.svg"
-                                alt="Logo Photoshop" class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Photoshop</figcaption>
-                        </figure>
-                        <!-- Illustrator -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Adobe_Illustrator_CC_icon.svg"
-                                alt="Logo Illustrator" class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Illustrator</figcaption>
-                        </figure>
-                        <!-- InDesign -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Adobe_InDesign_CC_icon.svg" alt="Logo InDesign"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">InDesign</figcaption>
-                        </figure>
-                        <!-- Procreate -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Procreate_icon.jpeg" alt="Logo Procreate"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Procreate</figcaption>
-                        </figure>
-                        <!-- UX/UI -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/UX-UI icon.png" alt="Logo UX/UI"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">UX/UI</figcaption>
-                        </figure>
-                        <!-- Maquetación -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Maquetacion icon.png" alt="Logo Maquetación"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs text-center">Maquetación Web y Editorial</figcaption>
-                        </figure>
-                        <!-- Figma -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Figma-logo.svg" alt="Logo Figma"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs text-center">Figma</figcaption>
-                        </figure>
-                        <!-- CapCut -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/capcut-icon.svg" alt="Logo CapCut"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs text-center">CapCut</figcaption>
-                        </figure>
+            <div class="relative group flex justify-center md:justify-start">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div
+                        class="absolute inset-0 bg-cta rounded-[2rem] rotate-6 opacity-20 group-hover:rotate-12 transition-transform duration-500">
                     </div>
-                </div>
-
-                <!-- Programación con Código -->
-                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
-                bg-[color:var(--skill-coding-bg)] dark:bg-[color:var(--skill-coding-bg)] skills-card">
-                    <img loading="lazy" src="assets/images/MrYugenProgramador.png"
-                        alt="Icono de Mr Yugen como Programador" class="mx-auto mb-4 w-32 h-32" />
-                    <h3 class="text-xl font-semibold text-center mb-3">Programación con Código</h3>
-                    <div class="grid grid-cols-3 gap-4">
-                        <!-- HTML5 -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/HTML5_logo.svg" alt="Logo HTML5"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">HTML5</figcaption>
-                        </figure>
-                        <!-- CSS3 -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/CSS3_logo.svg" alt="Logo CSS3"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">CSS3</figcaption>
-                        </figure>
-                        <!-- JavaScript -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/JS.svg" alt="Logo JavaScript"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">JavaScript</figcaption>
-                        </figure>
-                        <!-- Angular -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Angular_logo.svg" alt="Logo Angular"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Angular</figcaption>
-                        </figure>
-                        <!-- Python -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Python-logo.svg" alt="Logo Python"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Python</figcaption>
-                        </figure>
-                        <!-- SQL -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Sql_logo.svg" alt="Logo SQL"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">SQL</figcaption>
-                        </figure>
-                        <!-- TypeScript -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Typescript_logo.svg" alt="Logo TypeScript"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">TypeScript</figcaption>
-                        </figure>
-                        <!-- TailWind CSS -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Tailwind_CSS_Logo.svg" alt="Logo TailWind CSS"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">TailWind CSS</figcaption>
-                        </figure>
-                        <!-- Node.JS -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Node.js_logo.svg" alt="Logo Node.js"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Node.js</figcaption>
-                        </figure>
-                    </div>
-                </div>
-
-                <!-- Otras Skills -->
-                <div class="p-6 rounded-2xl shadow-lg transition-transform hover:scale-[1.03]
-                bg-[color:var(--skill-other-bg)] dark:bg-[color:var(--skill-other-bg)] skills-card">
-                    <img loading="lazy" src="assets/images/MrYugenIA+Ingles.png" alt="Icono que representa Otras skills"
-                        class="mx-auto mb-4 w-32 h-32" />
-                    <h3 class="text-xl font-semibold text-center mb-3">Otras Skills</h3>
-                    <div class="grid grid-cols-3 gap-4">
-                        <!-- Inglés escrito -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Ingles escrito.png" alt="Inglés Escrito"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Inglés Escrito</figcaption>
-                        </figure>
-                        <!-- Inglés hablado -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Ingles hablado.png" alt="Inglés Hablado"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Inglés Hablado</figcaption>
-                        </figure>
-                        <!-- AI & Prompts -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/AI Prompts.png" alt="Icono AI Prompts"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">AI & Prompts</figcaption>
-                        </figure>
-                        <!-- Automatización -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/AI Agents.png" alt="Icono Automatización"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Automatización</figcaption>
-                        </figure>
-                        <!-- Copywriting -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/copywriter_logo.png" alt="Icono Copywriting"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Copywriting</figcaption>
-                        </figure>
-                        <!-- No-Code -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/No code.png" alt="Icono No-Code"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Vibe Coding</figcaption>
-                        </figure>
-                        <!-- Contabilidad y Finanzas -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/presupuesto.png"
-                                alt="Icono Contabilidad y Fiscalidad" class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs text-center">Contabilidad y Fiscalidad</figcaption>
-                        </figure>
-                        <!-- Blockchain -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/blockchain-icon.svg" alt="Icono Blockchain"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Blockchain</figcaption>
-                        </figure>
-                        <!-- Crypto -->
-                        <figure class="flex flex-col items-center">
-                            <img loading="lazy" src="assets/images/icons/Bitcoin.svg" alt="Logo Bitcoin"
-                                class="w-10 h-10 mb-1" />
-                            <figcaption class="text-xs">Crypto</figcaption>
-                        </figure>
-                    </div>
+                    <img loading="lazy" src="assets/images/profile_mryugen.png" alt="Miguel Estévez"
+                        class="relative w-full h-full object-cover rounded-[2rem] shadow-2xl rotate-0 group-hover:-rotate-2 transition-transform duration-500 z-10 border-4 border-bg" />
                 </div>
             </div>
-        </div>
-    </section>
 
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="py-16 px-4 bg-bg text-text transition-colors duration-300"
-        aria-labelledby="portfolio-heading">
-        <div class="max-w-5xl mx-auto">
-            <!-- Texto introductorio -->
-            <h2 id="portfolio-heading" class="text-3xl md:text-5xl font-bold text-center mb-2">
-                Portfolio
-            </h2>
-            <p class="text-center uppercase tracking-wide text-sm text-text/70 mb-4">
-                Explora mis proyectos destacados
-            </p>
-            <p class="max-w-2xl mx-auto text-center mb-12">
-                Cada proyecto une <strong>creatividad</strong>, <strong>estrategia</strong> y
-                <strong>atención al detalle</strong>. Desde <em>branding</em> hasta
-                <em>juegos de mesa</em>, cada pieza está diseñada para ofrecer una
-                experiencia única y eficaz.
-            </p>
-
-            <!-- Tarjetas -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div *ngFor="let item of portfolioItems" #portfolioCard
-                    class="portfolio-card relative rounded-2xl shadow-lg overflow-hidden cursor-pointer group"
-                    [ngStyle]="{ 'background-color': 'var(--portfolio-bg-' + item.id + ')' }">
-                    <!-- Imagen con carousel al click -->
-                    <div class="relative" (pointerdown)="onPointerDown($event)" (pointerup)="onPointerUp($event, item)">
-                        <img loading="lazy" [src]="item.images[item.currentIndex]" [alt]="item.title"
-                            class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110 rounded-lg"
-                            (click)="nextImage(item)" />
-                        <!-- Flechas -->
-                        <button
-                            class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
-                            (click)="prevImage(item); $event.stopPropagation()" aria-label="Anterior">‹</button>
-                        <button
-                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition"
-                            (click)="nextImage(item); $event.stopPropagation()" aria-label="Siguiente">›</button>
-                    </div>
-
-                    <!-- Contenido -->
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-center mb-2">{{ item.title }}</h3>
-                        <p class="text-sm text-center mb-4">{{ item.description }}</p>
-                        <a [routerLink]="item.link" class="inline-block px-4 py-1.5 text-sm rounded-full font-semibold
-                        border-2 border-cta hover:bg-cta transition">
-                            Ver más
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BLOG PREVIEW -->
-    <section id="blog" class="py-16 px-4 bg-bg-alt text-text transition-colors duration-300"
-        aria-labelledby="blog-heading">
-        <div class="max-w-5xl mx-auto text-center">
-            <!-- Título -->
-            <h2 id="blog-heading" class="text-3xl md:text-5xl font-bold mb-2">Blog</h2>
-            <!-- Subtítulo -->
-            <p class="uppercase tracking-wide text-sm text-text/70 mb-4">
-                COUPLE CLASH: DEL CONCEPTO A LA REALIDAD
-            </p>
-            <!-- Párrafo de invitación -->
-            <p class="max-w-3xl mx-auto mb-12 leading-relaxed">
-                <strong>Diseñar</strong> un <strong>juego de mesa</strong> implica mucho trabajo, en mi caso, 5 años de
-                aprendizajes, errores épicos y
-                momentos inolvidables. Aquí comparto mis <strong>reflexiones, trucos y desastres</strong> con el
-                objetivo de crear una guía que te ayude a meter la pata menos que yo.<br>
-                <strong><em>¡Pincha</em> en cada imagen para descubrir la historia detrás de Couple Clash!</strong>
-            </p>
-        </div>
-        <!-- Grid de entradas -->
-        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <a *ngFor="let post of latestPosts" [routerLink]="['/blog', post.slug]"
-                class="blog-card relative block rounded-2xl overflow-hidden shadow-lg">
-                <!-- Imagen redondeada -->
-                <img loading="lazy" [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
-                <!-- Overlay oscurito al 60% + hover -->
-                <div class="absolute inset-0 bg-black/60 flex flex-col justify-center items-center
-                opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <h3 class="text-center text-yellow-300 text-lg font-bold px-2">
-                        {{ post.title }}
-                    </h3>
-                    <p class="text-center text-yellow-300 text-sm px-4 mt-2">
-                        {{ post.excerpt }}
-                    </p>
-                </div>
-            </a>
-        </div>
-        <!-- CTA Ver más entradas -->
-        <div class="text-center mt-10">
-            <a routerLink="/blog" class="px-8 py-3 border-2 border-cta rounded-full font-semibold
-                hover:bg-cta hover:text-white transition">
-                Ver más entradas
-            </a>
-        </div>
-    </section>
-
-    <!-- SERVICIOS DESTACADOS -->
-    <section id="automation" class="relative min-h-screen overflow-hidden group" aria-labelledby="automation-heading">
-        <!-- Fondo parallax -->
-        <div #parallaxBg class="parallax-bg automation-banner absolute left-0 w-full min-h-screen bg-center bg-cover"
-            loading="lazy"></div>
-
-        <div class="absolute inset-0 bg-black/40"></div>
-
-        <!-- Contenido -->
-        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center text-white">
-            <h2 id="automation-heading" class="text-3xl md:text-5xl font-bold leading-tight mb-6 drop-shadow-md">
-                Automatización de Procesos para Empresas y Particulares
-            </h2>
-
-            <p class="max-w-2xl mb-8 drop-shadow-md">
-                En un mundo donde cada segundo cuenta, la automatización <strong>optimiza
-                    flujos de trabajo</strong>, <strong>reduce errores humanos</strong> y libera a tu equipo para
-                tareas de mayor valor. <strong>Ahorra tiempo</strong>, <strong>mejora la calidad</strong> y
-                <strong>acelera tu
-                    crecimiento digital</strong>.
-            </p>
-
-            <!-- CTA -->
-            <button routerLink="/automation"
-                class="px-8 py-3 border-2 border-cta hover:bg-cta rounded-full font-semibold"
-                aria-label="Más información sobre automatización de procesos">
-                Pulsa para ahorrar tiempo
-            </button>
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contact"
-        class="py-16 px-4 bg-[color:var(--bg-alt)] text-[color:var(--text)] transition-colors duration-300"
-        aria-labelledby="contact-heading">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
-            <!-- Lado izquierdo (Imagen + emails) centrado -->
-            <div #contactLeft class="flex flex-col items-center text-center space-y-4">
-                <img src="assets/images/contact_picture2.png"
-                    alt="Icono gracioso de un sobre cute para la seccion Contacto" class="w-64 mb-4" loading="lazy" />
-                <p class="font-medium text-lg">
-                    Puedes ponerte en contacto conmigo en:
+            <div class="space-y-6 text-center md:text-left">
+                <h2 class="text-xs font-bold tracking-[0.3em] text-cta uppercase">El Perfil</h2>
+                <h3 class="text-4xl md:text-5xl font-black leading-tight">
+                    ¿Quién es <br> <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-500">Mr.
+                        Yugen?</span>
+                </h3>
+                <p class="text-lg text-text/80 leading-relaxed">
+                    Hola, soy <strong>Miguel Estévez</strong>. Un híbrido creativo que disfruta tanto diseñando una
+                    identidad visual como escribiendo el código que la hace funcionar.
                 </p>
-                <ul class="space-y-2">
-                    <li><a href="mailto:hola&#64;mryugen.com" class="underline">hola&#64;mryugen.com</a>
-                    </li>
-                    <li><a href="mailto:direccion&#64;mryugen.com" class="underline">direccion&#64;mryugen.com</a>
-                    </li>
-                </ul>
+                <p class="text-text/70 leading-relaxed">
+                    Tras 5 años en UK absorbiendo cultura y perfeccionando mi inglés, volví para fusionar mis dos
+                    pasiones: <strong>Diseño & Tecnología</strong>. Mi objetivo es simple: crear cosas que funcionen
+                    bien y se vean increíbles.
+                </p>
+
+                <div class="pt-4 flex justify-center md:justify-start gap-8">
+                    <div>
+                        <span class="block text-2xl font-black text-cta">+10</span>
+                        <span class="text-xs uppercase tracking-wide opacity-60">Años Exp.</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-black text-cta">100%</span>
+                        <span class="text-xs uppercase tracking-wide opacity-60">Creatividad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-6 bg-bg-alt border-y border-gray-200 dark:border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal-section">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Arsenal Creativo</h2>
+                <p class="text-text/60">Herramientas y habilidades que pongo a tu disposición.</p>
             </div>
 
-            <!-- Lado derecho (formulario con fondo coloreado #457b9d35) -->
-            <div #contactRight class="bg-[#457b9d35] p-8 rounded-2xl shadow-lg">
-                <h2 id="contact-heading" class="text-3xl md:text-5xl font-bold mb-2">Contacto</h2>
-                <p class="uppercase tracking-wide text-sm text-[color:var(--text)]/70 mb-6">¿Trabajamos juntos?</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
-                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" novalidate
-                    [attr.aria-busy]="submitting ? true : null" class="space-y-4">
-
-                    <p class="text-sm text-[color:var(--text)]/70">Los campos marcados con <span
-                            class="text-red-600">*</span> son obligatorios.</p>
-
-                    <div>
-                        <label for="name" class="block font-medium mb-1">Nombre <span
-                                class="text-red-600">*</span></label>
-                        <input id="name" name="name" [(ngModel)]="contactName" #nameCtrl="ngModel" required
-                            placeholder="¿Cómo debo llamarte?"
-                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                            [attr.aria-invalid]="nameCtrl.invalid && nameCtrl.touched ? true : null" />
-                        <p *ngIf="nameCtrl.invalid && nameCtrl.touched" class="mt-1 text-sm text-red-600">El nombre es
-                            obligatorio.</p>
+                <div
+                    class="col-span-2 md:col-span-2 lg:col-span-3 bg-bg p-8 rounded-3xl border border-gray-200 dark:border-white/5 skill-card shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="font-bold text-xl mb-6 flex items-center gap-2">🛠️ Hard Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill">Photoshop</span>
+                        <span class="skill-pill">Illustrator</span>
+                        <span class="skill-pill">Indesign</span>
+                        <span class="skill-pill bg-cta/10 text-cta border-cta/20">Angular</span>
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">Tailwind</span>
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">Docker</span>
                     </div>
+                </div>
 
-                    <div>
-                        <label for="email" class="block font-medium mb-1">Email <span
-                                class="text-red-600">*</span></label>
-                        <input id="email" name="email" type="email" [(ngModel)]="contactEmail" #emailCtrl="ngModel"
-                            required email placeholder="Tu mejor email, por favor"
-                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"
-                            [attr.aria-invalid]="emailCtrl.invalid && emailCtrl.touched ? true : null" />
-                        <p *ngIf="emailCtrl.invalid && emailCtrl.touched" class="mt-1 text-sm text-red-600">
-                            <span *ngIf="emailCtrl.errors?.['required']">El email es obligatorio.</span>
-                            <span *ngIf="emailCtrl.errors?.['email']">Introduce un email válido
-                                (nombre&#64;dominio.com).</span>
-                        </p>
-                    </div>
-
-
-                    <div>
-                        <label for="message" class="block font-medium mb-1">Mensaje <span
-                                class="text-red-600">*</span></label>
-                        <textarea id="message" name="message" rows="5" [(ngModel)]="contactMessage"
-                            #messageCtrl="ngModel" required maxlength="300" placeholder="¿En qué te puedo ayudar?"
-                            class="w-full p-3 rounded border focus:outline-none focus:ring-2 focus:ring-cta bg-white text-gray-900"></textarea>
-                        <div class="mt-1 flex items-center justify-between text-xs text-[color:var(--text)]/70">
-                            <span>Hasta 300 caracteres.</span>
-                            <span>{{ (contactMessage.length || 0) }}/300</span>
+                <div
+                    class="col-span-2 md:col-span-2 lg:col-span-3 bg-gradient-to-br from-cta/10 to-bg p-8 rounded-3xl border border-cta/20 skill-card shadow-sm">
+                    <h3 class="font-bold text-xl mb-6 flex items-center gap-2">🧠 Soft Skills</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">💡</span> <span class="font-medium text-sm">Pensamiento
+                                Lateral</span>
                         </div>
-                        <p *ngIf="messageCtrl.invalid && messageCtrl.touched && messageCtrl.errors?.['required']"
-                            class="mt-1 text-sm text-red-600">
-                            El mensaje es obligatorio.
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🤝</span> <span class="font-medium text-sm">Trabajo en Equipo</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🎯</span> <span class="font-medium text-sm">Resolución
+                                Problemas</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🇬🇧</span> <span class="font-medium text-sm">Inglés C1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="col-span-1 md:col-span-1 lg:col-span-2 bg-bg p-6 rounded-3xl border border-gray-200 dark:border-white/5 skill-card flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl mb-2">🎲</span>
+                    <span class="font-bold text-sm">Board Games Creator</span>
+                </div>
+                <div
+                    class="col-span-1 md:col-span-1 lg:col-span-2 bg-bg p-6 rounded-3xl border border-gray-200 dark:border-white/5 skill-card flex flex-col justify-center items-center text-center">
+                    <span class="text-3xl mb-2">🤖</span>
+                    <span class="font-bold text-sm">AI Enthusiast</span>
+                </div>
+                <div
+                    class="col-span-2 md:col-span-2 lg:col-span-2 bg-black text-white p-6 rounded-3xl skill-card flex flex-col justify-center items-center text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-cta opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                    <span class="font-bold text-lg">Always Learning 🚀</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 px-6 reveal-section">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-5xl font-black mb-2">Portfolio</h2>
+                    <p class="text-text/60">Una selección de mis mejores trabajos.</p>
+                </div>
+                <a routerLink="/portfolio/branding"
+                    class="text-cta font-bold hover:underline decoration-2 underline-offset-4">Ver todo →</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a *ngFor="let item of portfolioItems; let i = index" [routerLink]="item.link"
+                    class="group relative aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                    (mouseenter)="startPortfolioHover(i)" (mouseleave)="stopPortfolioHover(i)">
+
+                    <img [src]="item.images[item.currentIndex]" [alt]="item.title"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300">
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        <span class="text-xs font-bold uppercase tracking-widest text-cta mb-1 block">Proyectos</span>
+                        <h3 class="text-2xl font-bold mb-1">{{ item.title }}</h3>
+                        <p
+                            class="text-sm text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 line-clamp-2">
+                            {{ item.description }}
                         </p>
-                        <p *ngIf="messageCtrl.errors?.['maxlength'] && messageCtrl.touched"
-                            class="mt-1 text-sm text-red-600">
-                            El mensaje puede tener como máximo 300 caracteres.
-                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-32 md:py-48 flex items-center justify-center overflow-hidden reveal-section">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="assets/images/automatizacion_background.jpg" class="w-full h-full object-cover fixed-bg-effect"
+                alt="Automatización">
+        </div>
+
+        <div class="relative z-20 text-center px-6 max-w-4xl">
+            <span
+                class="inline-block py-1 px-3 border border-white/30 rounded-full text-xs font-bold text-white uppercase tracking-widest mb-6 backdrop-blur-md">Nuevo
+                Servicio</span>
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
+                ¿Sientes que te falta tiempo?
+            </h2>
+            <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+                La automatización no es el futuro, es el presente. Descubre cómo la IA puede trabajar por ti mientras tú
+                creas.
+            </p>
+            <a routerLink="/automation"
+                class="inline-block px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-cta hover:text-white transition-all transform hover:scale-105 shadow-xl">
+                Descubrir Automatización
+            </a>
+        </div>
+    </section>
+
+    <section id="blog" class="py-24 px-6 bg-bg-alt reveal-section">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-black mb-12 text-center">Últimas Historias - Blog</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article *ngFor="let post of latestPosts"
+                    class="group bg-bg rounded-3xl overflow-hidden border border-gray-200 dark:border-white/5 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <a [routerLink]="['/blog', post.slug]">
+                        <div class="h-48 overflow-hidden relative">
+                            <img [src]="post.image"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                [alt]="post.title">
+                            <div
+                                class="absolute top-4 left-4 bg-bg/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-cta shadow-sm">
+                                {{ post.category }}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs text-text/50 block mb-2">{{ post.date | date:'mediumDate' }}</span>
+                            <h3
+                                class="text-xl font-bold mb-3 leading-tight group-hover:text-cta transition-colors line-clamp-2">
+                                {{ post.title }}
+                            </h3>
+                            <p class="text-text/70 text-sm line-clamp-3 mb-4">
+                                {{ post.excerpt }}
+                            </p>
+                            <span
+                                class="text-sm font-bold underline decoration-cta decoration-2 underline-offset-4">Leer
+                                más</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-bg to-bg-alt -z-10"></div>
+        <div
+            class="absolute right-0 bottom-0 w-[500px] h-[500px] bg-cta/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center reveal-section">
+
+            <div>
+                <h2 class="text-4xl md:text-6xl font-black mb-6">Hablemos.</h2>
+                <p class="text-xl text-text/70 mb-8 leading-relaxed">
+                    ¿Tienes un proyecto en mente, una duda sobre automatización o simplemente quieres saludar? Mi
+                    bandeja de entrada siempre está abierta.
+                </p>
+                <div class="space-y-4">
+                    <a href="mailto:hola@mryugen.com"
+                        class="flex items-center gap-4 text-lg font-bold hover:text-cta transition-colors">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-xl">📧</span>
+                        hola&#64;mryugen.com
+                    </a>
+                    <a href="mailto:direccion@mryugen.com"
+                        class="flex items-center gap-4 text-lg font-bold hover:text-cta transition-colors">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-xl">📧</span>
+                        direccion&#64;mryugen.com
+                    </a>
+                    <div class="flex items-center gap-4 text-lg font-bold">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-xl">📍</span>
+                        Málaga, España (Remoto 🌍)
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-white/50 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 p-8 md:p-10 rounded-[2rem] shadow-2xl">
+                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-xs uppercase font-bold text-text/50 mb-2">Nombre</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="contactName" required
+                            class="w-full bg-bg border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-all">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs uppercase font-bold text-text/50 mb-2">Email</label>
+                        <input type="email" id="email" name="email" [(ngModel)]="contactEmail" required email
+                            class="w-full bg-bg border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-all">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-xs uppercase font-bold text-text/50 mb-2">Mensaje</label>
+                        <textarea id="message" name="message" [(ngModel)]="contactMessage" rows="4" required
+                            maxlength="300"
+                            class="w-full bg-bg border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-cta focus:ring-1 focus:ring-cta transition-all"></textarea>
                     </div>
 
                     <button type="submit" [disabled]="submitting || contactForm.invalid"
-                        class="w-full py-3 border-2 border-cta hover:bg-cta hover:text-white rounded-full font-semibold transition">
-                        {{ submitting ? 'Enviando…' : 'Pulsa y te leeré en breve' }}
+                        class="w-full py-4 bg-cta text-white font-bold rounded-xl shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                        {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
                     </button>
 
-                    <p *ngIf="success" class="text-green-600 text-sm">{{ success }}</p>
-                    <p *ngIf="error" class="text-red-600 text-sm">{{ error }}</p>
-
-                    <p class="text-xs text-[color:var(--text)]/70 mt-4">Al enviar este formulario aceptas nuestro
-                        <a routerLink="/aviso-legal" class="underline">Aviso Legal</a>,
-                        <a routerLink="/politica-privacidad" class="underline">Política de Privacidad</a> y las
-                        <a routerLink="/condiciones-generales" class="underline">Condiciones Generales</a>.
-                    </p>
+                    <p *ngIf="success" class="text-green-500 text-center font-bold text-sm">{{ success }}</p>
                 </form>
             </div>
+
         </div>
     </section>
 
-    <!-- FOOTER -->
     <app-footer></app-footer>
-
     <app-scroll-to-top></app-scroll-to-top>
-
 </div>

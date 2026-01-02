@@ -32,135 +32,135 @@ interface PortfolioItem {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [                    
-    CommonModule,
-    RouterModule,
-    NavbarComponent,
-    MobileNavbarComponent,
-    HeroComponent,
-    FooterComponent,
-    ScrollToTopComponent,
-    FormsModule
-    ,HttpClientModule
+  imports: [
+    CommonModule, RouterModule, FormsModule, HttpClientModule,
+    NavbarComponent, MobileNavbarComponent, HeroComponent, FooterComponent, ScrollToTopComponent
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']  // Fichero de estilos locales
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
-  @ViewChild('aboutImage', { static: false }) aboutImage!: ElementRef<HTMLImageElement>;
-  @ViewChild('aboutText', { static: false }) aboutText!: ElementRef<HTMLDivElement>;
-  @ViewChildren('portfolioCard') portfolioCards!: QueryList<ElementRef>;
-  @ViewChild('parallaxBg', { static: false }) parallaxBg!: ElementRef<HTMLDivElement>;
-  @ViewChild('contactLeft', { static: false }) contactLeft!: ElementRef;
-  @ViewChild('contactRight', { static: false }) contactRight!: ElementRef;
-
-private startX = 0;
-private intervals: ReturnType<typeof setInterval>[] = [];
-
-
-  isDarkMode = false;  // Estado del tema
-  // Campos del formulario de contacto
-  contactName: string = '';
-  contactEmail: string = '';
-  contactMessage: string = '';
-
-  submitting = false;
-  success = '';
-  error = '';
-
-  onPointerDown(e: PointerEvent) {
-    this.startX = e.clientX;
-  }
-
-  onPointerUp(e: PointerEvent, item: PortfolioItem) {
-    const delta = e.clientX - this.startX;
-    if (Math.abs(delta) > 50) {
-      delta < 0 ? this.nextImage(item) : this.prevImage(item);
-    }
-  }
+  isDarkMode = false;
+  latestPosts: BlogPost[] = [];
   
-  scrollToTop() {
-    const reduceMotion = prefersReducedMotion();
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
-  }
-
-  // Datos de portfolio (puedes ampliarlos o trayéndolos de un API/CMS)
-    portfolioItems: PortfolioItem[] = [
+  // Portfolio Data
+  portfolioItems: PortfolioItem[] = [
     {
       id: 'branding',
       title: 'Branding',
-      description: 'Diseño de logos, identidad visual, creación de marca y merchandising.',
+      description: 'Identidades visuales con alma y estrategia.',
       link: '/portfolio/branding',
-      images: [
-        'assets/images/portfolio_branding.png',
-        'assets/images/portfolio_branding2.png',
-        'assets/images/portfolio_branding3.png'
-      ],
+      images: ['assets/images/selu_mockup2.jpg', 'assets/images/portfolio_branding.png', 'assets/images/portfolio_branding3.png'], // Asegúrate que existan
       currentIndex: 0
     },
-    {
+        {
       id: 'illustration',
-      title: 'Ilustración Digital',
-      description: 'Desde concept art hasta ilustraciones por encargo con cualquier estilo.',
+      title: 'Ilustración',
+      description: 'Arte digital para contar historias únicas.',
       link: '/portfolio/illustration',
-      images: [
-        'assets/images/IlustracionesPorfolio.png',
-        'assets/images/IlustracionesPorfolio2.png',
-        'assets/images/IlustracionesPorfolio3.png'
-      ],
+      images: ['assets/images/IlustracionesPorfolio.png', 'assets/images/IlustracionesPorfolio2.png', 'assets/images/IlustracionesPorfolio3.png'],
       currentIndex: 0
     },
     {
       id: 'web',
-      title: 'Proyectos Web',
-      description: 'Proyectos web a medida con la mejor experiencia de usuario.',
+      title: 'Web Dev',
+      description: 'Sitios web rápidos, modernos y escalables.',
       link: '/portfolio/web',
-      images: [
-        'assets/images/portfolio_web.png',
-        'assets/images/portfolio_web2.png',
-        'assets/images/portfolio_web3.png'
-      ],
+      images: ['assets/images/portfolio_web.png', 'assets/images/portfolio_web2.png', 'assets/images/portfolio_web3.png'],
       currentIndex: 0
     },
     {
       id: 'couple',
       title: 'Couple Clash',
-      description:
-        '5 años de trabajo plasmados en este original juego de mesa.',
+      description: 'Creación integral de un juego de mesa.',
       link: '/under-construction',
-      images: [
-        'assets/images/CoupleClashPorfolio.png',
-        'assets/images/CoupleClashPorfolio2.png',
-        'assets/images/CoupleClashPorfolio3.png'
-      ],
+      images: ['assets/images/CoupleClashPorfolio.png', 'assets/images/CoupleClashPorfolio2.png', 'assets/images/CoupleClashPorfolio3.png'],
       currentIndex: 0
-    },
+    }
   ];
 
-  latestPosts: BlogPost[] = [];
+  // Hover Control
+  private hoverIntervals: any[] = []; 
 
-  nextImage(item: PortfolioItem) {
-    item.currentIndex = (item.currentIndex + 1) % item.images.length;
-  }
+  // Contact Form
+  contactName = '';
+  contactEmail = '';
+  contactMessage = '';
+  submitting = false;
+  success = '';
+  error = '';
 
-  prevImage(item: PortfolioItem) {
-    item.currentIndex =
-      (item.currentIndex - 1 + item.images.length) % item.images.length;
-  }
-
-  constructor(private theme: ThemeService, private blogService: BlogService, private http: HttpClient) {
-    // Inicializa el tema según lo guardado en localStorage
-    this.isDarkMode = this.theme.isDark();
-  }
-
-  ngOnInit(): void {
+  constructor(
+    private themeService: ThemeService,
+    private blogService: BlogService,
+    private http: HttpClient
+  ) {
+    this.isDarkMode = this.themeService.isDark();
     this.latestPosts = this.blogService.getPosts().slice(0, 3);
   }
 
+  ngOnInit() {}
+
   toggleTheme() {
-     // Cambia tema y actualiza la variable para que Angular actualice las clases
-    this.isDarkMode = this.theme.toggle();
+    this.isDarkMode = this.themeService.toggle();
+  }
+
+  ngAfterViewInit() {
+    if (prefersReducedMotion()) return;
+    this.initAnimations();
+  }
+
+  initAnimations() {
+    // 1. Reveal Sections (Fade Up suave)
+    gsap.utils.toArray<HTMLElement>('.reveal-section').forEach(section => {
+      gsap.from(section, {
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        ease: 'power3.out'
+      });
+    });
+
+    // 2. Stagger para Skills (Efecto cascada)
+    ScrollTrigger.batch('.skill-card', {
+      onEnter: batch => gsap.from(batch, {
+        opacity: 0,
+        y: 30,
+        scale: 0.9,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+      }),
+      start: 'top 90%'
+    });
+  }
+
+  // --- LOGICA PORTFOLIO HOVER (Optimizada) ---
+  startPortfolioHover(index: number) {
+    this.stopPortfolioHover(index); // Limpiar por si acaso
+    // Cambiar imagen cada 1s solo si el mouse está encima
+    this.hoverIntervals[index] = setInterval(() => {
+      this.portfolioItems[index].currentIndex = 
+        (this.portfolioItems[index].currentIndex + 1) % this.portfolioItems[index].images.length;
+    }, 1000);
+  }
+
+  stopPortfolioHover(index: number) {
+    if (this.hoverIntervals[index]) {
+      clearInterval(this.hoverIntervals[index]);
+      this.hoverIntervals[index] = null;
+    }
+    // Opcional: Volver a la portada al salir
+    // this.portfolioItems[index].currentIndex = 0; 
+  }
+
+  ngOnDestroy() {
+    this.hoverIntervals.forEach(i => clearInterval(i));
+    ScrollTrigger.getAll().forEach(t => t.kill());
   }
 
   onSubmit(form: NgForm) {
@@ -187,147 +187,4 @@ private intervals: ReturnType<typeof setInterval>[] = [];
         }
       });
   }
-
-ngAfterViewInit() {
-  // Limpia cualquier intervalo anterior por si acaso
-  this.intervals.forEach(id => clearInterval(id));
-  this.intervals = [];
-
-  const reduceMotion = prefersReducedMotion();
-  const isMobileViewport = window.innerWidth <= 768;
-
-  const getDirectionalAnimation = (horizontalOffset: number) =>
-    isMobileViewport
-      ? { x: 0, y: horizontalOffset > 0 ? 30 : -30 }
-      : { x: horizontalOffset };
-
-  if (!reduceMotion) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // About Image Animation
-    if (this.aboutImage) {
-      gsap.from(this.aboutImage.nativeElement, {
-        scrollTrigger: {
-          trigger: this.aboutImage.nativeElement,
-          start: 'top 80%',
-          once: true, // Solo una vez al hacer scroll
-        },
-        ...getDirectionalAnimation(-50),
-        opacity: 0,
-        duration: 1
-      });
-    }
-
-    // About Text Animation
-    if (this.aboutText) {
-      gsap.from(this.aboutText.nativeElement, {
-        scrollTrigger: {
-          trigger: this.aboutText.nativeElement,
-          start: 'top 80%',
-          once: true, // Solo una vez al hacer scroll
-        },
-        ...getDirectionalAnimation(50),
-        opacity: 0,
-        duration: 1
-      });
-    }
-
-    // Skills Animation
-    gsap.utils.toArray<HTMLElement>('.skills-card').forEach(card => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          once: true,
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-    });
-
-    // Portfolio Animation
-    gsap.utils.toArray<HTMLElement>('.portfolio-card').forEach((card, i) => {
-    gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        duration: 0.9,
-        delay: i * 0.3,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-          once: true
-        }
-      });
-    });
-
-    // Blog Animation
-    gsap.utils.toArray<HTMLElement>('.blog-card').forEach(card => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          once: true,
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-    });
-
-    // Carrusel automático de imágenes del Portfolio
-    this.portfolioItems.forEach(item => {
-      const id = setInterval(() => this.nextImage(item), 5000);
-      this.intervals.push(id);
-    });
-
-
-    // Contact Left Animation
-    if (this.contactLeft) {
-      gsap.from(this.contactLeft.nativeElement, {
-        scrollTrigger: {
-          trigger: this.contactLeft.nativeElement,
-          start: 'top 90%',
-          once: true,
-        },
-        ...getDirectionalAnimation(-50),
-        opacity: 0,
-        duration: 1
-      });
-    }
-
-    // Contact Right Animation
-    if (this.contactRight) {
-      gsap.from(this.contactRight.nativeElement, {
-        scrollTrigger: {
-          trigger: this.contactRight.nativeElement,
-          start: 'top 90%',
-          once: true,
-        },
-        ...getDirectionalAnimation(50),
-        opacity: 0,
-        duration: 1
-      });
-    }
-
-    // Siempre refresca los triggers al final para asegurar
-    ScrollTrigger.refresh();
-  }
-
-  if (reduceMotion) {
-    // Sin animaciones automáticas, pero aseguramos que el carrusel no inicie.
-    this.intervals = [];
-  }
-}
-
-  ngOnDestroy() {
-  // Borra todos los timers al destruir el componente
-  this.intervals.forEach(id => clearInterval(id));
-  // ✔ NUEVO: limpiar animaciones GSAP/ScrollTrigger
-  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-}
 }
